@@ -1,0 +1,23 @@
+{
+	"name": "todo.bloemendaal.volkswagen",
+	"version": "1.0.0",
+	"scripts": {
+		"build": "tsc",
+		"format": "biome format --write",
+		"lint": "biome lint --write",
+		"check": "biome check --write"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.3.0",
+		"@tsconfig/node16": "^16.1.6",
+		"@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
+		"@types/node": "^24.9.1",
+		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"axios": "^1.12.2",
+		"axios-cookiejar-support": "^6.0.4",
+		"cheerio": "^1.1.2",
+		"tough-cookie": "^5.1.2"
+	}
+}
