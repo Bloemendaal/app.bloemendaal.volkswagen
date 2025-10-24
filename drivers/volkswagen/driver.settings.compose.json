@@ -1,0 +1,22 @@
+[
+	{
+		"type": "group",
+		"label": { "en": "Login details" },
+		"children": [
+			{
+				"id": "email",
+				"type": "text",
+				"label": { "en": "E-mail address" },
+				"value": "",
+				"hint": { "en": "The e-mail that you use in the Volkswagen App." }
+			},
+			{
+				"id": "password",
+				"type": "password",
+				"label": { "en": "Password" },
+				"value": "",
+				"hint": { "en": "The password that you use in the Volkswagen App." }
+			}
+		]
+	}
+]
