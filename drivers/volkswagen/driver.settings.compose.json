@@ -6,7 +6,7 @@
 			{
 				"id": "email",
 				"type": "text",
-				"label": { "en": "E-mail" },
+				"label": { "en": "E-mail", "nl": "E-mailadres" },
 				"value": "",
 				"hint": {
 					"en": "The e-mail that you use in the Volkswagen App.",
@@ -16,11 +16,25 @@
 			{
 				"id": "password",
 				"type": "password",
-				"label": { "en": "Password" },
+				"label": { "en": "Password", "nl": "Wachtwoord" },
 				"value": "",
 				"hint": {
 					"en": "The password that you use in the Volkswagen App.",
 					"nl": "Het wachtwoord dat je gebruikt in de Volkswagen App."
+				}
+			},
+			{
+				"id": "sPin",
+				"type": "password",
+				"label": {
+					"en": "S-PIN",
+					"nl": "S-PIN"
+				},
+				"value": "",
+				"pattern": "^[0-9]{4}$",
+				"hint": {
+					"en": "Required to modify vehicle settings.",
+					"nl": "Vereist om voertuiginstellingen te wijzigen."
 				}
 			}
 		]

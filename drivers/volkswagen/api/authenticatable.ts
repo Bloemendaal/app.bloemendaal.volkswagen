@@ -27,6 +27,7 @@ export interface TokenStore {
 export interface Configuration {
 	credentials: Credentials;
 	tokenStore?: TokenStore | null;
+	sPin?: string | null;
 }
 
 interface TokenResponse {
@@ -36,11 +37,16 @@ interface TokenResponse {
 	accessTokenExpirationTime: number;
 }
 
-export interface AuthSettings extends Credentials, TokenStore {}
+export interface AuthSettings extends Credentials, TokenStore {
+	sPin?: string | null;
+}
+
 type SettingsUpdateCallback = (settings: AuthSettings) => void;
 
 export default abstract class Authenticatable {
 	private readonly credentials: Credentials;
+
+	private sPin: string | null = null;
 	private tokenStore: TokenStore | null = null;
 
 	private readonly authenticationClient: AxiosInstance;
@@ -48,6 +54,8 @@ export default abstract class Authenticatable {
 
 	constructor(configuration: Configuration) {
 		this.credentials = configuration.credentials;
+
+		this.sPin = configuration.sPin ?? null;
 		this.tokenStore = configuration.tokenStore ?? null;
 
 		this.authenticationClient = wrapper(
@@ -60,10 +68,15 @@ export default abstract class Authenticatable {
 		);
 	}
 
+	public setSPin(sPin: string | null = null): void {
+		this.sPin = sPin || null;
+	}
+
 	public async getSettings(): Promise<AuthSettings> {
 		const tokenStore = await this.authenticate();
 
 		return {
+			sPin: this.sPin,
 			...this.configuration.credentials,
 			...tokenStore,
 		};
@@ -75,6 +88,7 @@ export default abstract class Authenticatable {
 
 	protected get configuration(): Configuration {
 		return {
+			sPin: this.sPin,
 			credentials: this.credentials,
 			tokenStore: this.tokenStore,
 		};

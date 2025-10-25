@@ -14,12 +14,15 @@ export default class VolkswagenDevice extends Homey.Device {
 	private vehicle: Vehicle | null = null;
 	private intervalHandle: NodeJS.Timeout | null = null;
 
-	/**
-	 * onInit is called when the device is initialized.
-	 */
 	public async onInit(): Promise<void> {
 		const vehicle = await this.getVehicle();
 		vehicle.onSettingsUpdate(this.setSettings.bind(this));
+
+		this.registerCapabilityListener("locked", async (value: boolean) => {
+			const vehicle = await this.getVehicle();
+
+			value ? await vehicle.lock() : await vehicle.unlock();
+		});
 
 		await this.setCapabilities();
 
@@ -32,12 +35,27 @@ export default class VolkswagenDevice extends Homey.Device {
 		newSettings,
 		changedKeys,
 	}: OnSettingsParams): Promise<void> {
+		if (changedKeys.includes("sPin")) {
+			this.vehicle?.setSPin(newSettings.sPin?.toString());
+		}
+
+		if (changedKeys.includes("email") || changedKeys.includes("password")) {
+			this.vehicle = null;
+			await this.setCapabilities();
+		}
+
 		if (changedKeys.includes("pollingInterval")) {
 			const interval = +(
 				newSettings.pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES
 			);
 
 			this.startInterval(interval);
+		}
+	}
+
+	public async onDeleted(): Promise<void> {
+		if (this.intervalHandle) {
+			clearInterval(this.intervalHandle);
 		}
 	}
 
@@ -91,13 +109,23 @@ export default class VolkswagenDevice extends Homey.Device {
 			"ev_charging_state",
 			{
 				off: "plugged_out",
-				ready_for_charging: "plugged_in",
+				readyForCharging: "plugged_in",
+				notReadyForCharging: "plugged_out",
+				conservation: null,
+				chargePurposeReachedAndNotConservationCharging: null,
+				chargePurposeReachedAndConservation: null,
 				charging: "plugged_in_charging",
-				discharging: "plugged_in_discharging",
 				error: "plugged_in_paused",
 				unsupported: null,
-				conservation: null,
+				discharging: "plugged_in_discharging",
 			}[status.charging?.chargingStatus.value.chargingState ?? "unsupported"],
+		);
+
+		this.setCapabilityValue(
+			"locked",
+			status.access?.accessStatus.value.doorLockStatus
+				? status.access.accessStatus.value.doorLockStatus === "locked"
+				: null,
 		);
 	}
 }

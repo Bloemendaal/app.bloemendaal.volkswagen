@@ -29,7 +29,7 @@
 				"en": "Volkswagen"
 			},
 			"class": "car",
-			"capabilities": ["measure_battery", "ev_charging_state"],
+			"capabilities": ["measure_battery", "ev_charging_state", "locked"],
 			"energy": {
 				"electricCar": true
 			},
@@ -69,6 +69,22 @@
 					}
 				},
 				{
+					"id": "pincode",
+					"template": "pincode",
+					"options": {
+						"title": {
+							"en": "Enter your S-PIN",
+							"nl": "Voer je S-PIN in"
+						},
+						"hint": {
+							"en": "This is required to modify vehicle settings. On submit, the PIN won't be verified, only when you update settings later. You may change it later in advanced settings.",
+							"nl": "Dit is vereist om voertuiginstellingen te wijzigen. Bij het verzenden wordt de pincode niet geverifieerd, alleen wanneer je later de instellingen bijwerkt. Eventueel kan je de S-PIN later in geavanceerde instellingen bijwerken."
+						},
+						"type": "number",
+						"length": 4
+					}
+				},
+				{
 					"id": "list_devices",
 					"template": "list_devices",
 					"navigation": {
@@ -85,14 +101,16 @@
 				{
 					"type": "group",
 					"label": {
-						"en": "Login details"
+						"en": "Login details",
+						"nl": "Inloggegevens"
 					},
 					"children": [
 						{
 							"id": "email",
 							"type": "text",
 							"label": {
-								"en": "E-mail"
+								"en": "E-mail",
+								"nl": "E-mailadres"
 							},
 							"value": "",
 							"hint": {
@@ -104,34 +122,58 @@
 							"id": "password",
 							"type": "password",
 							"label": {
-								"en": "Password"
+								"en": "Password",
+								"nl": "Wachtwoord"
 							},
 							"value": "",
 							"hint": {
 								"en": "The password that you use in the Volkswagen App.",
 								"nl": "Het wachtwoord dat je gebruikt in de Volkswagen App."
 							}
+						},
+						{
+							"id": "sPin",
+							"type": "password",
+							"label": {
+								"en": "S-PIN",
+								"nl": "S-PIN"
+							},
+							"value": "",
+							"pattern": "^[0-9]{4}$",
+							"hint": {
+								"en": "Required to modify vehicle settings.",
+								"nl": "Vereist om voertuiginstellingen te wijzigen."
+							}
 						}
 					]
 				},
 				{
-					"id": "pollingInterval",
-					"type": "number",
+					"type": "group",
 					"label": {
-						"en": "Polling interval",
-						"nl": "Ververstijd"
+						"en": "Behavior settings",
+						"nl": "Gedragsinstellingen"
 					},
-					"value": 10,
-					"min": 1,
-					"step": 1,
-					"units": {
-						"en": "minutes",
-						"nl": "minuten"
-					},
-					"hint": {
-						"en": "Interval in minutes to poll the vehicle for new data. Lowering this value may result in battery drain.",
-						"nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik."
-					}
+					"children": [
+						{
+							"id": "pollingInterval",
+							"type": "number",
+							"label": {
+								"en": "Polling interval",
+								"nl": "Ververstijd"
+							},
+							"value": 10,
+							"min": 1,
+							"step": 1,
+							"units": {
+								"en": "minutes",
+								"nl": "minuten"
+							},
+							"hint": {
+								"en": "Interval in minutes to poll the vehicle for new data. Lowering this value may result in battery drain.",
+								"nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik."
+							}
+						}
+					]
 				}
 			]
 		}

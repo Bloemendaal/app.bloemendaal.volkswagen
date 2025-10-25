@@ -1,7 +1,11 @@
-type Integer = number;
-type FloatString = string;
-type DateTimeString = string;
-type PossiblyUnknownString = string;
+import type {
+	DateTimeString,
+	FloatString,
+	Integer,
+	PossiblyUnknownString,
+	TimeString,
+	Weekday,
+} from "./types.js";
 
 export interface AccessCapabilitiesData {
 	accessStatus: {
@@ -29,7 +33,7 @@ export interface AccessCapabilitiesData {
 					| "rearRight";
 				status: ("closed" | "unsupported" | PossiblyUnknownString)[];
 				windowOpen_pct?: Integer;
-			};
+			}[];
 			doorLockStatus: "locked" | PossiblyUnknownString;
 		};
 	};
@@ -49,9 +53,12 @@ export interface ChargingCapabilitiesData {
 			remainingChargingTimeToComplete_min: Integer;
 			chargingState:
 				| "off"
-				| "ready_for_charging"
-				| "charging"
+				| "readyForCharging"
+				| "notReadyForCharging"
 				| "conservation"
+				| "chargePurposeReachedAndNotConservationCharging"
+				| "chargePurposeReachedAndConservation"
+				| "charging"
 				| "error"
 				| "unsupported"
 				| "discharging";
@@ -60,7 +67,7 @@ export interface ChargingCapabilitiesData {
 			chargeRate_kmph: Integer;
 			chargeType: "invalid" | PossiblyUnknownString;
 			chargingSettings: "default" | PossiblyUnknownString;
-			chargingScenario: "errorChargingSystem" | PossiblyUnknownString;
+			chargingScenario: "errorChargingSystem" | "off" | PossiblyUnknownString;
 		};
 	};
 	chargingSettings: {
@@ -75,16 +82,21 @@ export interface ChargingCapabilitiesData {
 	plugStatus: {
 		value: {
 			carCapturedTimestamp: DateTimeString;
-			plugConnectionState: "connected" | PossiblyUnknownString;
+			plugConnectionState: "connected" | "disconnected" | PossiblyUnknownString;
 			plugLockState: "unlocked" | PossiblyUnknownString;
 			externalPower: "unavailable" | PossiblyUnknownString;
-			ledColor: "green" | PossiblyUnknownString;
+			ledColor: "green" | "none" | PossiblyUnknownString;
 		};
 	};
 	chargeMode: {
 		value: {
 			preferredChargeMode: "manual" | PossiblyUnknownString;
 			availableChargeModes: ("manual" | PossiblyUnknownString)[];
+		};
+	};
+	chargingCareSettings?: {
+		value: {
+			batteryCareMode: "activated" | PossiblyUnknownString;
 		};
 	};
 }
@@ -192,26 +204,229 @@ export interface VehicleLightsCapabilitiesData {
 	};
 }
 
+export interface AutomationCapabilitiesData {
+	climatisationTimer?: {
+		value: {
+			carCapturedTimestamp: DateTimeString;
+			timeInCar: DateTimeString;
+			timers: {
+				id: Integer;
+				enabled: boolean;
+				recurringTimer?: {
+					startTime: TimeString;
+					recurringOn: {
+						mondays: boolean;
+						tuesdays: boolean;
+						wednesdays: boolean;
+						thursdays: boolean;
+						fridays: boolean;
+						saturdays: boolean;
+						sundays: boolean;
+					};
+					targetTime: TimeString;
+					repetitionDays: Weekday[];
+				};
+				singleTimer?: {
+					startDateTime: DateTimeString;
+					targetDateTime: DateTimeString;
+				};
+			}[];
+		};
+	};
+	chargingProfiles?: {
+		value: {
+			carCapturedTimestamp: DateTimeString;
+			timeInCar: DateTimeString;
+			nextChargingTimer: {
+				id: Integer;
+				targetSOCreachable: "invalid" | PossiblyUnknownString;
+			};
+			profiles: {
+				id: Integer;
+				name: string;
+				maxChargingCurrent: "max" | PossiblyUnknownString;
+				minSOC_pct: Integer;
+				targetSOC_pct: Integer;
+				options: {
+					autoUnlockPlugWhenCharged: "off" | PossiblyUnknownString;
+					usePrivateCurrentEnabled: boolean;
+				};
+				preferredChargingTimes: {
+					id: Integer;
+					enabled: boolean;
+					startTime: TimeString;
+					endTime: TimeString;
+				}[];
+				timers: {
+					id: Integer;
+					enabled: boolean;
+					climatisation: boolean;
+					recurringTimer: {
+						startTime: TimeString;
+						recurringOn: {
+							mondays: boolean;
+							tuesdays: boolean;
+							wednesdays: boolean;
+							thursdays: boolean;
+							fridays: boolean;
+							saturdays: boolean;
+							sundays: boolean;
+						};
+						targetTime: TimeString;
+						repetitionDays: string[];
+					};
+				}[];
+			}[];
+		};
+	};
+}
+
+export interface BatteryChargingCareCapabilitiesData {
+	chargingCareSettings: {
+		value: {
+			batteryCareMode: "activated" | PossiblyUnknownString;
+		};
+	};
+}
+
+export interface BatterySupportCapabilitiesData {
+	batterySupportStatus: {
+		value: {
+			batterySupport: "disabled" | "enabled" | PossiblyUnknownString;
+		};
+	};
+}
+
+export interface ChargingProfilesCapabilitiesData {
+	chargingProfilesStatus: {
+		value: {
+			carCapturedTimestamp: DateTimeString;
+			timeInCar: DateTimeString;
+			nextChargingTimer: {
+				id: Integer;
+				targetSOCreachable: "invalid" | PossiblyUnknownString;
+			};
+			profiles: {
+				id: Integer;
+				name: string;
+				maxChargingCurrent: "max" | PossiblyUnknownString;
+				minSOC_pct: Integer;
+				targetSOC_pct: Integer;
+				options: {
+					autoUnlockPlugWhenCharged: "off" | PossiblyUnknownString;
+					usePrivateCurrentEnabled: boolean;
+				};
+				preferredChargingTimes: {
+					id: Integer;
+					enabled: boolean;
+					startTime: TimeString;
+					endTime: TimeString;
+				}[];
+				timers: {
+					id: Integer;
+					enabled: boolean;
+					climatisation: boolean;
+					recurringTimer: {
+						startTime: TimeString;
+						recurringOn: {
+							mondays: boolean;
+							tuesdays: boolean;
+							wednesdays: boolean;
+							thursdays: boolean;
+							fridays: boolean;
+							saturdays: boolean;
+							sundays: boolean;
+						};
+						targetTime: TimeString;
+						repetitionDays: string[];
+					};
+				}[];
+			}[];
+		};
+	};
+}
+
+export interface ClimatisationTimersCapabilitiesData {
+	climatisationTimersStatus: {
+		value: {
+			carCapturedTimestamp: DateTimeString;
+			timeInCar: DateTimeString;
+			timers: {
+				id: Integer;
+				enabled: boolean;
+				recurringTimer?: {
+					startTime: TimeString;
+					recurringOn: {
+						mondays: boolean;
+						tuesdays: boolean;
+						wednesdays: boolean;
+						thursdays: boolean;
+						fridays: boolean;
+						saturdays: boolean;
+						sundays: boolean;
+					};
+					targetTime: TimeString;
+					repetitionDays: string[];
+				};
+				singleTimer?: {
+					startDateTime: DateTimeString;
+					targetDateTime: DateTimeString;
+				};
+			}[];
+		};
+	};
+}
+
+export interface UserCapabilitiesData {
+	capabilitiesStatus: {
+		value: {
+			id: string;
+			status?: Integer[];
+			expirationDate?: DateTimeString;
+			userDisablingAllowed: boolean;
+		}[];
+	};
+}
+
+export interface VehicleHealthInspectionCapabilitiesData {
+	maintenanceStatus: {
+		value: {
+			carCapturedTimestamp: DateTimeString;
+			inspectionDue_days: Integer;
+			mileage_km: Integer;
+		};
+	};
+}
+
+export interface VehicleHealthWarningsCapabilitiesData {
+	warningLights: {
+		value: {
+			carCapturedTimestamp: DateTimeString;
+			mileage_km: Integer;
+		};
+	};
+}
+
 export interface SelectiveStatusCapabilitiesData {
 	access: AccessCapabilitiesData;
 	activeventilation: unknown;
-	automation: unknown;
+	automation: AutomationCapabilitiesData;
 	auxiliaryheating: unknown;
-	batteryChargingCare: unknown;
-	batterySupport: unknown;
+	batteryChargingCare: BatteryChargingCareCapabilitiesData;
+	batterySupport: BatterySupportCapabilitiesData;
 	charging: ChargingCapabilitiesData;
-	chargingProfiles: unknown;
+	chargingProfiles: ChargingProfilesCapabilitiesData;
 	climatisation: ClimatisationCapabilitiesData;
-	climatisationTimers: unknown;
+	climatisationTimers: ClimatisationTimersCapabilitiesData;
 	departureTimers: unknown;
 	fuelStatus: FuelStatusCapabilitiesData;
 	lvBattery: unknown;
 	measurements: MeasurementsCapabilitiesData;
 	oilLevel: unknown;
 	readiness: ReadinessCapabilitiesData;
-	userCapabilities: unknown;
-	vehicleHealthInspection: unknown;
-	vehicleHealthWarnings: unknown;
+	userCapabilities: UserCapabilitiesData;
+	vehicleHealthInspection: VehicleHealthInspectionCapabilitiesData;
+	vehicleHealthWarnings: VehicleHealthWarningsCapabilitiesData;
 	vehicleLights: VehicleLightsCapabilitiesData;
 }
 

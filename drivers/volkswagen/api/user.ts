@@ -25,6 +25,7 @@ export default class User extends Authenticatable {
 
 	public static fromSettings(settings: Partial<AuthSettings>): User {
 		const {
+			sPin = "",
 			email = "",
 			password = "",
 			idToken,
@@ -44,6 +45,7 @@ export default class User extends Authenticatable {
 				: null;
 
 		return new User({
+			sPin,
 			tokenStore,
 			credentials: {
 				email,

@@ -3,6 +3,7 @@ import {
 	type SelectiveStatusCapabilitiesData,
 	selectiveStatusCapabilities,
 } from "./capabilities.js";
+import type { ParkingPositionData } from "./parking-position.js";
 
 export interface VehicleData {
 	vin: string;
@@ -67,16 +68,44 @@ export default class Vehicle extends Authenticatable implements VehicleData {
 	> {
 		const client = await this.getClient();
 
-		const capabilities = selectiveStatusCapabilities
-			.filter((capability) =>
-				this.capabilities.some((c) => c.id === capability),
-			)
-			.join(",");
-
 		const response = await client.get<Partial<SelectiveStatusCapabilitiesData>>(
-			`/vehicle/v1/vehicles/${this.vin}/selectivestatus?jobs=${capabilities}`,
+			`/vehicle/v1/vehicles/${this.vin}/selectivestatus?jobs=${selectiveStatusCapabilities.join(",")}`,
 		);
 
 		return response.data;
+	}
+
+	public async getParkingPosition(): Promise<ParkingPositionData> {
+		const client = await this.getClient();
+
+		const response = await client.get<{ data: ParkingPositionData }>(
+			`/vehicle/v1/vehicles/${this.vin}/parkingposition`,
+		);
+
+		return response.data.data;
+	}
+
+	public async lock(): Promise<void> {
+		if (!this.configuration.sPin) {
+			throw new Error("S-PIN is required to lock the vehicle");
+		}
+
+		const client = await this.getClient();
+
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/doors/lock`, {
+			spin: this.configuration.sPin,
+		});
+	}
+
+	public async unlock(): Promise<void> {
+		if (!this.configuration.sPin) {
+			throw new Error("S-PIN is required to unlock the vehicle");
+		}
+
+		const client = await this.getClient();
+
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/doors/unlock`, {
+			spin: this.configuration.sPin,
+		});
 	}
 }

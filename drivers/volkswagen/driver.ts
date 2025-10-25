@@ -11,6 +11,7 @@ export default class VolkswagenDriver extends Homey.Driver {
 	}
 
 	public async onPair(session: PairSession): Promise<void> {
+		let sPin = "";
 		let email = "";
 		let password = "";
 
@@ -25,12 +26,20 @@ export default class VolkswagenDriver extends Homey.Driver {
 			return user.canLogin();
 		});
 
+		session.setHandler("pincode", async (pincode: string[]) => {
+			sPin = pincode.join("");
+
+			return true;
+		});
+
 		session.setHandler("list_devices", async () => {
 			const userInstance =
-				user ?? new User({ credentials: { email, password } });
+				user ?? new User({ sPin, credentials: { email, password } });
 
-			const settings = await userInstance.getSettings();
+			userInstance.setSPin(sPin);
+
 			const vehicles = await userInstance.getVehicles();
+			const settings = await userInstance.getSettings();
 
 			const devices = vehicles.map((vehicle) => ({
 				settings,
