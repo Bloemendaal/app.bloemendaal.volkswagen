@@ -1,10 +1,5 @@
-import Authenticatable, {
-	type Credentials,
-	type TokenStore,
-} from "./authenticatable.js";
+import Authenticatable, { type AuthSettings } from "./authenticatable.js";
 import Vehicle, { type VehicleData } from "./vehicle.js";
-
-type UserSettings = Credentials & TokenStore;
 
 export default class User extends Authenticatable {
 	public async canLogin(): Promise<boolean> {
@@ -15,15 +10,6 @@ export default class User extends Authenticatable {
 		}
 
 		return true;
-	}
-
-	public async getSettings(): Promise<UserSettings> {
-		const tokenStore = await this.authenticate();
-
-		return {
-			...this.configuration.credentials,
-			...tokenStore,
-		};
 	}
 
 	public async getVehicles(): Promise<Vehicle[]> {
@@ -37,12 +23,24 @@ export default class User extends Authenticatable {
 		);
 	}
 
-	public static fromSettings(settings: UserSettings): User {
-		const { email, password, ...rest } = settings;
+	public static fromSettings(settings: Partial<AuthSettings>): User {
+		const {
+			email = "",
+			password = "",
+			idToken,
+			accessToken,
+			expiresAt,
+			refreshToken,
+		} = settings;
 
 		const tokenStore =
-			"accessToken" in rest && "idToken" in rest && "expiresAt" in rest
-				? rest
+			accessToken && expiresAt && idToken
+				? {
+						idToken,
+						accessToken,
+						refreshToken,
+						expiresAt,
+					}
 				: null;
 
 		return new User({

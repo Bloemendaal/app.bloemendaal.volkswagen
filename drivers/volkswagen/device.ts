@@ -2,8 +2,44 @@ import Homey from "homey";
 import User from "./api/user.js";
 import type Vehicle from "./api/vehicle.js";
 
+const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
+
+interface OnSettingsParams {
+	oldSettings: { [key: string]: boolean | string | number | undefined | null };
+	newSettings: { [key: string]: boolean | string | number | undefined | null };
+	changedKeys: string[];
+}
+
 export default class VolkswagenDevice extends Homey.Device {
 	private vehicle: Vehicle | null = null;
+	private intervalHandle: NodeJS.Timeout | null = null;
+
+	/**
+	 * onInit is called when the device is initialized.
+	 */
+	public async onInit(): Promise<void> {
+		const vehicle = await this.getVehicle();
+		vehicle.onSettingsUpdate(this.setSettings.bind(this));
+
+		await this.setCapabilities();
+
+		this.startInterval(
+			this.getSettings().pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES,
+		);
+	}
+
+	public async onSettings({
+		newSettings,
+		changedKeys,
+	}: OnSettingsParams): Promise<void> {
+		if (changedKeys.includes("pollingInterval")) {
+			const interval = +(
+				newSettings.pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES
+			);
+
+			this.startInterval(interval);
+		}
+	}
 
 	private async getVehicle(): Promise<Vehicle> {
 		if (this.vehicle) {
@@ -25,16 +61,24 @@ export default class VolkswagenDevice extends Homey.Device {
 
 			this.vehicle = vehicle;
 			return vehicle;
-		} catch {
+		} catch (error) {
 			this.error("An error occurred while fetching the vehicle");
-			throw new Error("Unable to get vehicle");
+			throw error;
 		}
 	}
 
-	/**
-	 * onInit is called when the device is initialized.
-	 */
-	public async onInit(): Promise<void> {
+	private startInterval(intervalInMinutes: number): void {
+		if (this.intervalHandle) {
+			clearInterval(this.intervalHandle);
+		}
+
+		this.intervalHandle = setInterval(
+			this.setCapabilities.bind(this),
+			intervalInMinutes * 60 * 1000,
+		);
+	}
+
+	private async setCapabilities(): Promise<void> {
 		const vehicle = await this.getVehicle();
 		const status = await vehicle.getVehicleStatus();
 
@@ -42,43 +86,18 @@ export default class VolkswagenDevice extends Homey.Device {
 			"measure_battery",
 			status.charging?.batteryStatus.value.currentSOC_pct ?? null,
 		);
-	}
 
-	/**
-	 * onAdded is called when the user adds the device, called just after pairing.
-	 */
-	public async onAdded(): Promise<void> {
-		this.log("MyDevice has been added");
-	}
-
-	/**
-	 * onSettings is called when the user updates the device's settings.
-	 * @param {object} event the onSettings event data
-	 * @param {object} event.oldSettings The old settings object
-	 * @param {object} event.newSettings The new settings object
-	 * @param {string[]} event.changedKeys An array of keys changed since the previous version
-	 * @returns {Promise<string|void>} return a custom message that will be displayed
-	 */
-	public async onSettings({
-		oldSettings,
-		newSettings,
-		changedKeys,
-	}: {
-		oldSettings: {
-			[key: string]: boolean | string | number | undefined | null;
-		};
-		newSettings: {
-			[key: string]: boolean | string | number | undefined | null;
-		};
-		changedKeys: string[];
-	}): Promise<string | void> {
-		this.log("MyDevice settings where changed");
-	}
-
-	/**
-	 * onDeleted is called when the user deleted the device.
-	 */
-	public async onDeleted(): Promise<void> {
-		this.log("MyDevice has been deleted");
+		this.setCapabilityValue(
+			"ev_charging_state",
+			{
+				off: "plugged_out",
+				ready_for_charging: "plugged_in",
+				charging: "plugged_in_charging",
+				discharging: "plugged_in_discharging",
+				error: "plugged_in_paused",
+				unsupported: null,
+				conservation: null,
+			}[status.charging?.chargingStatus.value.chargingState ?? "unsupported"],
+		);
 	}
 }

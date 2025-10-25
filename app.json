@@ -47,19 +47,24 @@
 					"options": {
 						"logo": "logo.png",
 						"title": {
-							"en": "Volkswagen ID"
+							"en": "Volkswagen ID",
+							"nl": "Volkswagen ID"
 						},
 						"usernameLabel": {
-							"en": "E-mail address"
+							"en": "E-mail",
+							"nl": "E-mailadres"
 						},
 						"usernamePlaceholder": {
-							"en": "john@doe.com"
+							"en": "john@doe.com",
+							"nl": "jan@smit.com"
 						},
 						"passwordLabel": {
-							"en": "Password"
+							"en": "Password",
+							"nl": "Wachtwoord"
 						},
 						"passwordPlaceholder": {
-							"en": "Password"
+							"en": "Password",
+							"nl": "Wachtwoord"
 						}
 					}
 				},
@@ -87,11 +92,12 @@
 							"id": "email",
 							"type": "text",
 							"label": {
-								"en": "E-mail address"
+								"en": "E-mail"
 							},
 							"value": "",
 							"hint": {
-								"en": "The e-mail that you use in the Volkswagen App."
+								"en": "The e-mail that you use in the Volkswagen App.",
+								"nl": "Het e-mailadres dat je gebruikt in de Volkswagen App."
 							}
 						},
 						{
@@ -102,10 +108,30 @@
 							},
 							"value": "",
 							"hint": {
-								"en": "The password that you use in the Volkswagen App."
+								"en": "The password that you use in the Volkswagen App.",
+								"nl": "Het wachtwoord dat je gebruikt in de Volkswagen App."
 							}
 						}
 					]
+				},
+				{
+					"id": "pollingInterval",
+					"type": "number",
+					"label": {
+						"en": "Polling interval",
+						"nl": "Ververstijd"
+					},
+					"value": 10,
+					"min": 1,
+					"step": 1,
+					"units": {
+						"en": "minutes",
+						"nl": "minuten"
+					},
+					"hint": {
+						"en": "Interval in minutes to poll the vehicle for new data. Lowering this value may result in battery drain.",
+						"nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik."
+					}
 				}
 			]
 		}

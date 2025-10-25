@@ -47,7 +47,14 @@ export interface ChargingCapabilitiesData {
 		value: {
 			carCapturedTimestamp: DateTimeString;
 			remainingChargingTimeToComplete_min: Integer;
-			chargingState: "error" | PossiblyUnknownString;
+			chargingState:
+				| "off"
+				| "ready_for_charging"
+				| "charging"
+				| "conservation"
+				| "error"
+				| "unsupported"
+				| "discharging";
 			chargeMode: "manual" | PossiblyUnknownString;
 			chargePower_kW: Integer;
 			chargeRate_kmph: Integer;

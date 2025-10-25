@@ -21,12 +21,13 @@
 			"options": {
 				"logo": "logo.png",
 				"title": {
-					"en": "Volkswagen ID"
+					"en": "Volkswagen ID",
+					"nl": "Volkswagen ID"
 				},
-				"usernameLabel": { "en": "E-mail address" },
-				"usernamePlaceholder": { "en": "john@doe.com" },
-				"passwordLabel": { "en": "Password" },
-				"passwordPlaceholder": { "en": "Password" }
+				"usernameLabel": { "en": "E-mail", "nl": "E-mailadres" },
+				"usernamePlaceholder": { "en": "john@doe.com", "nl": "jan@smit.com" },
+				"passwordLabel": { "en": "Password", "nl": "Wachtwoord" },
+				"passwordPlaceholder": { "en": "Password", "nl": "Wachtwoord" }
 			}
 		},
 		{

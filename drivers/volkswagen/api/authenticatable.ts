@@ -20,7 +20,7 @@ export interface Credentials {
 export interface TokenStore {
 	idToken: string;
 	accessToken: string;
-	refreshToken: string;
+	refreshToken?: string;
 	expiresAt: number;
 }
 
@@ -36,11 +36,15 @@ interface TokenResponse {
 	accessTokenExpirationTime: number;
 }
 
+export interface AuthSettings extends Credentials, TokenStore {}
+type SettingsUpdateCallback = (settings: AuthSettings) => void;
+
 export default abstract class Authenticatable {
 	private readonly credentials: Credentials;
 	private tokenStore: TokenStore | null = null;
 
 	private readonly authenticationClient: AxiosInstance;
+	private readonly settingsUpdateCallbacks: SettingsUpdateCallback[] = [];
 
 	constructor(configuration: Configuration) {
 		this.credentials = configuration.credentials;
@@ -54,6 +58,19 @@ export default abstract class Authenticatable {
 				validateStatus: (status) => status < 600,
 			}),
 		);
+	}
+
+	public async getSettings(): Promise<AuthSettings> {
+		const tokenStore = await this.authenticate();
+
+		return {
+			...this.configuration.credentials,
+			...tokenStore,
+		};
+	}
+
+	public onSettingsUpdate(callback: SettingsUpdateCallback): void {
+		this.settingsUpdateCallbacks.push(callback);
 	}
 
 	protected get configuration(): Configuration {
@@ -83,6 +100,13 @@ export default abstract class Authenticatable {
 		}
 
 		this.tokenStore = await this.authenticateWithCredentials();
+
+		for (const callback of this.settingsUpdateCallbacks) {
+			callback({
+				...this.credentials,
+				...this.tokenStore,
+			});
+		}
 
 		return this.tokenStore;
 	}
