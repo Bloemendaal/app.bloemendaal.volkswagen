@@ -36,8 +36,8 @@
 			"options": {
 				"title": { "en": "Enter your S-PIN", "nl": "Voer je S-PIN in" },
 				"hint": {
-					"en": "This is required to modify vehicle settings. On submit, the PIN won't be verified, only when you update settings later. You may change it later in advanced settings.",
-					"nl": "Dit is vereist om voertuiginstellingen te wijzigen. Bij het verzenden wordt de pincode niet geverifieerd, alleen wanneer je later de instellingen bijwerkt. Eventueel kan je de S-PIN later in geavanceerde instellingen bijwerken."
+					"en": "This is required to modify vehicle settings.",
+					"nl": "Dit is vereist om voertuiginstellingen te wijzigen."
 				},
 				"type": "number",
 				"length": 4

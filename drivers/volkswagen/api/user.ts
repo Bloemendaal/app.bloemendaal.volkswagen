@@ -12,6 +12,20 @@ export default class User extends Authenticatable {
 		return true;
 	}
 
+	public async verifySPin(): Promise<boolean> {
+		if (!this.configuration.sPin) {
+			return false;
+		}
+
+		const client = await this.getClient();
+
+		const response = await client.post("/vehicle/v1/spin/verify", {
+			spin: this.configuration.sPin,
+		});
+
+		return response.status === 200 || response.status === 204;
+	}
+
 	public async getVehicles(): Promise<Vehicle[]> {
 		const client = await this.getClient();
 		const response = await client.get<{ data: VehicleData[] }>(

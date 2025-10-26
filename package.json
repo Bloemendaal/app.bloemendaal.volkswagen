@@ -4,6 +4,7 @@
 	"version": "1.0.0",
 	"scripts": {
 		"build": "tsc",
+		"start": "homey app run",
 		"format": "biome format --write",
 		"lint": "biome lint --write",
 		"check": "biome check --write"

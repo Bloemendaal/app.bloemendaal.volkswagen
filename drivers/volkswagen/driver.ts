@@ -17,20 +17,34 @@ export default class VolkswagenDriver extends Homey.Driver {
 
 		let user: User | null = null;
 
-		session.setHandler("login", async (data) => {
-			email = data.username;
-			password = data.password;
+		session.setHandler(
+			"login",
+			async (data: {
+				username: string;
+				password: string;
+			}): Promise<boolean> => {
+				email = data.username;
+				password = data.password;
 
-			user = new User({ credentials: { email, password } });
+				user = new User({ credentials: { email, password } });
 
-			return user.canLogin();
-		});
+				return await user.canLogin();
+			},
+		);
 
-		session.setHandler("pincode", async (pincode: string[]) => {
-			sPin = pincode.join("");
+		session.setHandler(
+			"pincode",
+			async (pincode: string[]): Promise<boolean> => {
+				sPin = pincode.join("");
 
-			return true;
-		});
+				const userInstance =
+					user ?? new User({ sPin, credentials: { email, password } });
+
+				userInstance.setSPin(sPin);
+
+				return await userInstance.verifySPin();
+			},
+		);
 
 		session.setHandler("list_devices", async () => {
 			const userInstance =
