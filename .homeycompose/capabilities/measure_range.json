@@ -1,0 +1,17 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Range",
+		"nl": "Actieradius"
+	},
+	"units": {
+		"en": "km",
+		"nl": "km"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/measure_range.svg",
+	"insights": true,
+	"decimals": 0
+}

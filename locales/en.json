@@ -1,1 +1,35 @@
-{}
+{
+	"capabilities": {
+		"alarm_door": {
+			"title": "__name__ opened",
+			"variables": {
+				"bonnet": "Bonnet",
+				"trunk": "Trunk",
+				"frontLeft": "Front left door",
+				"frontRight": "Front right door",
+				"rearLeft": "Rear left door",
+				"rearRight": "Rear right door"
+			}
+		},
+		"alarm_window": {
+			"title": "__name__ opened",
+			"variables": {
+				"sunRoof": "Sun roof",
+				"roofCover": "Roof cover",
+				"sunRoofRear": "Rear sun roof",
+				"frontLeft": "Front left window",
+				"frontRight": "Front right window",
+				"rearLeft": "Rear left window",
+				"rearRight": "Rear right window"
+			}
+		},
+		"timestamp": {
+			"title": "__name__ last updated at",
+			"variables": {
+				"access": "Access",
+				"battery_status": "Battery status",
+				"charging_status": "Charging status"
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Charging power",
+		"nl": "Laadvermogen"
+	},
+	"units": {
+		"en": "kW",
+		"nl": "kW"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/measure_charging.svg",
+	"insights": true,
+	"decimals": 1
+}

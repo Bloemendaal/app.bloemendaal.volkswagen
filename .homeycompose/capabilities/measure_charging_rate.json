@@ -1,0 +1,17 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Charging rate",
+		"nl": "Laadsnelheid"
+	},
+	"units": {
+		"en": "km/h",
+		"nl": "km/u"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/measure_charging.svg",
+	"insights": true,
+	"decimals": 0
+}

@@ -1,0 +1,20 @@
+{
+	"type": "boolean",
+	"title": {
+		"en": "Unsafe situation",
+		"nl": "Onveilige situatie"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/alarm_general.svg",
+	"insights": false,
+	"insightsTitleTrue": {
+		"en": "Unsafe situation",
+		"nl": "Onveilige situatie"
+	},
+	"insightsTitleFalse": {
+		"en": "All safe",
+		"nl": "Alles veilig"
+	}
+}

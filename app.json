@@ -1,181 +1,335 @@
 {
-	"_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
-	"id": "app.bloemendaal.volkswagen",
-	"version": "1.0.0",
-	"compatibility": ">=12.4.5",
-	"sdk": 3,
-	"platforms": ["local"],
-	"name": {
-		"en": "Volkswagen"
-	},
-	"description": {
-		"en": "Adds support for Volkswagen cars in Europe"
-	},
-	"category": ["localization"],
-	"permissions": [],
-	"images": {
-		"small": "/assets/images/small.png",
-		"large": "/assets/images/large.png",
-		"xlarge": "/assets/images/xlarge.png"
-	},
-	"author": {
-		"name": "Casper Bloemendaal",
-		"email": "casperbloemendaal@gmail.com"
-	},
-	"esm": true,
-	"drivers": [
-		{
-			"name": {
-				"en": "Volkswagen"
-			},
-			"class": "car",
-			"capabilities": ["measure_battery", "ev_charging_state", "locked"],
-			"energy": {
-				"electricCar": true
-			},
-			"platforms": ["local"],
-			"connectivity": [],
-			"images": {
-				"small": "/drivers/volkswagen/assets/images/small.png",
-				"large": "/drivers/volkswagen/assets/images/large.png",
-				"xlarge": "/drivers/volkswagen/assets/images/xlarge.png"
-			},
-			"pair": [
-				{
-					"id": "login_credentials",
-					"template": "login_credentials",
-					"options": {
-						"logo": "logo.png",
-						"title": {
-							"en": "Volkswagen ID",
-							"nl": "Volkswagen ID"
-						},
-						"usernameLabel": {
-							"en": "E-mail",
-							"nl": "E-mailadres"
-						},
-						"usernamePlaceholder": {
-							"en": "john@doe.com",
-							"nl": "jan@smit.com"
-						},
-						"passwordLabel": {
-							"en": "Password",
-							"nl": "Wachtwoord"
-						},
-						"passwordPlaceholder": {
-							"en": "Password",
-							"nl": "Wachtwoord"
-						}
-					}
-				},
-				{
-					"id": "pincode",
-					"template": "pincode",
-					"options": {
-						"title": {
-							"en": "Enter your S-PIN",
-							"nl": "Voer je S-PIN in"
-						},
-						"hint": {
-							"en": "This is required to modify vehicle settings.",
-							"nl": "Dit is vereist om voertuiginstellingen te wijzigen."
-						},
-						"type": "number",
-						"length": 4
-					}
-				},
-				{
-					"id": "list_devices",
-					"template": "list_devices",
-					"navigation": {
-						"next": "add_devices"
-					}
-				},
-				{
-					"id": "add_devices",
-					"template": "add_devices"
-				}
-			],
-			"id": "volkswagen",
-			"settings": [
-				{
-					"type": "group",
-					"label": {
-						"en": "Login details",
-						"nl": "Inloggegevens"
-					},
-					"children": [
-						{
-							"id": "email",
-							"type": "text",
-							"label": {
-								"en": "E-mail",
-								"nl": "E-mailadres"
-							},
-							"value": "",
-							"hint": {
-								"en": "The e-mail that you use in the Volkswagen App.",
-								"nl": "Het e-mailadres dat je gebruikt in de Volkswagen App."
-							}
-						},
-						{
-							"id": "password",
-							"type": "password",
-							"label": {
-								"en": "Password",
-								"nl": "Wachtwoord"
-							},
-							"value": "",
-							"hint": {
-								"en": "The password that you use in the Volkswagen App.",
-								"nl": "Het wachtwoord dat je gebruikt in de Volkswagen App."
-							}
-						},
-						{
-							"id": "sPin",
-							"type": "password",
-							"label": {
-								"en": "S-PIN",
-								"nl": "S-PIN"
-							},
-							"value": "",
-							"pattern": "^[0-9]{4}$",
-							"hint": {
-								"en": "Required to modify vehicle settings.",
-								"nl": "Vereist om voertuiginstellingen te wijzigen."
-							}
-						}
-					]
-				},
-				{
-					"type": "group",
-					"label": {
-						"en": "Behavior settings",
-						"nl": "Gedragsinstellingen"
-					},
-					"children": [
-						{
-							"id": "pollingInterval",
-							"type": "number",
-							"label": {
-								"en": "Polling interval",
-								"nl": "Ververstijd"
-							},
-							"value": 10,
-							"min": 1,
-							"step": 1,
-							"units": {
-								"en": "minutes",
-								"nl": "minuten"
-							},
-							"hint": {
-								"en": "Interval in minutes to poll the vehicle for new data. Lowering this value may result in battery drain.",
-								"nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik."
-							}
-						}
-					]
-				}
-			]
-		}
-	]
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "app.bloemendaal.volkswagen",
+  "version": "1.0.0",
+  "compatibility": ">=12.4.5",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Volkswagen"
+  },
+  "description": {
+    "en": "Adds support for Volkswagen cars in Europe"
+  },
+  "category": [
+    "localization"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Casper Bloemendaal",
+    "email": "casperbloemendaal@gmail.com"
+  },
+  "esm": true,
+  "drivers": [
+    {
+      "name": {
+        "en": "Volkswagen"
+      },
+      "class": "car",
+      "capabilities": [],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/volkswagen/assets/images/small.png",
+        "large": "/drivers/volkswagen/assets/images/large.png",
+        "xlarge": "/drivers/volkswagen/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "title": {
+              "en": "Volkswagen ID",
+              "nl": "Volkswagen ID"
+            },
+            "usernameLabel": {
+              "en": "E-mail",
+              "nl": "E-mailadres"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "jan@smit.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord"
+            }
+          }
+        },
+        {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter your S-PIN",
+              "nl": "Voer je S-PIN in"
+            },
+            "hint": {
+              "en": "This is required to modify vehicle settings.",
+              "nl": "Dit is vereist om voertuiginstellingen te wijzigen."
+            },
+            "type": "number",
+            "length": 4
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "volkswagen",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Login details",
+            "nl": "Inloggegevens"
+          },
+          "children": [
+            {
+              "id": "email",
+              "type": "text",
+              "label": {
+                "en": "E-mail",
+                "nl": "E-mailadres"
+              },
+              "value": "",
+              "hint": {
+                "en": "The e-mail that you use in the Volkswagen App.",
+                "nl": "Het e-mailadres dat je gebruikt in de Volkswagen App."
+              }
+            },
+            {
+              "id": "password",
+              "type": "password",
+              "label": {
+                "en": "Password",
+                "nl": "Wachtwoord"
+              },
+              "value": "",
+              "hint": {
+                "en": "The password that you use in the Volkswagen App.",
+                "nl": "Het wachtwoord dat je gebruikt in de Volkswagen App."
+              }
+            },
+            {
+              "id": "sPin",
+              "type": "password",
+              "label": {
+                "en": "S-PIN",
+                "nl": "S-PIN"
+              },
+              "value": "",
+              "pattern": "^[0-9]{4}$",
+              "hint": {
+                "en": "Required to modify vehicle settings.",
+                "nl": "Vereist om voertuiginstellingen te wijzigen."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Behavior settings",
+            "nl": "Gedragsinstellingen"
+          },
+          "children": [
+            {
+              "id": "pollingInterval",
+              "type": "number",
+              "label": {
+                "en": "Polling interval",
+                "nl": "Ververstijd"
+              },
+              "value": 10,
+              "min": 1,
+              "step": 1,
+              "units": {
+                "en": "minutes",
+                "nl": "minuten"
+              },
+              "hint": {
+                "en": "Interval in minutes to poll the vehicle for new data. Lowering this value may result in battery drain.",
+                "nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "alarm_door": {
+      "type": "boolean",
+      "title": {
+        "en": "Door open",
+        "nl": "Deur open"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/alarm_door.svg",
+      "insights": false,
+      "insightsTitleTrue": {
+        "en": "Door opened",
+        "nl": "Deur geopend"
+      },
+      "insightsTitleFalse": {
+        "en": "Door closed",
+        "nl": "Deur gesloten"
+      }
+    },
+    "alarm_general": {
+      "type": "boolean",
+      "title": {
+        "en": "Unsafe situation",
+        "nl": "Onveilige situatie"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/alarm_general.svg",
+      "insights": false,
+      "insightsTitleTrue": {
+        "en": "Unsafe situation",
+        "nl": "Onveilige situatie"
+      },
+      "insightsTitleFalse": {
+        "en": "All safe",
+        "nl": "Alles veilig"
+      }
+    },
+    "alarm_window": {
+      "type": "boolean",
+      "title": {
+        "en": "Window open",
+        "nl": "Raam open"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/alarm_door.svg",
+      "insights": false,
+      "insightsTitleTrue": {
+        "en": "Window opened",
+        "nl": "Raam geopend"
+      },
+      "insightsTitleFalse": {
+        "en": "Window closed",
+        "nl": "Raam gesloten"
+      }
+    },
+    "measure_charging_power": {
+      "type": "number",
+      "title": {
+        "en": "Charging power",
+        "nl": "Laadvermogen"
+      },
+      "units": {
+        "en": "kW",
+        "nl": "kW"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/measure_charging.svg",
+      "insights": true,
+      "decimals": 1
+    },
+    "measure_charging_rate": {
+      "type": "number",
+      "title": {
+        "en": "Charging rate",
+        "nl": "Laadsnelheid"
+      },
+      "units": {
+        "en": "km/h",
+        "nl": "km/u"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/measure_charging.svg",
+      "insights": true,
+      "decimals": 0
+    },
+    "measure_range": {
+      "type": "number",
+      "title": {
+        "en": "Range",
+        "nl": "Actieradius"
+      },
+      "units": {
+        "en": "km",
+        "nl": "km"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/measure_range.svg",
+      "insights": true,
+      "decimals": 0
+    },
+    "measure_remaining_charging_time": {
+      "type": "number",
+      "title": {
+        "en": "Remaining charging time",
+        "nl": "Resterende oplaadtijd"
+      },
+      "units": {
+        "en": "minutes",
+        "nl": "minuten"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/measure_remaining_charging_time.svg",
+      "insights": true,
+      "decimals": 0
+    },
+    "timestamp": {
+      "type": "number",
+      "title": {
+        "en": "Last updated at",
+        "nl": "Laatst bijgewerkt om"
+      },
+      "units": {
+        "en": "milliseconds since epoch",
+        "nl": "milliseconden sinds epoch"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/timestamp.svg",
+      "insights": false,
+      "min": 0,
+      "step": 1,
+      "decimals": 0
+    }
+  }
 }

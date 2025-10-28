@@ -1,6 +1,11 @@
 import Homey from "homey";
+import type { SelectiveStatusCapabilitiesData } from "./api/capabilities.js";
 import User from "./api/user.js";
 import type Vehicle from "./api/vehicle.js";
+import Access from "./capabilities/access.js";
+import BatteryStatus from "./capabilities/battery-status.js";
+import type Capability from "./capabilities/capability.js";
+import ChargingStatus from "./capabilities/charging-status.js";
 
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
 
@@ -14,17 +19,36 @@ export default class VolkswagenDevice extends Homey.Device {
 	private vehicle: Vehicle | null = null;
 	private intervalHandle: NodeJS.Timeout | null = null;
 
+	private readonly capabilities: Capability[] = [
+		new Access(this),
+		new BatteryStatus(this),
+		new ChargingStatus(this),
+	];
+
 	public async onInit(): Promise<void> {
 		const vehicle = await this.getVehicle();
 		vehicle.onSettingsUpdate(this.setSettings.bind(this));
 
-		this.registerCapabilityListener("locked", async (value: boolean) => {
-			const vehicle = await this.getVehicle();
+		const capabilities = await vehicle.getVehicleCapabilities();
 
-			value ? await vehicle.lock() : await vehicle.unlock();
+		await this.setEnergy({
+			electricCar:
+				capabilities.fuelStatus?.rangeStatus.value.carType === "electric",
 		});
 
-		await this.setCapabilities();
+		await Promise.all(
+			this.capabilities.map((capability) =>
+				capability.addCapabilities(capabilities),
+			),
+		);
+
+		await Promise.all(
+			this.capabilities.map((capability) =>
+				capability.registerCapabilityListeners(capabilities),
+			),
+		);
+
+		await this.setCapabilities(capabilities);
 
 		this.startInterval(
 			this.getSettings().pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES,
@@ -59,7 +83,7 @@ export default class VolkswagenDevice extends Homey.Device {
 		}
 	}
 
-	private async getVehicle(): Promise<Vehicle> {
+	public async getVehicle(): Promise<Vehicle> {
 		if (this.vehicle) {
 			return this.vehicle;
 		}
@@ -91,41 +115,23 @@ export default class VolkswagenDevice extends Homey.Device {
 		}
 
 		this.intervalHandle = setInterval(
-			this.setCapabilities.bind(this),
+			() => this.setCapabilities(),
 			intervalInMinutes * 60 * 1000,
 		);
 	}
 
-	private async setCapabilities(): Promise<void> {
-		const vehicle = await this.getVehicle();
-		const status = await vehicle.getVehicleStatus();
+	private async setCapabilities(
+		capabilities: Partial<SelectiveStatusCapabilitiesData> | null = null,
+	): Promise<void> {
+		if (!capabilities) {
+			const vehicle = await this.getVehicle();
+			capabilities = await vehicle.getVehicleCapabilities();
+		}
 
-		this.setCapabilityValue(
-			"measure_battery",
-			status.charging?.batteryStatus.value.currentSOC_pct ?? null,
-		);
-
-		this.setCapabilityValue(
-			"ev_charging_state",
-			{
-				off: "plugged_out",
-				readyForCharging: "plugged_in",
-				notReadyForCharging: "plugged_out",
-				conservation: null,
-				chargePurposeReachedAndNotConservationCharging: null,
-				chargePurposeReachedAndConservation: null,
-				charging: "plugged_in_charging",
-				error: "plugged_in_paused",
-				unsupported: null,
-				discharging: "plugged_in_discharging",
-			}[status.charging?.chargingStatus.value.chargingState ?? "unsupported"],
-		);
-
-		this.setCapabilityValue(
-			"locked",
-			status.access?.accessStatus.value.doorLockStatus
-				? status.access.accessStatus.value.doorLockStatus === "locked"
-				: null,
+		await Promise.all(
+			this.capabilities.map((capability) =>
+				capability.setCapabilityValues(capabilities),
+			),
 		);
 	}
 }

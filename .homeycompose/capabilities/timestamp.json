@@ -1,0 +1,19 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Last updated at",
+		"nl": "Laatst bijgewerkt om"
+	},
+	"units": {
+		"en": "milliseconds since epoch",
+		"nl": "milliseconden sinds epoch"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/timestamp.svg",
+	"insights": false,
+	"min": 0,
+	"step": 1,
+	"decimals": 0
+}

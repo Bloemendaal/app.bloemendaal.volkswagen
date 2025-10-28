@@ -1,4 +1,5 @@
 import Authenticatable, { type Configuration } from "./authenticatable.js";
+import type { CapabilitiesStatusData } from "./capabilities/user-capabilities.js";
 import {
 	type SelectiveStatusCapabilitiesData,
 	selectiveStatusCapabilities,
@@ -17,18 +18,11 @@ export interface VehicleData {
 	brandCode: string;
 	model: string;
 	nickname: string;
-	capabilities: VehicleCapabilityData[];
+	capabilities: CapabilitiesStatusData[];
 	images: VehicleImagesData;
 	coUsers: CoUserData[];
 	devicePlatform: string;
 	tags: TagData[];
-}
-
-export interface VehicleCapabilityData {
-	id: string;
-	status?: number[];
-	expirationDate?: string;
-	userDisablingAllowed: boolean;
 }
 
 // Not sure yet what's inside these types
@@ -44,7 +38,7 @@ export default class Vehicle extends Authenticatable implements VehicleData {
 	public readonly brandCode: string;
 	public readonly model: string;
 	public readonly nickname: string;
-	public readonly capabilities: VehicleCapabilityData[];
+	public readonly capabilities: CapabilitiesStatusData[];
 	public readonly images: VehicleImagesData;
 	public readonly coUsers: CoUserData[];
 	public readonly devicePlatform: string;
@@ -67,7 +61,7 @@ export default class Vehicle extends Authenticatable implements VehicleData {
 		this.tags = data.tags;
 	}
 
-	public async getVehicleStatus(): Promise<
+	public async getVehicleCapabilities(): Promise<
 		Partial<SelectiveStatusCapabilitiesData>
 	> {
 		const client = await this.getClient();
@@ -111,6 +105,10 @@ export default class Vehicle extends Authenticatable implements VehicleData {
 		await client.post(`/vehicle/v1/vehicles/${this.vin}/doors/unlock`, {
 			spin: this.configuration.sPin,
 		});
+	}
+
+	public lockOrUnlock(lock: boolean): Promise<void> {
+		return lock ? this.lock() : this.unlock();
 	}
 
 	public async startClimatisation(

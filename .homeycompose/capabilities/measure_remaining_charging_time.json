@@ -1,0 +1,17 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Remaining charging time",
+		"nl": "Resterende oplaadtijd"
+	},
+	"units": {
+		"en": "minutes",
+		"nl": "minuten"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/measure_remaining_charging_time.svg",
+	"insights": true,
+	"decimals": 0
+}

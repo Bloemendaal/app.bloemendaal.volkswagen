@@ -1,0 +1,20 @@
+{
+	"type": "boolean",
+	"title": {
+		"en": "Door open",
+		"nl": "Deur open"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/alarm_door.svg",
+	"insights": false,
+	"insightsTitleTrue": {
+		"en": "Door opened",
+		"nl": "Deur geopend"
+	},
+	"insightsTitleFalse": {
+		"en": "Door closed",
+		"nl": "Deur gesloten"
+	}
+}
