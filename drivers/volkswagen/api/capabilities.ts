@@ -10,7 +10,7 @@ import type {
 export interface AccessCapabilitiesData {
 	accessStatus: {
 		value: {
-			overallStatus: "safe" | PossiblyUnknownString;
+			overallStatus: "safe" | "unsafe" | PossiblyUnknownString;
 			carCapturedTimestamp: DateTimeString;
 			doors: {
 				name:
@@ -20,7 +20,7 @@ export interface AccessCapabilitiesData {
 					| "rearLeft"
 					| "frontRight"
 					| "frontLeft";
-				status: ("closed" | "locked" | PossiblyUnknownString)[];
+				status: ("closed" | "locked" | "unlocked" | PossiblyUnknownString)[];
 			}[];
 			windows: {
 				name:
@@ -34,7 +34,7 @@ export interface AccessCapabilitiesData {
 				status: ("closed" | "unsupported" | PossiblyUnknownString)[];
 				windowOpen_pct?: Integer;
 			}[];
-			doorLockStatus: "locked" | PossiblyUnknownString;
+			doorLockStatus: "locked" | "unlocked" | PossiblyUnknownString;
 		};
 	};
 }
@@ -73,9 +73,9 @@ export interface ChargingCapabilitiesData {
 	chargingSettings: {
 		value: {
 			carCapturedTimestamp: DateTimeString;
-			maxChargeCurrentAC: "maximum" | PossiblyUnknownString;
-			autoUnlockPlugWhenCharged: "off" | PossiblyUnknownString;
-			autoUnlockPlugWhenChargedAC: "off" | PossiblyUnknownString;
+			maxChargeCurrentAC: "maximum" | "reduced" | PossiblyUnknownString;
+			autoUnlockPlugWhenCharged: "on" | "off" | PossiblyUnknownString;
+			autoUnlockPlugWhenChargedAC: "on" | "off" | PossiblyUnknownString;
 			targetSOC_pct: Integer;
 		};
 	};
@@ -83,8 +83,8 @@ export interface ChargingCapabilitiesData {
 		value: {
 			carCapturedTimestamp: DateTimeString;
 			plugConnectionState: "connected" | "disconnected" | PossiblyUnknownString;
-			plugLockState: "unlocked" | PossiblyUnknownString;
-			externalPower: "unavailable" | PossiblyUnknownString;
+			plugLockState: "locked" | "unlocked" | PossiblyUnknownString;
+			externalPower: "unavailable" | "available" | PossiblyUnknownString;
 			ledColor: "green" | "none" | PossiblyUnknownString;
 		};
 	};
@@ -96,7 +96,7 @@ export interface ChargingCapabilitiesData {
 	};
 	chargingCareSettings?: {
 		value: {
-			batteryCareMode: "activated" | PossiblyUnknownString;
+			batteryCareMode: "activated" | "deactivated" | PossiblyUnknownString;
 		};
 	};
 }
