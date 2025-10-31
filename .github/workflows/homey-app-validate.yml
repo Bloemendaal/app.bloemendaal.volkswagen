@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: athombv/github-action-homey-app-validate@master
+      - uses: Bloemendaal/github-action-homey-app-validate@master
         with:
           level: verified
