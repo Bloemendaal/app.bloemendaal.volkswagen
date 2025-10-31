@@ -256,6 +256,50 @@
         "nl": "Raam gesloten"
       }
     },
+    "button_flash": {
+      "type": "boolean",
+      "title": {
+        "en": "Flash lights",
+        "nl": "Knipperlichten"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "/assets/capabilities/honk_and_flash.svg"
+    },
+    "button_honk_flash": {
+      "type": "boolean",
+      "title": {
+        "en": "Honk and flash",
+        "nl": "Toeter en knipperen"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "/assets/capabilities/honk_and_flash.svg"
+    },
+    "button_wake": {
+      "type": "boolean",
+      "title": {
+        "en": "Wake vehicle",
+        "nl": "Voertuig wakker maken"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "/assets/capabilities/wake.svg"
+    },
+    "button_wake_refresh": {
+      "type": "boolean",
+      "title": {
+        "en": "Wake vehicle and refresh data",
+        "nl": "Voertuig wakker maken en gegevens bijwerken"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "/assets/capabilities/wake.svg"
+    },
     "measure_charging_power": {
       "type": "number",
       "title": {

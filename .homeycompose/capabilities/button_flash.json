@@ -1,0 +1,11 @@
+{
+	"type": "boolean",
+	"title": {
+		"en": "Flash lights",
+		"nl": "Knipperlichten"
+	},
+	"getable": false,
+	"setable": true,
+	"uiComponent": "button",
+	"icon": "/assets/capabilities/honk_and_flash.svg"
+}

@@ -7,6 +7,8 @@ import BatteryStatus from "./capabilities/battery-status.js";
 import type Capability from "./capabilities/capability.js";
 import ChargingSettings from "./capabilities/charging-settings.js";
 import ChargingStatus from "./capabilities/charging-status.js";
+import HonkAndFlash from "./capabilities/hook-and-flash.js";
+import WakeUpTrigger from "./capabilities/wake-up-trigger.js";
 
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
 
@@ -25,6 +27,8 @@ export default class VolkswagenDevice extends Homey.Device {
 		new BatteryStatus(this),
 		new ChargingSettings(this),
 		new ChargingStatus(this),
+		new HonkAndFlash(this),
+		new WakeUpTrigger(this),
 	];
 
 	public async onInit(): Promise<void> {
@@ -111,18 +115,7 @@ export default class VolkswagenDevice extends Homey.Device {
 		}
 	}
 
-	private startInterval(intervalInMinutes: number): void {
-		if (this.intervalHandle) {
-			clearInterval(this.intervalHandle);
-		}
-
-		this.intervalHandle = setInterval(
-			() => this.setCapabilities(),
-			intervalInMinutes * 60 * 1000,
-		);
-	}
-
-	private async setCapabilities(
+	public async setCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData> | null = null,
 	): Promise<void> {
 		if (!capabilities) {
@@ -134,6 +127,17 @@ export default class VolkswagenDevice extends Homey.Device {
 			this.capabilities.map((capability) =>
 				capability.setCapabilityValues(capabilities),
 			),
+		);
+	}
+
+	private startInterval(intervalInMinutes: number): void {
+		if (this.intervalHandle) {
+			clearInterval(this.intervalHandle);
+		}
+
+		this.intervalHandle = setInterval(
+			() => this.setCapabilities(),
+			intervalInMinutes * 60 * 1000,
 		);
 	}
 }

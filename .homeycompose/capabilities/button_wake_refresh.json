@@ -1,0 +1,11 @@
+{
+	"type": "boolean",
+	"title": {
+		"en": "Wake vehicle and refresh data",
+		"nl": "Voertuig wakker maken en gegevens bijwerken"
+	},
+	"getable": false,
+	"setable": true,
+	"uiComponent": "button",
+	"icon": "/assets/capabilities/wake.svg"
+}

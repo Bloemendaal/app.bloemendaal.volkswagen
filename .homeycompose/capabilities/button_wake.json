@@ -1,0 +1,11 @@
+{
+	"type": "boolean",
+	"title": {
+		"en": "Wake vehicle",
+		"nl": "Voertuig wakker maken"
+	},
+	"getable": false,
+	"setable": true,
+	"uiComponent": "button",
+	"icon": "/assets/capabilities/wake.svg"
+}
