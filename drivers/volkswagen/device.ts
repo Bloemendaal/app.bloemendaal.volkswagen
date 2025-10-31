@@ -5,6 +5,7 @@ import type Vehicle from "./api/vehicle.js";
 import Access from "./capabilities/access.js";
 import BatteryStatus from "./capabilities/battery-status.js";
 import type Capability from "./capabilities/capability.js";
+import ChargingSettings from "./capabilities/charging-settings.js";
 import ChargingStatus from "./capabilities/charging-status.js";
 
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
@@ -22,6 +23,7 @@ export default class VolkswagenDevice extends Homey.Device {
 	private readonly capabilities: Capability[] = [
 		new Access(this),
 		new BatteryStatus(this),
+		new ChargingSettings(this),
 		new ChargingStatus(this),
 	];
 

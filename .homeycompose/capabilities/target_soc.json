@@ -1,0 +1,17 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Target charge level",
+		"nl": "Doel laadniveau"
+	},
+	"units": "%",
+	"getable": true,
+	"setable": true,
+	"uiComponent": "slider",
+	"icon": "/assets/capabilities/target_soc.svg",
+	"insights": false,
+	"min": 0,
+	"max": 1,
+	"step": 0.01,
+	"decimals": 2
+}

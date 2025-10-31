@@ -28,6 +28,7 @@
 			"variables": {
 				"access": "Access",
 				"battery_status": "Battery status",
+				"charging_settings": "Charging settings",
 				"charging_status": "Charging status"
 			}
 		}

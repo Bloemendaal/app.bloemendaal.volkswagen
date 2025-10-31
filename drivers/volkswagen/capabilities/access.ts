@@ -1,3 +1,4 @@
+import type { CapabilitiesStatusData } from "../api/capabilities/user-capabilities.js";
 import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.js";
 import Capability from "./capability.js";
 
@@ -48,10 +49,8 @@ export default class Access extends Capability {
 			await this.volkswagenDevice.addCapability("locked");
 		}
 
-		const vehicle = await this.volkswagenDevice.getVehicle();
-
-		const isSetable = vehicle.capabilities.some(
-			(capability) => capability.id === "access",
+		const isSetable = await this.isLockedSetable(
+			capabilities.userCapabilities?.capabilitiesStatus.value,
 		);
 
 		await this.volkswagenDevice.setCapabilityOptions(
@@ -104,6 +103,20 @@ export default class Access extends Capability {
 				),
 			});
 		}
+	}
+
+	private async isLockedSetable(
+		capabilities: CapabilitiesStatusData[] = [],
+	): Promise<boolean> {
+		const callback = ({ id }: CapabilitiesStatusData) => id === "access";
+
+		if (capabilities.some(callback)) {
+			return true;
+		}
+
+		const vehicle = await this.volkswagenDevice.getVehicle();
+
+		return vehicle.capabilities.some(callback);
 	}
 
 	public override async setCapabilityValues(
@@ -168,18 +181,18 @@ export default class Access extends Capability {
 		}
 	}
 
-	public override async registerCapabilityListeners(): Promise<void> {
+	public override async registerCapabilityListeners(
+		capabilities: Partial<SelectiveStatusCapabilitiesData>,
+	): Promise<void> {
 		if (!this.volkswagenDevice.hasCapability("locked")) {
 			return;
 		}
 
-		const vehicle = await this.volkswagenDevice.getVehicle();
-
-		const isLockedSetable = vehicle.capabilities.some(
-			(capability) => capability.id === "access",
+		const isSetable = await this.isLockedSetable(
+			capabilities.userCapabilities?.capabilitiesStatus.value,
 		);
 
-		if (!isLockedSetable) {
+		if (!isSetable) {
 			return;
 		}
 
