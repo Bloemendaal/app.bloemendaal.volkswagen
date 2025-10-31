@@ -23,7 +23,7 @@ export default class User extends Authenticatable {
 			spin: this.configuration.sPin,
 		});
 
-		return response.status === 200 || response.status === 204;
+		return response.status === 204;
 	}
 
 	public async getVehicles(): Promise<Vehicle[]> {
