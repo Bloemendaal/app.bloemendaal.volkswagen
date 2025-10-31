@@ -13,11 +13,23 @@
   "description": {
     "en": "Adds support for Volkswagen cars in Europe"
   },
+  "bugs": {
+    "url": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen/issues"
+  },
+  "contributing": {
+    "donate": {
+      "githubSponsors": {
+        "username": "Bloemendaal"
+      }
+    }
+  },
   "brandColor": "#001e50",
   "category": [
     "localization"
   ],
   "permissions": [],
+  "source": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen",
+  "support": "mailto:casperbloemendaal@gmail.com",
   "images": {
     "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",
