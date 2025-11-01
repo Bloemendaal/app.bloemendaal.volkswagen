@@ -1,5 +1,6 @@
+import type { CapabilitiesStatusData } from "../api/capabilities/user-capabilities.js";
 import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.js";
-import type { DateTimeString } from "../api/types.js";
+import type { DateTimeString, FloatString } from "../api/types.js";
 import type VolkswagenDevice from "../device.js";
 
 export default abstract class Capability {
@@ -75,7 +76,26 @@ export default abstract class Capability {
 		return true;
 	}
 
+	protected async can(
+		capacityId: string,
+		capabilities: CapabilitiesStatusData[] = [],
+	): Promise<boolean> {
+		const callback = ({ id }: CapabilitiesStatusData) => id === capacityId;
+
+		if (capabilities.some(callback)) {
+			return true;
+		}
+
+		const vehicle = await this.volkswagenDevice.getVehicle();
+
+		return vehicle.capabilities.some(callback);
+	}
+
 	protected isNumber(value: unknown): value is number {
 		return typeof value === "number" && !Number.isNaN(value);
+	}
+
+	protected isFloatString(value: unknown): value is FloatString {
+		return typeof value === "string" && !Number.isNaN(Number.parseFloat(value));
 	}
 }

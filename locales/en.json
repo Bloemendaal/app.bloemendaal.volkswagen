@@ -23,6 +23,13 @@
 				"rearRight": "Rear right window"
 			}
 		},
+		"measure_battery_temperature": {
+			"title": "__name__ battery temperature",
+			"variables": {
+				"min": "Minimum",
+				"max": "Maximum"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ last updated at",
 			"variables": {
@@ -34,6 +41,7 @@
 				"maintenance_status": "Maintenance status",
 				"odometer_status": "Odometer status",
 				"readiness_status": "Readiness status",
+				"temperature_battery_status": "Battery temperature status",
 				"wake_up_trigger": "Wake up trigger"
 			}
 		}

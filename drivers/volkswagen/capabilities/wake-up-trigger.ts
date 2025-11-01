@@ -1,4 +1,3 @@
-import type { CapabilitiesStatusData } from "../api/capabilities/user-capabilities.js";
 import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.js";
 import Capability from "./capability.js";
 
@@ -10,7 +9,8 @@ export default class WakeUpTrigger extends Capability {
 	public override async addCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const canWakeUp = await this.canWakeUp(
+		const canWakeUp = await this.can(
+			"vehicleWakeUpTrigger",
 			capabilities.userCapabilities?.capabilitiesStatus.value,
 		);
 
@@ -52,20 +52,5 @@ export default class WakeUpTrigger extends Capability {
 				},
 			);
 		}
-	}
-
-	private async canWakeUp(
-		capabilities: CapabilitiesStatusData[] = [],
-	): Promise<boolean> {
-		const callback = ({ id }: CapabilitiesStatusData) =>
-			id === "vehicleWakeUpTrigger";
-
-		if (capabilities.some(callback)) {
-			return true;
-		}
-
-		const vehicle = await this.volkswagenDevice.getVehicle();
-
-		return vehicle.capabilities.some(callback);
 	}
 }

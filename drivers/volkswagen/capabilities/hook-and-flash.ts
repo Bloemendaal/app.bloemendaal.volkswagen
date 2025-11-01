@@ -1,4 +1,3 @@
-import type { CapabilitiesStatusData } from "../api/capabilities/user-capabilities.js";
 import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.js";
 import Capability from "./capability.js";
 
@@ -10,7 +9,8 @@ export default class HonkAndFlash extends Capability {
 	public override async addCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const canHonkAndFlash = await this.canHonkAndFlash(
+		const canHonkAndFlash = await this.can(
+			"honkAndFlash",
 			capabilities.userCapabilities?.capabilitiesStatus.value,
 		);
 
@@ -69,19 +69,5 @@ export default class HonkAndFlash extends Capability {
 				},
 			);
 		}
-	}
-
-	private async canHonkAndFlash(
-		capabilities: CapabilitiesStatusData[] = [],
-	): Promise<boolean> {
-		const callback = ({ id }: CapabilitiesStatusData) => id === "honkAndFlash";
-
-		if (capabilities.some(callback)) {
-			return true;
-		}
-
-		const vehicle = await this.volkswagenDevice.getVehicle();
-
-		return vehicle.capabilities.some(callback);
 	}
 }
