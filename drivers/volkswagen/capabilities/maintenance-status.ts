@@ -2,10 +2,6 @@ import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.js";
 import Capability from "./capability.js";
 
 export default class MaintenanceStatus extends Capability {
-	private isNumber(value: unknown): value is number {
-		return typeof value === "number" && !Number.isNaN(value);
-	}
-
 	protected override getCapabilityName(): string {
 		return "maintenance_status";
 	}

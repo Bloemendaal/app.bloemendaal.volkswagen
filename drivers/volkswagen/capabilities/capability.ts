@@ -74,4 +74,8 @@ export default abstract class Capability {
 
 		return true;
 	}
+
+	protected isNumber(value: unknown): value is number {
+		return typeof value === "number" && !Number.isNaN(value);
+	}
 }

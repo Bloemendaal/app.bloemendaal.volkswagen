@@ -33,6 +33,7 @@
 				"hook_and_flash": "Honk and flash",
 				"maintenance_status": "Maintenance status",
 				"odometer_status": "Odometer status",
+				"readiness_status": "Readiness status",
 				"wake_up_trigger": "Wake up trigger"
 			}
 		}

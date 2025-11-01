@@ -2,10 +2,6 @@ import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.js";
 import Capability from "./capability.js";
 
 export default class ChargingStatus extends Capability {
-	private isNumber(value: unknown): value is number {
-		return typeof value === "number" && !Number.isNaN(value);
-	}
-
 	private isValidChargingState(value: string | null = null): value is string {
 		return Boolean(value) && value !== "unsupported";
 	}

@@ -10,7 +10,7 @@
 	},
 	"getable": true,
 	"setable": false,
-	"uiComponent": "sensor",
+	"uiComponent": null,
 	"icon": "/assets/capabilities/timestamp.svg",
 	"insights": false,
 	"min": 0,

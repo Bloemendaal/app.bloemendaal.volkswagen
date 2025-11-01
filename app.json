@@ -431,12 +431,34 @@
       },
       "getable": true,
       "setable": false,
-      "uiComponent": "sensor",
+      "uiComponent": null,
       "icon": "/assets/capabilities/timestamp.svg",
       "insights": false,
       "min": 0,
       "step": 1,
       "decimals": 0
+    },
+    "vehicle_active": {
+      "type": "boolean",
+      "title": {
+        "en": "Vehicle active",
+        "nl": "Voertuig actief"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/active.svg"
+    },
+    "vehicle_online": {
+      "type": "boolean",
+      "title": {
+        "en": "Vehicle online",
+        "nl": "Voertuig online"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/online.svg"
     }
   }
 }
