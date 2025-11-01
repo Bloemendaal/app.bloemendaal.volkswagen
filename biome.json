@@ -10,8 +10,10 @@
 		"includes": [
 			".homeychangelog.json",
 			".homeycompose/**/*.json",
-			"app.ts",
-			"drivers/**/*.ts",
+			"app.mts",
+			"biome.json",
+			"env.json",
+			"drivers/**/*.mts",
 			"drivers/**/*.json",
 			"locales/**/*.json",
 			"package.json"
