@@ -3,13 +3,6 @@ import type { PairSession } from "homey/lib/Driver.js";
 import User from "./api/user.js";
 
 export default class VolkswagenDriver extends Homey.Driver {
-	/**
-	 * onInit is called when the driver is initialized.
-	 */
-	public async onInit() {
-		this.log("VolkswagenDriver has been initialized");
-	}
-
 	public async onPair(session: PairSession): Promise<void> {
 		let sPin = "";
 		let email = "";

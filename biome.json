@@ -10,6 +10,7 @@
 		"includes": [
 			".homeychangelog.json",
 			".homeycompose/**/*.json",
+			"app.ts",
 			"drivers/**/*.ts",
 			"locales/**/*.json",
 			"package.json"
