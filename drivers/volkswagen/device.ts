@@ -8,6 +8,8 @@ import type Capability from "./capabilities/capability.js";
 import ChargingSettings from "./capabilities/charging-settings.js";
 import ChargingStatus from "./capabilities/charging-status.js";
 import HonkAndFlash from "./capabilities/hook-and-flash.js";
+import MaintenanceStatus from "./capabilities/maintenance-status.js";
+import OdometerStatus from "./capabilities/odometer-status.js";
 import WakeUpTrigger from "./capabilities/wake-up-trigger.js";
 
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
@@ -28,6 +30,8 @@ export default class VolkswagenDevice extends Homey.Device {
 		new ChargingSettings(this),
 		new ChargingStatus(this),
 		new HonkAndFlash(this),
+		new MaintenanceStatus(this),
+		new OdometerStatus(this),
 		new WakeUpTrigger(this),
 	];
 

@@ -1,0 +1,17 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Maintenance due",
+		"nl": "Onderhoud over"
+	},
+	"units": {
+		"en": "days",
+		"nl": "dagen"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/maintenance_due_days.svg",
+	"insights": false,
+	"decimals": 0
+}

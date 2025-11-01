@@ -29,7 +29,11 @@
 				"access": "Access",
 				"battery_status": "Battery status",
 				"charging_settings": "Charging settings",
-				"charging_status": "Charging status"
+				"charging_status": "Charging status",
+				"hook_and_flash": "Honk and flash",
+				"maintenance_status": "Maintenance status",
+				"odometer_status": "Odometer status",
+				"wake_up_trigger": "Wake up trigger"
 			}
 		}
 	}

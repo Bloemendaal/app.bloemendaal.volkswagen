@@ -300,6 +300,23 @@
       "uiComponent": "button",
       "icon": "/assets/capabilities/wake.svg"
     },
+    "maintenance_due_days": {
+      "type": "number",
+      "title": {
+        "en": "Maintenance due",
+        "nl": "Onderhoud over"
+      },
+      "units": {
+        "en": "days",
+        "nl": "dagen"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/maintenance_due_days.svg",
+      "insights": false,
+      "decimals": 0
+    },
     "measure_charging_power": {
       "type": "number",
       "title": {
@@ -365,6 +382,23 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/capabilities/measure_remaining_charging_time.svg",
+      "insights": true,
+      "decimals": 0
+    },
+    "meter_odometer": {
+      "type": "number",
+      "title": {
+        "en": "Odometer",
+        "nl": "Kilometerstand"
+      },
+      "units": {
+        "en": "km",
+        "nl": "km"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/meter_odometer.svg",
       "insights": true,
       "decimals": 0
     },
