@@ -73,6 +73,7 @@
       "connectivity": [
         "cloud"
       ],
+      "icon": "icon.svg",
       "images": {
         "small": "/drivers/volkswagen/assets/images/small.png",
         "large": "/drivers/volkswagen/assets/images/large.png"
