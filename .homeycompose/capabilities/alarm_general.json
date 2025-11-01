@@ -2,7 +2,17 @@
 	"type": "boolean",
 	"title": {
 		"en": "Unsafe situation",
-		"nl": "Onveilige situatie"
+		"nl": "Onveilige situatie",
+		"da": "Usikker situation",
+		"de": "Unsichere Situation",
+		"es": "Situación insegura",
+		"fr": "Situation dangereuse",
+		"it": "Situazione pericolosa",
+		"no": "Usikker situasjon",
+		"sv": "Osäker situation",
+		"pl": "Niebezpieczna sytuacja",
+		"ru": "Небезопасная ситуация",
+		"ko": "위험한 상황"
 	},
 	"getable": true,
 	"setable": false,
@@ -11,10 +21,30 @@
 	"insights": false,
 	"insightsTitleTrue": {
 		"en": "Unsafe situation",
-		"nl": "Onveilige situatie"
+		"nl": "Onveilige situatie",
+		"da": "Usikker situation",
+		"de": "Unsichere Situation",
+		"es": "Situación insegura",
+		"fr": "Situation dangereuse",
+		"it": "Situazione pericolosa",
+		"no": "Usikker situasjon",
+		"sv": "Osäker situation",
+		"pl": "Niebezpieczna sytuacja",
+		"ru": "Небезопасная ситуация",
+		"ko": "위험한 상황"
 	},
 	"insightsTitleFalse": {
 		"en": "All safe",
-		"nl": "Alles veilig"
+		"nl": "Alles veilig",
+		"da": "Alt sikkert",
+		"de": "Alles sicher",
+		"es": "Todo seguro",
+		"fr": "Tout est sûr",
+		"it": "Tutto sicuro",
+		"no": "Alt trygt",
+		"sv": "Allt säkert",
+		"pl": "Wszystko bezpieczne",
+		"ru": "Все безопасно",
+		"ko": "모두 안전함"
 	}
 }

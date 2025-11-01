@@ -2,11 +2,31 @@
 	"type": "number",
 	"title": {
 		"en": "Last updated at",
-		"nl": "Laatst bijgewerkt om"
+		"nl": "Laatst bijgewerkt om",
+		"da": "Sidst opdateret kl.",
+		"de": "Zuletzt aktualisiert um",
+		"es": "Última actualización a las",
+		"fr": "Dernière mise à jour à",
+		"it": "Ultimo aggiornamento alle",
+		"no": "Sist oppdatert kl.",
+		"sv": "Senast uppdaterad kl.",
+		"pl": "Ostatnia aktualizacja o",
+		"ru": "Последнее обновление в",
+		"ko": "마지막 업데이트 시간"
 	},
 	"units": {
 		"en": "milliseconds since epoch",
-		"nl": "milliseconden sinds epoch"
+		"nl": "milliseconden sinds epoch",
+		"da": "millisekunder siden epoke",
+		"de": "Millisekunden seit Epoche",
+		"es": "milisegundos desde época",
+		"fr": "millisecondes depuis l'époque",
+		"it": "millisecondi dall'epoca",
+		"no": "millisekunder siden epoke",
+		"sv": "millisekunder sedan epoken",
+		"pl": "milisekund od epoki",
+		"ru": "миллисекунд с эпохи",
+		"ko": "에포크 이후 밀리초"
 	},
 	"getable": true,
 	"setable": false,

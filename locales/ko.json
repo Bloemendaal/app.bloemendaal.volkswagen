@@ -1,0 +1,49 @@
+{
+	"capabilities": {
+		"alarm_door": {
+			"title": "__name__ 열림",
+			"variables": {
+				"bonnet": "보닛",
+				"trunk": "트렁크",
+				"frontLeft": "앞왼쪽 문",
+				"frontRight": "앞오른쪽 문",
+				"rearLeft": "뒤왼쪽 문",
+				"rearRight": "뒤오른쪽 문"
+			}
+		},
+		"alarm_window": {
+			"title": "__name__ 열림",
+			"variables": {
+				"sunRoof": "선루프",
+				"roofCover": "루프 커버",
+				"sunRoofRear": "뒤쪽 선루프",
+				"frontLeft": "앞왼쪽 창문",
+				"frontRight": "앞오른쪽 창문",
+				"rearLeft": "뒤왼쪽 창문",
+				"rearRight": "뒤오른쪽 창문"
+			}
+		},
+		"measure_battery_temperature": {
+			"title": "__name__ 배터리 온도",
+			"variables": {
+				"min": "최소",
+				"max": "최대"
+			}
+		},
+		"timestamp": {
+			"title": "__name__ 마지막 업데이트 시각",
+			"variables": {
+				"access": "접근",
+				"battery_status": "배터리 상태",
+				"charging_settings": "충전 설정",
+				"charging_status": "충전 상태",
+				"hook_and_flash": "경적 및 깜박이",
+				"maintenance_status": "정비 상태",
+				"odometer_status": "주행 거리계 상태",
+				"readiness_status": "준비 상태",
+				"temperature_battery_status": "배터리 온도 상태",
+				"wake_up_trigger": "기상 트리거"
+			}
+		}
+	}
+}

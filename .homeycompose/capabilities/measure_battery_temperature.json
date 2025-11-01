@@ -2,7 +2,17 @@
 	"type": "number",
 	"title": {
 		"en": "Battery temperature",
-		"nl": "Batterijtemperatuur"
+		"nl": "Batterijtemperatuur",
+		"da": "Batteritemperatur",
+		"de": "Batterietemperatur",
+		"es": "Temperatura de la batería",
+		"fr": "Température de la batterie",
+		"it": "Temperatura della batteria",
+		"no": "Batteritemperatur",
+		"sv": "Batteritemperatur",
+		"pl": "Temperatura baterii",
+		"ru": "Температура батареи",
+		"ko": "배터리 온도"
 	},
 	"units": "°C",
 	"getable": true,

@@ -2,7 +2,17 @@
 	"type": "number",
 	"title": {
 		"en": "Range",
-		"nl": "Actieradius"
+		"nl": "Actieradius",
+		"da": "Rækkevidde",
+		"de": "Reichweite",
+		"es": "Rango",
+		"fr": "Portée",
+		"it": "Gamma",
+		"no": "Rekkevidde",
+		"sv": "Räckvidd",
+		"pl": "Zasięg",
+		"ru": "Диапазон",
+		"ko": "범위"
 	},
 	"units": {
 		"en": "km",

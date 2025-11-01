@@ -2,7 +2,17 @@
 	"type": "boolean",
 	"title": {
 		"en": "Wake vehicle",
-		"nl": "Voertuig wakker maken"
+		"nl": "Voertuig wakker maken",
+		"da": "Væk køretøj",
+		"de": "Fahrzeug wecken",
+		"es": "Despertar vehículo",
+		"fr": "Réveiller le véhicule",
+		"it": "Sveglia veicolo",
+		"no": "Vekk kjøretøy",
+		"sv": "Väck fordon",
+		"pl": "Obudź pojazd",
+		"ru": "Разбудить автомобиль",
+		"ko": "차량 깨우기"
 	},
 	"getable": false,
 	"setable": true,

@@ -1,0 +1,49 @@
+{
+	"capabilities": {
+		"alarm_door": {
+			"title": "__name__ открыта",
+			"variables": {
+				"bonnet": "Капот",
+				"trunk": "Багажник",
+				"frontLeft": "Передняя левая дверь",
+				"frontRight": "Передняя правая дверь",
+				"rearLeft": "Задняя левая дверь",
+				"rearRight": "Задняя правая дверь"
+			}
+		},
+		"alarm_window": {
+			"title": "__name__ открыто",
+			"variables": {
+				"sunRoof": "Люк на крыше",
+				"roofCover": "Крышка крыши",
+				"sunRoofRear": "Задний люк на крыше",
+				"frontLeft": "Переднее левое окно",
+				"frontRight": "Переднее правое окно",
+				"rearLeft": "Заднее левое окно",
+				"rearRight": "Заднее правое окно"
+			}
+		},
+		"measure_battery_temperature": {
+			"title": "Температура батареи __name__",
+			"variables": {
+				"min": "Минимум",
+				"max": "Максимум"
+			}
+		},
+		"timestamp": {
+			"title": "__name__ последнее обновление в",
+			"variables": {
+				"access": "Доступ",
+				"battery_status": "Состояние батареи",
+				"charging_settings": "Настройки зарядки",
+				"charging_status": "Состояние зарядки",
+				"hook_and_flash": "Сигнал и вспышка",
+				"maintenance_status": "Состояние обслуживания",
+				"odometer_status": "Состояние одометра",
+				"readiness_status": "Состояние готовности",
+				"temperature_battery_status": "Состояние температуры батареи",
+				"wake_up_trigger": "Триггер пробуждения"
+			}
+		}
+	}
+}

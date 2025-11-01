@@ -2,7 +2,17 @@
 	"type": "boolean",
 	"title": {
 		"en": "Flash lights",
-		"nl": "Knipperlichten"
+		"nl": "Knipperlichten",
+		"da": "Blinklys",
+		"de": "Licht blinken",
+		"es": "Luces intermitentes",
+		"fr": "Feux clignotants",
+		"it": "Lampeggiare le luci",
+		"no": "Blinklys",
+		"sv": "Blinkljus",
+		"pl": "Migające światła",
+		"ru": "Мигание фарами",
+		"ko": "전조등 깜빡임"
 	},
 	"getable": false,
 	"setable": true,

@@ -2,11 +2,31 @@
 	"type": "number",
 	"title": {
 		"en": "Maintenance due",
-		"nl": "Onderhoud over"
+		"nl": "Onderhoud over",
+		"da": "Vedligeholdelse skyldes",
+		"de": "Wartung fällig",
+		"es": "Mantenimiento debido",
+		"fr": "Entretien dû",
+		"it": "Manutenzione dovuta",
+		"no": "Vedlikehold skyldes",
+		"sv": "Underhåll förfaller",
+		"pl": "Konserwacja należna",
+		"ru": "Обслуживание требуется",
+		"ko": "유지 보수 예정"
 	},
 	"units": {
 		"en": "days",
-		"nl": "dagen"
+		"nl": "dagen",
+		"da": "dage",
+		"de": "Tage",
+		"es": "días",
+		"fr": "jours",
+		"it": "giorni",
+		"no": "dager",
+		"sv": "dagar",
+		"pl": "dni",
+		"ru": "дней",
+		"ko": "일"
 	},
 	"getable": true,
 	"setable": false,

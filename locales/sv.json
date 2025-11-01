@@ -1,0 +1,49 @@
+{
+	"capabilities": {
+		"alarm_door": {
+			"title": "__name__ öppnad",
+			"variables": {
+				"bonnet": "Motorhuv",
+				"trunk": "Bagageutrymme",
+				"frontLeft": "Vänster framdörr",
+				"frontRight": "Höger framdörr",
+				"rearLeft": "Vänster bakdörr",
+				"rearRight": "Höger bakdörr"
+			}
+		},
+		"alarm_window": {
+			"title": "__name__ öppnad",
+			"variables": {
+				"sunRoof": "Soltak",
+				"roofCover": "Taksäte",
+				"sunRoofRear": "Bakre soltak",
+				"frontLeft": "Vänster framfönster",
+				"frontRight": "Höger framfönster",
+				"rearLeft": "Vänster bakfönster",
+				"rearRight": "Höger bakfönster"
+			}
+		},
+		"measure_battery_temperature": {
+			"title": "__name__ batteritemperatur",
+			"variables": {
+				"min": "Minsta",
+				"max": "Maximala"
+			}
+		},
+		"timestamp": {
+			"title": "__name__ senast uppdaterad kl.",
+			"variables": {
+				"access": "Åtkomst",
+				"battery_status": "Batteristatus",
+				"charging_settings": "Laddningsinställningar",
+				"charging_status": "Laddningsstatus",
+				"hook_and_flash": "Tuta och blinka",
+				"maintenance_status": "Underhållsstatus",
+				"odometer_status": "Odometerstatus",
+				"readiness_status": "Beredskapsstatus",
+				"temperature_battery_status": "Batteritemperaturstatus",
+				"wake_up_trigger": "Väckningsutlösare"
+			}
+		}
+	}
+}

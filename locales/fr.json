@@ -1,0 +1,49 @@
+{
+	"capabilities": {
+		"alarm_door": {
+			"title": "__name__ ouvert",
+			"variables": {
+				"bonnet": "Capot",
+				"trunk": "Coffre",
+				"frontLeft": "Porte avant gauche",
+				"frontRight": "Porte avant droite",
+				"rearLeft": "Porte arrière gauche",
+				"rearRight": "Porte arrière droite"
+			}
+		},
+		"alarm_window": {
+			"title": "__name__ ouvert",
+			"variables": {
+				"sunRoof": "Toit ouvrant",
+				"roofCover": "Couvre-toit",
+				"sunRoofRear": "Toit ouvrant arrière",
+				"frontLeft": "Fenêtre avant gauche",
+				"frontRight": "Fenêtre avant droite",
+				"rearLeft": "Fenêtre arrière gauche",
+				"rearRight": "Fenêtre arrière droite"
+			}
+		},
+		"measure_battery_temperature": {
+			"title": "Température de la batterie de __name__",
+			"variables": {
+				"min": "Minimum",
+				"max": "Maximum"
+			}
+		},
+		"timestamp": {
+			"title": "__name__ mis à jour pour la dernière fois à",
+			"variables": {
+				"access": "Accès",
+				"battery_status": "État de la batterie",
+				"charging_settings": "Paramètres de charge",
+				"charging_status": "État de charge",
+				"hook_and_flash": "Klaxon et clignotement",
+				"maintenance_status": "État de maintenance",
+				"odometer_status": "État de l'odomètre",
+				"readiness_status": "État de préparation",
+				"temperature_battery_status": "État de la température de la batterie",
+				"wake_up_trigger": "Déclencheur de réveil"
+			}
+		}
+	}
+}

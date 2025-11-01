@@ -5,10 +5,32 @@
 	"sdk": 3,
 	"platforms": ["local"],
 	"name": {
-		"en": "Volkswagen"
+		"en": "Volkswagen",
+		"nl": "Volkswagen",
+		"da": "Volkswagen",
+		"de": "Volkswagen",
+		"es": "Volkswagen",
+		"fr": "Volkswagen",
+		"it": "Volkswagen",
+		"no": "Volkswagen",
+		"sv": "Volkswagen",
+		"pl": "Volkswagen",
+		"ru": "Volkswagen",
+		"ko": "폭스바겐"
 	},
 	"description": {
-		"en": "Adds support for Volkswagen cars in Europe"
+		"en": "Adds support for Volkswagen cars in Europe",
+		"nl": "Voegt ondersteuning toe voor Volkswagen-auto's in Europa",
+		"da": "Tilføjer support til Volkswagen-biler i Europa",
+		"de": "Fügt Unterstützung für Volkswagen-Fahrzeuge in Europa hinzu",
+		"es": "Agrega soporte para autos Volkswagen en Europa",
+		"fr": "Ajoute la prise en charge des voitures Volkswagen en Europe",
+		"it": "Aggiunge supporto per le auto Volkswagen in Europa",
+		"no": "Legger til støtte for Volkswagen-biler i Europa",
+		"sv": "Lägger till stöd för Volkswagen-bilar i Europa",
+		"pl": "Dodaje wsparcie dla samochodów Volkswagen w Europie",
+		"ru": "Добавляет поддержку автомобилей Volkswagen в Европе",
+		"ko": "유럽의 폭스바겐 자동차 지원 추가"
 	},
 	"bugs": {
 		"url": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen/issues"

@@ -2,7 +2,17 @@
 	"type": "boolean",
 	"title": {
 		"en": "Vehicle online",
-		"nl": "Voertuig online"
+		"nl": "Voertuig online",
+		"da": "Køretøj online",
+		"de": "Fahrzeug online",
+		"es": "Vehículo en línea",
+		"fr": "Véhicule en ligne",
+		"it": "Veicolo online",
+		"no": "Kjøretøy på nett",
+		"sv": "Fordon online",
+		"pl": "Pojazd online",
+		"ru": "Транспортное средство онлайн",
+		"ko": "차량 온라인"
 	},
 	"getable": true,
 	"setable": false,

@@ -12,6 +12,7 @@
 			".homeycompose/**/*.json",
 			"app.ts",
 			"drivers/**/*.ts",
+			"drivers/**/*.json",
 			"locales/**/*.json",
 			"package.json"
 		]

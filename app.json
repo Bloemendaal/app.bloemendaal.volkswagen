@@ -8,10 +8,32 @@
     "local"
   ],
   "name": {
-    "en": "Volkswagen"
+    "en": "Volkswagen",
+    "nl": "Volkswagen",
+    "da": "Volkswagen",
+    "de": "Volkswagen",
+    "es": "Volkswagen",
+    "fr": "Volkswagen",
+    "it": "Volkswagen",
+    "no": "Volkswagen",
+    "sv": "Volkswagen",
+    "pl": "Volkswagen",
+    "ru": "Volkswagen",
+    "ko": "폭스바겐"
   },
   "description": {
-    "en": "Adds support for Volkswagen cars in Europe"
+    "en": "Adds support for Volkswagen cars in Europe",
+    "nl": "Voegt ondersteuning toe voor Volkswagen-auto's in Europa",
+    "da": "Tilføjer support til Volkswagen-biler i Europa",
+    "de": "Fügt Unterstützung für Volkswagen-Fahrzeuge in Europa hinzu",
+    "es": "Agrega soporte para autos Volkswagen en Europa",
+    "fr": "Ajoute la prise en charge des voitures Volkswagen en Europe",
+    "it": "Aggiunge supporto per le auto Volkswagen in Europa",
+    "no": "Legger til støtte for Volkswagen-biler i Europa",
+    "sv": "Lägger till stöd för Volkswagen-bilar i Europa",
+    "pl": "Dodaje wsparcie dla samochodów Volkswagen w Europie",
+    "ru": "Добавляет поддержку автомобилей Volkswagen в Европе",
+    "ko": "유럽의 폭스바겐 자동차 지원 추가"
   },
   "bugs": {
     "url": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen/issues"
@@ -42,9 +64,7 @@
   "esm": true,
   "drivers": [
     {
-      "name": {
-        "en": "Volkswagen"
-      },
+      "name": "Volkswagen",
       "class": "car",
       "capabilities": [],
       "platforms": [
@@ -65,23 +85,73 @@
             "logo": "logo.png",
             "title": {
               "en": "Volkswagen ID",
-              "nl": "Volkswagen ID"
+              "nl": "Volkswagen ID",
+              "da": "Volkswagen ID",
+              "de": "Volkswagen ID",
+              "es": "Volkswagen ID",
+              "fr": "Volkswagen ID",
+              "it": "Volkswagen ID",
+              "no": "Volkswagen ID",
+              "sv": "Volkswagen ID",
+              "pl": "Volkswagen ID",
+              "ru": "Volkswagen ID",
+              "ko": "폭스바겐 ID"
             },
             "usernameLabel": {
               "en": "E-mail",
-              "nl": "E-mailadres"
+              "nl": "E-mailadres",
+              "da": "E-mail",
+              "de": "E-Mail",
+              "es": "Email",
+              "fr": "E-mail",
+              "it": "E-mail",
+              "no": "E-post",
+              "sv": "E-post",
+              "pl": "E-mail",
+              "ru": "Эл. почта",
+              "ko": "이메일"
             },
             "usernamePlaceholder": {
               "en": "john@doe.com",
-              "nl": "jan@smit.com"
+              "nl": "jan@smit.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "juan@pérez.com",
+              "fr": "jean@dupont.com",
+              "it": "giovanni@rossi.com",
+              "no": "ole@hansen.com",
+              "sv": "nils@soderberg.com",
+              "pl": "jan@kowalski.com",
+              "ru": "иван@иванов.com",
+              "ko": "kim@hong.com"
             },
             "passwordLabel": {
               "en": "Password",
-              "nl": "Wachtwoord"
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
             },
             "passwordPlaceholder": {
               "en": "Password",
-              "nl": "Wachtwoord"
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
             }
           }
         },
@@ -91,11 +161,31 @@
           "options": {
             "title": {
               "en": "Enter your S-PIN",
-              "nl": "Voer je S-PIN in"
+              "nl": "Voer je S-PIN in",
+              "da": "Indtast din S-PIN",
+              "de": "Geben Sie Ihre S-PIN ein",
+              "es": "Introduce tu S-PIN",
+              "fr": "Entrez votre S-PIN",
+              "it": "Inserisci il tuo S-PIN",
+              "no": "Skriv inn din S-PIN",
+              "sv": "Ange din S-PIN",
+              "pl": "Wprowadź swój S-PIN",
+              "ru": "Введите ваш S-PIN",
+              "ko": "S-PIN을 입력하세요"
             },
             "hint": {
               "en": "This is required to modify vehicle settings.",
-              "nl": "Dit is vereist om voertuiginstellingen te wijzigen."
+              "nl": "Dit is vereist om voertuiginstellingen te wijzigen.",
+              "da": "Dette er nødvendigt for at ændre køretøjsindstillinger.",
+              "de": "Dies ist erforderlich, um Fahrzeugeinstellungen zu ändern.",
+              "es": "Esto es necesario para modificar la configuración del vehículo.",
+              "fr": "Ceci est nécessaire pour modifier les paramètres du véhicule.",
+              "it": "Questo è necessario per modificare le impostazioni del veicolo.",
+              "no": "Dette er nødvendig for å endre kjøretøyinnstillinger.",
+              "sv": "Detta krävs för att ändra fordonsinställningar.",
+              "pl": "Jest to wymagane do modyfikacji ustawień pojazdu.",
+              "ru": "Это необходимо для изменения настроек автомобиля.",
+              "ko": "차량 설정을 수정하려면 필요합니다."
             },
             "type": "number",
             "length": 4
@@ -119,7 +209,17 @@
           "type": "group",
           "label": {
             "en": "Login details",
-            "nl": "Inloggegevens"
+            "nl": "Inloggegevens",
+            "da": "Login-oplysninger",
+            "de": "Anmeldedaten",
+            "es": "Detalles de inicio de sesión",
+            "fr": "Détails de connexion",
+            "it": "Dettagli di accesso",
+            "no": "Innloggingsdetaljer",
+            "sv": "Inloggningsuppgifter",
+            "pl": "Dane logowania",
+            "ru": "Детали входа",
+            "ko": "로그인 정보"
           },
           "children": [
             {
@@ -127,12 +227,32 @@
               "type": "text",
               "label": {
                 "en": "E-mail",
-                "nl": "E-mailadres"
+                "nl": "E-mailadres",
+                "da": "E-mail",
+                "de": "E-Mail",
+                "es": "Correo electrónico",
+                "fr": "E-mail",
+                "it": "E-mail",
+                "no": "E-post",
+                "sv": "E-post",
+                "pl": "E-mail",
+                "ru": "Эл. почта",
+                "ko": "이메일"
               },
               "value": "",
               "hint": {
                 "en": "The e-mail that you use in the Volkswagen App.",
-                "nl": "Het e-mailadres dat je gebruikt in de Volkswagen App."
+                "nl": "Het e-mailadres dat je gebruikt in de Volkswagen App.",
+                "da": "E-mailen du bruger i Volkswagen App.",
+                "de": "Die E-Mail, die Sie in der Volkswagen App verwenden.",
+                "es": "El correo electrónico que utilizas en la aplicación de Volkswagen.",
+                "fr": "L'e-mail que vous utilisez dans l'application Volkswagen.",
+                "it": "L'e-mail che usi nell'app Volkswagen.",
+                "no": "E-posten du bruker i Volkswagen-appen.",
+                "sv": "E-posten du använder i Volkswagen-appen.",
+                "pl": "E-mail, którego używasz w aplikacji Volkswagen.",
+                "ru": "Электронная почта, которую вы используете в приложении Volkswagen.",
+                "ko": "폭스바겐 앱에서 사용하는 이메일입니다."
               }
             },
             {
@@ -140,12 +260,32 @@
               "type": "password",
               "label": {
                 "en": "Password",
-                "nl": "Wachtwoord"
+                "nl": "Wachtwoord",
+                "da": "Adgangskode",
+                "de": "Passwort",
+                "es": "Contraseña",
+                "fr": "Mot de passe",
+                "it": "Password",
+                "no": "Passord",
+                "sv": "Lösenord",
+                "pl": "Hasło",
+                "ru": "Пароль",
+                "ko": "비밀번호"
               },
               "value": "",
               "hint": {
                 "en": "The password that you use in the Volkswagen App.",
-                "nl": "Het wachtwoord dat je gebruikt in de Volkswagen App."
+                "nl": "Het wachtwoord dat je gebruikt in de Volkswagen App.",
+                "da": "Adgangskoden du bruger i Volkswagen App.",
+                "de": "Das Passwort, das Sie in der Volkswagen App verwenden.",
+                "es": "La contraseña que utilizas en la aplicación de Volkswagen.",
+                "fr": "Le mot de passe que vous utilisez dans l'application Volkswagen.",
+                "it": "La password che usi nell'app Volkswagen.",
+                "no": "Passordet du bruker i Volkswagen-appen.",
+                "sv": "Lösenordet du använder i Volkswagen-appen.",
+                "pl": "Hasło, którego używasz w aplikacji Volkswagen.",
+                "ru": "Пароль, который вы используете в приложении Volkswagen.",
+                "ko": "폭스바겐 앱에서 사용하는 비밀번호입니다."
               }
             },
             {
@@ -159,7 +299,17 @@
               "pattern": "^[0-9]{4}$",
               "hint": {
                 "en": "Required to modify vehicle settings.",
-                "nl": "Vereist om voertuiginstellingen te wijzigen."
+                "nl": "Vereist om voertuiginstellingen te wijzigen.",
+                "da": "Påkrævet for at ændre køretøjsindstillinger.",
+                "de": "Erforderlich, um Fahrzeugeinstellungen zu ändern.",
+                "es": "Requerido para modificar la configuración del vehículo.",
+                "fr": "Nécessaire pour modifier les paramètres du véhicule.",
+                "it": "Richiesto per modificare le impostazioni del veicolo.",
+                "no": "Kreves for å endre kjøretøyinnstillinger.",
+                "sv": "Krävs för att ändra fordonsinställningar.",
+                "pl": "Wymagane do modyfikacji ustawień pojazdu.",
+                "ru": "Необходимо для изменения настроек автомобиля.",
+                "ko": "차량 설정을 수정하려면 필요합니다."
               }
             }
           ]
@@ -168,7 +318,17 @@
           "type": "group",
           "label": {
             "en": "Behavior settings",
-            "nl": "Gedragsinstellingen"
+            "nl": "Gedragsinstellingen",
+            "da": "Adfærdsindstillinger",
+            "de": "Verhaltenseinstellungen",
+            "es": "Ajustes de comportamiento",
+            "fr": "Paramètres de comportement",
+            "it": "Impostazioni di comportamento",
+            "no": "Adferdsinnstillinger",
+            "sv": "Beteendeinställningar",
+            "pl": "Ustawienia zachowania",
+            "ru": "Настройки поведения",
+            "ko": "동작 설정"
           },
           "children": [
             {
@@ -176,18 +336,48 @@
               "type": "number",
               "label": {
                 "en": "Polling interval",
-                "nl": "Ververstijd"
+                "nl": "Ververstijd",
+                "da": "Afstemningsinterval",
+                "de": "Abrufintervall",
+                "es": "Intervalo de sondeo",
+                "fr": "Intervalle d'interrogation",
+                "it": "Intervallo di polling",
+                "no": "Polling-intervall",
+                "sv": "Intervall för avstämning",
+                "pl": "Interwał odpytywania",
+                "ru": "Интервал опроса",
+                "ko": "폴링 간격"
               },
               "value": 10,
               "min": 1,
               "step": 1,
               "units": {
                 "en": "minutes",
-                "nl": "minuten"
+                "nl": "minuten",
+                "da": "minutter",
+                "de": "Minuten",
+                "es": "minutos",
+                "fr": "minutes",
+                "it": "minuti",
+                "no": "minutter",
+                "sv": "minuter",
+                "pl": "minuty",
+                "ru": "минуты",
+                "ko": "분"
               },
               "hint": {
                 "en": "Interval in minutes to poll the vehicle for new data. Lowering this value may result in battery drain.",
-                "nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik."
+                "nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik.",
+                "da": "Interval i minutter for at afstemme køretøjet for nye data. At sænke denne værdi kan resultere i batteridræn.",
+                "de": "Intervall in Minuten, um das Fahrzeug auf neue Daten abzufragen. Eine Verringerung dieses Wertes kann zu einem Batterieverbrauch führen.",
+                "es": "Intervalo en minutos para sondear el vehículo por nuevos datos. Reducir este valor puede resultar en el agotamiento de la batería.",
+                "fr": "Intervalle en minutes pour interroger le véhicule pour de nouvelles données. Diminuer cette valeur peut entraîner une décharge de la batterie.",
+                "it": "Intervallo in minuti per sondare il veicolo per nuovi dati. Abbassare questo valore può causare lo scaricamento della batteria.",
+                "no": "Intervall i minutter for å avstemme kjøretøyet for nye data. Å senke denne verdien kan føre til batteritap.",
+                "sv": "Intervall i minuter för att stämma av fordonet för ny data. Att sänka detta värde kan leda till batteridränering.",
+                "pl": "Interwał w minutach do odpytywania pojazdu o nowe dane. Obniżenie tej wartości może prowadzić do rozładowania akumulatora.",
+                "ru": "Интервал в минутах для опроса автомобиля на наличие новых данных. Уменьшение этого значения может привести к разрядке аккумулятора.",
+                "ko": "새 데이터를 위해 차량을 폴링하는 간격(분). 이 값을 낮추면 배터리가 소모될 수 있습니다."
               }
             }
           ]
@@ -200,7 +390,17 @@
       "type": "boolean",
       "title": {
         "en": "Door open",
-        "nl": "Deur open"
+        "nl": "Deur open",
+        "da": "Dør åben",
+        "de": "Tür offen",
+        "es": "Puerta abierta",
+        "fr": "Porte ouverte",
+        "it": "Porta aperta",
+        "no": "Dør åpen",
+        "sv": "Dörr öppen",
+        "pl": "Drzwi otwarte",
+        "ru": "Дверь открыта",
+        "ko": "문 열림"
       },
       "getable": true,
       "setable": false,
@@ -209,18 +409,48 @@
       "insights": false,
       "insightsTitleTrue": {
         "en": "Door opened",
-        "nl": "Deur geopend"
+        "nl": "Deur geopend",
+        "da": "Dør åbnet",
+        "de": "Tür geöffnet",
+        "es": "Puerta abierta",
+        "fr": "Porte ouverte",
+        "it": "Porta aperta",
+        "no": "Dør åpnet",
+        "sv": "Dörr öppnad",
+        "pl": "Drzwi otwarte",
+        "ru": "Дверь открыта",
+        "ko": "문 열림"
       },
       "insightsTitleFalse": {
         "en": "Door closed",
-        "nl": "Deur gesloten"
+        "nl": "Deur gesloten",
+        "da": "Dør lukket",
+        "de": "Tür geschlossen",
+        "es": "Puerta cerrada",
+        "fr": "Porte fermée",
+        "it": "Porta chiusa",
+        "no": "Dør lukket",
+        "sv": "Dörr stängd",
+        "pl": "Drzwi zamknięte",
+        "ru": "Дверь закрыта",
+        "ko": "문 닫힘"
       }
     },
     "alarm_general": {
       "type": "boolean",
       "title": {
         "en": "Unsafe situation",
-        "nl": "Onveilige situatie"
+        "nl": "Onveilige situatie",
+        "da": "Usikker situation",
+        "de": "Unsichere Situation",
+        "es": "Situación insegura",
+        "fr": "Situation dangereuse",
+        "it": "Situazione pericolosa",
+        "no": "Usikker situasjon",
+        "sv": "Osäker situation",
+        "pl": "Niebezpieczna sytuacja",
+        "ru": "Небезопасная ситуация",
+        "ko": "위험한 상황"
       },
       "getable": true,
       "setable": false,
@@ -229,18 +459,48 @@
       "insights": false,
       "insightsTitleTrue": {
         "en": "Unsafe situation",
-        "nl": "Onveilige situatie"
+        "nl": "Onveilige situatie",
+        "da": "Usikker situation",
+        "de": "Unsichere Situation",
+        "es": "Situación insegura",
+        "fr": "Situation dangereuse",
+        "it": "Situazione pericolosa",
+        "no": "Usikker situasjon",
+        "sv": "Osäker situation",
+        "pl": "Niebezpieczna sytuacja",
+        "ru": "Небезопасная ситуация",
+        "ko": "위험한 상황"
       },
       "insightsTitleFalse": {
         "en": "All safe",
-        "nl": "Alles veilig"
+        "nl": "Alles veilig",
+        "da": "Alt sikkert",
+        "de": "Alles sicher",
+        "es": "Todo seguro",
+        "fr": "Tout est sûr",
+        "it": "Tutto sicuro",
+        "no": "Alt trygt",
+        "sv": "Allt säkert",
+        "pl": "Wszystko bezpieczne",
+        "ru": "Все безопасно",
+        "ko": "모두 안전함"
       }
     },
     "alarm_window": {
       "type": "boolean",
       "title": {
         "en": "Window open",
-        "nl": "Raam open"
+        "nl": "Raam open",
+        "da": "Vindue åbent",
+        "de": "Fenster offen",
+        "es": "Ventana abierta",
+        "fr": "Fenêtre ouverte",
+        "it": "Finestra aperta",
+        "no": "Vindu åpent",
+        "sv": "Fönster öppet",
+        "pl": "Okno otwarte",
+        "ru": "Окно открыто",
+        "ko": "창문 열림"
       },
       "getable": true,
       "setable": false,
@@ -249,18 +509,48 @@
       "insights": false,
       "insightsTitleTrue": {
         "en": "Window opened",
-        "nl": "Raam geopend"
+        "nl": "Raam geopend",
+        "da": "Vindue åbnet",
+        "de": "Fenster geöffnet",
+        "es": "Ventana abierta",
+        "fr": "Fenêtre ouverte",
+        "it": "Finestra aperta",
+        "no": "Vindu åpnet",
+        "sv": "Fönster öppnat",
+        "pl": "Okno otwarte",
+        "ru": "Окно открыто",
+        "ko": "창문이 열렸습니다"
       },
       "insightsTitleFalse": {
         "en": "Window closed",
-        "nl": "Raam gesloten"
+        "nl": "Raam gesloten",
+        "da": "Vindue lukket",
+        "de": "Fenster geschlossen",
+        "es": "Ventana cerrada",
+        "fr": "Fenêtre fermée",
+        "it": "Finestra chiusa",
+        "no": "Vindu lukket",
+        "sv": "Fönster stängt",
+        "pl": "Okno zamknięte",
+        "ru": "Окно закрыто",
+        "ko": "창문 닫힘"
       }
     },
     "button_flash": {
       "type": "boolean",
       "title": {
         "en": "Flash lights",
-        "nl": "Knipperlichten"
+        "nl": "Knipperlichten",
+        "da": "Blinklys",
+        "de": "Licht blinken",
+        "es": "Luces intermitentes",
+        "fr": "Feux clignotants",
+        "it": "Lampeggiare le luci",
+        "no": "Blinklys",
+        "sv": "Blinkljus",
+        "pl": "Migające światła",
+        "ru": "Мигание фарами",
+        "ko": "전조등 깜빡임"
       },
       "getable": false,
       "setable": true,
@@ -271,7 +561,17 @@
       "type": "boolean",
       "title": {
         "en": "Honk and flash",
-        "nl": "Toeter en knipperen"
+        "nl": "Toeter en knipperen",
+        "da": "Dyt og blink",
+        "de": "Hupen und blitzen",
+        "es": "Tocar el claxon y parpadear",
+        "fr": "Klaxonner et clignoter",
+        "it": "Clacson e lampeggia",
+        "no": "Tut og blink",
+        "sv": "Tuta och blinka",
+        "pl": "Trąb i mrugaj",
+        "ru": "Сигнал и мигание",
+        "ko": "경적과 플래시"
       },
       "getable": false,
       "setable": true,
@@ -282,7 +582,17 @@
       "type": "boolean",
       "title": {
         "en": "Wake vehicle",
-        "nl": "Voertuig wakker maken"
+        "nl": "Voertuig wakker maken",
+        "da": "Væk køretøj",
+        "de": "Fahrzeug wecken",
+        "es": "Despertar vehículo",
+        "fr": "Réveiller le véhicule",
+        "it": "Sveglia veicolo",
+        "no": "Vekk kjøretøy",
+        "sv": "Väck fordon",
+        "pl": "Obudź pojazd",
+        "ru": "Разбудить автомобиль",
+        "ko": "차량 깨우기"
       },
       "getable": false,
       "setable": true,
@@ -293,7 +603,17 @@
       "type": "boolean",
       "title": {
         "en": "Wake vehicle and refresh data",
-        "nl": "Voertuig wakker maken en gegevens bijwerken"
+        "nl": "Voertuig wakker maken en gegevens bijwerken",
+        "da": "Væk køretøj og opdater data",
+        "de": "Fahrzeug wecken und Daten aktualisieren",
+        "es": "Despertar vehículo y actualizar datos",
+        "fr": "Réveiller le véhicule et rafraîchir les données",
+        "it": "Risveglia il veicolo e aggiorna i dati",
+        "no": "Vekk kjøretøyet og oppdater dataene",
+        "sv": "Väck fordonet och uppdatera data",
+        "pl": "Obudź pojazd i odśwież dane",
+        "ru": "Разбудить автомобиль и обновить данные",
+        "ko": "차량을 깨우고 데이터 새로 고침"
       },
       "getable": false,
       "setable": true,
@@ -304,11 +624,31 @@
       "type": "number",
       "title": {
         "en": "Maintenance due",
-        "nl": "Onderhoud over"
+        "nl": "Onderhoud over",
+        "da": "Vedligeholdelse skyldes",
+        "de": "Wartung fällig",
+        "es": "Mantenimiento debido",
+        "fr": "Entretien dû",
+        "it": "Manutenzione dovuta",
+        "no": "Vedlikehold skyldes",
+        "sv": "Underhåll förfaller",
+        "pl": "Konserwacja należna",
+        "ru": "Обслуживание требуется",
+        "ko": "유지 보수 예정"
       },
       "units": {
         "en": "days",
-        "nl": "dagen"
+        "nl": "dagen",
+        "da": "dage",
+        "de": "Tage",
+        "es": "días",
+        "fr": "jours",
+        "it": "giorni",
+        "no": "dager",
+        "sv": "dagar",
+        "pl": "dni",
+        "ru": "дней",
+        "ko": "일"
       },
       "getable": true,
       "setable": false,
@@ -321,7 +661,17 @@
       "type": "number",
       "title": {
         "en": "Battery temperature",
-        "nl": "Batterijtemperatuur"
+        "nl": "Batterijtemperatuur",
+        "da": "Batteritemperatur",
+        "de": "Batterietemperatur",
+        "es": "Temperatura de la batería",
+        "fr": "Température de la batterie",
+        "it": "Temperatura della batteria",
+        "no": "Batteritemperatur",
+        "sv": "Batteritemperatur",
+        "pl": "Temperatura baterii",
+        "ru": "Температура батареи",
+        "ko": "배터리 온도"
       },
       "units": "°C",
       "getable": true,
@@ -335,7 +685,17 @@
       "type": "number",
       "title": {
         "en": "Charging power",
-        "nl": "Laadvermogen"
+        "nl": "Laadvermogen",
+        "da": "Ladeeffekt",
+        "de": "Ladeleistung",
+        "es": "Potencia de carga",
+        "fr": "Puissance de charge",
+        "it": "Potenza di carica",
+        "no": "Ladeeffekt",
+        "sv": "Laddeffekt",
+        "pl": "Moc ładowania",
+        "ru": "Мощность зарядки",
+        "ko": "충전 전력"
       },
       "units": {
         "en": "kW",
@@ -352,11 +712,31 @@
       "type": "number",
       "title": {
         "en": "Charging rate",
-        "nl": "Laadsnelheid"
+        "nl": "Laadsnelheid",
+        "da": "Opladningshastighed",
+        "de": "Ladegeschwindigkeit",
+        "es": "Velocidad de carga",
+        "fr": "Taux de charge",
+        "it": "Tasso di carica",
+        "no": "Ladehastighet",
+        "sv": "Laddhastighet",
+        "pl": "Prędkość ładowania",
+        "ru": "Скорость зарядки",
+        "ko": "충전 속도"
       },
       "units": {
         "en": "km/h",
-        "nl": "km/u"
+        "nl": "km/u",
+        "da": "km/t",
+        "de": "km/h",
+        "es": "km/h",
+        "fr": "km/h",
+        "it": "km/h",
+        "no": "km/t",
+        "sv": "km/h",
+        "pl": "km/h",
+        "ru": "км/ч",
+        "ko": "km/h"
       },
       "getable": true,
       "setable": false,
@@ -369,7 +749,17 @@
       "type": "number",
       "title": {
         "en": "Range",
-        "nl": "Actieradius"
+        "nl": "Actieradius",
+        "da": "Rækkevidde",
+        "de": "Reichweite",
+        "es": "Rango",
+        "fr": "Portée",
+        "it": "Gamma",
+        "no": "Rekkevidde",
+        "sv": "Räckvidd",
+        "pl": "Zasięg",
+        "ru": "Диапазон",
+        "ko": "범위"
       },
       "units": {
         "en": "km",
@@ -386,11 +776,31 @@
       "type": "number",
       "title": {
         "en": "Remaining charging time",
-        "nl": "Resterende oplaadtijd"
+        "nl": "Resterende oplaadtijd",
+        "da": "Resterende opladningstid",
+        "de": "Verbleibende Ladezeit",
+        "es": "Tiempo de carga restante",
+        "fr": "Temps de charge restant",
+        "it": "Tempo di ricarica rimanente",
+        "no": "Gjenværende ladetid",
+        "sv": "Återstående laddningstid",
+        "pl": "Pozostały czas ładowania",
+        "ru": "Оставшееся время зарядки",
+        "ko": "남은 충전 시간"
       },
       "units": {
         "en": "minutes",
-        "nl": "minuten"
+        "nl": "minuten",
+        "da": "minutter",
+        "de": "Minuten",
+        "es": "minutos",
+        "fr": "minutes",
+        "it": "minuti",
+        "no": "minutter",
+        "sv": "minuter",
+        "pl": "minuty",
+        "ru": "минуты",
+        "ko": "분"
       },
       "getable": true,
       "setable": false,
@@ -403,11 +813,31 @@
       "type": "number",
       "title": {
         "en": "Odometer",
-        "nl": "Kilometerstand"
+        "nl": "Kilometerstand",
+        "da": "Kilometertæller",
+        "de": "Kilometerzähler",
+        "es": "Odómetro",
+        "fr": "Odomètre",
+        "it": "Contachilometri",
+        "no": "Kilometerteller",
+        "sv": "Kilometerräknare",
+        "pl": "Licznik kilometrów",
+        "ru": "Одометр",
+        "ko": "주행 거리계"
       },
       "units": {
         "en": "km",
-        "nl": "km"
+        "nl": "km",
+        "da": "km",
+        "de": "km",
+        "es": "km",
+        "fr": "km",
+        "it": "km",
+        "no": "km",
+        "sv": "km",
+        "pl": "km",
+        "ru": "км",
+        "ko": "km"
       },
       "getable": true,
       "setable": false,
@@ -420,7 +850,17 @@
       "type": "number",
       "title": {
         "en": "Target charge level",
-        "nl": "Doel laadniveau"
+        "nl": "Doel laadniveau",
+        "da": "Målopladningsniveau",
+        "de": "Ziel-Ladezustand",
+        "es": "Nivel de carga objetivo",
+        "fr": "Niveau de charge cible",
+        "it": "Livello di carica obiettivo",
+        "no": "Målnivå for lading",
+        "sv": "Målnivå för laddning",
+        "pl": "Docelowy poziom naładowania",
+        "ru": "Целевой уровень заряда",
+        "ko": "목표 충전 수준"
       },
       "units": "%",
       "getable": true,
@@ -437,11 +877,31 @@
       "type": "number",
       "title": {
         "en": "Last updated at",
-        "nl": "Laatst bijgewerkt om"
+        "nl": "Laatst bijgewerkt om",
+        "da": "Sidst opdateret kl.",
+        "de": "Zuletzt aktualisiert um",
+        "es": "Última actualización a las",
+        "fr": "Dernière mise à jour à",
+        "it": "Ultimo aggiornamento alle",
+        "no": "Sist oppdatert kl.",
+        "sv": "Senast uppdaterad kl.",
+        "pl": "Ostatnia aktualizacja o",
+        "ru": "Последнее обновление в",
+        "ko": "마지막 업데이트 시간"
       },
       "units": {
         "en": "milliseconds since epoch",
-        "nl": "milliseconden sinds epoch"
+        "nl": "milliseconden sinds epoch",
+        "da": "millisekunder siden epoke",
+        "de": "Millisekunden seit Epoche",
+        "es": "milisegundos desde época",
+        "fr": "millisecondes depuis l'époque",
+        "it": "millisecondi dall'epoca",
+        "no": "millisekunder siden epoke",
+        "sv": "millisekunder sedan epoken",
+        "pl": "milisekund od epoki",
+        "ru": "миллисекунд с эпохи",
+        "ko": "에포크 이후 밀리초"
       },
       "getable": true,
       "setable": false,
@@ -456,7 +916,17 @@
       "type": "boolean",
       "title": {
         "en": "Vehicle active",
-        "nl": "Voertuig actief"
+        "nl": "Voertuig actief",
+        "da": "Køretøj aktiv",
+        "de": "Fahrzeug aktiv",
+        "es": "Vehículo activo",
+        "fr": "Véhicule actif",
+        "it": "Veicolo attivo",
+        "no": "Kjøretøy aktiv",
+        "sv": "Fordon aktiv",
+        "pl": "Pojazd aktywny",
+        "ru": "Транспорт активен",
+        "ko": "차량 활성화 됨"
       },
       "getable": true,
       "setable": false,
@@ -467,7 +937,17 @@
       "type": "boolean",
       "title": {
         "en": "Vehicle online",
-        "nl": "Voertuig online"
+        "nl": "Voertuig online",
+        "da": "Køretøj online",
+        "de": "Fahrzeug online",
+        "es": "Vehículo en línea",
+        "fr": "Véhicule en ligne",
+        "it": "Veicolo online",
+        "no": "Kjøretøy på nett",
+        "sv": "Fordon online",
+        "pl": "Pojazd online",
+        "ru": "Транспортное средство онлайн",
+        "ko": "차량 온라인"
       },
       "getable": true,
       "setable": false,

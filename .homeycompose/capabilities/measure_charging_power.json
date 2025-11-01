@@ -2,7 +2,17 @@
 	"type": "number",
 	"title": {
 		"en": "Charging power",
-		"nl": "Laadvermogen"
+		"nl": "Laadvermogen",
+		"da": "Ladeeffekt",
+		"de": "Ladeleistung",
+		"es": "Potencia de carga",
+		"fr": "Puissance de charge",
+		"it": "Potenza di carica",
+		"no": "Ladeeffekt",
+		"sv": "Laddeffekt",
+		"pl": "Moc ładowania",
+		"ru": "Мощность зарядки",
+		"ko": "충전 전력"
 	},
 	"units": {
 		"en": "kW",

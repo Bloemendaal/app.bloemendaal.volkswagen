@@ -1,0 +1,49 @@
+{
+	"capabilities": {
+		"alarm_door": {
+			"title": "__name__ abierto",
+			"variables": {
+				"bonnet": "Capó",
+				"trunk": "Maletero",
+				"frontLeft": "Puerta delantera izquierda",
+				"frontRight": "Puerta delantera derecha",
+				"rearLeft": "Puerta trasera izquierda",
+				"rearRight": "Puerta trasera derecha"
+			}
+		},
+		"alarm_window": {
+			"title": "__name__ abierto",
+			"variables": {
+				"sunRoof": "Techo solar",
+				"roofCover": "Cubierta del techo",
+				"sunRoofRear": "Techo solar trasero",
+				"frontLeft": "Ventana delantera izquierda",
+				"frontRight": "Ventana delantera derecha",
+				"rearLeft": "Ventana trasera izquierda",
+				"rearRight": "Ventana trasera derecha"
+			}
+		},
+		"measure_battery_temperature": {
+			"title": "Temperatura de la batería de __name__",
+			"variables": {
+				"min": "Mínima",
+				"max": "Máxima"
+			}
+		},
+		"timestamp": {
+			"title": "__name__ última actualización a las",
+			"variables": {
+				"access": "Acceso",
+				"battery_status": "Estado de la batería",
+				"charging_settings": "Configuración de carga",
+				"charging_status": "Estado de la carga",
+				"hook_and_flash": "Tocar bocina y destellos",
+				"maintenance_status": "Estado del mantenimiento",
+				"odometer_status": "Estado del odómetro",
+				"readiness_status": "Estado de preparación",
+				"temperature_battery_status": "Estado de la temperatura de la batería",
+				"wake_up_trigger": "Activador de despertador"
+			}
+		}
+	}
+}

@@ -2,7 +2,17 @@
 	"type": "boolean",
 	"title": {
 		"en": "Wake vehicle and refresh data",
-		"nl": "Voertuig wakker maken en gegevens bijwerken"
+		"nl": "Voertuig wakker maken en gegevens bijwerken",
+		"da": "Væk køretøj og opdater data",
+		"de": "Fahrzeug wecken und Daten aktualisieren",
+		"es": "Despertar vehículo y actualizar datos",
+		"fr": "Réveiller le véhicule et rafraîchir les données",
+		"it": "Risveglia il veicolo e aggiorna i dati",
+		"no": "Vekk kjøretøyet og oppdater dataene",
+		"sv": "Väck fordonet och uppdatera data",
+		"pl": "Obudź pojazd i odśwież dane",
+		"ru": "Разбудить автомобиль и обновить данные",
+		"ko": "차량을 깨우고 데이터 새로 고침"
 	},
 	"getable": false,
 	"setable": true,

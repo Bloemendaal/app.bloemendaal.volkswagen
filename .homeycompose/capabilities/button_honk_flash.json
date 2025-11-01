@@ -2,7 +2,17 @@
 	"type": "boolean",
 	"title": {
 		"en": "Honk and flash",
-		"nl": "Toeter en knipperen"
+		"nl": "Toeter en knipperen",
+		"da": "Dyt og blink",
+		"de": "Hupen und blitzen",
+		"es": "Tocar el claxon y parpadear",
+		"fr": "Klaxonner et clignoter",
+		"it": "Clacson e lampeggia",
+		"no": "Tut og blink",
+		"sv": "Tuta och blinka",
+		"pl": "Trąb i mrugaj",
+		"ru": "Сигнал и мигание",
+		"ko": "경적과 플래시"
 	},
 	"getable": false,
 	"setable": true,

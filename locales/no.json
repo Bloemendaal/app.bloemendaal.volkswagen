@@ -1,0 +1,49 @@
+{
+	"capabilities": {
+		"alarm_door": {
+			"title": "__name__ åpnet",
+			"variables": {
+				"bonnet": "Panser",
+				"trunk": "Bagasjerom",
+				"frontLeft": "Foran venstre dør",
+				"frontRight": "Foran høyre dør",
+				"rearLeft": "Bak venstre dør",
+				"rearRight": "Bak høyre dør"
+			}
+		},
+		"alarm_window": {
+			"title": "__name__ åpnet",
+			"variables": {
+				"sunRoof": "Soltak",
+				"roofCover": "Takdeksel",
+				"sunRoofRear": "Bakre soltak",
+				"frontLeft": "Foran venstre vindu",
+				"frontRight": "Foran høyre vindu",
+				"rearLeft": "Bak venstre vindu",
+				"rearRight": "Bak høyre vindu"
+			}
+		},
+		"measure_battery_temperature": {
+			"title": "__name__ batteritemperatur",
+			"variables": {
+				"min": "Minimum",
+				"max": "Maksimum"
+			}
+		},
+		"timestamp": {
+			"title": "__name__ sist oppdatert kl",
+			"variables": {
+				"access": "Tilgang",
+				"battery_status": "Batteristatus",
+				"charging_settings": "Ladeinnstillinger",
+				"charging_status": "Ladestatus",
+				"hook_and_flash": "Tute og blinke",
+				"maintenance_status": "Vedlikeholdsstatus",
+				"odometer_status": "Kilometertellerstatus",
+				"readiness_status": "Beredskapsstatus",
+				"temperature_battery_status": "Batteritemperaturstatus",
+				"wake_up_trigger": "Våkn opp trigger"
+			}
+		}
+	}
+}

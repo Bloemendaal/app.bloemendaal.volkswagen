@@ -2,7 +2,17 @@
 	"type": "boolean",
 	"title": {
 		"en": "Vehicle active",
-		"nl": "Voertuig actief"
+		"nl": "Voertuig actief",
+		"da": "Køretøj aktiv",
+		"de": "Fahrzeug aktiv",
+		"es": "Vehículo activo",
+		"fr": "Véhicule actif",
+		"it": "Veicolo attivo",
+		"no": "Kjøretøy aktiv",
+		"sv": "Fordon aktiv",
+		"pl": "Pojazd aktywny",
+		"ru": "Транспорт активен",
+		"ko": "차량 활성화 됨"
 	},
 	"getable": true,
 	"setable": false,

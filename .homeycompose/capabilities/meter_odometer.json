@@ -2,11 +2,31 @@
 	"type": "number",
 	"title": {
 		"en": "Odometer",
-		"nl": "Kilometerstand"
+		"nl": "Kilometerstand",
+		"da": "Kilometertæller",
+		"de": "Kilometerzähler",
+		"es": "Odómetro",
+		"fr": "Odomètre",
+		"it": "Contachilometri",
+		"no": "Kilometerteller",
+		"sv": "Kilometerräknare",
+		"pl": "Licznik kilometrów",
+		"ru": "Одометр",
+		"ko": "주행 거리계"
 	},
 	"units": {
 		"en": "km",
-		"nl": "km"
+		"nl": "km",
+		"da": "km",
+		"de": "km",
+		"es": "km",
+		"fr": "km",
+		"it": "km",
+		"no": "km",
+		"sv": "km",
+		"pl": "km",
+		"ru": "км",
+		"ko": "km"
 	},
 	"getable": true,
 	"setable": false,

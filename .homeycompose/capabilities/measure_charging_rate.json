@@ -2,11 +2,31 @@
 	"type": "number",
 	"title": {
 		"en": "Charging rate",
-		"nl": "Laadsnelheid"
+		"nl": "Laadsnelheid",
+		"da": "Opladningshastighed",
+		"de": "Ladegeschwindigkeit",
+		"es": "Velocidad de carga",
+		"fr": "Taux de charge",
+		"it": "Tasso di carica",
+		"no": "Ladehastighet",
+		"sv": "Laddhastighet",
+		"pl": "Prędkość ładowania",
+		"ru": "Скорость зарядки",
+		"ko": "충전 속도"
 	},
 	"units": {
 		"en": "km/h",
-		"nl": "km/u"
+		"nl": "km/u",
+		"da": "km/t",
+		"de": "km/h",
+		"es": "km/h",
+		"fr": "km/h",
+		"it": "km/h",
+		"no": "km/t",
+		"sv": "km/h",
+		"pl": "km/h",
+		"ru": "км/ч",
+		"ko": "km/h"
 	},
 	"getable": true,
 	"setable": false,

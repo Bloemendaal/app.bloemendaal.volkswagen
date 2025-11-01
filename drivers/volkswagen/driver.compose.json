@@ -1,7 +1,5 @@
 {
-	"name": {
-		"en": "Volkswagen"
-	},
+	"name": "Volkswagen",
 	"class": "car",
 	"capabilities": [],
 	"platforms": ["local"],
@@ -18,22 +16,107 @@
 				"logo": "logo.png",
 				"title": {
 					"en": "Volkswagen ID",
-					"nl": "Volkswagen ID"
+					"nl": "Volkswagen ID",
+					"da": "Volkswagen ID",
+					"de": "Volkswagen ID",
+					"es": "Volkswagen ID",
+					"fr": "Volkswagen ID",
+					"it": "Volkswagen ID",
+					"no": "Volkswagen ID",
+					"sv": "Volkswagen ID",
+					"pl": "Volkswagen ID",
+					"ru": "Volkswagen ID",
+					"ko": "폭스바겐 ID"
 				},
-				"usernameLabel": { "en": "E-mail", "nl": "E-mailadres" },
-				"usernamePlaceholder": { "en": "john@doe.com", "nl": "jan@smit.com" },
-				"passwordLabel": { "en": "Password", "nl": "Wachtwoord" },
-				"passwordPlaceholder": { "en": "Password", "nl": "Wachtwoord" }
+				"usernameLabel": {
+					"en": "E-mail",
+					"nl": "E-mailadres",
+					"da": "E-mail",
+					"de": "E-Mail",
+					"es": "Email",
+					"fr": "E-mail",
+					"it": "E-mail",
+					"no": "E-post",
+					"sv": "E-post",
+					"pl": "E-mail",
+					"ru": "Эл. почта",
+					"ko": "이메일"
+				},
+				"usernamePlaceholder": {
+					"en": "john@doe.com",
+					"nl": "jan@smit.com",
+					"da": "john@doe.com",
+					"de": "john@doe.com",
+					"es": "juan@pérez.com",
+					"fr": "jean@dupont.com",
+					"it": "giovanni@rossi.com",
+					"no": "ole@hansen.com",
+					"sv": "nils@soderberg.com",
+					"pl": "jan@kowalski.com",
+					"ru": "иван@иванов.com",
+					"ko": "kim@hong.com"
+				},
+				"passwordLabel": {
+					"en": "Password",
+					"nl": "Wachtwoord",
+					"da": "Adgangskode",
+					"de": "Passwort",
+					"es": "Contraseña",
+					"fr": "Mot de passe",
+					"it": "Password",
+					"no": "Passord",
+					"sv": "Lösenord",
+					"pl": "Hasło",
+					"ru": "Пароль",
+					"ko": "비밀번호"
+				},
+				"passwordPlaceholder": {
+					"en": "Password",
+					"nl": "Wachtwoord",
+					"da": "Adgangskode",
+					"de": "Passwort",
+					"es": "Contraseña",
+					"fr": "Mot de passe",
+					"it": "Password",
+					"no": "Passord",
+					"sv": "Lösenord",
+					"pl": "Hasło",
+					"ru": "Пароль",
+					"ko": "비밀번호"
+				}
 			}
 		},
 		{
 			"id": "pincode",
 			"template": "pincode",
 			"options": {
-				"title": { "en": "Enter your S-PIN", "nl": "Voer je S-PIN in" },
+				"title": {
+					"en": "Enter your S-PIN",
+					"nl": "Voer je S-PIN in",
+					"da": "Indtast din S-PIN",
+					"de": "Geben Sie Ihre S-PIN ein",
+					"es": "Introduce tu S-PIN",
+					"fr": "Entrez votre S-PIN",
+					"it": "Inserisci il tuo S-PIN",
+					"no": "Skriv inn din S-PIN",
+					"sv": "Ange din S-PIN",
+					"pl": "Wprowadź swój S-PIN",
+					"ru": "Введите ваш S-PIN",
+					"ko": "S-PIN을 입력하세요"
+				},
 				"hint": {
 					"en": "This is required to modify vehicle settings.",
-					"nl": "Dit is vereist om voertuiginstellingen te wijzigen."
+					"nl": "Dit is vereist om voertuiginstellingen te wijzigen.",
+					"da": "Dette er nødvendigt for at ændre køretøjsindstillinger.",
+					"de": "Dies ist erforderlich, um Fahrzeugeinstellungen zu ändern.",
+					"es": "Esto es necesario para modificar la configuración del vehículo.",
+					"fr": "Ceci est nécessaire pour modifier les paramètres du véhicule.",
+					"it": "Questo è necessario per modificare le impostazioni del veicolo.",
+					"no": "Dette er nødvendig for å endre kjøretøyinnstillinger.",
+					"sv": "Detta krävs för att ändra fordonsinställningar.",
+					"pl": "Jest to wymagane do modyfikacji ustawień pojazdu.",
+					"ru": "Это необходимо для изменения настроек автомобиля.",
+					"ko": "차량 설정을 수정하려면 필요합니다."
 				},
 				"type": "number",
 				"length": 4
@@ -42,7 +125,9 @@
 		{
 			"id": "list_devices",
 			"template": "list_devices",
-			"navigation": { "next": "add_devices" }
+			"navigation": {
+				"next": "add_devices"
+			}
 		},
 		{
 			"id": "add_devices",

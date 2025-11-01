@@ -2,7 +2,17 @@
 	"type": "boolean",
 	"title": {
 		"en": "Door open",
-		"nl": "Deur open"
+		"nl": "Deur open",
+		"da": "Dør åben",
+		"de": "Tür offen",
+		"es": "Puerta abierta",
+		"fr": "Porte ouverte",
+		"it": "Porta aperta",
+		"no": "Dør åpen",
+		"sv": "Dörr öppen",
+		"pl": "Drzwi otwarte",
+		"ru": "Дверь открыта",
+		"ko": "문 열림"
 	},
 	"getable": true,
 	"setable": false,
@@ -11,10 +21,30 @@
 	"insights": false,
 	"insightsTitleTrue": {
 		"en": "Door opened",
-		"nl": "Deur geopend"
+		"nl": "Deur geopend",
+		"da": "Dør åbnet",
+		"de": "Tür geöffnet",
+		"es": "Puerta abierta",
+		"fr": "Porte ouverte",
+		"it": "Porta aperta",
+		"no": "Dør åpnet",
+		"sv": "Dörr öppnad",
+		"pl": "Drzwi otwarte",
+		"ru": "Дверь открыта",
+		"ko": "문 열림"
 	},
 	"insightsTitleFalse": {
 		"en": "Door closed",
-		"nl": "Deur gesloten"
+		"nl": "Deur gesloten",
+		"da": "Dør lukket",
+		"de": "Tür geschlossen",
+		"es": "Puerta cerrada",
+		"fr": "Porte fermée",
+		"it": "Porta chiusa",
+		"no": "Dør lukket",
+		"sv": "Dörr stängd",
+		"pl": "Drzwi zamknięte",
+		"ru": "Дверь закрыта",
+		"ko": "문 닫힘"
 	}
 }

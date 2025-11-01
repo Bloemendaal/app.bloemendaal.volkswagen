@@ -1,0 +1,49 @@
+{
+	"capabilities": {
+		"alarm_door": {
+			"title": "__name__ geopend",
+			"variables": {
+				"bonnet": "Motorkap",
+				"trunk": "Kofferbak",
+				"frontLeft": "Linker voordeur",
+				"frontRight": "Rechter voordeur",
+				"rearLeft": "Linker achterdeur",
+				"rearRight": "Rechter achterdeur"
+			}
+		},
+		"alarm_window": {
+			"title": "__name__ geopend",
+			"variables": {
+				"sunRoof": "Zonnedak",
+				"roofCover": "Dakafdekking",
+				"sunRoofRear": "Achter zonnedak",
+				"frontLeft": "Linker voorruit",
+				"frontRight": "Rechter voorruit",
+				"rearLeft": "Linker achterruit",
+				"rearRight": "Rechter achterruit"
+			}
+		},
+		"measure_battery_temperature": {
+			"title": "__name__ batterijtemperatuur",
+			"variables": {
+				"min": "Minimaal",
+				"max": "Maximaal"
+			}
+		},
+		"timestamp": {
+			"title": "__name__ laatst bijgewerkt om",
+			"variables": {
+				"access": "Toegang",
+				"battery_status": "Batterijstatus",
+				"charging_settings": "Laadinstellingen",
+				"charging_status": "Laadstatus",
+				"hook_and_flash": "Toeter en knipperlicht",
+				"maintenance_status": "Onderhoudsstatus",
+				"odometer_status": "Kilometerteller status",
+				"readiness_status": "Gereedheidsstatus",
+				"temperature_battery_status": "Batterijtemperatuur status",
+				"wake_up_trigger": "Activeer trigger"
+			}
+		}
+	}
+}

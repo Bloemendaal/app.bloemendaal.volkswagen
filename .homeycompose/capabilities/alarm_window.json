@@ -2,7 +2,17 @@
 	"type": "boolean",
 	"title": {
 		"en": "Window open",
-		"nl": "Raam open"
+		"nl": "Raam open",
+		"da": "Vindue åbent",
+		"de": "Fenster offen",
+		"es": "Ventana abierta",
+		"fr": "Fenêtre ouverte",
+		"it": "Finestra aperta",
+		"no": "Vindu åpent",
+		"sv": "Fönster öppet",
+		"pl": "Okno otwarte",
+		"ru": "Окно открыто",
+		"ko": "창문 열림"
 	},
 	"getable": true,
 	"setable": false,
@@ -11,10 +21,30 @@
 	"insights": false,
 	"insightsTitleTrue": {
 		"en": "Window opened",
-		"nl": "Raam geopend"
+		"nl": "Raam geopend",
+		"da": "Vindue åbnet",
+		"de": "Fenster geöffnet",
+		"es": "Ventana abierta",
+		"fr": "Fenêtre ouverte",
+		"it": "Finestra aperta",
+		"no": "Vindu åpnet",
+		"sv": "Fönster öppnat",
+		"pl": "Okno otwarte",
+		"ru": "Окно открыто",
+		"ko": "창문이 열렸습니다"
 	},
 	"insightsTitleFalse": {
 		"en": "Window closed",
-		"nl": "Raam gesloten"
+		"nl": "Raam gesloten",
+		"da": "Vindue lukket",
+		"de": "Fenster geschlossen",
+		"es": "Ventana cerrada",
+		"fr": "Fenêtre fermée",
+		"it": "Finestra chiusa",
+		"no": "Vindu lukket",
+		"sv": "Fönster stängt",
+		"pl": "Okno zamknięte",
+		"ru": "Окно закрыто",
+		"ko": "창문 닫힘"
 	}
 }

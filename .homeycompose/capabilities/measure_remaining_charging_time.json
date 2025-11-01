@@ -2,11 +2,31 @@
 	"type": "number",
 	"title": {
 		"en": "Remaining charging time",
-		"nl": "Resterende oplaadtijd"
+		"nl": "Resterende oplaadtijd",
+		"da": "Resterende opladningstid",
+		"de": "Verbleibende Ladezeit",
+		"es": "Tiempo de carga restante",
+		"fr": "Temps de charge restant",
+		"it": "Tempo di ricarica rimanente",
+		"no": "Gjenværende ladetid",
+		"sv": "Återstående laddningstid",
+		"pl": "Pozostały czas ładowania",
+		"ru": "Оставшееся время зарядки",
+		"ko": "남은 충전 시간"
 	},
 	"units": {
 		"en": "minutes",
-		"nl": "minuten"
+		"nl": "minuten",
+		"da": "minutter",
+		"de": "Minuten",
+		"es": "minutos",
+		"fr": "minutes",
+		"it": "minuti",
+		"no": "minutter",
+		"sv": "minuter",
+		"pl": "minuty",
+		"ru": "минуты",
+		"ko": "분"
 	},
 	"getable": true,
 	"setable": false,

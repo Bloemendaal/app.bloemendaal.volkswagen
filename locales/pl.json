@@ -1,0 +1,49 @@
+{
+	"capabilities": {
+		"alarm_door": {
+			"title": "__name__ otwarte",
+			"variables": {
+				"bonnet": "Maska",
+				"trunk": "Bagażnik",
+				"frontLeft": "Przednie lewe drzwi",
+				"frontRight": "Przednie prawe drzwi",
+				"rearLeft": "Tylne lewe drzwi",
+				"rearRight": "Tylne prawe drzwi"
+			}
+		},
+		"alarm_window": {
+			"title": "__name__ otwarte",
+			"variables": {
+				"sunRoof": "Szyberdach",
+				"roofCover": "Pokrywa dachowa",
+				"sunRoofRear": "Tylni szyberdach",
+				"frontLeft": "Przednia lewa szyba",
+				"frontRight": "Przednia prawa szyba",
+				"rearLeft": "Tylna lewa szyba",
+				"rearRight": "Tylna prawa szyba"
+			}
+		},
+		"measure_battery_temperature": {
+			"title": "Temperatura baterii __name__",
+			"variables": {
+				"min": "Minimum",
+				"max": "Maksimum"
+			}
+		},
+		"timestamp": {
+			"title": "__name__ ostatnia aktualizacja o",
+			"variables": {
+				"access": "Dostęp",
+				"battery_status": "Stan baterii",
+				"charging_settings": "Ustawienia ładowania",
+				"charging_status": "Stan ładowania",
+				"hook_and_flash": "Klakson i błysk",
+				"maintenance_status": "Stan konserwacji",
+				"odometer_status": "Stan licznika",
+				"readiness_status": "Stan gotowości",
+				"temperature_battery_status": "Stan temperatury baterii",
+				"wake_up_trigger": "Wyzwalacz budzenia"
+			}
+		}
+	}
+}

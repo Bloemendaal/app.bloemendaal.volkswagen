@@ -1,26 +1,85 @@
 [
 	{
 		"type": "group",
-		"label": { "en": "Login details", "nl": "Inloggegevens" },
+		"label": {
+			"en": "Login details",
+			"nl": "Inloggegevens",
+			"da": "Login-oplysninger",
+			"de": "Anmeldedaten",
+			"es": "Detalles de inicio de sesión",
+			"fr": "Détails de connexion",
+			"it": "Dettagli di accesso",
+			"no": "Innloggingsdetaljer",
+			"sv": "Inloggningsuppgifter",
+			"pl": "Dane logowania",
+			"ru": "Детали входа",
+			"ko": "로그인 정보"
+		},
 		"children": [
 			{
 				"id": "email",
 				"type": "text",
-				"label": { "en": "E-mail", "nl": "E-mailadres" },
+				"label": {
+					"en": "E-mail",
+					"nl": "E-mailadres",
+					"da": "E-mail",
+					"de": "E-Mail",
+					"es": "Correo electrónico",
+					"fr": "E-mail",
+					"it": "E-mail",
+					"no": "E-post",
+					"sv": "E-post",
+					"pl": "E-mail",
+					"ru": "Эл. почта",
+					"ko": "이메일"
+				},
 				"value": "",
 				"hint": {
 					"en": "The e-mail that you use in the Volkswagen App.",
-					"nl": "Het e-mailadres dat je gebruikt in de Volkswagen App."
+					"nl": "Het e-mailadres dat je gebruikt in de Volkswagen App.",
+					"da": "E-mailen du bruger i Volkswagen App.",
+					"de": "Die E-Mail, die Sie in der Volkswagen App verwenden.",
+					"es": "El correo electrónico que utilizas en la aplicación de Volkswagen.",
+					"fr": "L'e-mail que vous utilisez dans l'application Volkswagen.",
+					"it": "L'e-mail che usi nell'app Volkswagen.",
+					"no": "E-posten du bruker i Volkswagen-appen.",
+					"sv": "E-posten du använder i Volkswagen-appen.",
+					"pl": "E-mail, którego używasz w aplikacji Volkswagen.",
+					"ru": "Электронная почта, которую вы используете в приложении Volkswagen.",
+					"ko": "폭스바겐 앱에서 사용하는 이메일입니다."
 				}
 			},
 			{
 				"id": "password",
 				"type": "password",
-				"label": { "en": "Password", "nl": "Wachtwoord" },
+				"label": {
+					"en": "Password",
+					"nl": "Wachtwoord",
+					"da": "Adgangskode",
+					"de": "Passwort",
+					"es": "Contraseña",
+					"fr": "Mot de passe",
+					"it": "Password",
+					"no": "Passord",
+					"sv": "Lösenord",
+					"pl": "Hasło",
+					"ru": "Пароль",
+					"ko": "비밀번호"
+				},
 				"value": "",
 				"hint": {
 					"en": "The password that you use in the Volkswagen App.",
-					"nl": "Het wachtwoord dat je gebruikt in de Volkswagen App."
+					"nl": "Het wachtwoord dat je gebruikt in de Volkswagen App.",
+					"da": "Adgangskoden du bruger i Volkswagen App.",
+					"de": "Das Passwort, das Sie in der Volkswagen App verwenden.",
+					"es": "La contraseña que utilizas en la aplicación de Volkswagen.",
+					"fr": "Le mot de passe que vous utilisez dans l'application Volkswagen.",
+					"it": "La password che usi nell'app Volkswagen.",
+					"no": "Passordet du bruker i Volkswagen-appen.",
+					"sv": "Lösenordet du använder i Volkswagen-appen.",
+					"pl": "Hasło, którego używasz w aplikacji Volkswagen.",
+					"ru": "Пароль, который вы используете в приложении Volkswagen.",
+					"ko": "폭스바겐 앱에서 사용하는 비밀번호입니다."
 				}
 			},
 			{
@@ -34,26 +93,85 @@
 				"pattern": "^[0-9]{4}$",
 				"hint": {
 					"en": "Required to modify vehicle settings.",
-					"nl": "Vereist om voertuiginstellingen te wijzigen."
+					"nl": "Vereist om voertuiginstellingen te wijzigen.",
+					"da": "Påkrævet for at ændre køretøjsindstillinger.",
+					"de": "Erforderlich, um Fahrzeugeinstellungen zu ändern.",
+					"es": "Requerido para modificar la configuración del vehículo.",
+					"fr": "Nécessaire pour modifier les paramètres du véhicule.",
+					"it": "Richiesto per modificare le impostazioni del veicolo.",
+					"no": "Kreves for å endre kjøretøyinnstillinger.",
+					"sv": "Krävs för att ändra fordonsinställningar.",
+					"pl": "Wymagane do modyfikacji ustawień pojazdu.",
+					"ru": "Необходимо для изменения настроек автомобиля.",
+					"ko": "차량 설정을 수정하려면 필요합니다."
 				}
 			}
 		]
 	},
 	{
 		"type": "group",
-		"label": { "en": "Behavior settings", "nl": "Gedragsinstellingen" },
+		"label": {
+			"en": "Behavior settings",
+			"nl": "Gedragsinstellingen",
+			"da": "Adfærdsindstillinger",
+			"de": "Verhaltenseinstellungen",
+			"es": "Ajustes de comportamiento",
+			"fr": "Paramètres de comportement",
+			"it": "Impostazioni di comportamento",
+			"no": "Adferdsinnstillinger",
+			"sv": "Beteendeinställningar",
+			"pl": "Ustawienia zachowania",
+			"ru": "Настройки поведения",
+			"ko": "동작 설정"
+		},
 		"children": [
 			{
 				"id": "pollingInterval",
 				"type": "number",
-				"label": { "en": "Polling interval", "nl": "Ververstijd" },
+				"label": {
+					"en": "Polling interval",
+					"nl": "Ververstijd",
+					"da": "Afstemningsinterval",
+					"de": "Abrufintervall",
+					"es": "Intervalo de sondeo",
+					"fr": "Intervalle d'interrogation",
+					"it": "Intervallo di polling",
+					"no": "Polling-intervall",
+					"sv": "Intervall för avstämning",
+					"pl": "Interwał odpytywania",
+					"ru": "Интервал опроса",
+					"ko": "폴링 간격"
+				},
 				"value": 10,
 				"min": 1,
 				"step": 1,
-				"units": { "en": "minutes", "nl": "minuten" },
+				"units": {
+					"en": "minutes",
+					"nl": "minuten",
+					"da": "minutter",
+					"de": "Minuten",
+					"es": "minutos",
+					"fr": "minutes",
+					"it": "minuti",
+					"no": "minutter",
+					"sv": "minuter",
+					"pl": "minuty",
+					"ru": "минуты",
+					"ko": "분"
+				},
 				"hint": {
 					"en": "Interval in minutes to poll the vehicle for new data. Lowering this value may result in battery drain.",
-					"nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik."
+					"nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik.",
+					"da": "Interval i minutter for at afstemme køretøjet for nye data. At sænke denne værdi kan resultere i batteridræn.",
+					"de": "Intervall in Minuten, um das Fahrzeug auf neue Daten abzufragen. Eine Verringerung dieses Wertes kann zu einem Batterieverbrauch führen.",
+					"es": "Intervalo en minutos para sondear el vehículo por nuevos datos. Reducir este valor puede resultar en el agotamiento de la batería.",
+					"fr": "Intervalle en minutes pour interroger le véhicule pour de nouvelles données. Diminuer cette valeur peut entraîner une décharge de la batterie.",
+					"it": "Intervallo in minuti per sondare il veicolo per nuovi dati. Abbassare questo valore può causare lo scaricamento della batteria.",
+					"no": "Intervall i minutter for å avstemme kjøretøyet for nye data. Å senke denne verdien kan føre til batteritap.",
+					"sv": "Intervall i minuter för att stämma av fordonet för ny data. Att sänka detta värde kan leda till batteridränering.",
+					"pl": "Interwał w minutach do odpytywania pojazdu o nowe dane. Obniżenie tej wartości może prowadzić do rozładowania akumulatora.",
+					"ru": "Интервал в минутах для опроса автомобиля на наличие новых данных. Уменьшение этого значения может привести к разрядке аккумулятора.",
+					"ko": "새 데이터를 위해 차량을 폴링하는 간격(분). 이 값을 낮추면 배터리가 소모될 수 있습니다."
 				}
 			}
 		]

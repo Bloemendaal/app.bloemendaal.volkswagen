@@ -2,7 +2,17 @@
 	"type": "number",
 	"title": {
 		"en": "Target charge level",
-		"nl": "Doel laadniveau"
+		"nl": "Doel laadniveau",
+		"da": "Målopladningsniveau",
+		"de": "Ziel-Ladezustand",
+		"es": "Nivel de carga objetivo",
+		"fr": "Niveau de charge cible",
+		"it": "Livello di carica obiettivo",
+		"no": "Målnivå for lading",
+		"sv": "Målnivå för laddning",
+		"pl": "Docelowy poziom naładowania",
+		"ru": "Целевой уровень заряда",
+		"ko": "목표 충전 수준"
 	},
 	"units": "%",
 	"getable": true,

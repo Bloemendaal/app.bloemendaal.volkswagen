@@ -1,0 +1,49 @@
+{
+	"capabilities": {
+		"alarm_door": {
+			"title": "__name__ geöffnet",
+			"variables": {
+				"bonnet": "Motorhaube",
+				"trunk": "Kofferraum",
+				"frontLeft": "Vordertür links",
+				"frontRight": "Vordertür rechts",
+				"rearLeft": "Hintertür links",
+				"rearRight": "Hintertür rechts"
+			}
+		},
+		"alarm_window": {
+			"title": "__name__ geöffnet",
+			"variables": {
+				"sunRoof": "Schiebedach",
+				"roofCover": "Dachabdeckung",
+				"sunRoofRear": "Hinteres Schiebedach",
+				"frontLeft": "Fenster vorne links",
+				"frontRight": "Fenster vorne rechts",
+				"rearLeft": "Fenster hinten links",
+				"rearRight": "Fenster hinten rechts"
+			}
+		},
+		"measure_battery_temperature": {
+			"title": "__name__ Batterietemperatur",
+			"variables": {
+				"min": "Minimum",
+				"max": "Maximum"
+			}
+		},
+		"timestamp": {
+			"title": "__name__ zuletzt aktualisiert um",
+			"variables": {
+				"access": "Zugriff",
+				"battery_status": "Batteriestatus",
+				"charging_settings": "Ladeeinstellungen",
+				"charging_status": "Ladestatus",
+				"hook_and_flash": "Hupen und Blinken",
+				"maintenance_status": "Wartungsstatus",
+				"odometer_status": "Kilometerzählerstatus",
+				"readiness_status": "Bereitschaftsstatus",
+				"temperature_battery_status": "Batterietemperaturstatus",
+				"wake_up_trigger": "Weck-Auslöser"
+			}
+		}
+	}
+}
