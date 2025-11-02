@@ -4,5 +4,8 @@
 	},
 	"1.0.1": {
 		"en": "Updated driver images"
+	},
+	"1.0.2": {
+		"en": "Improve stability for version patching"
 	}
 }
