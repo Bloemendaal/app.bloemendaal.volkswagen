@@ -1,59 +1,63 @@
 {
-	"id": "app.bloemendaal.volkswagen",
-	"version": "1.0.0",
-	"compatibility": ">=12.4.5",
-	"sdk": 3,
-	"platforms": ["local"],
-	"name": {
-		"en": "Volkswagen",
-		"nl": "Volkswagen",
-		"da": "Volkswagen",
-		"de": "Volkswagen",
-		"es": "Volkswagen",
-		"fr": "Volkswagen",
-		"it": "Volkswagen",
-		"no": "Volkswagen",
-		"sv": "Volkswagen",
-		"pl": "Volkswagen",
-		"ru": "Volkswagen",
-		"ko": "폭스바겐"
-	},
-	"description": {
-		"en": "Adds support for Volkswagen cars in Europe",
-		"nl": "Voegt ondersteuning toe voor Volkswagen-auto's in Europa",
-		"da": "Tilføjer support til Volkswagen-biler i Europa",
-		"de": "Fügt Unterstützung für Volkswagen-Fahrzeuge in Europa hinzu",
-		"es": "Agrega soporte para autos Volkswagen en Europa",
-		"fr": "Ajoute la prise en charge des voitures Volkswagen en Europe",
-		"it": "Aggiunge supporto per le auto Volkswagen in Europa",
-		"no": "Legger til støtte for Volkswagen-biler i Europa",
-		"sv": "Lägger till stöd för Volkswagen-bilar i Europa",
-		"pl": "Dodaje wsparcie dla samochodów Volkswagen w Europie",
-		"ru": "Добавляет поддержку автомобилей Volkswagen в Европе",
-		"ko": "유럽의 폭스바겐 자동차 지원 추가"
-	},
-	"bugs": {
-		"url": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen/issues"
-	},
-	"contributing": {
-		"donate": {
-			"githubSponsors": {
-				"username": "Bloemendaal"
-			}
-		}
-	},
-	"brandColor": "#001e50",
-	"category": ["localization"],
-	"permissions": [],
-	"source": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen",
-	"support": "mailto:casperbloemendaal@gmail.com",
-	"images": {
-		"small": "/assets/images/small.png",
-		"large": "/assets/images/large.png",
-		"xlarge": "/assets/images/xlarge.png"
-	},
-	"author": {
-		"name": "Casper Bloemendaal",
-		"email": "casperbloemendaal@gmail.com"
-	}
+  "id": "app.bloemendaal.volkswagen",
+  "version": "1.0.1",
+  "compatibility": ">=12.4.5",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Volkswagen",
+    "nl": "Volkswagen",
+    "da": "Volkswagen",
+    "de": "Volkswagen",
+    "es": "Volkswagen",
+    "fr": "Volkswagen",
+    "it": "Volkswagen",
+    "no": "Volkswagen",
+    "sv": "Volkswagen",
+    "pl": "Volkswagen",
+    "ru": "Volkswagen",
+    "ko": "폭스바겐"
+  },
+  "description": {
+    "en": "Adds support for Volkswagen cars in Europe",
+    "nl": "Voegt ondersteuning toe voor Volkswagen-auto's in Europa",
+    "da": "Tilføjer support til Volkswagen-biler i Europa",
+    "de": "Fügt Unterstützung für Volkswagen-Fahrzeuge in Europa hinzu",
+    "es": "Agrega soporte para autos Volkswagen en Europa",
+    "fr": "Ajoute la prise en charge des voitures Volkswagen en Europe",
+    "it": "Aggiunge supporto per le auto Volkswagen in Europa",
+    "no": "Legger til støtte for Volkswagen-biler i Europa",
+    "sv": "Lägger till stöd för Volkswagen-bilar i Europa",
+    "pl": "Dodaje wsparcie dla samochodów Volkswagen w Europie",
+    "ru": "Добавляет поддержку автомобилей Volkswagen в Европе",
+    "ko": "유럽의 폭스바겐 자동차 지원 추가"
+  },
+  "bugs": {
+    "url": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen/issues"
+  },
+  "contributing": {
+    "donate": {
+      "githubSponsors": {
+        "username": "Bloemendaal"
+      }
+    }
+  },
+  "brandColor": "#001e50",
+  "category": [
+    "localization"
+  ],
+  "permissions": [],
+  "source": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen",
+  "support": "mailto:casperbloemendaal@gmail.com",
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Casper Bloemendaal",
+    "email": "casperbloemendaal@gmail.com"
+  }
 }
