@@ -61,6 +61,7 @@
     "name": "Casper Bloemendaal",
     "email": "casperbloemendaal@gmail.com"
   },
+  "esm": true,
   "drivers": [
     {
       "name": "Volkswagen",
