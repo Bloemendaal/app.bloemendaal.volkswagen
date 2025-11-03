@@ -1,5 +1,3 @@
-Voegt ondersteuning toe voor Volkswagen-auto's in Europa.
+Verbind je Volkswagen met Homey en integreer je auto naadloos in je slimme huis. Bekijk realtime gegevens zoals batterijniveau, actieradius en deur- en raamstatus direct vanaf je Homey-dashboard. Stel slimme automatiseringen in op basis van de status van je auto—zet bijvoorbeeld je opritverlichting aan wanneer je thuiskomt, of ontvang een melding wanneer het opladen voltooid is.
 
-Met deze app kun je je Volkswagen (We Connect/We Connect ID) verbinden met Homey, realtime voertuiggegevens bekijken, acties automatiseren en ondersteunde functies beheren. Veilige authenticatie met Volkswagen ID en S-PIN.
-
-Niet verbonden met of goedgekeurd door Volkswagen AG. Gebruik op eigen risico.
+Bestuur je auto op afstand door oplaadlimieten in te stellen, toeter en knipperlicht te gebruiken om je auto te vinden, of wakker te maken voor nieuwe gegevens. Deze app werkt met Volkswagen-voertuigen die zijn uitgerust met We Connect of We Connect ID in heel Europa.

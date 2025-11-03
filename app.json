@@ -22,18 +22,18 @@
     "ko": "폭스바겐"
   },
   "description": {
-    "en": "Adds support for Volkswagen cars in Europe",
-    "nl": "Voegt ondersteuning toe voor Volkswagen-auto's in Europa",
-    "da": "Tilføjer support til Volkswagen-biler i Europa",
-    "de": "Fügt Unterstützung für Volkswagen-Fahrzeuge in Europa hinzu",
-    "es": "Agrega soporte para autos Volkswagen en Europa",
-    "fr": "Ajoute la prise en charge des voitures Volkswagen en Europe",
-    "it": "Aggiunge supporto per le auto Volkswagen in Europa",
-    "no": "Legger til støtte for Volkswagen-biler i Europa",
-    "sv": "Lägger till stöd för Volkswagen-bilar i Europa",
-    "pl": "Dodaje wsparcie dla samochodów Volkswagen w Europie",
-    "ru": "Добавляет поддержку автомобилей Volkswagen в Европе",
-    "ko": "유럽의 폭스바겐 자동차 지원 추가"
+    "en": "Your car, your smart home, perfectly connected",
+    "nl": "Je auto, je slimme huis, perfect verbonden",
+    "da": "Din bil, dit smarte hjem, perfekt forbundet",
+    "de": "Ihr Auto, Ihr Smart Home, perfekt verbunden",
+    "es": "Tu coche, tu hogar inteligente, perfectamente conectados",
+    "fr": "Votre voiture, votre maison intelligente, parfaitement connectées",
+    "it": "La tua auto, la tua casa intelligente, perfettamente connesse",
+    "no": "Bilen din, ditt smarte hjem, perfekt tilkoblet",
+    "sv": "Din bil, ditt smarta hem, perfekt anslutna",
+    "pl": "Twój samochód, twój inteligentny dom, idealnie połączone",
+    "ru": "Ваш автомобиль, ваш умный дом, идеально связаны",
+    "ko": "당신의 차, 스마트 홈, 완벽한 연결"
   },
   "bugs": {
     "url": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen/issues"
