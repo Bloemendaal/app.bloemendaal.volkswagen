@@ -13,5 +13,8 @@
 	},
 	"1.0.4": {
 		"en": "Marketing"
+	},
+	"1.0.5": {
+		"en": "Ignore errors when Volkswagen API times out"
 	}
 }
