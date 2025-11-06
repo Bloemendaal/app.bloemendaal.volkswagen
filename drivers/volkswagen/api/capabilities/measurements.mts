@@ -27,16 +27,16 @@ export interface FuelLevelStatusData {
 }
 
 export interface MeasurementsCapabilitiesData {
-	rangeStatus: {
+	rangeStatus?: {
 		value: RangeStatusData;
 	};
-	odometerStatus: {
+	odometerStatus?: {
 		value: OdometerStatusData;
 	};
-	temperatureBatteryStatus: {
+	temperatureBatteryStatus?: {
 		value: TemperatureBatteryStatusData;
 	};
-	fuelLevelStatus: {
+	fuelLevelStatus?: {
 		value: FuelLevelStatusData;
 	};
 }

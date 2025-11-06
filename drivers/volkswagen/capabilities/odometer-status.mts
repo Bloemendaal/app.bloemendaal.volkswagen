@@ -11,12 +11,12 @@ export default class OdometerStatus extends Capability {
 	): Promise<void> {
 		const promises: Promise<void>[] = [
 			this.addTimestampCapability(
-				capabilities.measurements?.odometerStatus.value.carCapturedTimestamp,
+				capabilities.measurements?.odometerStatus?.value.carCapturedTimestamp,
 			),
 		];
 
 		const validOdometer = this.isNumber(
-			capabilities.measurements?.odometerStatus.value.odometer,
+			capabilities.measurements?.odometerStatus?.value.odometer,
 		);
 
 		if (
@@ -33,14 +33,14 @@ export default class OdometerStatus extends Capability {
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
-			capabilities.measurements?.odometerStatus.value.carCapturedTimestamp,
+			capabilities.measurements?.odometerStatus?.value.carCapturedTimestamp,
 		);
 
 		if (!hasNewerTimestamp) {
 			return;
 		}
 
-		const odometer = capabilities.measurements?.odometerStatus.value.odometer;
+		const odometer = capabilities.measurements?.odometerStatus?.value.odometer;
 
 		if (
 			this.isNumber(odometer) &&

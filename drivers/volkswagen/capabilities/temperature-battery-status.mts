@@ -15,7 +15,7 @@ export default class TemperatureBatteryStatus extends Capability {
 	): Promise<void> {
 		const addPromises: Promise<void>[] = [
 			this.addTimestampCapability(
-				capabilities.measurements?.temperatureBatteryStatus.value
+				capabilities.measurements?.temperatureBatteryStatus?.value
 					.carCapturedTimestamp,
 			),
 		];
@@ -23,7 +23,7 @@ export default class TemperatureBatteryStatus extends Capability {
 		const optionsPromises: Promise<void>[] = [];
 
 		const validBatteryTempMin = this.isFloatString(
-			capabilities.measurements?.temperatureBatteryStatus.value
+			capabilities.measurements?.temperatureBatteryStatus?.value
 				.temperatureHvBatteryMin_K,
 		);
 
@@ -53,7 +53,7 @@ export default class TemperatureBatteryStatus extends Capability {
 		}
 
 		const validBatteryTempMax = this.isFloatString(
-			capabilities.measurements?.temperatureBatteryStatus.value
+			capabilities.measurements?.temperatureBatteryStatus?.value
 				.temperatureHvBatteryMax_K,
 		);
 
@@ -90,7 +90,7 @@ export default class TemperatureBatteryStatus extends Capability {
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
-			capabilities.measurements?.temperatureBatteryStatus.value
+			capabilities.measurements?.temperatureBatteryStatus?.value
 				.carCapturedTimestamp,
 		);
 
@@ -99,7 +99,7 @@ export default class TemperatureBatteryStatus extends Capability {
 		}
 
 		const batteryTempMin =
-			capabilities.measurements?.temperatureBatteryStatus.value
+			capabilities.measurements?.temperatureBatteryStatus?.value
 				.temperatureHvBatteryMin_K;
 
 		if (
@@ -113,7 +113,7 @@ export default class TemperatureBatteryStatus extends Capability {
 		}
 
 		const batteryTempMax =
-			capabilities.measurements?.temperatureBatteryStatus.value
+			capabilities.measurements?.temperatureBatteryStatus?.value
 				.temperatureHvBatteryMax_K;
 
 		if (
