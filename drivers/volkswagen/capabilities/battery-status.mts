@@ -9,18 +9,20 @@ export default class BatteryStatus extends Capability {
 	public override async addCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const promises: Promise<void>[] = [
+		const addPromises: Promise<void>[] = [
 			this.addTimestampCapability(
 				capabilities.charging?.batteryStatus.value.carCapturedTimestamp,
 			),
 		];
+
+		const optionsPromises: Promise<void>[] = [];
 
 		const validSoC = this.isNumber(
 			capabilities.charging?.batteryStatus.value.currentSOC_pct,
 		);
 
 		if (!this.volkswagenDevice.hasCapability("measure_battery") && validSoC) {
-			promises.push(this.volkswagenDevice.addCapability("measure_battery"));
+			addPromises.push(this.volkswagenDevice.addCapability("measure_battery"));
 		}
 
 		const validRange = this.isNumber(
@@ -28,10 +30,68 @@ export default class BatteryStatus extends Capability {
 		);
 
 		if (!this.volkswagenDevice.hasCapability("measure_range") && validRange) {
-			promises.push(this.volkswagenDevice.addCapability("measure_range"));
+			addPromises.push(this.volkswagenDevice.addCapability("measure_range"));
 		}
 
-		await Promise.all(promises);
+		const validTargetSoC = this.isNumber(
+			capabilities.charging?.chargingSettings?.value.targetSOC_pct,
+		);
+
+		if (
+			validSoC &&
+			validTargetSoC &&
+			!this.volkswagenDevice.hasCapability("measure_battery.until_target_soc")
+		) {
+			addPromises.push(
+				this.volkswagenDevice.addCapability("measure_battery.until_target_soc"),
+			);
+
+			optionsPromises.push(
+				this.volkswagenDevice.setCapabilityOptions(
+					"measure_battery.until_target_soc",
+					{
+						uiComponent: "sensor",
+						title: this.volkswagenDevice.homey.__(
+							"capabilities.measure_battery.title",
+							{
+								name: this.volkswagenDevice.homey.__(
+									"capabilities.measure_battery.variables.until_target_soc",
+								),
+							},
+						),
+					},
+				),
+			);
+		}
+
+		if (
+			validSoC &&
+			!this.volkswagenDevice.hasCapability("measure_battery.until_full")
+		) {
+			addPromises.push(
+				this.volkswagenDevice.addCapability("measure_battery.until_full"),
+			);
+
+			optionsPromises.push(
+				this.volkswagenDevice.setCapabilityOptions(
+					"measure_battery.until_full",
+					{
+						uiComponent: "sensor",
+						title: this.volkswagenDevice.homey.__(
+							"capabilities.measure_battery.title",
+							{
+								name: this.volkswagenDevice.homey.__(
+									"capabilities.measure_battery.variables.until_full",
+								),
+							},
+						),
+					},
+				),
+			);
+		}
+
+		await Promise.all(addPromises);
+		await Promise.all(optionsPromises);
 	}
 
 	public override async setCapabilityValues(
@@ -68,6 +128,32 @@ export default class BatteryStatus extends Capability {
 			await this.volkswagenDevice.setCapabilityValue(
 				"measure_range",
 				cruisingRangeElectric,
+			);
+		}
+
+		const targetSoC =
+			capabilities.charging?.chargingSettings?.value.targetSOC_pct;
+
+		if (
+			this.isNumber(targetSoC) &&
+			this.isNumber(currentSoC) &&
+			this.volkswagenDevice.hasCapability("measure_battery.until_target_soc")
+		) {
+			const untilTargetSoC = Math.max(0, targetSoC - currentSoC);
+			await this.volkswagenDevice.setCapabilityValue(
+				"measure_battery.until_target_soc",
+				untilTargetSoC,
+			);
+		}
+
+		if (
+			this.isNumber(currentSoC) &&
+			this.volkswagenDevice.hasCapability("measure_battery.until_full")
+		) {
+			const untilFull = Math.max(0, 100 - currentSoC);
+			await this.volkswagenDevice.setCapabilityValue(
+				"measure_battery.until_full",
+				untilFull,
 			);
 		}
 	}

@@ -30,6 +30,13 @@
 				"max": "최대"
 			}
 		},
+		"measure_battery": {
+			"title": "__name__ 배터리",
+			"variables": {
+				"until_target_soc": "목표 충전 수준까지",
+				"until_full": "완충까지"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ 마지막 업데이트 시각",
 			"variables": {

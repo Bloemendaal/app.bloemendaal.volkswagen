@@ -30,6 +30,13 @@
 				"max": "Maksimum"
 			}
 		},
+		"measure_battery": {
+			"title": "__name__ batteri",
+			"variables": {
+				"until_target_soc": "Indtil målopladningsniveau",
+				"until_full": "Indtil fuld"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ sidst opdateret kl.",
 			"variables": {

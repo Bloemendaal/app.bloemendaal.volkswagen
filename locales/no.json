@@ -30,6 +30,13 @@
 				"max": "Maksimum"
 			}
 		},
+		"measure_battery": {
+			"title": "__name__ batteri",
+			"variables": {
+				"until_target_soc": "Til målnivå for lading",
+				"until_full": "Til full"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ sist oppdatert kl",
 			"variables": {

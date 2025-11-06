@@ -50,17 +50,13 @@ export default class VolkswagenDevice extends Homey.Device {
 				capabilities.fuelStatus?.rangeStatus.value.carType === "electric",
 		});
 
-		await Promise.all(
-			this.capabilities.map((capability) =>
-				capability.addCapabilities(capabilities),
-			),
-		);
+		for (const capability of this.capabilities) {
+			await capability.addCapabilities(capabilities);
+		}
 
-		await Promise.all(
-			this.capabilities.map((capability) =>
-				capability.registerCapabilityListeners(capabilities),
-			),
-		);
+		for (const capability of this.capabilities) {
+			await capability.registerCapabilityListeners(capabilities);
+		}
 
 		await this.setCapabilities(capabilities).catch(
 			this.ignoreTimeoutError.bind(this),

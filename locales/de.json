@@ -30,6 +30,13 @@
 				"max": "Maximum"
 			}
 		},
+		"measure_battery": {
+			"title": "__name__ Batterie",
+			"variables": {
+				"until_target_soc": "Bis Ziel-Ladezustand",
+				"until_full": "Bis voll"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ zuletzt aktualisiert um",
 			"variables": {

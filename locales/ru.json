@@ -30,6 +30,13 @@
 				"max": "Максимум"
 			}
 		},
+		"measure_battery": {
+			"title": "Батарея __name__",
+			"variables": {
+				"until_target_soc": "До целевой уровень заряда",
+				"until_full": "До полной"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ последнее обновление в",
 			"variables": {

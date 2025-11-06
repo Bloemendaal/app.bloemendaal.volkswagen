@@ -30,6 +30,13 @@
 				"max": "Massimo"
 			}
 		},
+		"measure_battery": {
+			"title": "Batteria di __name__",
+			"variables": {
+				"until_target_soc": "Fino al livello di carica obiettivo",
+				"until_full": "Fino a piena"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ ultimo aggiornamento alle",
 			"variables": {

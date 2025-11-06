@@ -30,6 +30,13 @@
 				"max": "Maximaal"
 			}
 		},
+		"measure_battery": {
+			"title": "__name__ batterij",
+			"variables": {
+				"until_target_soc": "Tot doel laadniveau",
+				"until_full": "Tot vol"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ laatst bijgewerkt om",
 			"variables": {

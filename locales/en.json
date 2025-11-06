@@ -30,6 +30,13 @@
 				"max": "Maximum"
 			}
 		},
+		"measure_battery": {
+			"title": "__name__ battery",
+			"variables": {
+				"until_target_soc": "Until target charge level",
+				"until_full": "Until full"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ last updated at",
 			"variables": {
