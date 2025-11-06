@@ -22,5 +22,8 @@
 	},
 	"1.0.7": {
 		"en": "Fix parsing of PHEV responses"
+	},
+	"1.0.8": {
+		"en": "Increase stability by adding capabilities one-by-one"
 	}
 }
