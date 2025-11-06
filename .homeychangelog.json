@@ -16,5 +16,8 @@
 	},
 	"1.0.5": {
 		"en": "Ignore errors when Volkswagen API times out"
+	},
+	"1.0.6": {
+		"en": "Add difference between current SoC and target/full SoC"
 	}
 }
