@@ -9,12 +9,10 @@ export default class MaintenanceStatus extends Capability {
 	public override async addCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const promises: Promise<void>[] = [
-			this.addTimestampCapability(
-				capabilities.vehicleHealthInspection?.maintenanceStatus.value
-					.carCapturedTimestamp,
-			),
-		];
+		await this.addTimestampCapability(
+			capabilities.vehicleHealthInspection?.maintenanceStatus.value
+				.carCapturedTimestamp,
+		);
 
 		const validDueDays = this.isNumber(
 			capabilities.vehicleHealthInspection?.maintenanceStatus.value
@@ -25,12 +23,8 @@ export default class MaintenanceStatus extends Capability {
 			validDueDays &&
 			!this.volkswagenDevice.hasCapability("maintenance_due_days")
 		) {
-			promises.push(
-				this.volkswagenDevice.addCapability("maintenance_due_days"),
-			);
+			await this.volkswagenDevice.addCapability("maintenance_due_days");
 		}
-
-		await Promise.all(promises);
 	}
 
 	public override async setCapabilityValues(

@@ -9,11 +9,9 @@ export default class OdometerStatus extends Capability {
 	public override async addCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const promises: Promise<void>[] = [
-			this.addTimestampCapability(
-				capabilities.measurements?.odometerStatus?.value.carCapturedTimestamp,
-			),
-		];
+		await this.addTimestampCapability(
+			capabilities.measurements?.odometerStatus?.value.carCapturedTimestamp,
+		);
 
 		const validOdometer = this.isNumber(
 			capabilities.measurements?.odometerStatus?.value.odometer,
@@ -23,10 +21,8 @@ export default class OdometerStatus extends Capability {
 			validOdometer &&
 			!this.volkswagenDevice.hasCapability("meter_odometer")
 		) {
-			promises.push(this.volkswagenDevice.addCapability("meter_odometer"));
+			await this.volkswagenDevice.addCapability("meter_odometer");
 		}
-
-		await Promise.all(promises);
 	}
 
 	public override async setCapabilityValues(

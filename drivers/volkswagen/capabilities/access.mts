@@ -10,30 +10,22 @@ export default class Access extends Capability {
 	public override async addCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const timestamp = this.addTimestampCapability(
+		await this.addTimestampCapability(
 			capabilities.access?.accessStatus.value.carCapturedTimestamp,
 		);
 
-		const locked = this.addLockedCapability(capabilities);
-		const generalAlarm = this.addGeneralAlarmCapability(capabilities);
+		await this.addLockedCapability(capabilities);
+		await this.addGeneralAlarmCapability(capabilities);
 
-		const doorAlarms = this.addAlarmCapabilities(
+		await this.addAlarmCapabilities(
 			"alarm_door",
 			capabilities.access?.accessStatus.value.doors ?? [],
 		);
 
-		const windowAlarms = this.addAlarmCapabilities(
+		await this.addAlarmCapabilities(
 			"alarm_window",
 			capabilities.access?.accessStatus.value.windows ?? [],
 		);
-
-		await Promise.all([
-			timestamp,
-			locked,
-			generalAlarm,
-			doorAlarms,
-			windowAlarms,
-		]);
 	}
 
 	private async addLockedCapability(

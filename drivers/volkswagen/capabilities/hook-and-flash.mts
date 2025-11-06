@@ -18,17 +18,13 @@ export default class HonkAndFlash extends Capability {
 			return;
 		}
 
-		const promises: Promise<void>[] = [];
-
 		if (!this.volkswagenDevice.hasCapability("button_flash")) {
-			promises.push(this.volkswagenDevice.addCapability("button_flash"));
+			await this.volkswagenDevice.addCapability("button_flash");
 		}
 
 		if (!this.volkswagenDevice.hasCapability("button_honk_flash")) {
-			promises.push(this.volkswagenDevice.addCapability("button_honk_flash"));
+			await this.volkswagenDevice.addCapability("button_honk_flash");
 		}
-
-		await Promise.all(promises);
 	}
 
 	public override async registerCapabilityListeners(): Promise<void> {

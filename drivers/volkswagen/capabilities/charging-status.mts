@@ -13,11 +13,9 @@ export default class ChargingStatus extends Capability {
 	public override async addCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const promises: Promise<void>[] = [
-			this.addTimestampCapability(
-				capabilities.charging?.chargingStatus.value.carCapturedTimestamp,
-			),
-		];
+		await this.addTimestampCapability(
+			capabilities.charging?.chargingStatus.value.carCapturedTimestamp,
+		);
 
 		const hasValidChargingState = this.isValidChargingState(
 			capabilities.charging?.chargingStatus.value.chargingState,
@@ -27,7 +25,7 @@ export default class ChargingStatus extends Capability {
 			hasValidChargingState &&
 			!this.volkswagenDevice.hasCapability("ev_charging_state")
 		) {
-			promises.push(this.volkswagenDevice.addCapability("ev_charging_state"));
+			await this.volkswagenDevice.addCapability("ev_charging_state");
 		}
 
 		const hasValidChargePower = this.isNumber(
@@ -38,9 +36,7 @@ export default class ChargingStatus extends Capability {
 			hasValidChargePower &&
 			!this.volkswagenDevice.hasCapability("measure_charging_power")
 		) {
-			promises.push(
-				this.volkswagenDevice.addCapability("measure_charging_power"),
-			);
+			await this.volkswagenDevice.addCapability("measure_charging_power");
 		}
 
 		const hasValidChargeRate = this.isNumber(
@@ -51,9 +47,7 @@ export default class ChargingStatus extends Capability {
 			hasValidChargeRate &&
 			!this.volkswagenDevice.hasCapability("measure_charging_rate")
 		) {
-			promises.push(
-				this.volkswagenDevice.addCapability("measure_charging_rate"),
-			);
+			await this.volkswagenDevice.addCapability("measure_charging_rate");
 		}
 
 		const remainingTime = this.isNumber(
@@ -65,12 +59,10 @@ export default class ChargingStatus extends Capability {
 			remainingTime &&
 			!this.volkswagenDevice.hasCapability("measure_remaining_charging_time")
 		) {
-			promises.push(
-				this.volkswagenDevice.addCapability("measure_remaining_charging_time"),
+			await this.volkswagenDevice.addCapability(
+				"measure_remaining_charging_time",
 			);
 		}
-
-		await Promise.all(promises);
 	}
 
 	public override async setCapabilityValues(

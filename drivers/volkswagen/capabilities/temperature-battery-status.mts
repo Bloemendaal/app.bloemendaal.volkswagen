@@ -13,14 +13,10 @@ export default class TemperatureBatteryStatus extends Capability {
 	public override async addCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const addPromises: Promise<void>[] = [
-			this.addTimestampCapability(
-				capabilities.measurements?.temperatureBatteryStatus?.value
-					.carCapturedTimestamp,
-			),
-		];
-
-		const optionsPromises: Promise<void>[] = [];
+		await this.addTimestampCapability(
+			capabilities.measurements?.temperatureBatteryStatus?.value
+				.carCapturedTimestamp,
+		);
 
 		const validBatteryTempMin = this.isFloatString(
 			capabilities.measurements?.temperatureBatteryStatus?.value
@@ -31,24 +27,22 @@ export default class TemperatureBatteryStatus extends Capability {
 			validBatteryTempMin &&
 			!this.volkswagenDevice.hasCapability("measure_battery_temperature.min")
 		) {
-			addPromises.push(
-				this.volkswagenDevice.addCapability("measure_battery_temperature.min"),
+			await this.volkswagenDevice.addCapability(
+				"measure_battery_temperature.min",
 			);
 
-			optionsPromises.push(
-				this.volkswagenDevice.setCapabilityOptions(
-					"measure_battery_temperature.min",
-					{
-						title: this.volkswagenDevice.homey.__(
-							"capabilities.measure_battery_temperature.title",
-							{
-								name: this.volkswagenDevice.homey.__(
-									"capabilities.measure_battery_temperature.variables.min",
-								),
-							},
-						),
-					},
-				),
+			await this.volkswagenDevice.setCapabilityOptions(
+				"measure_battery_temperature.min",
+				{
+					title: this.volkswagenDevice.homey.__(
+						"capabilities.measure_battery_temperature.title",
+						{
+							name: this.volkswagenDevice.homey.__(
+								"capabilities.measure_battery_temperature.variables.min",
+							),
+						},
+					),
+				},
 			);
 		}
 
@@ -61,29 +55,24 @@ export default class TemperatureBatteryStatus extends Capability {
 			validBatteryTempMax &&
 			!this.volkswagenDevice.hasCapability("measure_battery_temperature.max")
 		) {
-			addPromises.push(
-				this.volkswagenDevice.addCapability("measure_battery_temperature.max"),
+			await this.volkswagenDevice.addCapability(
+				"measure_battery_temperature.max",
 			);
 
-			optionsPromises.push(
-				this.volkswagenDevice.setCapabilityOptions(
-					"measure_battery_temperature.max",
-					{
-						title: this.volkswagenDevice.homey.__(
-							"capabilities.measure_battery_temperature.title",
-							{
-								name: this.volkswagenDevice.homey.__(
-									"capabilities.measure_battery_temperature.variables.max",
-								),
-							},
-						),
-					},
-				),
+			await this.volkswagenDevice.setCapabilityOptions(
+				"measure_battery_temperature.max",
+				{
+					title: this.volkswagenDevice.homey.__(
+						"capabilities.measure_battery_temperature.title",
+						{
+							name: this.volkswagenDevice.homey.__(
+								"capabilities.measure_battery_temperature.variables.max",
+							),
+						},
+					),
+				},
 			);
 		}
-
-		await Promise.all(addPromises);
-		await Promise.all(optionsPromises);
 	}
 
 	public override async setCapabilityValues(

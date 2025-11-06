@@ -9,11 +9,9 @@ export default class ChargingSettings extends Capability {
 	public override async addCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const promises: Promise<void>[] = [
-			this.addTimestampCapability(
-				capabilities.charging?.chargingSettings.value.carCapturedTimestamp,
-			),
-		];
+		await this.addTimestampCapability(
+			capabilities.charging?.chargingSettings.value.carCapturedTimestamp,
+		);
 
 		const hasValidTargetSoC = this.isNumber(
 			capabilities.charging?.chargingSettings.value.targetSOC_pct,
@@ -23,10 +21,8 @@ export default class ChargingSettings extends Capability {
 			hasValidTargetSoC &&
 			!this.volkswagenDevice.hasCapability("target_soc")
 		) {
-			promises.push(this.volkswagenDevice.addCapability("target_soc"));
+			await this.volkswagenDevice.addCapability("target_soc");
 		}
-
-		await Promise.all(promises);
 	}
 
 	public override async setCapabilityValues(

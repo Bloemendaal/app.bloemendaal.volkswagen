@@ -18,17 +18,13 @@ export default class WakeUpTrigger extends Capability {
 			return;
 		}
 
-		const promises: Promise<void>[] = [];
-
 		if (!this.volkswagenDevice.hasCapability("button_wake")) {
-			promises.push(this.volkswagenDevice.addCapability("button_wake"));
+			await this.volkswagenDevice.addCapability("button_wake");
 		}
 
 		if (!this.volkswagenDevice.hasCapability("button_wake_refresh")) {
-			promises.push(this.volkswagenDevice.addCapability("button_wake_refresh"));
+			await this.volkswagenDevice.addCapability("button_wake_refresh");
 		}
-
-		await Promise.all(promises);
 	}
 
 	public override async registerCapabilityListeners(): Promise<void> {

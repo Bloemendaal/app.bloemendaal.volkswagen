@@ -9,8 +9,6 @@ export default class ReadinessStatus extends Capability {
 	public override async addCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const promises: Promise<void>[] = [];
-
 		const isOnline =
 			capabilities.readiness?.readinessStatus.value.connectionState.isOnline;
 
@@ -18,7 +16,7 @@ export default class ReadinessStatus extends Capability {
 			typeof isOnline === "boolean" &&
 			!this.volkswagenDevice.hasCapability("vehicle_online")
 		) {
-			promises.push(this.volkswagenDevice.addCapability("vehicle_online"));
+			await this.volkswagenDevice.addCapability("vehicle_online");
 		}
 
 		const isActive =
@@ -28,10 +26,8 @@ export default class ReadinessStatus extends Capability {
 			typeof isActive === "boolean" &&
 			!this.volkswagenDevice.hasCapability("vehicle_active")
 		) {
-			promises.push(this.volkswagenDevice.addCapability("vehicle_active"));
+			await this.volkswagenDevice.addCapability("vehicle_active");
 		}
-
-		await Promise.all(promises);
 	}
 
 	public override async setCapabilityValues(
