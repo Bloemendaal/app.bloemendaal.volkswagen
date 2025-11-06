@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Publish Homey App
-        uses: athombv/github-action-homey-app-publish@master
+        uses: Bloemendaal/github-action-homey-app-publish@master
         id: publish
         with:
           personal_access_token: ${{ secrets.HOMEY_PAT }}
