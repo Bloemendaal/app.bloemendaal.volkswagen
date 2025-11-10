@@ -13,6 +13,9 @@ import OdometerStatus from "./capabilities/odometer-status.mjs";
 import ReadinessStatus from "./capabilities/readiness-status.mjs";
 import TemperatureBatteryStatus from "./capabilities/temperature-battery-status.mjs";
 import WakeUpTrigger from "./capabilities/wake-up-trigger.mjs";
+import ControlCharging from "./flows/control-charging.mjs";
+import type Flow from "./flows/flow.mjs";
+import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
 
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
 
@@ -39,6 +42,11 @@ export default class VolkswagenDevice extends Homey.Device {
 		new WakeUpTrigger(this),
 	];
 
+	private readonly flows: Flow[] = [
+		new UpdateChargingSettings(this),
+		new ControlCharging(this),
+	];
+
 	public async onInit(): Promise<void> {
 		const vehicle = await this.getVehicle();
 		vehicle.onSettingsUpdate(this.setSettings.bind(this));
@@ -56,6 +64,10 @@ export default class VolkswagenDevice extends Homey.Device {
 
 		for (const capability of this.capabilities) {
 			await capability.registerCapabilityListeners(capabilities);
+		}
+
+		for (const flow of this.flows) {
+			await flow.register();
 		}
 
 		await this.setCapabilities(capabilities).catch(
@@ -89,9 +101,17 @@ export default class VolkswagenDevice extends Homey.Device {
 		}
 	}
 
+	public async onUninit(): Promise<void> {
+		await this.onDeleted();
+	}
+
 	public async onDeleted(): Promise<void> {
 		if (this.intervalHandle) {
 			clearInterval(this.intervalHandle);
+		}
+
+		for (const flow of this.flows) {
+			await flow.unregister();
 		}
 	}
 
