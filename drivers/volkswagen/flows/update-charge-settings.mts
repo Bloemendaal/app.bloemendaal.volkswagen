@@ -1,3 +1,4 @@
+import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdateChargingSettingsArgs {
@@ -9,7 +10,13 @@ interface UpdateChargingSettingsArgs {
 export default class UpdateChargingSettings extends Flow {
 	private readonly timeouts: NodeJS.Timeout[] = [];
 
-	public override async register(): Promise<void> {
+	public override async register(
+		capabilities: Partial<SelectiveStatusCapabilitiesData>,
+	): Promise<void> {
+		if (!capabilities.charging?.chargingSettings) {
+			return;
+		}
+
 		const card = this.device.homey.flow.getActionCard("update_charge_settings");
 
 		card.registerRunListener(this.handleAction.bind(this));

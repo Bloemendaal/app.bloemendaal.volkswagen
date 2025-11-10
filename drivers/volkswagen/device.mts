@@ -67,7 +67,7 @@ export default class VolkswagenDevice extends Homey.Device {
 		}
 
 		for (const flow of this.flows) {
-			await flow.register();
+			await flow.register(capabilities);
 		}
 
 		await this.setCapabilities(capabilities).catch(
