@@ -34,5 +34,8 @@
 	},
 	"1.0.11": {
 		"en": "Add conditional checks for flow actions"
+	},
+	"1.0.12": {
+		"en": "Scope flow triggers to device"
 	}
 }
