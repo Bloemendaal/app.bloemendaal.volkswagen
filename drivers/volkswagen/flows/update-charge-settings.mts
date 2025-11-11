@@ -2,9 +2,16 @@ import type { ChargingSettings } from "../api/vehicle.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdateChargingSettingsArgs {
-	max_charge_current?: "5" | "10" | "13" | "32" | "reduced" | "maximum";
+	max_charge_current:
+		| "5"
+		| "10"
+		| "13"
+		| "32"
+		| "reduced"
+		| "maximum"
+		| "unchanged";
 	target_soc?: number;
-	auto_unlock?: "true" | "false";
+	auto_unlock: "true" | "false" | "unchanged";
 }
 
 export default class UpdateChargingSettings extends Flow {
@@ -27,7 +34,7 @@ export default class UpdateChargingSettings extends Flow {
 
 		const settings: ChargingSettings = {};
 
-		if (args.max_charge_current !== undefined) {
+		if (args.max_charge_current !== "unchanged") {
 			if (
 				args.max_charge_current === "reduced" ||
 				args.max_charge_current === "maximum"
@@ -45,8 +52,12 @@ export default class UpdateChargingSettings extends Flow {
 			settings.targetSOC_pct = args.target_soc;
 		}
 
-		if (args.auto_unlock !== undefined) {
-			settings.autoUnlockPlugWhenChargedAC = Boolean(args.auto_unlock);
+		if (args.auto_unlock !== "unchanged") {
+			settings.autoUnlockPlugWhenChargedAC = args.auto_unlock === "true";
+		}
+
+		if (Object.keys(settings).length === 0) {
+			return;
 		}
 
 		await vehicle.updateChargingSettings(settings);

@@ -49,7 +49,6 @@
 				{
 					"type": "dropdown",
 					"name": "max_charge_current",
-					"required": false,
 					"title": {
 						"en": "Maximum charge current",
 						"nl": "Maximale laadstroom",
@@ -65,6 +64,23 @@
 						"ko": "최대 충전 전류"
 					},
 					"values": [
+						{
+							"id": "unchanged",
+							"title": {
+								"en": "Unchanged",
+								"nl": "Ongewijzigd",
+								"de": "Unverändert",
+								"fr": "Inchangé",
+								"da": "Uændret",
+								"es": "Sin cambios",
+								"it": "Invariato",
+								"no": "Uendret",
+								"sv": "Oförändrad",
+								"pl": "Bez zmian",
+								"ru": "Без изменений",
+								"ko": "변경 없음"
+							}
+						},
 						{
 							"id": "reduced",
 							"title": {
@@ -192,9 +208,8 @@
 					"step": 1
 				},
 				{
-					"type": "checkbox",
+					"type": "dropdown",
 					"name": "auto_unlock",
-					"required": false,
 					"title": {
 						"en": "Auto unlock plug when charged",
 						"nl": "Stekker automatisch ontgrendelen na opladen",
@@ -208,7 +223,60 @@
 						"pl": "Automatycznie odblokuj wtyczkę po naładowaniu",
 						"ru": "Автоматически разблокировать вилку после зарядки",
 						"ko": "충전 완료 시 플러그 자동 잠금 해제"
-					}
+					},
+					"values": [
+						{
+							"id": "unchanged",
+							"title": {
+								"en": "Unchanged",
+								"nl": "Ongewijzigd",
+								"de": "Unverändert",
+								"fr": "Inchangé",
+								"da": "Uændret",
+								"es": "Sin cambios",
+								"it": "Invariato",
+								"no": "Uendret",
+								"sv": "Oförändrad",
+								"pl": "Bez zmian",
+								"ru": "Без изменений",
+								"ko": "변경 없음"
+							}
+						},
+						{
+							"id": "true",
+							"title": {
+								"en": "Yes",
+								"nl": "Ja",
+								"de": "Ja",
+								"fr": "Oui",
+								"da": "Ja",
+								"es": "Sí",
+								"it": "Sì",
+								"no": "Ja",
+								"sv": "Ja",
+								"pl": "Tak",
+								"ru": "Да",
+								"ko": "예"
+							}
+						},
+						{
+							"id": "false",
+							"title": {
+								"en": "No",
+								"nl": "Nee",
+								"de": "Nein",
+								"fr": "Non",
+								"da": "Nej",
+								"es": "No",
+								"it": "No",
+								"no": "Nei",
+								"sv": "Nej",
+								"pl": "Nie",
+								"ru": "Нет",
+								"ko": "아니요"
+							}
+						}
+					]
 				}
 			]
 		},
