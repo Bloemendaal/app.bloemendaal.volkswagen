@@ -30,6 +30,12 @@ export type VehicleImagesData = object;
 export type CoUserData = unknown;
 export type TagData = unknown;
 
+export interface ChargingSettings {
+	maxChargeCurrentAC?: number | "reduced" | "maximum";
+	autoUnlockPlugWhenChargedAC?: boolean;
+	targetSOC_pct?: number;
+}
+
 export default class Vehicle extends Authenticatable implements VehicleData {
 	public readonly vin: string;
 	public readonly role: string;
@@ -184,11 +190,9 @@ export default class Vehicle extends Authenticatable implements VehicleData {
 		await client.post(`/vehicle/v1/vehicles/${this.vin}/charging/stop`);
 	}
 
-	public async updateChargingSettings(settings: {
-		maxChargeCurrentAC?: number | "reduced" | "maximum";
-		autoUnlockPlugWhenChargedAC?: boolean;
-		targetSOC_pct?: number;
-	}): Promise<void> {
+	public async updateChargingSettings(
+		settings: ChargingSettings,
+	): Promise<void> {
 		const client = await this.getClient();
 
 		const payload: Record<string, unknown> = {};

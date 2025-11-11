@@ -1,9 +1,10 @@
+import type { ChargingSettings } from "../api/vehicle.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdateChargingSettingsArgs {
-	max_charge_current: "5" | "10" | "13" | "32" | "reduced" | "maximum";
-	target_soc: number;
-	auto_unlock: boolean;
+	max_charge_current?: "5" | "10" | "13" | "32" | "reduced" | "maximum";
+	target_soc?: number;
+	auto_unlock?: "true" | "false";
 }
 
 export default class UpdateChargingSettings extends Flow {
@@ -24,15 +25,31 @@ export default class UpdateChargingSettings extends Flow {
 	private async handleAction(args: UpdateChargingSettingsArgs): Promise<void> {
 		const vehicle = await this.device.getVehicle();
 
-		await vehicle.updateChargingSettings({
-			targetSOC_pct: args.target_soc,
-			autoUnlockPlugWhenChargedAC: args.auto_unlock,
-			maxChargeCurrentAC:
+		const settings: ChargingSettings = {};
+
+		if (args.max_charge_current !== undefined) {
+			if (
 				args.max_charge_current === "reduced" ||
 				args.max_charge_current === "maximum"
-					? args.max_charge_current
-					: Number.parseInt(args.max_charge_current, 10),
-		});
+			) {
+				settings.maxChargeCurrentAC = args.max_charge_current;
+			} else {
+				settings.maxChargeCurrentAC = Number.parseInt(
+					args.max_charge_current,
+					10,
+				);
+			}
+		}
+
+		if (args.target_soc !== undefined) {
+			settings.targetSOC_pct = args.target_soc;
+		}
+
+		if (args.auto_unlock !== undefined) {
+			settings.autoUnlockPlugWhenChargedAC = Boolean(args.auto_unlock);
+		}
+
+		await vehicle.updateChargingSettings(settings);
 
 		this.timeouts.push(setTimeout(() => this.device.setCapabilities(), 3000));
 	}

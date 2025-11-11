@@ -30,11 +30,26 @@
 				"ru": "Обновить настройки зарядки: макс. ток [[max_charge_current]], целевой уровень заряда [[target_soc]]%, авто разблокировка [[auto_unlock]]",
 				"ko": "충전 설정 업데이트: 최대 전류 [[max_charge_current]], 목표 충전 수준 [[target_soc]]%, 자동 잠금 해제 [[auto_unlock]]"
 			},
+			"hint": {
+				"en": "Leave fields empty to keep current settings",
+				"nl": "Laat velden leeg om huidige instellingen te behouden",
+				"de": "Felder leer lassen, um aktuelle Einstellungen zu behalten",
+				"fr": "Laissez les champs vides pour conserver les paramètres actuels",
+				"da": "Lad felter være tomme for at beholde nuværende indstillinger",
+				"es": "Deje los campos vacíos para mantener la configuración actual",
+				"it": "Lascia i campi vuoti per mantenere le impostazioni correnti",
+				"no": "La felt være tomme for å beholde gjeldende innstillinger",
+				"sv": "Lämna fält tomma för att behålla nuvarande inställningar",
+				"pl": "Zostaw pola puste, aby zachować bieżące ustawienia",
+				"ru": "Оставьте поля пустыми, чтобы сохранить текущие настройки",
+				"ko": "현재 설정을 유지하려면 필드를 비워 두세요"
+			},
 			"$filter": "capabilities=target_soc",
 			"args": [
 				{
 					"type": "dropdown",
 					"name": "max_charge_current",
+					"required": false,
 					"title": {
 						"en": "Maximum charge current",
 						"nl": "Maximale laadstroom",
@@ -53,35 +68,35 @@
 						{
 							"id": "reduced",
 							"title": {
-								"en": "Reduced (app value)",
-								"nl": "Verlaagd (app waarde)",
-								"de": "Reduziert (App-Wert)",
-								"fr": "Réduit (valeur de l'application)",
-								"da": "Reduceret (app-værdi)",
-								"es": "Reducido (valor de la app)",
-								"it": "Ridotto (valore app)",
-								"no": "Redusert (app-verdi)",
-								"sv": "Reducerad (app-värde)",
-								"pl": "Zmniejszony (wartość aplikacji)",
-								"ru": "Уменьшенный (значение приложения)",
-								"ko": "감소 (앱 값)"
+								"en": "Reduced",
+								"nl": "Verlaagd",
+								"de": "Reduziert",
+								"fr": "Réduit",
+								"da": "Reduceret",
+								"es": "Reducido",
+								"it": "Ridotto",
+								"no": "Redusert",
+								"sv": "Reducerad",
+								"pl": "Zmniejszony",
+								"ru": "Уменьшенный",
+								"ko": "감소"
 							}
 						},
 						{
 							"id": "maximum",
 							"title": {
-								"en": "Maximum (app value)",
-								"nl": "Maximum (app waarde)",
-								"de": "Maximum (App-Wert)",
-								"fr": "Maximum (valeur de l'application)",
-								"da": "Maksimum (app-værdi)",
-								"es": "Máximo (valor de la app)",
-								"it": "Massimo (valore app)",
-								"no": "Maksimum (app-verdi)",
-								"sv": "Maximum (app-värde)",
-								"pl": "Maksymalny (wartość aplikacji)",
-								"ru": "Максимальный (значение приложения)",
-								"ko": "최대 (앱 값)"
+								"en": "Maximum",
+								"nl": "Maximum",
+								"de": "Maximum",
+								"fr": "Maximum",
+								"da": "Maksimum",
+								"es": "Máximo",
+								"it": "Massimo",
+								"no": "Maksimum",
+								"sv": "Maximum",
+								"pl": "Maksymalny",
+								"ru": "Максимальный",
+								"ko": "최대"
 							}
 						},
 						{
@@ -157,6 +172,7 @@
 				{
 					"type": "number",
 					"name": "target_soc",
+					"required": false,
 					"title": {
 						"en": "Target charge level (%)",
 						"nl": "Doel laadniveau (%)",
@@ -178,6 +194,7 @@
 				{
 					"type": "checkbox",
 					"name": "auto_unlock",
+					"required": false,
 					"title": {
 						"en": "Auto unlock plug when charged",
 						"nl": "Stekker automatisch ontgrendelen na opladen",
