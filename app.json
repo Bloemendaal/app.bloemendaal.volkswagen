@@ -66,93 +66,7 @@
   "flow": {
     "actions": [
       {
-        "title": {
-          "en": "Start or stop charging",
-          "nl": "Start of stop laden",
-          "de": "Laden starten oder stoppen",
-          "fr": "Démarrer ou arrêter la charge",
-          "da": "Start eller stop opladning",
-          "es": "Iniciar o detener la carga",
-          "it": "Avvia o interrompi la ricarica",
-          "no": "Start eller stopp lading",
-          "sv": "Starta eller stoppa laddning",
-          "pl": "Rozpocznij lub zatrzymaj ładowanie",
-          "ru": "Начать или остановить зарядку",
-          "ko": "충전 시작 또는 중지"
-        },
-        "titleFormatted": {
-          "en": "[[action]] charging",
-          "nl": "[[action]] laden",
-          "de": "Laden [[action]]",
-          "fr": "[[action]] la charge",
-          "da": "[[action]] opladning",
-          "es": "[[action]] la carga",
-          "it": "[[action]] la ricarica",
-          "no": "[[action]] lading",
-          "sv": "[[action]] laddning",
-          "pl": "[[action]] ładowanie",
-          "ru": "[[action]] зарядку",
-          "ko": "충전 [[action]]"
-        },
-        "args": [
-          {
-            "type": "dropdown",
-            "name": "action",
-            "title": {
-              "en": "Action",
-              "nl": "Actie",
-              "de": "Aktion",
-              "fr": "Action",
-              "da": "Handling",
-              "es": "Acción",
-              "it": "Azione",
-              "no": "Handling",
-              "sv": "Åtgärd",
-              "pl": "Akcja",
-              "ru": "Действие",
-              "ko": "작업"
-            },
-            "values": [
-              {
-                "id": "start",
-                "title": {
-                  "en": "Start",
-                  "nl": "Start",
-                  "de": "Starten",
-                  "fr": "Démarrer",
-                  "da": "Start",
-                  "es": "Iniciar",
-                  "it": "Avvia",
-                  "no": "Start",
-                  "sv": "Starta",
-                  "pl": "Rozpocznij",
-                  "ru": "Начать",
-                  "ko": "시작"
-                }
-              },
-              {
-                "id": "stop",
-                "title": {
-                  "en": "Stop",
-                  "nl": "Stop",
-                  "de": "Stoppen",
-                  "fr": "Arrêter",
-                  "da": "Stop",
-                  "es": "Detener",
-                  "it": "Interrompi",
-                  "no": "Stopp",
-                  "sv": "Stoppa",
-                  "pl": "Zatrzymaj",
-                  "ru": "Остановить",
-                  "ko": "중지"
-                }
-              }
-            ]
-          }
-        ],
-        "id": "control_charging"
-      },
-      {
+        "id": "update_charge_settings",
         "title": {
           "en": "Update charging settings",
           "nl": "Wijzig laadinstellingen",
@@ -183,6 +97,11 @@
         },
         "args": [
           {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=volkswagen&capabilities=target_soc"
+          },
+          {
             "type": "dropdown",
             "name": "max_charge_current",
             "title": {
@@ -203,35 +122,35 @@
               {
                 "id": "reduced",
                 "title": {
-                  "en": "Reduced",
-                  "nl": "Verlaagd",
-                  "de": "Reduziert",
-                  "fr": "Réduit",
-                  "da": "Reduceret",
-                  "es": "Reducido",
-                  "it": "Ridotto",
-                  "no": "Redusert",
-                  "sv": "Reducerad",
-                  "pl": "Zmniejszony",
-                  "ru": "Уменьшенный",
-                  "ko": "감소"
+                  "en": "Reduced (app value)",
+                  "nl": "Verlaagd (app waarde)",
+                  "de": "Reduziert (App-Wert)",
+                  "fr": "Réduit (valeur de l'application)",
+                  "da": "Reduceret (app-værdi)",
+                  "es": "Reducido (valor de la app)",
+                  "it": "Ridotto (valore app)",
+                  "no": "Redusert (app-verdi)",
+                  "sv": "Reducerad (app-värde)",
+                  "pl": "Zmniejszony (wartość aplikacji)",
+                  "ru": "Уменьшенный (значение приложения)",
+                  "ko": "감소 (앱 값)"
                 }
               },
               {
                 "id": "maximum",
                 "title": {
-                  "en": "Maximum",
-                  "nl": "Maximum",
-                  "de": "Maximum",
-                  "fr": "Maximum",
-                  "da": "Maksimum",
-                  "es": "Máximo",
-                  "it": "Massimo",
-                  "no": "Maksimum",
-                  "sv": "Maximum",
-                  "pl": "Maksymalny",
-                  "ru": "Максимальный",
-                  "ko": "최대"
+                  "en": "Maximum (app value)",
+                  "nl": "Maximum (app waarde)",
+                  "de": "Maximum (App-Wert)",
+                  "fr": "Maximum (valeur de l'application)",
+                  "da": "Maksimum (app-værdi)",
+                  "es": "Máximo (valor de la app)",
+                  "it": "Massimo (valore app)",
+                  "no": "Maksimum (app-verdi)",
+                  "sv": "Maximum (app-värde)",
+                  "pl": "Maksymalny (wartość aplikacji)",
+                  "ru": "Максимальный (значение приложения)",
+                  "ko": "최대 (앱 값)"
                 }
               },
               {
@@ -343,8 +262,99 @@
               "ko": "충전 완료 시 플러그 자동 잠금 해제"
             }
           }
-        ],
-        "id": "update_charge_settings"
+        ]
+      },
+      {
+        "id": "control_charging",
+        "title": {
+          "en": "Start or stop charging",
+          "nl": "Start of stop laden",
+          "de": "Laden starten oder stoppen",
+          "fr": "Démarrer ou arrêter la charge",
+          "da": "Start eller stop opladning",
+          "es": "Iniciar o detener la carga",
+          "it": "Avvia o interrompi la ricarica",
+          "no": "Start eller stopp lading",
+          "sv": "Starta eller stoppa laddning",
+          "pl": "Rozpocznij lub zatrzymaj ładowanie",
+          "ru": "Начать или остановить зарядку",
+          "ko": "충전 시작 또는 중지"
+        },
+        "titleFormatted": {
+          "en": "[[action]] charging",
+          "nl": "[[action]] laden",
+          "de": "Laden [[action]]",
+          "fr": "[[action]] la charge",
+          "da": "[[action]] opladning",
+          "es": "[[action]] la carga",
+          "it": "[[action]] la ricarica",
+          "no": "[[action]] lading",
+          "sv": "[[action]] laddning",
+          "pl": "[[action]] ładowanie",
+          "ru": "[[action]] зарядку",
+          "ko": "충전 [[action]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=volkswagen&capabilities=measure_charging_power"
+          },
+          {
+            "type": "dropdown",
+            "name": "action",
+            "title": {
+              "en": "Action",
+              "nl": "Actie",
+              "de": "Aktion",
+              "fr": "Action",
+              "da": "Handling",
+              "es": "Acción",
+              "it": "Azione",
+              "no": "Handling",
+              "sv": "Åtgärd",
+              "pl": "Akcja",
+              "ru": "Действие",
+              "ko": "작업"
+            },
+            "values": [
+              {
+                "id": "start",
+                "title": {
+                  "en": "Start",
+                  "nl": "Start",
+                  "de": "Starten",
+                  "fr": "Démarrer",
+                  "da": "Start",
+                  "es": "Iniciar",
+                  "it": "Avvia",
+                  "no": "Start",
+                  "sv": "Starta",
+                  "pl": "Rozpocznij",
+                  "ru": "Начать",
+                  "ko": "시작"
+                }
+              },
+              {
+                "id": "stop",
+                "title": {
+                  "en": "Stop",
+                  "nl": "Stop",
+                  "de": "Stoppen",
+                  "fr": "Arrêter",
+                  "da": "Stop",
+                  "es": "Detener",
+                  "it": "Interrompi",
+                  "no": "Stopp",
+                  "sv": "Stoppa",
+                  "pl": "Zatrzymaj",
+                  "ru": "Остановить",
+                  "ko": "중지"
+                }
+              }
+            ]
+          }
+        ]
       }
     ]
   },
