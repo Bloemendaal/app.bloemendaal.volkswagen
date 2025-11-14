@@ -1,5 +1,6 @@
 import Homey from "homey";
 import type { SelectiveStatusCapabilitiesData } from "./api/capabilities.mjs";
+import TranslatableError from "./api/errors/translatable-error.mjs";
 import User from "./api/user.mjs";
 import type Vehicle from "./api/vehicle.mjs";
 import Access from "./capabilities/access.mjs";
@@ -136,7 +137,10 @@ export default class VolkswagenDevice extends Homey.Device {
 			this.vehicle = vehicle;
 			return vehicle;
 		} catch (error) {
-			this.error("An error occurred while fetching the vehicle");
+			if (error instanceof TranslatableError) {
+				throw new Error(this.homey.__(error.translationKey));
+			}
+
 			throw error;
 		}
 	}

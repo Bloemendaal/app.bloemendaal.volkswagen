@@ -1,4 +1,14 @@
 {
+	"errors": {
+		"authentication": {
+			"authorization_url_failed": "Impossible d'obtenir l'URL d'autorisation de WeConnect. Veuillez vérifier votre connexion Internet et réessayer.",
+			"identity_provider_failed": "Impossible de se connecter au fournisseur d'identité. Veuillez réessayer plus tard.",
+			"email_submission_failed": "Impossible de soumettre votre adresse e-mail. Veuillez vérifier votre e-mail et réessayer.",
+			"password_form_parse_failed": "Impossible de traiter le formulaire de mot de passe. Veuillez vérifier votre adresse e-mail et réessayer.",
+			"password_submission_failed": "Impossible de soumettre votre mot de passe. Il est soit incorrect, soit vous devez accepter les conditions générales dans l'application Volkswagen. Si vous êtes déjà connecté à l'application, essayez de vous déconnecter puis de vous reconnecter.",
+			"token_exchange_failed": "Impossible d'obtenir les jetons d'accès. Veuillez réessayer ou consulter le forum communautaire."
+		}
+	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ ouvert",

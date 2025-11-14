@@ -1,4 +1,14 @@
 {
+	"errors": {
+		"authentication": {
+			"authorization_url_failed": "Kan autorisatie-URL niet ophalen van WeConnect. Controleer uw internetverbinding en probeer het opnieuw.",
+			"identity_provider_failed": "Kan geen verbinding maken met de identiteitsprovider. Probeer het later opnieuw.",
+			"email_submission_failed": "Kan uw e-mailadres niet verzenden. Controleer uw e-mail en probeer het opnieuw.",
+			"password_form_parse_failed": "Kan het wachtwoordformulier niet verwerken. Controleer uw e-mailadres en probeer het opnieuw.",
+			"password_submission_failed": "Kan uw wachtwoord niet verzenden. Het is onjuist of u moet de algemene voorwaarden accepteren in de Volkswagen-app. Als u al bent ingelogd in de app, probeer dan uit te loggen en opnieuw in te loggen.",
+			"token_exchange_failed": "Kan toegangstokens niet verkrijgen. Probeer het opnieuw of bekijk het communityforum."
+		}
+	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ geopend",

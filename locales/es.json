@@ -1,4 +1,14 @@
 {
+	"errors": {
+		"authentication": {
+			"authorization_url_failed": "No se pudo obtener la URL de autorización de WeConnect. Por favor, verifique su conexión a Internet e intente nuevamente.",
+			"identity_provider_failed": "No se pudo conectar con el proveedor de identidad. Por favor, inténtelo más tarde.",
+			"email_submission_failed": "No se pudo enviar su dirección de correo electrónico. Por favor, verifique su correo e intente nuevamente.",
+			"password_form_parse_failed": "No se pudo procesar el formulario de contraseña. Por favor, verifique su dirección de correo electrónico e intente nuevamente.",
+			"password_submission_failed": "No se pudo enviar su contraseña. Es incorrecta o debe aceptar los términos y condiciones en la aplicación Volkswagen. Si ya ha iniciado sesión en la aplicación, intente cerrar sesión y volver a iniciarla.",
+			"token_exchange_failed": "No se pudieron obtener los tokens de acceso. Por favor, inténtelo nuevamente o consulte el foro de la comunidad."
+		}
+	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ abierto",

@@ -1,11 +1,20 @@
 import Authenticatable, { type AuthSettings } from "./authenticatable.mjs";
+import TranslatableError from "./errors/translatable-error.mjs";
 import Vehicle, { type VehicleData } from "./vehicle.mjs";
 
+interface Translatable {
+	__(key: string | object, tags?: object | undefined): string;
+}
+
 export default class User extends Authenticatable {
-	public async canLogin(): Promise<boolean> {
+	public async canLogin(homey: Translatable): Promise<boolean> {
 		try {
 			await this.authenticate();
-		} catch {
+		} catch (error) {
+			if (error instanceof TranslatableError) {
+				throw new Error(homey.__(error.translationKey));
+			}
+
 			return false;
 		}
 

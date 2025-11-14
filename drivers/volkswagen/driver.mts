@@ -21,7 +21,7 @@ export default class VolkswagenDriver extends Homey.Driver {
 
 				user = new User({ credentials: { email, password } });
 
-				return await user.canLogin();
+				return await user.canLogin(this.homey);
 			},
 		);
 

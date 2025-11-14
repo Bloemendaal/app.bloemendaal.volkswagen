@@ -1,4 +1,14 @@
 {
+	"errors": {
+		"authentication": {
+			"authorization_url_failed": "Kunne ikke hente godkendelses-URL fra WeConnect. Kontroller din internetforbindelse og prøv igen.",
+			"identity_provider_failed": "Kunne ikke oprette forbindelse til identitetsudbyderen. Prøv igen senere.",
+			"email_submission_failed": "Kunne ikke indsende din e-mailadresse. Kontroller din e-mail og prøv igen.",
+			"password_form_parse_failed": "Kunne ikke behandle adgangskodeformularen. Kontroller din e-mailadresse og prøv igen.",
+			"password_submission_failed": "Kunne ikke indsende din adgangskode. Den er enten forkert, eller du skal acceptere vilkårene og betingelserne i Volkswagen-appen. Hvis du allerede er logget ind i appen, skal du prøve at logge ud og logge ind igen.",
+			"token_exchange_failed": "Kunne ikke få adgangstokens. Prøv igen eller tjek fællesskabsforummet."
+		}
+	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ åbnet",

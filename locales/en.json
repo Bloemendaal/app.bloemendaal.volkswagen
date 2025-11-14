@@ -1,4 +1,14 @@
 {
+	"errors": {
+		"authentication": {
+			"authorization_url_failed": "Failed to get authorization URL from WeConnect. Please check your internet connection and try again.",
+			"identity_provider_failed": "Failed to connect to the identity provider. Please try again later.",
+			"email_submission_failed": "Failed to submit your email address. Please check your email and try again.",
+			"password_form_parse_failed": "Failed to process the password form. Please check your email and try again.",
+			"password_submission_failed": "Failed to submit your password. It is either incorrect or you must accept the terms and conditions in the Volkswagen app. If you're already logged in to the app, try logging out and back in again.",
+			"token_exchange_failed": "Failed to obtain access tokens. Please try again or check the community forum."
+		}
+	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ opened",

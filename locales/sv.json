@@ -1,4 +1,14 @@
 {
+	"errors": {
+		"authentication": {
+			"authorization_url_failed": "Kunde inte hämta auktoriserings-URL från WeConnect. Kontrollera din internetanslutning och försök igen.",
+			"identity_provider_failed": "Kunde inte ansluta till identitetsleverantören. Försök igen senare.",
+			"email_submission_failed": "Kunde inte skicka in din e-postadress. Kontrollera din e-post och försök igen.",
+			"password_form_parse_failed": "Kunde inte bearbeta lösenordsformuläret. Kontrollera din e-postadress och försök igen.",
+			"password_submission_failed": "Kunde inte skicka in ditt lösenord. Det är antingen felaktigt eller så måste du acceptera villkoren i Volkswagen-appen. Om du redan är inloggad i appen, försök logga ut och logga in igen.",
+			"token_exchange_failed": "Kunde inte få åtkomsttokens. Försök igen eller kolla communityforumet."
+		}
+	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ öppnad",

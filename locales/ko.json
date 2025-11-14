@@ -1,4 +1,14 @@
 {
+	"errors": {
+		"authentication": {
+			"authorization_url_failed": "WeConnect에서 인증 URL을 가져올 수 없습니다. 인터넷 연결을 확인하고 다시 시도하세요.",
+			"identity_provider_failed": "ID 공급자에 연결할 수 없습니다. 나중에 다시 시도하세요.",
+			"email_submission_failed": "이메일 주소를 제출할 수 없습니다. 이메일을 확인하고 다시 시도하세요.",
+			"password_form_parse_failed": "비밀번호 양식을 처리할 수 없습니다. 이메일 주소를 확인하고 다시 시도하세요.",
+			"password_submission_failed": "비밀번호를 제출할 수 없습니다. 비밀번호가 틀렸거나 Volkswagen 앱에서 이용약관에 동의해야 합니다. 이미 앱에 로그인되어 있다면 로그아웃했다가 다시 로그인해 보세요.",
+			"token_exchange_failed": "액세스 토큰을 얻을 수 없습니다. 다시 시도하거나 커뮤니티 포럼을 확인하세요."
+		}
+	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ 열림",
