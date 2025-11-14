@@ -40,5 +40,8 @@
 	},
 	"1.0.13": {
 		"en": "Replace optional flow values for dropdowns"
+	},
+	"1.0.14": {
+		"en": "Improve the errors shown to the user during the login device pairing"
 	}
 }

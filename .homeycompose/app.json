@@ -1,6 +1,6 @@
 {
 	"id": "app.bloemendaal.volkswagen",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"compatibility": ">=12.8.0",
 	"sdk": 3,
 	"platforms": ["local"],
