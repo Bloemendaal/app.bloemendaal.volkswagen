@@ -9,6 +9,7 @@ import BatteryStatus from "./capabilities/battery-status.mjs";
 import type Capability from "./capabilities/capability.mjs";
 import ChargingSettings from "./capabilities/charging-settings.mjs";
 import ChargingStatus from "./capabilities/charging-status.mjs";
+import ClimatisationStatus from "./capabilities/climatisation-status.mjs";
 import HonkAndFlash from "./capabilities/hook-and-flash.mjs";
 import MaintenanceStatus from "./capabilities/maintenance-status.mjs";
 import OdometerStatus from "./capabilities/odometer-status.mjs";
@@ -40,6 +41,7 @@ export default class VolkswagenDevice extends Homey.Device {
 		new TemperatureBatteryStatus(this),
 		new ChargingSettings(this),
 		new ChargingStatus(this),
+		new ClimatisationStatus(this),
 		new HonkAndFlash(this),
 		new MaintenanceStatus(this),
 		new OdometerStatus(this),
