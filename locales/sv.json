@@ -1,12 +1,12 @@
 {
 	"errors": {
 		"authentication": {
-			"authorization_url_failed": "Kunde inte hämta auktoriserings-URL från WeConnect. Kontrollera din internetanslutning och försök igen.",
+			"authorization_url_failed": "Kunde inte hämta auktoriserings-URL från WeConnect. Kontrollera internetanslutningen och försök igen.",
 			"identity_provider_failed": "Kunde inte ansluta till identitetsleverantören. Försök igen senare.",
-			"email_submission_failed": "Kunde inte skicka in din e-postadress. Kontrollera din e-post och försök igen.",
-			"password_form_parse_failed": "Kunde inte bearbeta lösenordsformuläret. Kontrollera din e-postadress och försök igen.",
-			"password_submission_failed": "Kunde inte skicka in ditt lösenord. Det är antingen felaktigt eller så måste du acceptera villkoren i Volkswagen-appen. Om du redan är inloggad i appen, försök logga ut och logga in igen.",
-			"token_exchange_failed": "Kunde inte få åtkomsttokens. Försök igen eller kolla communityforumet."
+			"email_submission_failed": "Kunde inte skicka din e-postadress. Kontrollera adressen och försök igen.",
+			"password_form_parse_failed": "Lösenordsformuläret kunde inte bearbetas. Försök igen.",
+			"password_submission_failed": "Lösenordet kunde inte skickas. Möjliga orsaker: felaktigt lösenord, för många inloggningsförsök på kort tid eller villkoren i Volkswagen‑appen har ännu inte accepterats. Logga ut ur Volkswagen‑appen och logga sedan in igen för att acceptera dem.",
+			"token_exchange_failed": "Åtkomsttoken kunde inte hämtas. Försök igen eller kontrollera communityforumet."
 		}
 	},
 	"capabilities": {
