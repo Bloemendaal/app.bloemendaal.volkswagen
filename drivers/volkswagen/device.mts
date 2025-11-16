@@ -1,5 +1,6 @@
 import Homey from "homey";
 import type { SelectiveStatusCapabilitiesData } from "./api/capabilities.mjs";
+import DebounceScheduler from "./api/debounce-scheduler.mjs";
 import TranslatableError from "./api/errors/translatable-error.mjs";
 import User from "./api/user.mjs";
 import type Vehicle from "./api/vehicle.mjs";
@@ -29,6 +30,9 @@ interface OnSettingsParams {
 export default class VolkswagenDevice extends Homey.Device {
 	private vehicle: Vehicle | null = null;
 	private intervalHandle: NodeJS.Timeout | null = null;
+
+	private readonly debounceScheduler: DebounceScheduler<void> =
+		new DebounceScheduler<void>(this.setCapabilities.bind(this));
 
 	private readonly capabilities: Capability[] = [
 		new Access(this),
@@ -107,6 +111,8 @@ export default class VolkswagenDevice extends Homey.Device {
 	}
 
 	public async onDeleted(): Promise<void> {
+		this.debounceScheduler.destroy();
+
 		if (this.intervalHandle) {
 			clearInterval(this.intervalHandle);
 		}
@@ -145,7 +151,14 @@ export default class VolkswagenDevice extends Homey.Device {
 		}
 	}
 
-	public async setCapabilities(
+	public async requestRefresh(
+		minimum = 2000,
+		maximum = minimum * 2,
+	): Promise<void> {
+		return await this.debounceScheduler.schedule({ minimum, maximum });
+	}
+
+	private async setCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData> | null = null,
 	): Promise<void> {
 		if (!capabilities) {

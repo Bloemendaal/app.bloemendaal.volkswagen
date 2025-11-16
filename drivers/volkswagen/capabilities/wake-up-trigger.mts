@@ -44,7 +44,7 @@ export default class WakeUpTrigger extends Capability {
 				async () => {
 					const vehicle = await this.volkswagenDevice.getVehicle();
 					await vehicle.wake();
-					await this.volkswagenDevice.setCapabilities();
+					await this.volkswagenDevice.requestRefresh(500, 1000);
 				},
 			);
 		}
