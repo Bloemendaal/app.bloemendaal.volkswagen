@@ -43,5 +43,8 @@
 	},
 	"1.0.14": {
 		"en": "Improve the errors shown to the user during the login device pairing"
+	},
+	"1.0.15": {
+		"en": "Improve pairing translations"
 	}
 }
