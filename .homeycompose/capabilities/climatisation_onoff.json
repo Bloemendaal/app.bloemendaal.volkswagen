@@ -1,0 +1,21 @@
+{
+	"type": "boolean",
+	"title": {
+		"en": "Climatisation",
+		"nl": "Klimaatregeling",
+		"de": "Klimatisierung",
+		"fr": "Climatisation",
+		"es": "Climatización",
+		"it": "Climatizzazione",
+		"da": "Klimaanlæg",
+		"no": "Klimaanlegg",
+		"sv": "Klimatanläggning",
+		"pl": "Klimatyzacja",
+		"ru": "Климатизация",
+		"ko": "냉난방"
+	},
+	"getable": true,
+	"setable": true,
+	"uiComponent": "toggle",
+	"icon": "/assets/capabilities/climatisation_onoff.svg"
+}
