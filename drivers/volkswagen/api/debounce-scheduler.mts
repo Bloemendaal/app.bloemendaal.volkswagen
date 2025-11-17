@@ -106,7 +106,8 @@ export default class DebounceScheduler<T> {
 				delayBounds.minimum < 0 ||
 				delayBounds.maximum < delayBounds.minimum
 			) {
-				throw new Error("Invalid delay bounds");
+				reject(new Error("Invalid delay bounds"));
+				return;
 			}
 
 			const now = Date.now();
