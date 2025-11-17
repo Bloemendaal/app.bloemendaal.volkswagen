@@ -1,4 +1,5 @@
 import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.mjs";
+import type { StartClimatisationSettings } from "../api/climatisation.mjs";
 import Capability from "./capability.mjs";
 
 export default class ClimatisationStatus extends Capability {
@@ -136,7 +137,10 @@ export default class ClimatisationStatus extends Capability {
 						const currentTargetTemp =
 							this.volkswagenDevice.getCapabilityValue("target_temperature");
 
-						const settings: Record<string, unknown> = {};
+						const settings: StartClimatisationSettings = {
+							targetTemperatureUnit: "celsius",
+						};
+
 						if (typeof currentTargetTemp === "number") {
 							settings.targetTemperature = currentTargetTemp;
 						}
