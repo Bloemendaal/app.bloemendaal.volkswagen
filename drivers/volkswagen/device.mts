@@ -20,7 +20,7 @@ import ControlCharging from "./flows/control-charging.mjs";
 import type Flow from "./flows/flow.mjs";
 import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
 
-const MS_TO_MINUTES = 60000;
+const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
 
 interface OnSettingsParams {
