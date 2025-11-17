@@ -1,5 +1,6 @@
 import Homey from "homey";
 import type { SelectiveStatusCapabilitiesData } from "./api/capabilities.mjs";
+import DebounceScheduler from "./api/debounce-scheduler.mjs";
 import TranslatableError from "./api/errors/translatable-error.mjs";
 import User from "./api/user.mjs";
 import type Vehicle from "./api/vehicle.mjs";
@@ -8,6 +9,7 @@ import BatteryStatus from "./capabilities/battery-status.mjs";
 import type Capability from "./capabilities/capability.mjs";
 import ChargingSettings from "./capabilities/charging-settings.mjs";
 import ChargingStatus from "./capabilities/charging-status.mjs";
+import ClimatisationStatus from "./capabilities/climatisation-status.mjs";
 import HonkAndFlash from "./capabilities/hook-and-flash.mjs";
 import MaintenanceStatus from "./capabilities/maintenance-status.mjs";
 import OdometerStatus from "./capabilities/odometer-status.mjs";
@@ -18,6 +20,7 @@ import ControlCharging from "./flows/control-charging.mjs";
 import type Flow from "./flows/flow.mjs";
 import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
 
+const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
 
 interface OnSettingsParams {
@@ -28,7 +31,9 @@ interface OnSettingsParams {
 
 export default class VolkswagenDevice extends Homey.Device {
 	private vehicle: Vehicle | null = null;
-	private intervalHandle: NodeJS.Timeout | null = null;
+
+	private readonly debounceScheduler: DebounceScheduler<void> =
+		new DebounceScheduler<void>(this.setCapabilities.bind(this));
 
 	private readonly capabilities: Capability[] = [
 		new Access(this),
@@ -36,6 +41,7 @@ export default class VolkswagenDevice extends Homey.Device {
 		new TemperatureBatteryStatus(this),
 		new ChargingSettings(this),
 		new ChargingStatus(this),
+		new ClimatisationStatus(this),
 		new HonkAndFlash(this),
 		new MaintenanceStatus(this),
 		new OdometerStatus(this),
@@ -71,13 +77,11 @@ export default class VolkswagenDevice extends Homey.Device {
 			await flow.register();
 		}
 
-		await this.setCapabilities(capabilities).catch(
-			this.ignoreTimeoutError.bind(this),
-		);
+		const intervalDelay =
+			MS_TO_MINUTES *
+			+(this.getSettings().pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES);
 
-		this.startInterval(
-			this.getSettings().pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES,
-		);
+		this.debounceScheduler.startInterval(intervalDelay);
 	}
 
 	public async onSettings({
@@ -90,15 +94,15 @@ export default class VolkswagenDevice extends Homey.Device {
 
 		if (changedKeys.includes("email") || changedKeys.includes("password")) {
 			this.vehicle = null;
-			await this.setCapabilities().catch(this.ignoreTimeoutError.bind(this));
+			await this.debounceScheduler.schedule();
 		}
 
 		if (changedKeys.includes("pollingInterval")) {
-			const interval = +(
-				newSettings.pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES
-			);
+			const interval =
+				MS_TO_MINUTES *
+				+(newSettings.pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES);
 
-			this.startInterval(interval);
+			this.debounceScheduler.startInterval(interval);
 		}
 	}
 
@@ -107,9 +111,7 @@ export default class VolkswagenDevice extends Homey.Device {
 	}
 
 	public async onDeleted(): Promise<void> {
-		if (this.intervalHandle) {
-			clearInterval(this.intervalHandle);
-		}
+		this.debounceScheduler.destroy();
 
 		for (const flow of this.flows) {
 			await flow.unregister();
@@ -145,7 +147,14 @@ export default class VolkswagenDevice extends Homey.Device {
 		}
 	}
 
-	public async setCapabilities(
+	public async requestRefresh(
+		minimum = 2000,
+		maximum = minimum * 2,
+	): Promise<void> {
+		return await this.debounceScheduler.schedule({ minimum, maximum });
+	}
+
+	private async setCapabilities(
 		capabilities: Partial<SelectiveStatusCapabilitiesData> | null = null,
 	): Promise<void> {
 		if (!capabilities) {
@@ -158,24 +167,5 @@ export default class VolkswagenDevice extends Homey.Device {
 				capability.setCapabilityValues(capabilities),
 			),
 		);
-	}
-
-	private startInterval(intervalInMinutes: number): void {
-		if (this.intervalHandle) {
-			clearInterval(this.intervalHandle);
-		}
-
-		this.intervalHandle = setInterval(
-			() => this.setCapabilities().catch(this.ignoreTimeoutError.bind(this)),
-			intervalInMinutes * 60 * 1000,
-		);
-	}
-
-	private ignoreTimeoutError(error: unknown): void {
-		if (error instanceof Error) {
-			return;
-		}
-
-		throw error;
 	}
 }

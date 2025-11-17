@@ -1,0 +1,36 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Remaining climatisation time",
+		"nl": "Resterende klimaattijd",
+		"de": "Verbleibende Klimatisierungszeit",
+		"fr": "Temps de climatisation restant",
+		"es": "Tiempo de climatización restante",
+		"it": "Tempo di climatizzazione rimanente",
+		"da": "Resterende klimatid",
+		"no": "Gjenværende klimatid",
+		"sv": "Återstående klimattid",
+		"pl": "Pozostały czas klimatyzacji",
+		"ru": "Оставшееся время климатизации",
+		"ko": "남은 냉난방 시간"
+	},
+	"units": {
+		"en": "min",
+		"nl": "min",
+		"de": "Min",
+		"fr": "min",
+		"es": "min",
+		"it": "min",
+		"da": "min",
+		"no": "min",
+		"sv": "min",
+		"pl": "min",
+		"ru": "мин",
+		"ko": "분"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/measure_remaining_climatisation_time.svg",
+	"insights": true
+}

@@ -5,18 +5,10 @@ interface ControlChargingArgs {
 }
 
 export default class ControlCharging extends Flow {
-	private readonly timeouts: NodeJS.Timeout[] = [];
-
 	public override async register(): Promise<void> {
 		const card = this.device.homey.flow.getActionCard("control_charging");
 
 		card.registerRunListener(this.handleAction.bind(this));
-	}
-
-	public override async unregister(): Promise<void> {
-		for (const timeout of this.timeouts) {
-			clearTimeout(timeout);
-		}
 	}
 
 	private async handleAction(args: ControlChargingArgs): Promise<void> {
@@ -28,6 +20,6 @@ export default class ControlCharging extends Flow {
 			await vehicle.stopCharging();
 		}
 
-		this.timeouts.push(setTimeout(() => this.device.setCapabilities(), 3000));
+		await this.device.requestRefresh(500, 1000);
 	}
 }
