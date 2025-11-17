@@ -20,6 +20,7 @@ import ControlCharging from "./flows/control-charging.mjs";
 import type Flow from "./flows/flow.mjs";
 import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
 
+const MS_TO_MINUTES = 60000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
 
 interface OnSettingsParams {
@@ -30,7 +31,6 @@ interface OnSettingsParams {
 
 export default class VolkswagenDevice extends Homey.Device {
 	private vehicle: Vehicle | null = null;
-	private intervalHandle: NodeJS.Timeout | null = null;
 
 	private readonly debounceScheduler: DebounceScheduler<void> =
 		new DebounceScheduler<void>(this.setCapabilities.bind(this));
@@ -77,9 +77,11 @@ export default class VolkswagenDevice extends Homey.Device {
 			await flow.register();
 		}
 
-		this.debounceScheduler.startInterval(
-			this.getSettings().pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES,
-		);
+		const intervalDelay =
+			MS_TO_MINUTES *
+			+(this.getSettings().pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES);
+
+		this.debounceScheduler.startInterval(intervalDelay);
 	}
 
 	public async onSettings({
@@ -96,9 +98,9 @@ export default class VolkswagenDevice extends Homey.Device {
 		}
 
 		if (changedKeys.includes("pollingInterval")) {
-			const interval = +(
-				newSettings.pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES
-			);
+			const interval =
+				MS_TO_MINUTES *
+				+(newSettings.pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES);
 
 			this.debounceScheduler.startInterval(interval);
 		}
@@ -110,10 +112,6 @@ export default class VolkswagenDevice extends Homey.Device {
 
 	public async onDeleted(): Promise<void> {
 		this.debounceScheduler.destroy();
-
-		if (this.intervalHandle) {
-			clearInterval(this.intervalHandle);
-		}
 
 		for (const flow of this.flows) {
 			await flow.unregister();

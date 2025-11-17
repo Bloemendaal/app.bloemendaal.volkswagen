@@ -105,7 +105,6 @@ export default class DebounceScheduler<T> {
 	private readonly timeline: TimelineEntry<T>[] = [];
 
 	private pollingInterval: NodeJS.Timeout | null = null;
-	private scheduleTimeout: NodeJS.Timeout | null = null;
 
 	constructor(
 		public readonly callback: () => Promise<T>,
@@ -181,11 +180,6 @@ export default class DebounceScheduler<T> {
 			clearInterval(this.pollingInterval);
 			this.pollingInterval = null;
 		}
-
-		if (this.scheduleTimeout) {
-			clearTimeout(this.scheduleTimeout);
-			this.scheduleTimeout = null;
-		}
 	}
 
 	public removeEntry(entry: TimelineEntry<T>): void {
@@ -197,6 +191,8 @@ export default class DebounceScheduler<T> {
 	}
 
 	public destroy(): void {
+		this.stopInterval();
+
 		for (const entry of this.timeline) {
 			entry.destroy();
 		}
