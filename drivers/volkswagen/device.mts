@@ -77,11 +77,7 @@ export default class VolkswagenDevice extends Homey.Device {
 			await flow.register();
 		}
 
-		await this.setCapabilities(capabilities).catch(
-			this.ignoreTimeoutError.bind(this),
-		);
-
-		this.startInterval(
+		this.debounceScheduler.startInterval(
 			this.getSettings().pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES,
 		);
 	}
@@ -96,7 +92,7 @@ export default class VolkswagenDevice extends Homey.Device {
 
 		if (changedKeys.includes("email") || changedKeys.includes("password")) {
 			this.vehicle = null;
-			await this.setCapabilities().catch(this.ignoreTimeoutError.bind(this));
+			await this.debounceScheduler.schedule();
 		}
 
 		if (changedKeys.includes("pollingInterval")) {
@@ -104,7 +100,7 @@ export default class VolkswagenDevice extends Homey.Device {
 				newSettings.pollingInterval || DEFAULT_POLLING_INTERVAL_MINUTES
 			);
 
-			this.startInterval(interval);
+			this.debounceScheduler.startInterval(interval);
 		}
 	}
 
@@ -173,24 +169,5 @@ export default class VolkswagenDevice extends Homey.Device {
 				capability.setCapabilityValues(capabilities),
 			),
 		);
-	}
-
-	private startInterval(intervalInMinutes: number): void {
-		if (this.intervalHandle) {
-			clearInterval(this.intervalHandle);
-		}
-
-		this.intervalHandle = setInterval(
-			() => this.setCapabilities().catch(this.ignoreTimeoutError.bind(this)),
-			intervalInMinutes * 60 * 1000,
-		);
-	}
-
-	private ignoreTimeoutError(error: unknown): void {
-		if (error instanceof Error) {
-			return;
-		}
-
-		throw error;
 	}
 }

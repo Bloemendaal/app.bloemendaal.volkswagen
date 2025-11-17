@@ -9,6 +9,18 @@ interface Bounds {
 type Resolve<T> = (value: T | PromiseLike<T>) => void;
 type Reject = (reason?: unknown) => void;
 
+interface PushedEntry<T> {
+	bounds: Bounds;
+	reject: Reject;
+	resolve: Resolve<T>;
+}
+
+interface IntervalHandlers<T> {
+	onSuccess?: Resolve<T>;
+	onError?: Reject;
+	onFinally?: () => void;
+}
+
 class TimelineEntry<T> {
 	private readonly rejects: Reject[] = [];
 	private readonly resolves: Resolve<T>[] = [];
@@ -36,7 +48,7 @@ class TimelineEntry<T> {
 		);
 	}
 
-	public push(bounds: Bounds, resolve: Resolve<T>, reject: Reject): this {
+	public push({ bounds, resolve, reject }: PushedEntry<T>): this {
 		this.rejects.push(reject);
 		this.resolves.push(resolve);
 
@@ -92,6 +104,9 @@ class TimelineEntry<T> {
 export default class DebounceScheduler<T> {
 	private readonly timeline: TimelineEntry<T>[] = [];
 
+	private pollingInterval: NodeJS.Timeout | null = null;
+	private scheduleTimeout: NodeJS.Timeout | null = null;
+
 	constructor(
 		public readonly callback: () => Promise<T>,
 		private readonly defaultDelayBounds: Bounds = {
@@ -112,30 +127,32 @@ export default class DebounceScheduler<T> {
 
 			const now = Date.now();
 
-			const timestampBounds = {
+			const bounds = {
 				minimum: now + delayBounds.minimum,
 				maximum: now + delayBounds.maximum,
+			};
+
+			const pushEntry: PushedEntry<T> = {
+				bounds,
+				reject,
+				resolve,
 			};
 
 			let foundOverlappingEntry = false;
 
 			for (const entry of this.timeline) {
-				if (!entry.overlaps(timestampBounds)) {
+				if (!entry.overlaps(bounds)) {
 					continue;
 				}
 
 				foundOverlappingEntry = true;
-				entry.push(timestampBounds, resolve, reject);
+				entry.push(pushEntry);
 
 				break;
 			}
 
 			if (!foundOverlappingEntry) {
-				const entry = new TimelineEntry<T>(this).push(
-					timestampBounds,
-					resolve,
-					reject,
-				);
+				const entry = new TimelineEntry<T>(this).push(pushEntry);
 
 				this.timeline.push(entry);
 				this.timeline.sort(
@@ -143,6 +160,32 @@ export default class DebounceScheduler<T> {
 				);
 			}
 		});
+	}
+
+	public startInterval(
+		delay: number,
+		delayBounds: Bounds = this.defaultDelayBounds,
+		handlers: IntervalHandlers<T> = {},
+	): void {
+		this.stopInterval();
+
+		this.handleInterval(delayBounds, handlers);
+		this.pollingInterval = setInterval(
+			() => this.handleInterval(delayBounds, handlers),
+			delay,
+		);
+	}
+
+	public stopInterval(): void {
+		if (this.pollingInterval) {
+			clearInterval(this.pollingInterval);
+			this.pollingInterval = null;
+		}
+
+		if (this.scheduleTimeout) {
+			clearTimeout(this.scheduleTimeout);
+			this.scheduleTimeout = null;
+		}
 	}
 
 	public removeEntry(entry: TimelineEntry<T>): void {
@@ -156,6 +199,20 @@ export default class DebounceScheduler<T> {
 	public destroy(): void {
 		for (const entry of this.timeline) {
 			entry.destroy();
+		}
+	}
+
+	private async handleInterval(
+		delayBounds: Bounds,
+		{ onSuccess, onError, onFinally }: IntervalHandlers<T>,
+	): Promise<void> {
+		try {
+			const result = await this.schedule(delayBounds);
+			onSuccess?.(result);
+		} catch (error) {
+			onError?.(error);
+		} finally {
+			onFinally?.();
 		}
 	}
 }
