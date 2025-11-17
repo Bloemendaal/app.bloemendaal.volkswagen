@@ -157,9 +157,6 @@ export default class ClimatisationStatus extends Capability {
 				async (...args) => {
 					const vehicle = await this.volkswagenDevice.getVehicle();
 
-					this.volkswagenDevice.log(JSON.stringify(args));
-
-					// Update climatisation settings
 					await vehicle.updateClimatisation({
 						targetTemperature: args[0],
 						targetTemperatureUnit: "celsius",
