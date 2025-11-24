@@ -12,51 +12,15 @@ export class AuthorizationUrlError extends TranslatableError {
 	}
 }
 
-export class IdentityProviderError extends TranslatableError {
+export class LoginFailedError extends TranslatableError {
 	constructor(options?: ErrorOptions) {
-		const name = "IdentityProviderError";
+		const name = "LoginFailedError";
 		super(name, options);
 		this.name = name;
 	}
 
 	public get translationKey(): string {
-		return "errors.authentication.identity_provider_failed";
-	}
-}
-
-export class EmailSubmissionError extends TranslatableError {
-	constructor(options?: ErrorOptions) {
-		const name = "EmailSubmissionError";
-		super(name, options);
-		this.name = name;
-	}
-
-	public get translationKey(): string {
-		return "errors.authentication.email_submission_failed";
-	}
-}
-
-export class PasswordFormParseError extends TranslatableError {
-	constructor(options?: ErrorOptions) {
-		const name = "PasswordFormParseError";
-		super(name, options);
-		this.name = name;
-	}
-
-	public get translationKey(): string {
-		return "errors.authentication.password_form_parse_failed";
-	}
-}
-
-export class PasswordSubmissionError extends TranslatableError {
-	constructor(options?: ErrorOptions) {
-		const name = "PasswordSubmissionError";
-		super(name, options);
-		this.name = name;
-	}
-
-	public get translationKey(): string {
-		return "errors.authentication.password_submission_failed";
+		return "errors.authentication.login_failed";
 	}
 }
 

@@ -2,10 +2,8 @@
 	"errors": {
 		"authentication": {
 			"authorization_url_failed": "Impossible de récupérer l'URL d'autorisation auprès de WeConnect. Vérifiez votre connexion Internet et réessayez.",
-			"identity_provider_failed": "Connexion au fournisseur d'identité impossible. Réessayez plus tard.",
-			"email_submission_failed": "Adresse e-mail non envoyée. Vérifiez l'adresse puis réessayez.",
-			"password_form_parse_failed": "Le formulaire de mot de passe n'a pas pu être traité. Réessayez.",
-			"password_submission_failed": "Mot de passe non envoyé. Causes possibles : mot de passe incorrect, trop de tentatives de connexion en peu de temps ou conditions générales de l'application Volkswagen non acceptées. Pour les accepter, déconnectez-vous de l'application Volkswagen puis reconnectez-vous.",
+			"login_failed": "La connexion a échoué. Veuillez vérifier votre adresse e-mail et votre mot de passe. Si vous avez récemment changé votre mot de passe, assurez-vous d'utiliser le bon. Vous devrez peut-être également accepter les conditions générales dans l'application Volkswagen.",
+			"authorization_parameters_failed": "Authentification terminée mais impossible de récupérer les paramètres de sécurité. Veuillez réessayer.",
 			"token_exchange_failed": "Jetons d'accès introuvables. Réessayez ou consultez le forum communautaire."
 		}
 	},
