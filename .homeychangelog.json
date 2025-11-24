@@ -49,5 +49,8 @@
 	},
 	"1.0.16": {
 		"en": "Initial climatisation features"
+	},
+	"1.1.0": {
+		"en": "Integrate new authentication flow"
 	}
 }
