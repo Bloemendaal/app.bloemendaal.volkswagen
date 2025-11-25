@@ -52,5 +52,8 @@
 	},
 	"1.1.0": {
 		"en": "Integrate new authentication flow"
+	},
+	"1.1.1": {
+		"en": "Add parking position"
 	}
 }
