@@ -1,6 +1,5 @@
-import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.mjs";
 import type { StartClimatisationSettings } from "../api/climatisation.mjs";
-import Capability from "./capability.mjs";
+import Capability, { type VehicleData } from "./capability.mjs";
 
 export default class ClimatisationStatus extends Capability {
 	private isValidClimatisationState(
@@ -13,9 +12,9 @@ export default class ClimatisationStatus extends Capability {
 		return "climatisation_status";
 	}
 
-	public override async addCapabilities(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async addCapabilities({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		await this.addTimestampCapability(
 			capabilities.climatisation?.climatisationStatus.value
 				.carCapturedTimestamp,
@@ -61,9 +60,9 @@ export default class ClimatisationStatus extends Capability {
 		}
 	}
 
-	public override async setCapabilityValues(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async setCapabilityValues({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
 			capabilities.climatisation?.climatisationStatus.value
 				.carCapturedTimestamp,
@@ -118,9 +117,7 @@ export default class ClimatisationStatus extends Capability {
 		}
 	}
 
-	public override async registerCapabilityListeners(
-		_capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async registerCapabilityListeners(): Promise<void> {
 		const canClimate = await this.can("climatisation");
 
 		if (!canClimate) {

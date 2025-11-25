@@ -1,14 +1,13 @@
-import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.mjs";
-import Capability from "./capability.mjs";
+import Capability, { type VehicleData } from "./capability.mjs";
 
 export default class HonkAndFlash extends Capability {
 	protected override getCapabilityName(): string {
 		return "hook_and_flash";
 	}
 
-	public override async addCapabilities(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async addCapabilities({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		const canHonkAndFlash = await this.can(
 			"honkAndFlash",
 			capabilities.userCapabilities?.capabilitiesStatus.value,

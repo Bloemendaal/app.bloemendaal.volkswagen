@@ -1,25 +1,27 @@
 import type { CapabilitiesStatusData } from "../api/capabilities/user-capabilities.mjs";
 import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.mjs";
+import type { ParkingPositionData } from "../api/parking-position.mjs";
 import type { DateTimeString, FloatString } from "../api/types.mjs";
 import type VolkswagenDevice from "../device.mjs";
+
+export interface VehicleData {
+	capabilities: Partial<SelectiveStatusCapabilitiesData>;
+	parkingPosition: ParkingPositionData | null;
+}
 
 export default abstract class Capability {
 	constructor(protected readonly volkswagenDevice: VolkswagenDevice) {}
 
-	public async addCapabilities(
-		_selectiveStatusCapabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public async addCapabilities(_vehicleData: VehicleData): Promise<void> {
 		// Default implementation does nothing
 	}
 
-	public async setCapabilityValues(
-		_selectiveStatusCapabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public async setCapabilityValues(_vehicleData: VehicleData): Promise<void> {
 		// Default implementation does nothing
 	}
 
 	public async registerCapabilityListeners(
-		_selectiveStatusCapabilities: Partial<SelectiveStatusCapabilitiesData>,
+		_vehicleData: VehicleData,
 	): Promise<void> {
 		// Default implementation does nothing
 	}

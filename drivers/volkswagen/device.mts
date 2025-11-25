@@ -1,5 +1,4 @@
 import Homey from "homey";
-import type { SelectiveStatusCapabilitiesData } from "./api/capabilities.mjs";
 import DebounceScheduler from "./api/debounce-scheduler.mjs";
 import TranslatableError from "./api/errors/translatable-error.mjs";
 import User from "./api/user.mjs";
@@ -7,9 +6,12 @@ import type Vehicle from "./api/vehicle.mjs";
 import Access from "./capabilities/access.mjs";
 import BatteryStatus from "./capabilities/battery-status.mjs";
 import type Capability from "./capabilities/capability.mjs";
+import type { VehicleData } from "./capabilities/capability.mjs";
 import ChargingSettings from "./capabilities/charging-settings.mjs";
 import ChargingStatus from "./capabilities/charging-status.mjs";
 import ClimatisationStatus from "./capabilities/climatisation-status.mjs";
+import Coordinate from "./capabilities/coordinate.mjs";
+import DistanceHome from "./capabilities/distance-home.mjs";
 import HonkAndFlash from "./capabilities/hook-and-flash.mjs";
 import MaintenanceStatus from "./capabilities/maintenance-status.mjs";
 import OdometerStatus from "./capabilities/odometer-status.mjs";
@@ -42,6 +44,8 @@ export default class VolkswagenDevice extends Homey.Device {
 		new ChargingSettings(this),
 		new ChargingStatus(this),
 		new ClimatisationStatus(this),
+		new Coordinate(this),
+		new DistanceHome(this),
 		new HonkAndFlash(this),
 		new MaintenanceStatus(this),
 		new OdometerStatus(this),
@@ -58,19 +62,20 @@ export default class VolkswagenDevice extends Homey.Device {
 		const vehicle = await this.getVehicle();
 		vehicle.onSettingsUpdate(this.setSettings.bind(this));
 
-		const capabilities = await vehicle.getVehicleCapabilities();
+		const vehicleData = await this.fetchVehicleData(vehicle);
 
 		await this.setEnergy({
 			electricCar:
-				capabilities.fuelStatus?.rangeStatus.value.carType === "electric",
+				vehicleData.capabilities.fuelStatus?.rangeStatus.value.carType ===
+				"electric",
 		});
 
 		for (const capability of this.capabilities) {
-			await capability.addCapabilities(capabilities);
+			await capability.addCapabilities(vehicleData);
 		}
 
 		for (const capability of this.capabilities) {
-			await capability.registerCapabilityListeners(capabilities);
+			await capability.registerCapabilityListeners(vehicleData);
 		}
 
 		for (const flow of this.flows) {
@@ -154,17 +159,31 @@ export default class VolkswagenDevice extends Homey.Device {
 		return await this.debounceScheduler.schedule({ minimum, maximum });
 	}
 
+	private async fetchVehicleData(
+		vehicle: Vehicle | null = null,
+	): Promise<VehicleData> {
+		if (!vehicle) {
+			vehicle = await this.getVehicle();
+		}
+
+		const capabilities = await vehicle.getVehicleCapabilities();
+		const parkingPosition = await vehicle
+			.getParkingPosition()
+			.catch(() => null);
+
+		return { capabilities, parkingPosition };
+	}
+
 	private async setCapabilities(
-		capabilities: Partial<SelectiveStatusCapabilitiesData> | null = null,
+		vehicleData: VehicleData | null = null,
 	): Promise<void> {
-		if (!capabilities) {
-			const vehicle = await this.getVehicle();
-			capabilities = await vehicle.getVehicleCapabilities();
+		if (!vehicleData) {
+			vehicleData = await this.fetchVehicleData();
 		}
 
 		await Promise.all(
 			this.capabilities.map((capability) =>
-				capability.setCapabilityValues(capabilities),
+				capability.setCapabilityValues(vehicleData),
 			),
 		);
 	}

@@ -44,7 +44,7 @@
 	},
 	"brandColor": "#001e50",
 	"category": ["localization"],
-	"permissions": [],
+	"permissions": ["homey:manager:geolocation"],
 	"homeyCommunityTopicId": 145155,
 	"source": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen",
 	"support": "mailto:casperbloemendaal@gmail.com",

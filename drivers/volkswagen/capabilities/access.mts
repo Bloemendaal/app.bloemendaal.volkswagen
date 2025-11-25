@@ -1,15 +1,15 @@
 import type { CapabilitiesStatusData } from "../api/capabilities/user-capabilities.mjs";
 import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.mjs";
-import Capability from "./capability.mjs";
+import Capability, { type VehicleData } from "./capability.mjs";
 
 export default class Access extends Capability {
 	protected override getCapabilityName(): string {
 		return "access";
 	}
 
-	public override async addCapabilities(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async addCapabilities({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		await this.addTimestampCapability(
 			capabilities.access?.accessStatus.value.carCapturedTimestamp,
 		);
@@ -111,9 +111,9 @@ export default class Access extends Capability {
 		return vehicle.capabilities.some(callback);
 	}
 
-	public override async setCapabilityValues(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async setCapabilityValues({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
 			capabilities.access?.accessStatus.value.carCapturedTimestamp,
 		);
@@ -173,9 +173,9 @@ export default class Access extends Capability {
 		}
 	}
 
-	public override async registerCapabilityListeners(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async registerCapabilityListeners({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		if (!this.volkswagenDevice.hasCapability("locked")) {
 			return;
 		}

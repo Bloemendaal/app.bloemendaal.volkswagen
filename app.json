@@ -2,7 +2,7 @@
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "app.bloemendaal.volkswagen",
   "version": "1.1.0",
-  "compatibility": ">=12.8.0",
+  "compatibility": ">=12.9.0",
   "sdk": 3,
   "platforms": [
     "local"
@@ -49,7 +49,9 @@
   "category": [
     "localization"
   ],
-  "permissions": [],
+  "permissions": [
+    "homey:manager:geolocation"
+  ],
   "homeyCommunityTopicId": 145155,
   "source": "https://github.com/Bloemendaal/app.bloemendaal.volkswagen",
   "support": "mailto:casperbloemendaal@gmail.com",
@@ -1024,6 +1026,42 @@
       "uiComponent": "toggle",
       "icon": "/assets/capabilities/climatisation_onoff.svg"
     },
+    "coordinate": {
+      "type": "number",
+      "title": {
+        "en": "Coordinate",
+        "nl": "Coördinaat",
+        "de": "Koordinate",
+        "fr": "Coordonnée",
+        "da": "Koordinat",
+        "es": "Coordenada",
+        "it": "Coordinata",
+        "no": "Koordinat",
+        "sv": "Koordinat",
+        "pl": "Współrzędna",
+        "ru": "Координата",
+        "ko": "좌표"
+      },
+      "units": {
+        "en": "°",
+        "nl": "°",
+        "de": "°",
+        "fr": "°",
+        "da": "°",
+        "es": "°",
+        "it": "°",
+        "no": "°",
+        "sv": "°",
+        "pl": "°",
+        "ru": "°",
+        "ko": "°"
+      },
+      "decimals": 6,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/coordinate.svg"
+    },
     "maintenance_due_days": {
       "type": "number",
       "title": {
@@ -1146,6 +1184,43 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/capabilities/measure_charging.svg",
+      "insights": true,
+      "decimals": 0
+    },
+    "measure_distance_home": {
+      "type": "number",
+      "title": {
+        "en": "Distance from home",
+        "nl": "Afstand van huis",
+        "da": "Afstand fra hjem",
+        "de": "Entfernung von zu Hause",
+        "es": "Distancia desde casa",
+        "fr": "Distance de la maison",
+        "it": "Distanza da casa",
+        "no": "Avstand fra hjemmet",
+        "sv": "Avstånd från hemmet",
+        "pl": "Odległość od domu",
+        "ru": "Расстояние от дома",
+        "ko": "집에서의 거리"
+      },
+      "units": {
+        "en": "m",
+        "nl": "m",
+        "da": "m",
+        "de": "m",
+        "es": "m",
+        "fr": "m",
+        "it": "m",
+        "no": "m",
+        "sv": "m",
+        "pl": "m",
+        "ru": "м",
+        "ko": "m"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/measure_distance_home.svg",
       "insights": true,
       "decimals": 0
     },

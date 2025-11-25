@@ -1,0 +1,36 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Coordinate",
+		"nl": "Coördinaat",
+		"de": "Koordinate",
+		"fr": "Coordonnée",
+		"da": "Koordinat",
+		"es": "Coordenada",
+		"it": "Coordinata",
+		"no": "Koordinat",
+		"sv": "Koordinat",
+		"pl": "Współrzędna",
+		"ru": "Координата",
+		"ko": "좌표"
+	},
+	"units": {
+		"en": "°",
+		"nl": "°",
+		"de": "°",
+		"fr": "°",
+		"da": "°",
+		"es": "°",
+		"it": "°",
+		"no": "°",
+		"sv": "°",
+		"pl": "°",
+		"ru": "°",
+		"ko": "°"
+	},
+	"decimals": 6,
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/coordinate.svg"
+}

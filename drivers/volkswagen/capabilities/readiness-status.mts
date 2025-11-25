@@ -1,14 +1,13 @@
-import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.mjs";
-import Capability from "./capability.mjs";
+import Capability, { type VehicleData } from "./capability.mjs";
 
 export default class ReadinessStatus extends Capability {
 	protected override getCapabilityName(): string {
 		return "readiness_status";
 	}
 
-	public override async addCapabilities(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async addCapabilities({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		const isOnline =
 			capabilities.readiness?.readinessStatus.value.connectionState.isOnline;
 
@@ -30,9 +29,9 @@ export default class ReadinessStatus extends Capability {
 		}
 	}
 
-	public override async setCapabilityValues(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async setCapabilityValues({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		const isOnline =
 			capabilities.readiness?.readinessStatus.value.connectionState.isOnline;
 

@@ -1,14 +1,13 @@
-import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.mjs";
-import Capability from "./capability.mjs";
+import Capability, { type VehicleData } from "./capability.mjs";
 
 export default class OdometerStatus extends Capability {
 	protected override getCapabilityName(): string {
 		return "odometer_status";
 	}
 
-	public override async addCapabilities(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async addCapabilities({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		await this.addTimestampCapability(
 			capabilities.measurements?.odometerStatus?.value.carCapturedTimestamp,
 		);
@@ -25,9 +24,9 @@ export default class OdometerStatus extends Capability {
 		}
 	}
 
-	public override async setCapabilityValues(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async setCapabilityValues({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
 			capabilities.measurements?.odometerStatus?.value.carCapturedTimestamp,
 		);

@@ -1,14 +1,13 @@
-import type { SelectiveStatusCapabilitiesData } from "../api/capabilities.mjs";
-import Capability from "./capability.mjs";
+import Capability, { type VehicleData } from "./capability.mjs";
 
 export default class WakeUpTrigger extends Capability {
 	protected override getCapabilityName(): string {
 		return "wake_up_trigger";
 	}
 
-	public override async addCapabilities(
-		capabilities: Partial<SelectiveStatusCapabilitiesData>,
-	): Promise<void> {
+	public override async addCapabilities({
+		capabilities,
+	}: VehicleData): Promise<void> {
 		const canWakeUp = await this.can(
 			"vehicleWakeUpTrigger",
 			capabilities.userCapabilities?.capabilitiesStatus.value,

@@ -1,0 +1,37 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Distance from home",
+		"nl": "Afstand van huis",
+		"da": "Afstand fra hjem",
+		"de": "Entfernung von zu Hause",
+		"es": "Distancia desde casa",
+		"fr": "Distance de la maison",
+		"it": "Distanza da casa",
+		"no": "Avstand fra hjemmet",
+		"sv": "Avstånd från hemmet",
+		"pl": "Odległość od domu",
+		"ru": "Расстояние от дома",
+		"ko": "집에서의 거리"
+	},
+	"units": {
+		"en": "m",
+		"nl": "m",
+		"da": "m",
+		"de": "m",
+		"es": "m",
+		"fr": "m",
+		"it": "m",
+		"no": "m",
+		"sv": "m",
+		"pl": "m",
+		"ru": "м",
+		"ko": "m"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/coordinate.svg",
+	"insights": true,
+	"decimals": 0
+}
