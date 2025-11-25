@@ -55,5 +55,8 @@
 	},
 	"1.1.1": {
 		"en": "Add parking position"
+	},
+	"1.1.2": {
+		"en": "Add translations to the coordinate sensors"
 	}
 }
