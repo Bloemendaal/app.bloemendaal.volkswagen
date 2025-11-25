@@ -38,6 +38,13 @@
 				"max": "Maximaal"
 			}
 		},
+		"coordinate": {
+			"title": "__name__",
+			"variables": {
+				"latitude": "Breedtegraad",
+				"longitude": "Lengtegraad"
+			}
+		},
 		"measure_battery": {
 			"title": "__name__ batterij",
 			"variables": {

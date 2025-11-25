@@ -38,6 +38,13 @@
 				"max": "Максимум"
 			}
 		},
+		"coordinate": {
+			"title": "__name__",
+			"variables": {
+				"latitude": "Широта",
+				"longitude": "Долгота"
+			}
+		},
 		"measure_battery": {
 			"title": "Батарея __name__",
 			"variables": {

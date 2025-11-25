@@ -20,9 +20,25 @@ export default class Coordinate extends Capability {
 			await this.volkswagenDevice.addCapability("coordinate.latitude");
 		}
 
+		await this.volkswagenDevice.setCapabilityOptions("coordinate.latitude", {
+			title: this.volkswagenDevice.homey.__("capabilities.coordinate.title", {
+				name: this.volkswagenDevice.homey.__(
+					"capabilities.coordinate.variables.latitude",
+				),
+			}),
+		});
+
 		if (!this.volkswagenDevice.hasCapability("coordinate.longitude")) {
 			await this.volkswagenDevice.addCapability("coordinate.longitude");
 		}
+
+		await this.volkswagenDevice.setCapabilityOptions("coordinate.longitude", {
+			title: this.volkswagenDevice.homey.__("capabilities.coordinate.title", {
+				name: this.volkswagenDevice.homey.__(
+					"capabilities.coordinate.variables.longitude",
+				),
+			}),
+		});
 	}
 
 	public override async setCapabilityValues(

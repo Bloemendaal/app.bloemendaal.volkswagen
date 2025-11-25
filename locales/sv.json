@@ -38,6 +38,13 @@
 				"max": "Maximala"
 			}
 		},
+		"coordinate": {
+			"title": "__name__",
+			"variables": {
+				"latitude": "Latitud",
+				"longitude": "Longitud"
+			}
+		},
 		"measure_battery": {
 			"title": "__name__ batteri",
 			"variables": {

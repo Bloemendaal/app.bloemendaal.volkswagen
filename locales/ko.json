@@ -38,6 +38,13 @@
 				"max": "최대"
 			}
 		},
+		"coordinate": {
+			"title": "__name__",
+			"variables": {
+				"latitude": "위도",
+				"longitude": "경도"
+			}
+		},
 		"measure_battery": {
 			"title": "__name__ 배터리",
 			"variables": {
