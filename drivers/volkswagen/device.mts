@@ -20,7 +20,9 @@ import TemperatureBatteryStatus from "./capabilities/temperature-battery-status.
 import WakeUpTrigger from "./capabilities/wake-up-trigger.mjs";
 import ControlCharging from "./flows/control-charging.mjs";
 import type Flow from "./flows/flow.mjs";
+import StartClimatisationSettings from "./flows/start-climatisation-settings.mjs";
 import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
+import UpdateClimatisationSettings from "./flows/update-climatisation-settings.mjs";
 
 const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
@@ -56,6 +58,8 @@ export default class VolkswagenDevice extends Homey.Device {
 	private readonly flows: Flow[] = [
 		new UpdateChargingSettings(this),
 		new ControlCharging(this),
+		new UpdateClimatisationSettings(this),
+		new StartClimatisationSettings(this),
 	];
 
 	public async onInit(): Promise<void> {

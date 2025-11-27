@@ -68,6 +68,438 @@
   "flow": {
     "actions": [
       {
+        "id": "update_climatisation_settings",
+        "title": {
+          "en": "Update climatisation settings (only)",
+          "nl": "Wijzig klimaatinstellingen (alleen)",
+          "de": "Klimatisierungseinstellungen aktualisieren (nur)",
+          "fr": "Mettre à jour les paramètres de climatisation (uniquement)",
+          "da": "Opdater klimaindstillinger (kun)",
+          "es": "Actualizar configuración de climatización (solo)",
+          "it": "Aggiorna impostazioni climatizzazione (solo)",
+          "no": "Oppdater klimainnstillinger (kun)",
+          "sv": "Uppdatera klimatinställningar (endast)",
+          "pl": "Zaktualizuj ustawienia klimatyzacji (tylko)",
+          "ru": "Обновить настройки климатизации (только)",
+          "ko": "냉난방 설정 업데이트 (설정만)"
+        },
+        "titleFormatted": {
+          "en": "Update climatisation settings: target temperature [[target_temperature]]°C, climatisation at unlock [[climatisation_at_unlock]], window heating [[window_heating]]",
+          "nl": "Wijzig klimaatinstellingen: doeltemperatuur [[target_temperature]]°C, klimaat bij ontgrendelen [[climatisation_at_unlock]], raamverwarming [[window_heating]]",
+          "de": "Klimatisierungseinstellungen aktualisieren: Zieltemperatur [[target_temperature]]°C, Klimatisierung beim Entsperren [[climatisation_at_unlock]], Scheibenheizung [[window_heating]]",
+          "fr": "Mettre à jour les paramètres de climatisation: température cible [[target_temperature]]°C, climatisation au déverrouillage [[climatisation_at_unlock]], chauffage des vitres [[window_heating]]",
+          "da": "Opdater klimaindstillinger: måltemperatur [[target_temperature]]°C, klima ved oplåsning [[climatisation_at_unlock]], vinduesopvarmning [[window_heating]]",
+          "es": "Actualizar configuración de climatización: temperatura objetivo [[target_temperature]]°C, climatización al desbloquear [[climatisation_at_unlock]], calefacción de ventanas [[window_heating]]",
+          "it": "Aggiorna impostazioni climatizzazione: temperatura target [[target_temperature]]°C, climatizzazione allo sblocco [[climatisation_at_unlock]], riscaldamento finestrini [[window_heating]]",
+          "no": "Oppdater klimainnstillinger: måltemperatur [[target_temperature]]°C, klima ved opplåsing [[climatisation_at_unlock]], vindusoppvarming [[window_heating]]",
+          "sv": "Uppdatera klimatinställningar: måltemperatur [[target_temperature]]°C, klimat vid upplåsning [[climatisation_at_unlock]], fönstervärme [[window_heating]]",
+          "pl": "Zaktualizuj ustawienia klimatyzacji: temperatura docelowa [[target_temperature]]°C, klimatyzacja przy odblokowaniu [[climatisation_at_unlock]], ogrzewanie szyb [[window_heating]]",
+          "ru": "Обновить настройки климатизации: целевая температура [[target_temperature]]°C, климатизация при разблокировке [[climatisation_at_unlock]], обогрев стёкол [[window_heating]]",
+          "ko": "냉난방 설정 업데이트: 목표 온도 [[target_temperature]]°C, 잠금 해제 시 냉난방 [[climatisation_at_unlock]], 창문 히터 [[window_heating]]"
+        },
+        "hint": {
+          "en": "Updates climatisation settings without starting the climatisation. Leave fields empty to keep current settings.",
+          "nl": "Wijzigt klimaatinstellingen zonder de klimaatregeling te starten. Laat velden leeg om huidige instellingen te behouden.",
+          "de": "Aktualisiert die Klimatisierungseinstellungen, ohne die Klimatisierung zu starten. Felder leer lassen, um aktuelle Einstellungen zu behalten.",
+          "fr": "Met à jour les paramètres de climatisation sans démarrer la climatisation. Laissez les champs vides pour conserver les paramètres actuels.",
+          "da": "Opdaterer klimaindstillinger uden at starte klimaanlægget. Lad felter være tomme for at beholde nuværende indstillinger.",
+          "es": "Actualiza la configuración de climatización sin iniciar la climatización. Deje los campos vacíos para mantener la configuración actual.",
+          "it": "Aggiorna le impostazioni di climatizzazione senza avviare la climatizzazione. Lascia i campi vuoti per mantenere le impostazioni correnti.",
+          "no": "Oppdaterer klimainnstillinger uten å starte klimaanlegget. La felt være tomme for å beholde gjeldende innstillinger.",
+          "sv": "Uppdaterar klimatinställningar utan att starta klimatanläggningen. Lämna fält tomma för att behålla nuvarande inställningar.",
+          "pl": "Aktualizuje ustawienia klimatyzacji bez uruchamiania klimatyzacji. Zostaw pola puste, aby zachować bieżące ustawienia.",
+          "ru": "Обновляет настройки климатизации без запуска климатизации. Оставьте поля пустыми, чтобы сохранить текущие настройки.",
+          "ko": "냉난방을 시작하지 않고 냉난방 설정만 업데이트합니다. 현재 설정을 유지하려면 필드를 비워 두세요."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
+          },
+          {
+            "type": "number",
+            "name": "target_temperature",
+            "required": false,
+            "title": {
+              "en": "Target temperature (°C)",
+              "nl": "Doeltemperatuur (°C)",
+              "da": "Måltemperatur (°C)",
+              "de": "Zieltemperatur (°C)",
+              "es": "Temperatura objetivo (°C)",
+              "fr": "Température cible (°C)",
+              "it": "Temperatura target (°C)",
+              "no": "Måltemperatur (°C)",
+              "sv": "Måltemperatur (°C)",
+              "pl": "Temperatura docelowa (°C)",
+              "ru": "Целевая температура (°C)",
+              "ko": "목표 온도 (°C)"
+            },
+            "min": 16,
+            "max": 30,
+            "step": 0.5
+          },
+          {
+            "type": "dropdown",
+            "name": "climatisation_at_unlock",
+            "title": {
+              "en": "Climatisation at unlock",
+              "nl": "Klimaat bij ontgrendelen",
+              "de": "Klimatisierung beim Entsperren",
+              "fr": "Climatisation au déverrouillage",
+              "da": "Klima ved oplåsning",
+              "es": "Climatización al desbloquear",
+              "it": "Climatizzazione allo sblocco",
+              "no": "Klima ved opplåsing",
+              "sv": "Klimat vid upplåsning",
+              "pl": "Klimatyzacja przy odblokowaniu",
+              "ru": "Климатизация при разблокировке",
+              "ko": "잠금 해제 시 냉난방"
+            },
+            "values": [
+              {
+                "id": "unchanged",
+                "title": {
+                  "en": "Unchanged",
+                  "nl": "Ongewijzigd",
+                  "de": "Unverändert",
+                  "fr": "Inchangé",
+                  "da": "Uændret",
+                  "es": "Sin cambios",
+                  "it": "Invariato",
+                  "no": "Uendret",
+                  "sv": "Oförändrad",
+                  "pl": "Bez zmian",
+                  "ru": "Без изменений",
+                  "ko": "변경 없음"
+                }
+              },
+              {
+                "id": "true",
+                "title": {
+                  "en": "Yes",
+                  "nl": "Ja",
+                  "de": "Ja",
+                  "fr": "Oui",
+                  "da": "Ja",
+                  "es": "Sí",
+                  "it": "Sì",
+                  "no": "Ja",
+                  "sv": "Ja",
+                  "pl": "Tak",
+                  "ru": "Да",
+                  "ko": "예"
+                }
+              },
+              {
+                "id": "false",
+                "title": {
+                  "en": "No",
+                  "nl": "Nee",
+                  "de": "Nein",
+                  "fr": "Non",
+                  "da": "Nej",
+                  "es": "No",
+                  "it": "No",
+                  "no": "Nei",
+                  "sv": "Nej",
+                  "pl": "Nie",
+                  "ru": "Нет",
+                  "ko": "아니요"
+                }
+              }
+            ]
+          },
+          {
+            "type": "dropdown",
+            "name": "window_heating",
+            "title": {
+              "en": "Window heating",
+              "nl": "Raamverwarming",
+              "de": "Scheibenheizung",
+              "fr": "Chauffage des vitres",
+              "da": "Vinduesopvarmning",
+              "es": "Calefacción de ventanas",
+              "it": "Riscaldamento finestrini",
+              "no": "Vindusoppvarming",
+              "sv": "Fönstervärme",
+              "pl": "Ogrzewanie szyb",
+              "ru": "Обогрев стёкол",
+              "ko": "창문 히터"
+            },
+            "values": [
+              {
+                "id": "unchanged",
+                "title": {
+                  "en": "Unchanged",
+                  "nl": "Ongewijzigd",
+                  "de": "Unverändert",
+                  "fr": "Inchangé",
+                  "da": "Uændret",
+                  "es": "Sin cambios",
+                  "it": "Invariato",
+                  "no": "Uendret",
+                  "sv": "Oförändrad",
+                  "pl": "Bez zmian",
+                  "ru": "Без изменений",
+                  "ko": "변경 없음"
+                }
+              },
+              {
+                "id": "true",
+                "title": {
+                  "en": "Yes",
+                  "nl": "Ja",
+                  "de": "Ja",
+                  "fr": "Oui",
+                  "da": "Ja",
+                  "es": "Sí",
+                  "it": "Sì",
+                  "no": "Ja",
+                  "sv": "Ja",
+                  "pl": "Tak",
+                  "ru": "Да",
+                  "ko": "예"
+                }
+              },
+              {
+                "id": "false",
+                "title": {
+                  "en": "No",
+                  "nl": "Nee",
+                  "de": "Nein",
+                  "fr": "Non",
+                  "da": "Nej",
+                  "es": "No",
+                  "it": "No",
+                  "no": "Nei",
+                  "sv": "Nej",
+                  "pl": "Nie",
+                  "ru": "Нет",
+                  "ko": "아니요"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "start_climatisation_settings",
+        "title": {
+          "en": "Update and start climatisation",
+          "nl": "Wijzig en start klimaatregeling",
+          "de": "Klimatisierung aktualisieren und starten",
+          "fr": "Mettre à jour et démarrer la climatisation",
+          "da": "Opdater og start klimaanlæg",
+          "es": "Actualizar e iniciar climatización",
+          "it": "Aggiorna e avvia climatizzazione",
+          "no": "Oppdater og start klimaanlegg",
+          "sv": "Uppdatera och starta klimatanläggning",
+          "pl": "Zaktualizuj i uruchom klimatyzację",
+          "ru": "Обновить и запустить климатизацию",
+          "ko": "냉난방 설정 업데이트 및 시작"
+        },
+        "titleFormatted": {
+          "en": "Update and start climatisation: target temperature [[target_temperature]]°C, climatisation at unlock [[climatisation_at_unlock]], window heating [[window_heating]]",
+          "nl": "Wijzig en start klimaatregeling: doeltemperatuur [[target_temperature]]°C, klimaat bij ontgrendelen [[climatisation_at_unlock]], raamverwarming [[window_heating]]",
+          "de": "Klimatisierung aktualisieren und starten: Zieltemperatur [[target_temperature]]°C, Klimatisierung beim Entsperren [[climatisation_at_unlock]], Scheibenheizung [[window_heating]]",
+          "fr": "Mettre à jour et démarrer la climatisation: température cible [[target_temperature]]°C, climatisation au déverrouillage [[climatisation_at_unlock]], chauffage des vitres [[window_heating]]",
+          "da": "Opdater og start klimaanlæg: måltemperatur [[target_temperature]]°C, klima ved oplåsning [[climatisation_at_unlock]], vinduesopvarmning [[window_heating]]",
+          "es": "Actualizar e iniciar climatización: temperatura objetivo [[target_temperature]]°C, climatización al desbloquear [[climatisation_at_unlock]], calefacción de ventanas [[window_heating]]",
+          "it": "Aggiorna e avvia climatizzazione: temperatura target [[target_temperature]]°C, climatizzazione allo sblocco [[climatisation_at_unlock]], riscaldamento finestrini [[window_heating]]",
+          "no": "Oppdater og start klimaanlegg: måltemperatur [[target_temperature]]°C, klima ved opplåsing [[climatisation_at_unlock]], vindusoppvarming [[window_heating]]",
+          "sv": "Uppdatera och starta klimatanläggning: måltemperatur [[target_temperature]]°C, klimat vid upplåsning [[climatisation_at_unlock]], fönstervärme [[window_heating]]",
+          "pl": "Zaktualizuj i uruchom klimatyzację: temperatura docelowa [[target_temperature]]°C, klimatyzacja przy odblokowaniu [[climatisation_at_unlock]], ogrzewanie szyb [[window_heating]]",
+          "ru": "Обновить и запустить климатизацию: целевая температура [[target_temperature]]°C, климатизация при разблокировке [[climatisation_at_unlock]], обогрев стёкол [[window_heating]]",
+          "ko": "냉난방 설정 업데이트 및 시작: 목표 온도 [[target_temperature]]°C, 잠금 해제 시 냉난방 [[climatisation_at_unlock]], 창문 히터 [[window_heating]]"
+        },
+        "hint": {
+          "en": "Updates climatisation settings and immediately starts the climatisation. Leave fields empty to keep current settings.",
+          "nl": "Wijzigt klimaatinstellingen en start direct de klimaatregeling. Laat velden leeg om huidige instellingen te behouden.",
+          "de": "Aktualisiert die Klimatisierungseinstellungen und startet sofort die Klimatisierung. Felder leer lassen, um aktuelle Einstellungen zu behalten.",
+          "fr": "Met à jour les paramètres de climatisation et démarre immédiatement la climatisation. Laissez les champs vides pour conserver les paramètres actuels.",
+          "da": "Opdaterer klimaindstillinger og starter straks klimaanlægget. Lad felter være tomme for at beholde nuværende indstillinger.",
+          "es": "Actualiza la configuración de climatización e inicia inmediatamente la climatización. Deje los campos vacíos para mantener la configuración actual.",
+          "it": "Aggiorna le impostazioni di climatizzazione e avvia immediatamente la climatizzazione. Lascia i campi vuoti per mantenere le impostazioni correnti.",
+          "no": "Oppdaterer klimainnstillinger og starter klimaanlegget umiddelbart. La felt være tomme for å beholde gjeldende innstillinger.",
+          "sv": "Uppdaterar klimatinställningar och startar klimatanläggningen omedelbart. Lämna fält tomma för att behålla nuvarande inställningar.",
+          "pl": "Aktualizuje ustawienia klimatyzacji i natychmiast uruchamia klimatyzację. Zostaw pola puste, aby zachować bieżące ustawienia.",
+          "ru": "Обновляет настройки климатизации и немедленно запускает климатизацию. Оставьте поля пустыми, чтобы сохранить текущие настройки.",
+          "ko": "냉난방 설정을 업데이트하고 즉시 냉난방을 시작합니다. 현재 설정을 유지하려면 필드를 비워 두세요."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
+          },
+          {
+            "type": "number",
+            "name": "target_temperature",
+            "required": false,
+            "title": {
+              "en": "Target temperature (°C)",
+              "nl": "Doeltemperatuur (°C)",
+              "da": "Måltemperatur (°C)",
+              "de": "Zieltemperatur (°C)",
+              "es": "Temperatura objetivo (°C)",
+              "fr": "Température cible (°C)",
+              "it": "Temperatura target (°C)",
+              "no": "Måltemperatur (°C)",
+              "sv": "Måltemperatur (°C)",
+              "pl": "Temperatura docelowa (°C)",
+              "ru": "Целевая температура (°C)",
+              "ko": "목표 온도 (°C)"
+            },
+            "min": 16,
+            "max": 30,
+            "step": 0.5
+          },
+          {
+            "type": "dropdown",
+            "name": "climatisation_at_unlock",
+            "title": {
+              "en": "Climatisation at unlock",
+              "nl": "Klimaat bij ontgrendelen",
+              "de": "Klimatisierung beim Entsperren",
+              "fr": "Climatisation au déverrouillage",
+              "da": "Klima ved oplåsning",
+              "es": "Climatización al desbloquear",
+              "it": "Climatizzazione allo sblocco",
+              "no": "Klima ved opplåsing",
+              "sv": "Klimat vid upplåsning",
+              "pl": "Klimatyzacja przy odblokowaniu",
+              "ru": "Климатизация при разблокировке",
+              "ko": "잠금 해제 시 냉난방"
+            },
+            "values": [
+              {
+                "id": "unchanged",
+                "title": {
+                  "en": "Unchanged",
+                  "nl": "Ongewijzigd",
+                  "de": "Unverändert",
+                  "fr": "Inchangé",
+                  "da": "Uændret",
+                  "es": "Sin cambios",
+                  "it": "Invariato",
+                  "no": "Uendret",
+                  "sv": "Oförändrad",
+                  "pl": "Bez zmian",
+                  "ru": "Без изменений",
+                  "ko": "변경 없음"
+                }
+              },
+              {
+                "id": "true",
+                "title": {
+                  "en": "Yes",
+                  "nl": "Ja",
+                  "de": "Ja",
+                  "fr": "Oui",
+                  "da": "Ja",
+                  "es": "Sí",
+                  "it": "Sì",
+                  "no": "Ja",
+                  "sv": "Ja",
+                  "pl": "Tak",
+                  "ru": "Да",
+                  "ko": "예"
+                }
+              },
+              {
+                "id": "false",
+                "title": {
+                  "en": "No",
+                  "nl": "Nee",
+                  "de": "Nein",
+                  "fr": "Non",
+                  "da": "Nej",
+                  "es": "No",
+                  "it": "No",
+                  "no": "Nei",
+                  "sv": "Nej",
+                  "pl": "Nie",
+                  "ru": "Нет",
+                  "ko": "아니요"
+                }
+              }
+            ]
+          },
+          {
+            "type": "dropdown",
+            "name": "window_heating",
+            "title": {
+              "en": "Window heating",
+              "nl": "Raamverwarming",
+              "de": "Scheibenheizung",
+              "fr": "Chauffage des vitres",
+              "da": "Vinduesopvarmning",
+              "es": "Calefacción de ventanas",
+              "it": "Riscaldamento finestrini",
+              "no": "Vindusoppvarming",
+              "sv": "Fönstervärme",
+              "pl": "Ogrzewanie szyb",
+              "ru": "Обогрев стёкол",
+              "ko": "창문 히터"
+            },
+            "values": [
+              {
+                "id": "unchanged",
+                "title": {
+                  "en": "Unchanged",
+                  "nl": "Ongewijzigd",
+                  "de": "Unverändert",
+                  "fr": "Inchangé",
+                  "da": "Uændret",
+                  "es": "Sin cambios",
+                  "it": "Invariato",
+                  "no": "Uendret",
+                  "sv": "Oförändrad",
+                  "pl": "Bez zmian",
+                  "ru": "Без изменений",
+                  "ko": "변경 없음"
+                }
+              },
+              {
+                "id": "true",
+                "title": {
+                  "en": "Yes",
+                  "nl": "Ja",
+                  "de": "Ja",
+                  "fr": "Oui",
+                  "da": "Ja",
+                  "es": "Sí",
+                  "it": "Sì",
+                  "no": "Ja",
+                  "sv": "Ja",
+                  "pl": "Tak",
+                  "ru": "Да",
+                  "ko": "예"
+                }
+              },
+              {
+                "id": "false",
+                "title": {
+                  "en": "No",
+                  "nl": "Nee",
+                  "de": "Nein",
+                  "fr": "Non",
+                  "da": "Nej",
+                  "es": "No",
+                  "it": "No",
+                  "no": "Nei",
+                  "sv": "Nej",
+                  "pl": "Nie",
+                  "ru": "Нет",
+                  "ko": "아니요"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "update_charge_settings",
         "title": {
           "en": "Update charging settings",
