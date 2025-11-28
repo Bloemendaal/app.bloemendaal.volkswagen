@@ -1,6 +1,80 @@
 {
 	"actions": [
 		{
+			"id": "climatisation_onoff_on",
+			"highlight": true,
+			"title": {
+				"en": "Turn on climatisation",
+				"nl": "Klimaatregeling aanzetten",
+				"de": "Klimatisierung einschalten",
+				"fr": "Activer la climatisation",
+				"es": "Encender climatización",
+				"it": "Accendi climatizzazione",
+				"da": "Tænd klimaanlæg",
+				"no": "Slå på klimaanlegg",
+				"sv": "Slå på klimatanläggning",
+				"pl": "Włącz klimatyzację",
+				"ru": "Включить климатизацию",
+				"ko": "냉난방 켜기"
+			},
+			"titleFormatted": {
+				"en": "Turn on climatisation at [[temperature]]°C",
+				"nl": "Klimaatregeling aanzetten op [[temperature]]°C",
+				"de": "Klimatisierung bei [[temperature]]°C einschalten",
+				"fr": "Activer la climatisation à [[temperature]]°C",
+				"es": "Encender climatización a [[temperature]]°C",
+				"it": "Accendi climatizzazione a [[temperature]]°C",
+				"da": "Tænd klimaanlæg ved [[temperature]]°C",
+				"no": "Slå på klimaanlegg ved [[temperature]]°C",
+				"sv": "Slå på klimatanläggning vid [[temperature]]°C",
+				"pl": "Włącz klimatyzację na [[temperature]]°C",
+				"ru": "Включить климатизацию при [[temperature]]°C",
+				"ko": "[[temperature]]°C에서 냉난방 켜기"
+			},
+			"args": [
+				{
+					"type": "number",
+					"name": "temperature",
+					"required": false,
+					"title": {
+						"en": "Target temperature (°C)",
+						"nl": "Doeltemperatuur (°C)",
+						"de": "Zieltemperatur (°C)",
+						"fr": "Température cible (°C)",
+						"es": "Temperatura objetivo (°C)",
+						"it": "Temperatura obiettivo (°C)",
+						"da": "Måltemperatur (°C)",
+						"no": "Måltemperatur (°C)",
+						"sv": "Måltemperatur (°C)",
+						"pl": "Temperatura docelowa (°C)",
+						"ru": "Целевая температура (°C)",
+						"ko": "목표 온도 (°C)"
+					},
+					"min": 15,
+					"max": 30,
+					"step": 0.5
+				}
+			]
+		},
+		{
+			"id": "climatisation_onoff_off",
+			"highlight": true,
+			"title": {
+				"en": "Turn off climatisation",
+				"nl": "Klimaatregeling uitzetten",
+				"de": "Klimatisierung ausschalten",
+				"fr": "Désactiver la climatisation",
+				"es": "Apagar climatización",
+				"it": "Spegni climatizzazione",
+				"da": "Sluk klimaanlæg",
+				"no": "Slå av klimaanlegg",
+				"sv": "Slå av klimatanläggning",
+				"pl": "Wyłącz klimatyzację",
+				"ru": "Выключить климатизацию",
+				"ko": "냉난방 끄기"
+			}
+		},
+		{
 			"id": "update_charge_settings",
 			"title": {
 				"en": "Update charging settings",

@@ -16,6 +16,35 @@
 	},
 	"getable": true,
 	"setable": true,
+	"insights": true,
+	"insightsTitleTrue": {
+		"en": "On",
+		"nl": "Aan",
+		"de": "An",
+		"fr": "Activée",
+		"es": "Encendida",
+		"it": "Accesa",
+		"da": "Tændt",
+		"no": "På",
+		"sv": "På",
+		"pl": "Włączona",
+		"ru": "Включена",
+		"ko": "켜짐"
+	},
+	"insightsTitleFalse": {
+		"en": "Off",
+		"nl": "Uit",
+		"de": "Aus",
+		"fr": "Désactivée",
+		"es": "Apagada",
+		"it": "Spenta",
+		"da": "Slukket",
+		"no": "Av",
+		"sv": "Av",
+		"pl": "Wyłączona",
+		"ru": "Выключена",
+		"ko": "꺼짐"
+	},
 	"uiComponent": "toggle",
 	"icon": "/assets/capabilities/climatisation_onoff.svg"
 }

@@ -19,6 +19,7 @@ import ReadinessStatus from "./capabilities/readiness-status.mjs";
 import TemperatureBatteryStatus from "./capabilities/temperature-battery-status.mjs";
 import WakeUpTrigger from "./capabilities/wake-up-trigger.mjs";
 import ControlCharging from "./flows/control-charging.mjs";
+import ControlClimatisation from "./flows/control-climatisation.mjs";
 import type Flow from "./flows/flow.mjs";
 import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
 
@@ -56,6 +57,7 @@ export default class VolkswagenDevice extends Homey.Device {
 	private readonly flows: Flow[] = [
 		new UpdateChargingSettings(this),
 		new ControlCharging(this),
+		new ControlClimatisation(this),
 	];
 
 	public async onInit(): Promise<void> {
