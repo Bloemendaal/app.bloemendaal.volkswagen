@@ -58,5 +58,8 @@
 	},
 	"1.1.2": {
 		"en": "Add translations to the coordinate sensors"
+	},
+	"1.1.3": {
+		"en": "Add missing climatisation flow cards"
 	}
 }
