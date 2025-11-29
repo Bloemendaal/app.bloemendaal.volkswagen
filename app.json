@@ -1214,6 +1214,31 @@
       "insights": false,
       "decimals": 0
     },
+    "measure_battery_percentage": {
+      "type": "number",
+      "title": {
+        "en": "Battery percentage",
+        "nl": "Batterijpercentage",
+        "da": "Batteriprocent",
+        "de": "Batterieprozentsatz",
+        "es": "Porcentaje de batería",
+        "fr": "Pourcentage de batterie",
+        "it": "Percentuale batteria",
+        "no": "Batteriprosent",
+        "sv": "Batteriprocent",
+        "pl": "Procent baterii",
+        "ru": "Процент батареи",
+        "ko": "배터리 비율"
+      },
+      "units": "%",
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "insights": false,
+      "decimals": 0,
+      "min": 0,
+      "max": 100
+    },
     "measure_battery_temperature": {
       "type": "number",
       "title": {

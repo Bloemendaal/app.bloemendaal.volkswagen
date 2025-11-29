@@ -16,8 +16,15 @@ export default class BatteryStatus extends Capability {
 			capabilities.charging?.batteryStatus.value.currentSOC_pct,
 		);
 
-		if (!this.volkswagenDevice.hasCapability("measure_battery") && validSoC) {
+		if (validSoC && !this.volkswagenDevice.hasCapability("measure_battery")) {
 			await this.volkswagenDevice.addCapability("measure_battery");
+		}
+
+		if (
+			validSoC &&
+			!this.volkswagenDevice.hasCapability("measure_battery_percentage")
+		) {
+			await this.volkswagenDevice.addCapability("measure_battery_percentage");
 		}
 
 		const validRange = this.isNumber(
@@ -100,6 +107,16 @@ export default class BatteryStatus extends Capability {
 		) {
 			await this.volkswagenDevice.setCapabilityValue(
 				"measure_battery",
+				currentSoC,
+			);
+		}
+
+		if (
+			this.isNumber(currentSoC) &&
+			this.volkswagenDevice.hasCapability("measure_battery_percentage")
+		) {
+			await this.volkswagenDevice.setCapabilityValue(
+				"measure_battery_percentage",
 				currentSoC,
 			);
 		}
