@@ -61,5 +61,8 @@
 	},
 	"1.1.3": {
 		"en": "Add missing climatisation flow cards"
+	},
+	"1.1.4": {
+		"en": "Fix filtering on climatisation capability for trigger flow cards"
 	}
 }
