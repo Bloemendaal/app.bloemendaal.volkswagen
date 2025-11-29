@@ -3,6 +3,7 @@
 		{
 			"id": "climatisation_onoff_on",
 			"highlight": true,
+			"$filter": "capabilities=climatisation_onoff",
 			"title": {
 				"en": "Turn on climatisation",
 				"nl": "Klimaatregeling aanzetten",
@@ -59,6 +60,7 @@
 		{
 			"id": "climatisation_onoff_off",
 			"highlight": true,
+			"$filter": "capabilities=climatisation_onoff",
 			"title": {
 				"en": "Turn off climatisation",
 				"nl": "Klimaatregeling uitzetten",
