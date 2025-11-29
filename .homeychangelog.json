@@ -64,5 +64,8 @@
 	},
 	"1.1.4": {
 		"en": "Fix filtering on climatisation capability for trigger flow cards"
+	},
+	"1.1.5": {
+		"en": "Add battery as percentage device indicator"
 	}
 }
