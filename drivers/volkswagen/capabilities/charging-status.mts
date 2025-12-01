@@ -1,5 +1,9 @@
 import Capability, { type VehicleData } from "./capability.mjs";
 
+const PLUG_STATE_CONNECTED = "connected";
+const PLUG_STATE_DISCONNECTED = "disconnected";
+const CHARGING_STATE = "charging";
+
 export default class ChargingStatus extends Capability {
 	private lastPlugConnectionState: string | null = null;
 	private lastIsCharging: boolean | null = null;
@@ -9,7 +13,7 @@ export default class ChargingStatus extends Capability {
 	}
 
 	private isChargingActive(chargingState: string): boolean {
-		return chargingState === "charging";
+		return chargingState === CHARGING_STATE;
 	}
 
 	protected override getCapabilityName(): string {
@@ -179,8 +183,8 @@ export default class ChargingStatus extends Capability {
 
 		// Trigger the appropriate flow card
 		if (
-			previousState === "disconnected" &&
-			plugConnectionState === "connected"
+			previousState === PLUG_STATE_DISCONNECTED &&
+			plugConnectionState === PLUG_STATE_CONNECTED
 		) {
 			await this.volkswagenDevice.homey.flow
 				.getDeviceTriggerCard("charge_cable_connected")
@@ -189,8 +193,8 @@ export default class ChargingStatus extends Capability {
 					// Ignore errors if trigger card is not registered
 				});
 		} else if (
-			previousState === "connected" &&
-			plugConnectionState === "disconnected"
+			previousState === PLUG_STATE_CONNECTED &&
+			plugConnectionState === PLUG_STATE_DISCONNECTED
 		) {
 			await this.volkswagenDevice.homey.flow
 				.getDeviceTriggerCard("charge_cable_disconnected")
