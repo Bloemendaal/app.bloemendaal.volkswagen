@@ -1,8 +1,15 @@
 import Capability, { type VehicleData } from "./capability.mjs";
 
 export default class ChargingStatus extends Capability {
+	private lastPlugConnectionState: string | null = null;
+	private lastIsCharging: boolean | null = null;
+
 	private isValidChargingState(value: string | null = null): value is string {
 		return Boolean(value) && value !== "unsupported";
+	}
+
+	private isChargingActive(chargingState: string): boolean {
+		return chargingState === "charging";
 	}
 
 	protected override getCapabilityName(): string {
@@ -75,8 +82,21 @@ export default class ChargingStatus extends Capability {
 			return;
 		}
 
+		// Check plug connection state changes for triggers
+		const plugConnectionState =
+			capabilities.charging?.plugStatus.value.plugConnectionState;
+
+		if (plugConnectionState) {
+			await this.handlePlugConnectionStateChange(plugConnectionState);
+		}
+
 		const chargingState =
 			capabilities.charging?.chargingStatus.value.chargingState;
+
+		// Check charging state changes for triggers
+		if (this.isValidChargingState(chargingState)) {
+			await this.handleChargingStateChange(chargingState);
+		}
 
 		if (
 			this.isValidChargingState(chargingState) &&
@@ -137,6 +157,84 @@ export default class ChargingStatus extends Capability {
 				"measure_remaining_charging_time",
 				remainingTime,
 			);
+		}
+	}
+
+	private async handlePlugConnectionStateChange(
+		plugConnectionState: string,
+	): Promise<void> {
+		// Only trigger if we have a previous state to compare against
+		if (this.lastPlugConnectionState === null) {
+			this.lastPlugConnectionState = plugConnectionState;
+			return;
+		}
+
+		// Check if the state has changed
+		if (this.lastPlugConnectionState === plugConnectionState) {
+			return;
+		}
+
+		const previousState = this.lastPlugConnectionState;
+		this.lastPlugConnectionState = plugConnectionState;
+
+		// Trigger the appropriate flow card
+		if (
+			previousState === "disconnected" &&
+			plugConnectionState === "connected"
+		) {
+			await this.volkswagenDevice.homey.flow
+				.getDeviceTriggerCard("charge_cable_connected")
+				.trigger(this.volkswagenDevice)
+				.catch(() => {
+					// Ignore errors if trigger card is not registered
+				});
+		} else if (
+			previousState === "connected" &&
+			plugConnectionState === "disconnected"
+		) {
+			await this.volkswagenDevice.homey.flow
+				.getDeviceTriggerCard("charge_cable_disconnected")
+				.trigger(this.volkswagenDevice)
+				.catch(() => {
+					// Ignore errors if trigger card is not registered
+				});
+		}
+	}
+
+	private async handleChargingStateChange(
+		chargingState: string,
+	): Promise<void> {
+		const isCurrentlyCharging = this.isChargingActive(chargingState);
+
+		// Only trigger if we have a previous state to compare against
+		if (this.lastIsCharging === null) {
+			this.lastIsCharging = isCurrentlyCharging;
+			return;
+		}
+
+		// Check if the charging state has changed
+		if (this.lastIsCharging === isCurrentlyCharging) {
+			return;
+		}
+
+		const wasCharging = this.lastIsCharging;
+		this.lastIsCharging = isCurrentlyCharging;
+
+		// Trigger the appropriate flow card
+		if (!wasCharging && isCurrentlyCharging) {
+			await this.volkswagenDevice.homey.flow
+				.getDeviceTriggerCard("charging_started")
+				.trigger(this.volkswagenDevice)
+				.catch(() => {
+					// Ignore errors if trigger card is not registered
+				});
+		} else if (wasCharging && !isCurrentlyCharging) {
+			await this.volkswagenDevice.homey.flow
+				.getDeviceTriggerCard("charging_stopped")
+				.trigger(this.volkswagenDevice)
+				.catch(() => {
+					// Ignore errors if trigger card is not registered
+				});
 		}
 	}
 }

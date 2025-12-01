@@ -1,4 +1,82 @@
 {
+	"triggers": [
+		{
+			"id": "charge_cable_connected",
+			"highlight": true,
+			"$filter": "capabilities=measure_charging_power",
+			"title": {
+				"en": "Charge cable connected",
+				"nl": "Laadkabel aangesloten",
+				"de": "Ladekabel angeschlossen",
+				"fr": "Câble de charge connecté",
+				"es": "Cable de carga conectado",
+				"it": "Cavo di ricarica collegato",
+				"da": "Ladekabel tilsluttet",
+				"no": "Ladekabel tilkoblet",
+				"sv": "Laddkabel ansluten",
+				"pl": "Kabel ładowania podłączony",
+				"ru": "Зарядный кабель подключен",
+				"ko": "충전 케이블 연결됨"
+			}
+		},
+		{
+			"id": "charge_cable_disconnected",
+			"highlight": true,
+			"$filter": "capabilities=measure_charging_power",
+			"title": {
+				"en": "Charge cable disconnected",
+				"nl": "Laadkabel losgekoppeld",
+				"de": "Ladekabel getrennt",
+				"fr": "Câble de charge déconnecté",
+				"es": "Cable de carga desconectado",
+				"it": "Cavo di ricarica scollegato",
+				"da": "Ladekabel afbrudt",
+				"no": "Ladekabel frakoblet",
+				"sv": "Laddkabel frånkopplad",
+				"pl": "Kabel ładowania odłączony",
+				"ru": "Зарядный кабель отключен",
+				"ko": "충전 케이블 분리됨"
+			}
+		},
+		{
+			"id": "charging_started",
+			"highlight": true,
+			"$filter": "capabilities=measure_charging_power",
+			"title": {
+				"en": "Charging started",
+				"nl": "Laden gestart",
+				"de": "Laden gestartet",
+				"fr": "Charge démarrée",
+				"es": "Carga iniciada",
+				"it": "Ricarica avviata",
+				"da": "Opladning startet",
+				"no": "Lading startet",
+				"sv": "Laddning startad",
+				"pl": "Ładowanie rozpoczęte",
+				"ru": "Зарядка началась",
+				"ko": "충전 시작됨"
+			}
+		},
+		{
+			"id": "charging_stopped",
+			"highlight": true,
+			"$filter": "capabilities=measure_charging_power",
+			"title": {
+				"en": "Charging stopped",
+				"nl": "Laden gestopt",
+				"de": "Laden gestoppt",
+				"fr": "Charge arrêtée",
+				"es": "Carga detenida",
+				"it": "Ricarica interrotta",
+				"da": "Opladning stoppet",
+				"no": "Lading stoppet",
+				"sv": "Laddning stoppad",
+				"pl": "Ładowanie zatrzymane",
+				"ru": "Зарядка остановлена",
+				"ko": "충전 중지됨"
+			}
+		}
+	],
 	"actions": [
 		{
 			"id": "climatisation_onoff_on",
