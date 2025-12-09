@@ -1,0 +1,21 @@
+{
+	"type": "boolean",
+	"title": {
+		"en": "Is charging",
+		"nl": "Aan het opladen",
+		"de": "Lädt",
+		"fr": "En charge",
+		"es": "Cargando",
+		"da": "Oplader",
+		"it": "In carica",
+		"ko": "충전 중",
+		"no": "Lader",
+		"pl": "Ładowanie",
+		"ru": "Заряжается",
+		"sv": "Laddar"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "assets/icons/is_charging.svg"
+}

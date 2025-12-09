@@ -27,6 +27,13 @@ export default class ChargingStatus extends Capability {
 			await this.volkswagenDevice.addCapability("ev_charging_state");
 		}
 
+		if (
+			hasValidChargingState &&
+			!this.volkswagenDevice.hasCapability("is_charging")
+		) {
+			await this.volkswagenDevice.addCapability("is_charging");
+		}
+
 		const hasValidChargePower = this.isNumber(
 			capabilities.charging?.chargingStatus.value.chargePower_kW,
 		);
@@ -96,6 +103,16 @@ export default class ChargingStatus extends Capability {
 					unsupported: null,
 					discharging: "plugged_in_discharging",
 				}[chargingState],
+			);
+		}
+
+		if (
+			this.isValidChargingState(chargingState) &&
+			this.volkswagenDevice.hasCapability("is_charging")
+		) {
+			await this.volkswagenDevice.setCapabilityValue(
+				"is_charging",
+				chargingState === "charging",
 			);
 		}
 
