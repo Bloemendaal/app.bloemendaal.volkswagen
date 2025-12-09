@@ -67,5 +67,8 @@
 	},
 	"1.1.5": {
 		"en": "Add battery as percentage device indicator"
+	},
+	"1.1.6": {
+		"en": "Add 'is plug connected' and 'is charging' capabilities"
 	}
 }

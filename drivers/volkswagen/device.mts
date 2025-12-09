@@ -15,6 +15,7 @@ import DistanceHome from "./capabilities/distance-home.mjs";
 import HonkAndFlash from "./capabilities/hook-and-flash.mjs";
 import MaintenanceStatus from "./capabilities/maintenance-status.mjs";
 import OdometerStatus from "./capabilities/odometer-status.mjs";
+import PlugStatus from "./capabilities/plug-status.mjs";
 import ReadinessStatus from "./capabilities/readiness-status.mjs";
 import TemperatureBatteryStatus from "./capabilities/temperature-battery-status.mjs";
 import WakeUpTrigger from "./capabilities/wake-up-trigger.mjs";
@@ -22,7 +23,6 @@ import ControlCharging from "./flows/control-charging.mjs";
 import ControlClimatisation from "./flows/control-climatisation.mjs";
 import type Flow from "./flows/flow.mjs";
 import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
-import PlugStatus from "./capabilities/plug-status.mjs";
 
 const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
