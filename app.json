@@ -1177,6 +1177,48 @@
       "uiComponent": "sensor",
       "icon": "/assets/capabilities/coordinate.svg"
     },
+    "is_charging": {
+      "type": "boolean",
+      "title": {
+        "en": "Is charging",
+        "nl": "Aan het opladen",
+        "de": "Lädt",
+        "fr": "En charge",
+        "es": "Cargando",
+        "da": "Oplader",
+        "it": "In carica",
+        "ko": "충전 중",
+        "no": "Lader",
+        "pl": "Ładowanie",
+        "ru": "Заряжается",
+        "sv": "Laddar"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/capabilities/is_charging.svg"
+    },
+    "is_plug_connected": {
+      "type": "boolean",
+      "title": {
+        "en": "Plug connected",
+        "nl": "Stekker verbonden",
+        "de": "Stecker verbunden",
+        "fr": "Prise connectée",
+        "es": "Enchufe conectado",
+        "da": "Stik tilsluttet",
+        "it": "Presa collegata",
+        "ko": "플러그 연결됨",
+        "no": "Plugg tilkoblet",
+        "pl": "Wtyczka podłączona",
+        "ru": "Вилка подключена",
+        "sv": "Kontakt ansluten"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/capabilities/is_plug_connected.svg"
+    },
     "maintenance_due_days": {
       "type": "number",
       "title": {
