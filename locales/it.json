@@ -64,6 +64,7 @@
 				"hook_and_flash": "Clacson e lampeggio",
 				"maintenance_status": "Stato della manutenzione",
 				"odometer_status": "Stato odometro",
+				"plug_status": "Stato della presa",
 				"readiness_status": "Stato di prontezza",
 				"temperature_battery_status": "Stato della temperatura della batteria",
 				"wake_up_trigger": "Attivazione sveglia"

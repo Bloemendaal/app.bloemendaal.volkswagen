@@ -64,6 +64,7 @@
 				"hook_and_flash": "Dytten og blink",
 				"maintenance_status": "Vedligeholdelsesstatus",
 				"odometer_status": "Kilometertællerstatus",
+				"plug_status": "Stikstatus",
 				"readiness_status": "Forberedelsesstatus",
 				"temperature_battery_status": "Batteri temperaturstatus",
 				"wake_up_trigger": "Vække trigger"

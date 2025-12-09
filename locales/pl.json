@@ -64,6 +64,7 @@
 				"hook_and_flash": "Klakson i błysk",
 				"maintenance_status": "Stan konserwacji",
 				"odometer_status": "Stan licznika",
+				"plug_status": "Stan wtyczki",
 				"readiness_status": "Stan gotowości",
 				"temperature_battery_status": "Stan temperatury baterii",
 				"wake_up_trigger": "Wyzwalacz budzenia"

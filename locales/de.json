@@ -64,6 +64,7 @@
 				"hook_and_flash": "Hupe und Blinker",
 				"maintenance_status": "Wartungsstatus",
 				"odometer_status": "Kilometerzählerstatus",
+				"plug_status": "Steckerstatus",
 				"readiness_status": "Bereitschaftsstatus",
 				"temperature_battery_status": "Batterietemperaturstatus",
 				"wake_up_trigger": "Weck-Auslöser"

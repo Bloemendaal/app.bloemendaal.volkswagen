@@ -64,6 +64,7 @@
 				"hook_and_flash": "Tuta och blinka",
 				"maintenance_status": "Underhållsstatus",
 				"odometer_status": "Odometerstatus",
+				"plug_status": "Kontaktstatus",
 				"readiness_status": "Beredskapsstatus",
 				"temperature_battery_status": "Batteritemperaturstatus",
 				"wake_up_trigger": "Väckningsutlösare"

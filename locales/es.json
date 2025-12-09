@@ -64,6 +64,7 @@
 				"hook_and_flash": "Tocar bocina y destellos",
 				"maintenance_status": "Estado del mantenimiento",
 				"odometer_status": "Estado del odómetro",
+				"plug_status": "Estado del enchufe",
 				"readiness_status": "Estado de preparación",
 				"temperature_battery_status": "Estado de la temperatura de la batería",
 				"wake_up_trigger": "Activador de despertador"

@@ -64,6 +64,7 @@
 				"hook_and_flash": "Toeter en knipperlicht",
 				"maintenance_status": "Onderhoudsstatus",
 				"odometer_status": "Kilometerteller status",
+				"plug_status": "Stekkerstatus",
 				"readiness_status": "Gereedheidsstatus",
 				"temperature_battery_status": "Batterijtemperatuur status",
 				"wake_up_trigger": "Activeer trigger"
