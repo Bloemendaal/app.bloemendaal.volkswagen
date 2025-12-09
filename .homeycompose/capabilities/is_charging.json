@@ -17,5 +17,34 @@
 	"getable": true,
 	"setable": false,
 	"uiComponent": "sensor",
-	"icon": "assets/capabilities/is_charging.svg"
+	"icon": "assets/capabilities/is_charging.svg",
+	"insights": false,
+	"insightsTitleTrue": {
+		"en": "Charging started",
+		"nl": "Opladen gestart",
+		"de": "Ladevorgang gestartet",
+		"fr": "Charge démarrée",
+		"es": "Carga iniciada",
+		"da": "Opladning startet",
+		"it": "Carica avviata",
+		"ko": "충전 시작됨",
+		"no": "Lading startet",
+		"pl": "Rozpoczęto ładowanie",
+		"ru": "Зарядка началась",
+		"sv": "Laddning startad"
+	},
+	"insightsTitleFalse": {
+		"en": "Charging stopped",
+		"nl": "Opladen gestopt",
+		"de": "Ladevorgang beendet",
+		"fr": "Charge arrêtée",
+		"es": "Carga detenida",
+		"da": "Opladning stoppet",
+		"it": "Carica interrotta",
+		"ko": "충전 중지됨",
+		"no": "Lading stoppet",
+		"pl": "Zatrzymano ładowanie",
+		"ru": "Зарядка остановлена",
+		"sv": "Laddning stoppad"
+	}
 }

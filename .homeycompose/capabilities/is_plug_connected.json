@@ -17,5 +17,34 @@
 	"getable": true,
 	"setable": false,
 	"uiComponent": "sensor",
-	"icon": "assets/capabilities/is_plug_connected.svg"
+	"icon": "assets/capabilities/is_plug_connected.svg",
+	"insights": false,
+	"insightsTitleTrue": {
+		"en": "Plug connected",
+		"nl": "Stekker aangesloten",
+		"de": "Stecker angeschlossen",
+		"fr": "Prise branchée",
+		"es": "Enchufe conectado",
+		"da": "Stik tilsluttet",
+		"it": "Presa collegata",
+		"ko": "플러그 연결됨",
+		"no": "Plugg tilkoblet",
+		"pl": "Wtyczka podłączona",
+		"ru": "Вилка подключена",
+		"sv": "Kontakt ansluten"
+	},
+	"insightsTitleFalse": {
+		"en": "Plug disconnected",
+		"nl": "Stekker losgekoppeld",
+		"de": "Stecker getrennt",
+		"fr": "Prise débranchée",
+		"es": "Enchufe desconectado",
+		"da": "Stik afbrudt",
+		"it": "Presa scollegata",
+		"ko": "플러그 연결 해제됨",
+		"no": "Plugg frakoblet",
+		"pl": "Wtyczka odłączona",
+		"ru": "Вилка отключена",
+		"sv": "Kontakt frånkopplad"
+	}
 }
