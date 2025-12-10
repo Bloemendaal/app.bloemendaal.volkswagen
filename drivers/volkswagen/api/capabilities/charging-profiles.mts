@@ -1,7 +1,7 @@
 import type { ChargingProfilesData } from "./automation.mjs";
 
 export interface ChargingProfilesCapabilitiesData {
-	chargingProfilesStatus: {
+	chargingProfilesStatus?: {
 		value: ChargingProfilesData;
 	};
 }

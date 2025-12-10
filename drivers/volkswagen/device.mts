@@ -70,7 +70,7 @@ export default class VolkswagenDevice extends Homey.Device {
 
 		await this.setEnergy({
 			electricCar:
-				vehicleData.capabilities.fuelStatus?.rangeStatus.value.carType ===
+				vehicleData.capabilities.fuelStatus?.rangeStatus?.value.carType ===
 				"electric",
 		});
 

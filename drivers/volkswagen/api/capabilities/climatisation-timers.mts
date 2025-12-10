@@ -1,7 +1,7 @@
 import type { ClimatisationTimerData } from "./automation.mjs";
 
 export interface ClimatisationTimersCapabilitiesData {
-	climatisationTimersStatus: {
+	climatisationTimersStatus?: {
 		value: ClimatisationTimerData;
 	};
 }

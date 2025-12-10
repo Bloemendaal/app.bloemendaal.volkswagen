@@ -11,7 +11,7 @@ export default class Access extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		await this.addTimestampCapability(
-			capabilities.access?.accessStatus.value.carCapturedTimestamp,
+			capabilities.access?.accessStatus?.value.carCapturedTimestamp,
 		);
 
 		await this.addLockedCapability(capabilities);
@@ -19,19 +19,20 @@ export default class Access extends Capability {
 
 		await this.addAlarmCapabilities(
 			"alarm_door",
-			capabilities.access?.accessStatus.value.doors ?? [],
+			capabilities.access?.accessStatus?.value.doors ?? [],
 		);
 
 		await this.addAlarmCapabilities(
 			"alarm_window",
-			capabilities.access?.accessStatus.value.windows ?? [],
+			capabilities.access?.accessStatus?.value.windows ?? [],
 		);
 	}
 
 	private async addLockedCapability(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const lockedStatus = capabilities.access?.accessStatus.value.doorLockStatus;
+		const lockedStatus =
+			capabilities.access?.accessStatus?.value.doorLockStatus;
 
 		if (lockedStatus !== "locked" && lockedStatus !== "unlocked") {
 			return;
@@ -42,7 +43,7 @@ export default class Access extends Capability {
 		}
 
 		const isSetable = await this.isLockedSetable(
-			capabilities.userCapabilities?.capabilitiesStatus.value,
+			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
 		await this.volkswagenDevice.setCapabilityOptions(
@@ -56,7 +57,7 @@ export default class Access extends Capability {
 	private async addGeneralAlarmCapability(
 		capabilities: Partial<SelectiveStatusCapabilitiesData>,
 	): Promise<void> {
-		const lockedStatus = capabilities.access?.accessStatus.value.overallStatus;
+		const lockedStatus = capabilities.access?.accessStatus?.value.overallStatus;
 
 		if (lockedStatus !== "safe" && lockedStatus !== "unsafe") {
 			return;
@@ -115,7 +116,7 @@ export default class Access extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
-			capabilities.access?.accessStatus.value.carCapturedTimestamp,
+			capabilities.access?.accessStatus?.value.carCapturedTimestamp,
 		);
 
 		if (!hasNewerTimestamp) {
@@ -124,7 +125,7 @@ export default class Access extends Capability {
 
 		if (this.volkswagenDevice.hasCapability("locked")) {
 			const lockedStatus =
-				capabilities.access?.accessStatus.value.doorLockStatus;
+				capabilities.access?.accessStatus?.value.doorLockStatus;
 
 			await this.volkswagenDevice.setCapabilityValue(
 				"locked",
@@ -134,7 +135,7 @@ export default class Access extends Capability {
 
 		if (this.volkswagenDevice.hasCapability("alarm_general")) {
 			const overallStatus =
-				capabilities.access?.accessStatus.value.overallStatus;
+				capabilities.access?.accessStatus?.value.overallStatus;
 
 			await this.volkswagenDevice.setCapabilityValue(
 				"alarm_general",
@@ -142,7 +143,7 @@ export default class Access extends Capability {
 			);
 		}
 
-		const doors = capabilities.access?.accessStatus.value.doors ?? [];
+		const doors = capabilities.access?.accessStatus?.value.doors ?? [];
 
 		for (const door of doors) {
 			const capabilityId = `alarm_door.${door.name}`;
@@ -157,7 +158,7 @@ export default class Access extends Capability {
 			);
 		}
 
-		const windows = capabilities.access?.accessStatus.value.windows ?? [];
+		const windows = capabilities.access?.accessStatus?.value.windows ?? [];
 
 		for (const window of windows) {
 			const capabilityId = `alarm_window.${window.name}`;
@@ -181,7 +182,7 @@ export default class Access extends Capability {
 		}
 
 		const isSetable = await this.isLockedSetable(
-			capabilities.userCapabilities?.capabilitiesStatus.value,
+			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
 		if (!isSetable) {

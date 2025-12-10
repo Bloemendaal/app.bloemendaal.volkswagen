@@ -13,11 +13,11 @@ export default class ChargingStatus extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		await this.addTimestampCapability(
-			capabilities.charging?.chargingStatus.value.carCapturedTimestamp,
+			capabilities.charging?.chargingStatus?.value.carCapturedTimestamp,
 		);
 
 		const hasValidChargingState = this.isValidChargingState(
-			capabilities.charging?.chargingStatus.value.chargingState,
+			capabilities.charging?.chargingStatus?.value.chargingState,
 		);
 
 		if (
@@ -35,7 +35,7 @@ export default class ChargingStatus extends Capability {
 		}
 
 		const hasValidChargePower = this.isNumber(
-			capabilities.charging?.chargingStatus.value.chargePower_kW,
+			capabilities.charging?.chargingStatus?.value.chargePower_kW,
 		);
 
 		if (
@@ -46,7 +46,7 @@ export default class ChargingStatus extends Capability {
 		}
 
 		const hasValidChargeRate = this.isNumber(
-			capabilities.charging?.chargingStatus.value.chargeRate_kmph,
+			capabilities.charging?.chargingStatus?.value.chargeRate_kmph,
 		);
 
 		if (
@@ -57,7 +57,7 @@ export default class ChargingStatus extends Capability {
 		}
 
 		const remainingTime = this.isNumber(
-			capabilities.charging?.chargingStatus.value
+			capabilities.charging?.chargingStatus?.value
 				.remainingChargingTimeToComplete_min,
 		);
 
@@ -75,7 +75,7 @@ export default class ChargingStatus extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
-			capabilities.charging?.batteryStatus.value.carCapturedTimestamp,
+			capabilities.charging?.batteryStatus?.value.carCapturedTimestamp,
 		);
 
 		if (!hasNewerTimestamp) {
@@ -83,7 +83,7 @@ export default class ChargingStatus extends Capability {
 		}
 
 		const chargingState =
-			capabilities.charging?.chargingStatus.value.chargingState;
+			capabilities.charging?.chargingStatus?.value.chargingState;
 
 		if (
 			this.isValidChargingState(chargingState) &&
@@ -117,7 +117,7 @@ export default class ChargingStatus extends Capability {
 		}
 
 		const chargePower =
-			capabilities.charging?.chargingStatus.value.chargePower_kW;
+			capabilities.charging?.chargingStatus?.value.chargePower_kW;
 
 		if (
 			this.isNumber(chargePower) &&
@@ -130,7 +130,7 @@ export default class ChargingStatus extends Capability {
 		}
 
 		const chargeRate =
-			capabilities.charging?.chargingStatus.value.chargeRate_kmph;
+			capabilities.charging?.chargingStatus?.value.chargeRate_kmph;
 
 		if (
 			this.isNumber(chargeRate) &&
@@ -143,7 +143,7 @@ export default class ChargingStatus extends Capability {
 		}
 
 		const remainingTime =
-			capabilities.charging?.chargingStatus.value
+			capabilities.charging?.chargingStatus?.value
 				.remainingChargingTimeToComplete_min;
 
 		if (

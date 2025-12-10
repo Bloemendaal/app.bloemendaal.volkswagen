@@ -1,7 +1,7 @@
 import type { PossiblyUnknownString } from "../types.mjs";
 
 export interface BatterySupportCapabilitiesData {
-	batterySupportStatus: {
+	batterySupportStatus?: {
 		value: {
 			batterySupport: "disabled" | "enabled" | PossiblyUnknownString;
 		};

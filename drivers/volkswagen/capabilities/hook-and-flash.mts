@@ -10,7 +10,7 @@ export default class HonkAndFlash extends Capability {
 	}: VehicleData): Promise<void> {
 		const canHonkAndFlash = await this.can(
 			"honkAndFlash",
-			capabilities.userCapabilities?.capabilitiesStatus.value,
+			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
 		if (!canHonkAndFlash) {

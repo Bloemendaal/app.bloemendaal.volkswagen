@@ -10,7 +10,7 @@ export default class WakeUpTrigger extends Capability {
 	}: VehicleData): Promise<void> {
 		const canWakeUp = await this.can(
 			"vehicleWakeUpTrigger",
-			capabilities.userCapabilities?.capabilitiesStatus.value,
+			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
 		if (!canWakeUp) {

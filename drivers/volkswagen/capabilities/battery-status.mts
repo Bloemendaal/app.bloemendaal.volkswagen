@@ -9,11 +9,11 @@ export default class BatteryStatus extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		await this.addTimestampCapability(
-			capabilities.charging?.batteryStatus.value.carCapturedTimestamp,
+			capabilities.charging?.batteryStatus?.value.carCapturedTimestamp,
 		);
 
 		const validSoC = this.isNumber(
-			capabilities.charging?.batteryStatus.value.currentSOC_pct,
+			capabilities.charging?.batteryStatus?.value.currentSOC_pct,
 		);
 
 		if (validSoC && !this.volkswagenDevice.hasCapability("measure_battery")) {
@@ -28,7 +28,7 @@ export default class BatteryStatus extends Capability {
 		}
 
 		const validRange = this.isNumber(
-			capabilities.charging?.batteryStatus.value.cruisingRangeElectric_km,
+			capabilities.charging?.batteryStatus?.value.cruisingRangeElectric_km,
 		);
 
 		if (!this.volkswagenDevice.hasCapability("measure_range") && validRange) {
@@ -91,7 +91,7 @@ export default class BatteryStatus extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
-			capabilities.charging?.batteryStatus.value.carCapturedTimestamp,
+			capabilities.charging?.batteryStatus?.value.carCapturedTimestamp,
 		);
 
 		if (!hasNewerTimestamp) {
@@ -99,7 +99,7 @@ export default class BatteryStatus extends Capability {
 		}
 
 		const currentSoC =
-			capabilities.charging?.batteryStatus.value.currentSOC_pct;
+			capabilities.charging?.batteryStatus?.value.currentSOC_pct;
 
 		if (
 			this.isNumber(currentSoC) &&
@@ -122,7 +122,7 @@ export default class BatteryStatus extends Capability {
 		}
 
 		const cruisingRangeElectric =
-			capabilities.charging?.batteryStatus.value.cruisingRangeElectric_km;
+			capabilities.charging?.batteryStatus?.value.cruisingRangeElectric_km;
 
 		if (
 			this.isNumber(cruisingRangeElectric) &&

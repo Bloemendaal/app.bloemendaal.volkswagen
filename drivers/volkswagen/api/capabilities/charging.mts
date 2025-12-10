@@ -58,19 +58,19 @@ export interface ChargingCareSettingsData {
 }
 
 export interface ChargingCapabilitiesData {
-	batteryStatus: {
+	batteryStatus?: {
 		value: BatteryStatusData;
 	};
-	chargingStatus: {
+	chargingStatus?: {
 		value: ChargingStatusData;
 	};
-	chargingSettings: {
+	chargingSettings?: {
 		value: ChargingSettingsData;
 	};
-	plugStatus: {
+	plugStatus?: {
 		value: PlugStatusData;
 	};
-	chargeMode: {
+	chargeMode?: {
 		value: ChargeModeData;
 	};
 	chargingCareSettings?: {

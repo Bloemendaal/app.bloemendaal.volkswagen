@@ -37,7 +37,7 @@ export interface AccessStatusData {
 }
 
 export interface AccessCapabilitiesData {
-	accessStatus: {
+	accessStatus?: {
 		value: AccessStatusData;
 	};
 }

@@ -9,11 +9,11 @@ export default class ChargingSettings extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		await this.addTimestampCapability(
-			capabilities.charging?.chargingSettings.value.carCapturedTimestamp,
+			capabilities.charging?.chargingSettings?.value.carCapturedTimestamp,
 		);
 
 		const hasValidTargetSoC = this.isNumber(
-			capabilities.charging?.chargingSettings.value.targetSOC_pct,
+			capabilities.charging?.chargingSettings?.value.targetSOC_pct,
 		);
 
 		if (
@@ -28,7 +28,7 @@ export default class ChargingSettings extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
-			capabilities.charging?.batteryStatus.value.carCapturedTimestamp,
+			capabilities.charging?.batteryStatus?.value.carCapturedTimestamp,
 		);
 
 		if (!hasNewerTimestamp) {
@@ -36,7 +36,7 @@ export default class ChargingSettings extends Capability {
 		}
 
 		const targetSoC =
-			capabilities.charging?.chargingSettings.value.targetSOC_pct;
+			capabilities.charging?.chargingSettings?.value.targetSOC_pct;
 
 		const hasValidTargetSoC = this.isNumber(targetSoC);
 

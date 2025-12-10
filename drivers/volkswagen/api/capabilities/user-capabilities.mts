@@ -8,7 +8,7 @@ export interface CapabilitiesStatusData {
 }
 
 export interface UserCapabilitiesData {
-	capabilitiesStatus: {
+	capabilitiesStatus?: {
 		value: CapabilitiesStatusData[];
 	};
 }
