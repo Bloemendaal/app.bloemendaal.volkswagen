@@ -12,6 +12,6 @@ export interface LightsStatusData {
 
 export interface VehicleLightsCapabilitiesData {
 	lightsStatus?: {
-		value: LightsStatusData;
+		value?: LightsStatusData;
 	};
 }

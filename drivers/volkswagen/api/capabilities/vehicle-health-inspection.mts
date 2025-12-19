@@ -8,6 +8,6 @@ export interface MaintenanceStatusData {
 
 export interface VehicleHealthInspectionCapabilitiesData {
 	maintenanceStatus?: {
-		value: MaintenanceStatusData;
+		value?: MaintenanceStatusData;
 	};
 }

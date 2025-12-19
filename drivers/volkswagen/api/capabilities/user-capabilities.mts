@@ -9,6 +9,6 @@ export interface CapabilitiesStatusData {
 
 export interface UserCapabilitiesData {
 	capabilitiesStatus?: {
-		value: CapabilitiesStatusData[];
+		value?: CapabilitiesStatusData[];
 	};
 }

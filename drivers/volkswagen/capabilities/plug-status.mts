@@ -15,11 +15,11 @@ export default class PlugStatus extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		await this.addTimestampCapability(
-			capabilities.charging?.plugStatus?.value.carCapturedTimestamp,
+			capabilities.charging?.plugStatus?.value?.carCapturedTimestamp,
 		);
 
 		const hasValidPlugConnectionState = this.isValidPlugConnectionState(
-			capabilities.charging?.plugStatus?.value.plugConnectionState,
+			capabilities.charging?.plugStatus?.value?.plugConnectionState,
 		);
 
 		if (
@@ -34,7 +34,7 @@ export default class PlugStatus extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
-			capabilities.charging?.plugStatus?.value.carCapturedTimestamp,
+			capabilities.charging?.plugStatus?.value?.carCapturedTimestamp,
 		);
 
 		if (!hasNewerTimestamp) {
@@ -42,7 +42,7 @@ export default class PlugStatus extends Capability {
 		}
 
 		const plugConnectionState =
-			capabilities.charging?.plugStatus?.value.plugConnectionState;
+			capabilities.charging?.plugStatus?.value?.plugConnectionState;
 
 		if (
 			this.isValidPlugConnectionState(plugConnectionState) &&

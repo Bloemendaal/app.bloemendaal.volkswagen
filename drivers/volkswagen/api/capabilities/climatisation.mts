@@ -31,12 +31,12 @@ export interface WindowHeatingStatusData {
 
 export interface ClimatisationCapabilitiesData {
 	climatisationSettings?: {
-		value: ClimatisationSettingsData;
+		value?: ClimatisationSettingsData;
 	};
 	climatisationStatus?: {
-		value: ClimatisationStatusData;
+		value?: ClimatisationStatusData;
 	};
 	windowHeatingStatus?: {
-		value: WindowHeatingStatusData;
+		value?: WindowHeatingStatusData;
 	};
 }

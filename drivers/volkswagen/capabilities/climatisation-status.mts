@@ -17,11 +17,12 @@ export default class ClimatisationStatus extends Capability {
 	}: VehicleData): Promise<void> {
 		await this.addTimestampCapability(
 			capabilities.climatisation?.climatisationStatus?.value
-				.carCapturedTimestamp,
+				?.carCapturedTimestamp,
 		);
 
 		const hasValidClimatisationState = this.isValidClimatisationState(
-			capabilities.climatisation?.climatisationStatus?.value.climatisationState,
+			capabilities.climatisation?.climatisationStatus?.value
+				?.climatisationState,
 		);
 
 		if (
@@ -33,7 +34,7 @@ export default class ClimatisationStatus extends Capability {
 
 		const hasValidTargetTemperature = this.isNumber(
 			capabilities.climatisation?.climatisationSettings?.value
-				.targetTemperature_C,
+				?.targetTemperature_C,
 		);
 
 		if (
@@ -45,7 +46,7 @@ export default class ClimatisationStatus extends Capability {
 
 		const hasValidRemainingTime = this.isNumber(
 			capabilities.climatisation?.climatisationStatus?.value
-				.remainingClimatisationTime_min,
+				?.remainingClimatisationTime_min,
 		);
 
 		if (
@@ -65,7 +66,7 @@ export default class ClimatisationStatus extends Capability {
 	}: VehicleData): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
 			capabilities.climatisation?.climatisationStatus?.value
-				.carCapturedTimestamp,
+				?.carCapturedTimestamp,
 		);
 
 		if (!hasNewerTimestamp) {
@@ -73,7 +74,8 @@ export default class ClimatisationStatus extends Capability {
 		}
 
 		const climatisationState =
-			capabilities.climatisation?.climatisationStatus?.value.climatisationState;
+			capabilities.climatisation?.climatisationStatus?.value
+				?.climatisationState;
 
 		if (
 			this.isValidClimatisationState(climatisationState) &&
@@ -88,7 +90,7 @@ export default class ClimatisationStatus extends Capability {
 
 		const targetTemperature =
 			capabilities.climatisation?.climatisationSettings?.value
-				.targetTemperature_C;
+				?.targetTemperature_C;
 
 		if (
 			this.isNumber(targetTemperature) &&
@@ -102,7 +104,7 @@ export default class ClimatisationStatus extends Capability {
 
 		const remainingTime =
 			capabilities.climatisation?.climatisationStatus?.value
-				.remainingClimatisationTime_min;
+				?.remainingClimatisationTime_min;
 
 		if (
 			this.isNumber(remainingTime) &&

@@ -19,6 +19,6 @@ export interface ReadinessStatus {
 
 export interface ReadinessCapabilitiesData {
 	readinessStatus?: {
-		value: ReadinessStatus;
+		value?: ReadinessStatus;
 	};
 }

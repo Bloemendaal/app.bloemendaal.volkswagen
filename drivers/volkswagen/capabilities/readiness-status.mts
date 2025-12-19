@@ -9,7 +9,7 @@ export default class ReadinessStatus extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		const isOnline =
-			capabilities.readiness?.readinessStatus?.value.connectionState.isOnline;
+			capabilities.readiness?.readinessStatus?.value?.connectionState.isOnline;
 
 		if (
 			typeof isOnline === "boolean" &&
@@ -19,7 +19,7 @@ export default class ReadinessStatus extends Capability {
 		}
 
 		const isActive =
-			capabilities.readiness?.readinessStatus?.value.connectionState.isActive;
+			capabilities.readiness?.readinessStatus?.value?.connectionState.isActive;
 
 		if (
 			typeof isActive === "boolean" &&
@@ -33,7 +33,7 @@ export default class ReadinessStatus extends Capability {
 		capabilities,
 	}: VehicleData): Promise<void> {
 		const isOnline =
-			capabilities.readiness?.readinessStatus?.value.connectionState.isOnline;
+			capabilities.readiness?.readinessStatus?.value?.connectionState.isOnline;
 
 		if (
 			typeof isOnline === "boolean" &&
@@ -46,7 +46,7 @@ export default class ReadinessStatus extends Capability {
 		}
 
 		const isActive =
-			capabilities.readiness?.readinessStatus?.value.connectionState.isActive;
+			capabilities.readiness?.readinessStatus?.value?.connectionState.isActive;
 
 		if (
 			typeof isActive === "boolean" &&

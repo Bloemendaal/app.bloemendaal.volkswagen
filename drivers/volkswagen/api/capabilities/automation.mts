@@ -83,9 +83,9 @@ export interface ChargingProfilesData {
 
 export interface AutomationCapabilitiesData {
 	climatisationTimer?: {
-		value: ClimatisationTimerData;
+		value?: ClimatisationTimerData;
 	};
 	chargingProfiles?: {
-		value: ChargingProfilesData;
+		value?: ChargingProfilesData;
 	};
 }

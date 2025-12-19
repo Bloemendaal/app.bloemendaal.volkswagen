@@ -2,7 +2,7 @@ import type { PossiblyUnknownString } from "../types.mjs";
 
 export interface BatteryChargingCareCapabilitiesData {
 	chargingCareSettings?: {
-		value: {
+		value?: {
 			batteryCareMode: "activated" | PossiblyUnknownString;
 		};
 	};

@@ -19,6 +19,6 @@ export interface RangeStatusData {
 
 export interface FuelStatusCapabilitiesData {
 	rangeStatus?: {
-		value: RangeStatusData;
+		value?: RangeStatusData;
 	};
 }

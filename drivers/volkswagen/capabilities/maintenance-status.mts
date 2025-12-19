@@ -10,12 +10,12 @@ export default class MaintenanceStatus extends Capability {
 	}: VehicleData): Promise<void> {
 		await this.addTimestampCapability(
 			capabilities.vehicleHealthInspection?.maintenanceStatus?.value
-				.carCapturedTimestamp,
+				?.carCapturedTimestamp,
 		);
 
 		const validDueDays = this.isNumber(
 			capabilities.vehicleHealthInspection?.maintenanceStatus?.value
-				.inspectionDue_days,
+				?.inspectionDue_days,
 		);
 
 		if (
@@ -31,7 +31,7 @@ export default class MaintenanceStatus extends Capability {
 	}: VehicleData): Promise<void> {
 		const hasNewerTimestamp = await this.checkTimestamp(
 			capabilities.vehicleHealthInspection?.maintenanceStatus?.value
-				.carCapturedTimestamp,
+				?.carCapturedTimestamp,
 		);
 
 		if (!hasNewerTimestamp) {
@@ -40,7 +40,7 @@ export default class MaintenanceStatus extends Capability {
 
 		const dueDays =
 			capabilities.vehicleHealthInspection?.maintenanceStatus?.value
-				.inspectionDue_days;
+				?.inspectionDue_days;
 
 		if (
 			this.isNumber(dueDays) &&

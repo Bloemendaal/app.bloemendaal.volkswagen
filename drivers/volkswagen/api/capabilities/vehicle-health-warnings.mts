@@ -7,6 +7,6 @@ export interface WarningLightsData {
 
 export interface VehicleHealthWarningsCapabilitiesData {
 	warningLights?: {
-		value: WarningLightsData;
+		value?: WarningLightsData;
 	};
 }
