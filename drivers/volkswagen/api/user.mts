@@ -1,5 +1,5 @@
+import TranslatableError from "../errors/translatable-error.mjs";
 import Authenticatable, { type AuthSettings } from "./authenticatable.mjs";
-import TranslatableError from "./errors/translatable-error.mjs";
 import Vehicle, { type VehicleData } from "./vehicle.mjs";
 
 interface Translatable {
