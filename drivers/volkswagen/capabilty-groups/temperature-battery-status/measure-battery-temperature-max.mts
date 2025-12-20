@@ -1,6 +1,6 @@
-import type { FloatString } from "../../api/types.mjs";
 import type { VehicleData } from "../../device.mjs";
 import InvalidValueError from "../../errors/invalid-value-error.mjs";
+import type { FloatString } from "../../types.mjs";
 import Capability, { type CapabilityOptions } from "../capability.mjs";
 
 export default class MeasureBatteryTemperatureMaxCapability extends Capability<number> {

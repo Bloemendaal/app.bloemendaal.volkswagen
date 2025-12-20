@@ -1,5 +1,5 @@
-import type { DateTimeString } from "../../api/types.mjs";
 import type { VehicleData } from "../../device.mjs";
+import type { DateTimeString } from "../../types.mjs";
 import CapabilityGroup, { type AnyCapability } from "../capability-group.mjs";
 import CoordinateLatitudeCapability from "./coordinate-latitude.mjs";
 import CoordinateLongitudeCapability from "./coordinate-longitude.mjs";

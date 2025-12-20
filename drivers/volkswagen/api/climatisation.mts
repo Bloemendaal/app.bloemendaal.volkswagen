@@ -1,4 +1,4 @@
-import type { PossiblyUnknownString } from "./types.mjs";
+import type { PossiblyUnknownString } from "../types.mjs";
 
 export interface ClimatisationSettings {
 	targetTemperature?: number;

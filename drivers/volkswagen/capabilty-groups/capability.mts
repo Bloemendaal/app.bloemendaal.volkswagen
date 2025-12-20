@@ -1,8 +1,8 @@
 import type { CapabilitiesStatusData } from "../api/capabilities/user-capabilities.mjs";
-import type { FloatString } from "../api/types.mjs";
 import type VolkswagenDevice from "../device.mjs";
 import type { VehicleData } from "../device.mjs";
 import InvalidValueError from "../errors/invalid-value-error.mjs";
+import type { FloatString, UiComponent } from "../types.mjs";
 
 export interface RunOptions {
 	isOutdated: boolean;
@@ -12,18 +12,8 @@ export interface CapabilityOptions {
 	title: string;
 	getable: boolean;
 	setable: boolean;
-	uiComponent:
-		| "toggle"
-		| "slider"
-		| "sensor"
-		| "thermostat"
-		| "media"
-		| "color"
-		| "battery"
-		| "picker"
-		| "ternary"
-		| "button"
-		| null;
+	units: string;
+	uiComponent: UiComponent | null;
 }
 
 type Getter<TValue> = (vehicleData: VehicleData) => Promise<TValue>;
@@ -57,8 +47,6 @@ export default abstract class Capability<TValue> {
 		vehicleData: VehicleData,
 		options: RunOptions,
 	): Promise<void> {
-		this.volkswagenDevice.log("Running capability:", this.getCapabilityName());
-
 		if (!this.getter && !this.setter) {
 			this.volkswagenDevice.error(
 				`Capability ${this.getCapabilityName()} has no getter or setter defined.`,

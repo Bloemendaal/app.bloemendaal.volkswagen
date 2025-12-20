@@ -1,4 +1,4 @@
-import type { DateTimeString, PossiblyUnknownString } from "../types.mjs";
+import type { DateTimeString, PossiblyUnknownString } from "../../types.mjs";
 
 export interface LightData {
 	name: "right" | "left";

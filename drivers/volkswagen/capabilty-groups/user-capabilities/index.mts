@@ -1,5 +1,5 @@
-import type { DateTimeString } from "../../api/types.mjs";
 import type { VehicleData } from "../../device.mjs";
+import type { DateTimeString } from "../../types.mjs";
 import CapabilityGroup, { type AnyCapability } from "../capability-group.mjs";
 import ButtonFlashCapability from "./button-flash.mjs";
 import ButtonHonkFlashCapability from "./button-honk-flash.mjs";

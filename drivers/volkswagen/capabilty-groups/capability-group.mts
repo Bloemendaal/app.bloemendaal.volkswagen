@@ -1,6 +1,6 @@
-import type { DateTimeString } from "../api/types.mjs";
 import type VolkswagenDevice from "../device.mjs";
 import type { VehicleData } from "../device.mjs";
+import type { DateTimeString } from "../types.mjs";
 import type Capability from "./capability.mjs";
 
 // biome-ignore lint/suspicious/noExplicitAny: it doesn't matter what value the capability holds for the group

@@ -1,4 +1,4 @@
-import type { DateTimeString, Integer } from "../types.mjs";
+import type { DateTimeString, Integer } from "../../types.mjs";
 
 export interface CapabilitiesStatusData {
 	id: string;
