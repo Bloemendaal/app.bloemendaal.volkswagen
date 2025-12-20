@@ -4,14 +4,9 @@ import DebounceScheduler from "./api/debounce-scheduler.mjs";
 import type { ParkingPositionData } from "./api/parking-position.mjs";
 import User from "./api/user.mjs";
 import type Vehicle from "./api/vehicle.mjs";
-import TranslatableError from "./errors/translatable-error.mjs";
-import ControlCharging from "./flows/control-charging.mjs";
-import ControlClimatisation from "./flows/control-climatisation.mjs";
-import type Flow from "./flows/flow.mjs";
-import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
-import type CapabilityGroup from "./capabilty-groups/capability-group.mjs";
 import AccessStatusCapabilityGroup from "./capabilty-groups/access-status/index.mjs";
 import BatteryStatusCapabilityGroup from "./capabilty-groups/battery-status/index.mjs";
+import type CapabilityGroup from "./capabilty-groups/capability-group.mjs";
 import ChargingSettingsCapabilityGroup from "./capabilty-groups/charging-settings/index.mjs";
 import ChargingStatusCapabilityGroup from "./capabilty-groups/charging-status/index.mjs";
 import ClimatisationStatusCapabilityGroup from "./capabilty-groups/climatisation-status/index.mjs";
@@ -22,6 +17,11 @@ import PlugStatusCapabilityGroup from "./capabilty-groups/plug-status/index.mjs"
 import ReadinessStatusCapabilityGroup from "./capabilty-groups/readiness-status/index.mjs";
 import TemperatureBatteryStatusCapabilityGroup from "./capabilty-groups/temperature-battery-status/index.mjs";
 import UserCapabilitiesCapabilityGroup from "./capabilty-groups/user-capabilities/index.mjs";
+import TranslatableError from "./errors/translatable-error.mjs";
+import ControlCharging from "./flows/control-charging.mjs";
+import ControlClimatisation from "./flows/control-climatisation.mjs";
+import type Flow from "./flows/flow.mjs";
+import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
 
 const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
@@ -79,6 +79,8 @@ export default class VolkswagenDevice extends Homey.Device {
 		for (const flow of this.flows) {
 			await flow.register();
 		}
+
+		await this.setCapabilities(vehicleData).catch(this.error.bind(this));
 
 		const intervalDelay =
 			MS_TO_MINUTES *
