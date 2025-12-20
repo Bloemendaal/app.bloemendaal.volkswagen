@@ -79,7 +79,13 @@ export default abstract class Capability<TValue> {
 				);
 			}
 
-			if (!options.isOutdated && value !== undefined) {
+			const shouldSetValue = this.shouldSetCapabilityValue(
+				name,
+				value,
+				options,
+			);
+
+			if (shouldSetValue) {
 				await this.volkswagenDevice.setCapabilityValue(name, value);
 			}
 		} catch (error) {
@@ -90,6 +96,26 @@ export default abstract class Capability<TValue> {
 	}
 
 	protected abstract getCapabilityName(): string;
+
+	protected shouldSetCapabilityValue(
+		name: string,
+		value: TValue | undefined,
+		options: RunOptions,
+	): boolean {
+		if (value === undefined) {
+			return false;
+		}
+
+		if (!options.isOutdated) {
+			return true;
+		}
+
+		if (value === null) {
+			return false;
+		}
+
+		return this.volkswagenDevice.getCapabilityValue(name) === null;
+	}
 
 	protected async can(
 		capacityId: string,
