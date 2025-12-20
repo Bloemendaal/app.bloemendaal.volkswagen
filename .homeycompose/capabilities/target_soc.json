@@ -14,7 +14,7 @@
 		"ru": "Целевой уровень заряда",
 		"ko": "목표 충전 수준"
 	},
-	"units": "%",
+	"units": "%‎",
 	"getable": true,
 	"setable": true,
 	"uiComponent": "slider",

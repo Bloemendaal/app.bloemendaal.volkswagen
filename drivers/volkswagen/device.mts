@@ -1,12 +1,12 @@
 import Homey from "homey";
+import type { SelectiveStatusCapabilitiesData } from "./api/capabilities.mjs";
 import DebounceScheduler from "./api/debounce-scheduler.mjs";
-import TranslatableError from "./api/errors/translatable-error.mjs";
+import type { ParkingPositionData } from "./api/parking-position.mjs";
 import User from "./api/user.mjs";
 import type Vehicle from "./api/vehicle.mjs";
 import Access from "./capabilities/access.mjs";
 import BatteryStatus from "./capabilities/battery-status.mjs";
 import type Capability from "./capabilities/capability.mjs";
-import type { VehicleData } from "./capabilities/capability.mjs";
 import ChargingSettings from "./capabilities/charging-settings.mjs";
 import ChargingStatus from "./capabilities/charging-status.mjs";
 import ClimatisationStatus from "./capabilities/climatisation-status.mjs";
@@ -19,6 +19,7 @@ import PlugStatus from "./capabilities/plug-status.mjs";
 import ReadinessStatus from "./capabilities/readiness-status.mjs";
 import TemperatureBatteryStatus from "./capabilities/temperature-battery-status.mjs";
 import WakeUpTrigger from "./capabilities/wake-up-trigger.mjs";
+import TranslatableError from "./errors/translatable-error.mjs";
 import ControlCharging from "./flows/control-charging.mjs";
 import ControlClimatisation from "./flows/control-climatisation.mjs";
 import type Flow from "./flows/flow.mjs";
@@ -31,6 +32,11 @@ interface OnSettingsParams {
 	oldSettings: { [key: string]: boolean | string | number | undefined | null };
 	newSettings: { [key: string]: boolean | string | number | undefined | null };
 	changedKeys: string[];
+}
+
+export interface VehicleData {
+	capabilities: Partial<SelectiveStatusCapabilitiesData>;
+	parkingPosition: ParkingPositionData | null;
 }
 
 export default class VolkswagenDevice extends Homey.Device {
