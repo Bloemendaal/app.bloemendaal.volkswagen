@@ -1,6 +1,6 @@
 import type { VehicleData } from "../../device.mjs";
 import InvalidValueError from "../../errors/invalid-value-error.mjs";
-import Capability, { type Options } from "../capability.mjs";
+import Capability, { type CapabilityOptions } from "../capability.mjs";
 
 export default class MeasureBatteryUntilTargetSocCapability extends Capability<number> {
 	protected getCapabilityName(): string {
@@ -25,7 +25,7 @@ export default class MeasureBatteryUntilTargetSocCapability extends Capability<n
 
 	public override getOptions = async (
 		_vehicleData: VehicleData,
-	): Promise<Partial<Options>> => {
+	): Promise<Partial<CapabilityOptions>> => {
 		return {
 			uiComponent: "sensor",
 			title: this.volkswagenDevice.homey.__(

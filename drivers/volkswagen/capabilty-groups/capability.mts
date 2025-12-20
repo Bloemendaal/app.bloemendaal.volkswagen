@@ -4,7 +4,11 @@ import type VolkswagenDevice from "../device.mjs";
 import type { VehicleData } from "../device.mjs";
 import InvalidValueError from "../errors/invalid-value-error.mjs";
 
-export interface Options {
+export interface RunOptions {
+	isOutdated: boolean;
+}
+
+export interface CapabilityOptions {
 	title: string;
 	getable: boolean;
 	setable: boolean;
@@ -24,7 +28,9 @@ export interface Options {
 
 type Getter<TValue> = (vehicleData: VehicleData) => Promise<TValue>;
 type Setter<TValue> = (value: TValue) => Promise<void>;
-type OptionsGetter = (vehicleData: VehicleData) => Promise<Partial<Options>>;
+type OptionsGetter = (
+	vehicleData: VehicleData,
+) => Promise<Partial<CapabilityOptions>>;
 
 export default abstract class Capability<TValue> {
 	constructor(protected readonly volkswagenDevice: VolkswagenDevice) {}
@@ -47,8 +53,17 @@ export default abstract class Capability<TValue> {
 	 */
 	public getOptions?: OptionsGetter;
 
-	public async run(vehicleData: VehicleData): Promise<void> {
+	public async run(
+		vehicleData: VehicleData,
+		options: RunOptions,
+	): Promise<void> {
+		this.volkswagenDevice.log("Running capability:", this.getCapabilityName());
+
 		if (!this.getter && !this.setter) {
+			this.volkswagenDevice.error(
+				`Capability ${this.getCapabilityName()} has no getter or setter defined.`,
+			);
+
 			return;
 		}
 
@@ -58,22 +73,25 @@ export default abstract class Capability<TValue> {
 
 			if (!this.volkswagenDevice.hasCapability(name)) {
 				await this.volkswagenDevice.addCapability(name);
-
-				const options = await this.getOptions?.(vehicleData);
-
-				if (options) {
-					await this.volkswagenDevice.setCapabilityOptions(name, options);
-				}
-
-				if (this.setter) {
-					this.volkswagenDevice.registerCapabilityListener(
-						name,
-						this.setter.bind(this),
-					);
-				}
 			}
 
-			if (value !== undefined) {
+			const capabilityOptions = await this.getOptions?.(vehicleData);
+
+			if (capabilityOptions) {
+				await this.volkswagenDevice.setCapabilityOptions(
+					name,
+					capabilityOptions,
+				);
+			}
+
+			if (this.setter) {
+				this.volkswagenDevice.registerCapabilityListener(
+					name,
+					this.setter.bind(this),
+				);
+			}
+
+			if (!options.isOutdated && value !== undefined) {
 				await this.volkswagenDevice.setCapabilityValue(name, value);
 			}
 		} catch (error) {

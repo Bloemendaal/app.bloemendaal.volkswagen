@@ -1,7 +1,7 @@
 import type { StartClimatisationSettings } from "../../api/climatisation.mjs";
 import type { VehicleData } from "../../device.mjs";
 import InvalidValueError from "../../errors/invalid-value-error.mjs";
-import Capability, { type Options } from "../capability.mjs";
+import Capability, { type CapabilityOptions } from "../capability.mjs";
 
 export default class ClimatisationOnOffCapability extends Capability<boolean> {
 	protected getCapabilityName(): string {
@@ -47,7 +47,7 @@ export default class ClimatisationOnOffCapability extends Capability<boolean> {
 
 	public override getOptions = async ({
 		capabilities,
-	}: VehicleData): Promise<Partial<Options>> => {
+	}: VehicleData): Promise<Partial<CapabilityOptions>> => {
 		const isSetable = await this.can(
 			"climatisation",
 			capabilities.userCapabilities?.capabilitiesStatus?.value,

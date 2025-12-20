@@ -1,7 +1,7 @@
 import type { FloatString } from "../../api/types.mjs";
 import type { VehicleData } from "../../device.mjs";
 import InvalidValueError from "../../errors/invalid-value-error.mjs";
-import Capability, { type Options } from "../capability.mjs";
+import Capability, { type CapabilityOptions } from "../capability.mjs";
 
 export default class MeasureBatteryTemperatureMinCapability extends Capability<number> {
 	protected getCapabilityName(): string {
@@ -24,7 +24,7 @@ export default class MeasureBatteryTemperatureMinCapability extends Capability<n
 
 	public override getOptions = async (
 		_vehicleData: VehicleData,
-	): Promise<Partial<Options>> => {
+	): Promise<Partial<CapabilityOptions>> => {
 		return {
 			title: this.volkswagenDevice.homey.__(
 				"capabilities.measure_battery_temperature.title",

@@ -14,14 +14,12 @@ export default abstract class CapabilityGroup {
 			this.getCapabilityTimestamp(vehicleData),
 		);
 
-		if (!hasNewerTimestamp) {
-			return;
-		}
-
 		const capabilities = await this.getCapabilities(vehicleData);
 
 		for (const capability of capabilities) {
-			await capability.run(vehicleData);
+			await capability.run(vehicleData, {
+				isOutdated: !hasNewerTimestamp,
+			});
 		}
 	}
 

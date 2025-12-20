@@ -1,6 +1,6 @@
 import type { VehicleData } from "../../device.mjs";
 import InvalidValueError from "../../errors/invalid-value-error.mjs";
-import Capability, { type Options } from "../capability.mjs";
+import Capability, { type CapabilityOptions } from "../capability.mjs";
 
 export default class TargetTemperatureCapability extends Capability<number> {
 	protected getCapabilityName(): string {
@@ -34,7 +34,7 @@ export default class TargetTemperatureCapability extends Capability<number> {
 
 	public override getOptions = async ({
 		capabilities,
-	}: VehicleData): Promise<Partial<Options>> => {
+	}: VehicleData): Promise<Partial<CapabilityOptions>> => {
 		const isSetable = await this.can(
 			"climatisation",
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
