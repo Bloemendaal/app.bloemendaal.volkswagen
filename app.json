@@ -1604,16 +1604,16 @@
         "ru": "Целевой уровень заряда",
         "ko": "목표 충전 수준"
       },
-      "units": "%",
+      "units": "%‎",
       "getable": true,
       "setable": true,
       "uiComponent": "slider",
       "icon": "/assets/capabilities/target_soc.svg",
       "insights": false,
-      "min": 0,
-      "max": 1,
-      "step": 0.01,
-      "decimals": 2
+      "min": 50,
+      "max": 100,
+      "step": 1,
+      "decimals": 0
     },
     "timestamp": {
       "type": "number",
