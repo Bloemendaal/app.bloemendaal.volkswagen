@@ -16,10 +16,23 @@ export default abstract class CapabilityGroup {
 
 		const capabilities = await this.getCapabilities(vehicleData);
 
+		const errors: unknown[] = [];
+
 		for (const capability of capabilities) {
-			await capability.run(vehicleData, {
-				isOutdated: !hasNewerTimestamp,
-			});
+			try {
+				await capability.run(vehicleData, {
+					isOutdated: !hasNewerTimestamp,
+				});
+			} catch (error) {
+				errors.push(error);
+			}
+		}
+
+		if (errors.length) {
+			throw new AggregateError(
+				errors,
+				`Errors occurred while running capability group ${this.getCapabilityGroupName()}`,
+			);
 		}
 	}
 

@@ -181,8 +181,21 @@ export default class VolkswagenDevice extends Homey.Device {
 			vehicleData = await this.fetchVehicleData();
 		}
 
+		const errors: unknown[] = [];
+
 		for (const capabilityGroup of this.capabilityGroups) {
-			await capabilityGroup.run(vehicleData);
+			try {
+				await capabilityGroup.run(vehicleData);
+			} catch (error) {
+				errors.push(error);
+			}
+		}
+
+		if (errors.length) {
+			throw new AggregateError(
+				errors,
+				"Errors occurred while setting capabilities",
+			);
 		}
 	}
 }
