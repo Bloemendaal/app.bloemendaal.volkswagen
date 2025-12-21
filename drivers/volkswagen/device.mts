@@ -1,27 +1,26 @@
 import Homey from "homey";
-import type { SelectiveStatusCapabilitiesData } from "./api/capabilities.mjs";
 import DebounceScheduler from "./api/debounce-scheduler.mjs";
-import type { ParkingPositionData } from "./api/parking-position.mjs";
+import type { FetchData } from "./api/fetch.mjs";
 import User from "./api/user.mjs";
 import type Vehicle from "./api/vehicle.mjs";
-import AccessStatusCapabilityGroup from "./capabilty-groups/access-status/index.mjs";
-import BatteryStatusCapabilityGroup from "./capabilty-groups/battery-status/index.mjs";
-import type CapabilityGroup from "./capabilty-groups/capability-group.mjs";
-import ChargingSettingsCapabilityGroup from "./capabilty-groups/charging-settings/index.mjs";
-import ChargingStatusCapabilityGroup from "./capabilty-groups/charging-status/index.mjs";
-import ClimatisationStatusCapabilityGroup from "./capabilty-groups/climatisation-status/index.mjs";
-import MaintenanceStatusCapabilityGroup from "./capabilty-groups/maintenance-status/index.mjs";
-import OdometerStatusCapabilityGroup from "./capabilty-groups/odometer-status/index.mjs";
-import ParkingPositionCapabilityGroup from "./capabilty-groups/parking-position/index.mjs";
-import PlugStatusCapabilityGroup from "./capabilty-groups/plug-status/index.mjs";
-import ReadinessStatusCapabilityGroup from "./capabilty-groups/readiness-status/index.mjs";
-import TemperatureBatteryStatusCapabilityGroup from "./capabilty-groups/temperature-battery-status/index.mjs";
-import UserCapabilitiesCapabilityGroup from "./capabilty-groups/user-capabilities/index.mjs";
 import TranslatableError from "./errors/translatable-error.mjs";
 import ControlCharging from "./flows/control-charging.mjs";
 import ControlClimatisation from "./flows/control-climatisation.mjs";
 import type Flow from "./flows/flow.mjs";
 import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
+import AccessStatusCapabilityGroup from "./processors/access-status/index.mjs";
+import BatteryStatusCapabilityGroup from "./processors/battery-status/index.mjs";
+import ChargingSettingsCapabilityGroup from "./processors/charging-settings/index.mjs";
+import ChargingStatusCapabilityGroup from "./processors/charging-status/index.mjs";
+import ClimatisationStatusCapabilityGroup from "./processors/climatisation-status/index.mjs";
+import MaintenanceStatusCapabilityGroup from "./processors/maintenance-status/index.mjs";
+import OdometerStatusCapabilityGroup from "./processors/odometer-status/index.mjs";
+import ParkingPositionCapabilityGroup from "./processors/parking-position/index.mjs";
+import PlugStatusCapabilityGroup from "./processors/plug-status/index.mjs";
+import Processor from "./processors/processable.mjs";
+import ReadinessStatusCapabilityGroup from "./processors/readiness-status/index.mjs";
+import TemperatureBatteryStatusCapabilityGroup from "./processors/temperature-battery-status/index.mjs";
+import UserCapabilitiesCapabilityGroup from "./processors/user-capabilities/index.mjs";
 
 const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
@@ -32,18 +31,13 @@ interface OnSettingsParams {
 	changedKeys: string[];
 }
 
-export interface VehicleData {
-	capabilities: Partial<SelectiveStatusCapabilitiesData>;
-	parkingPosition: ParkingPositionData | null;
-}
-
 export default class VolkswagenDevice extends Homey.Device {
 	private vehicle: Vehicle | null = null;
 
 	private readonly debounceScheduler: DebounceScheduler<void> =
 		new DebounceScheduler<void>(this.setCapabilities.bind(this));
 
-	private readonly capabilityGroups: CapabilityGroup[] = [
+	private readonly capabilityGroupProcessor: Processor = new Processor([
 		new AccessStatusCapabilityGroup(this),
 		new BatteryStatusCapabilityGroup(this),
 		new ChargingSettingsCapabilityGroup(this),
@@ -56,7 +50,7 @@ export default class VolkswagenDevice extends Homey.Device {
 		new ReadinessStatusCapabilityGroup(this),
 		new TemperatureBatteryStatusCapabilityGroup(this),
 		new UserCapabilitiesCapabilityGroup(this),
-	];
+	]);
 
 	private readonly flows: Flow[] = [
 		new UpdateChargingSettings(this),
@@ -68,19 +62,15 @@ export default class VolkswagenDevice extends Homey.Device {
 		const vehicle = await this.getVehicle();
 		vehicle.onSettingsUpdate(this.setSettings.bind(this));
 
-		const vehicleData = await this.fetchVehicleData(vehicle);
+		const fetchData = await this.fetchVehicleData(vehicle);
 
-		await this.setEnergy({
-			electricCar:
-				vehicleData.capabilities.fuelStatus?.rangeStatus?.value?.carType ===
-				"electric",
-		});
+		await this.capabilityGroupProcessor.register(fetchData);
 
 		for (const flow of this.flows) {
 			await flow.register();
 		}
 
-		await this.setCapabilities(vehicleData).catch(this.error.bind(this));
+		await this.setCapabilities(fetchData).catch(this.error.bind(this));
 
 		const intervalDelay =
 			MS_TO_MINUTES *
@@ -117,10 +107,6 @@ export default class VolkswagenDevice extends Homey.Device {
 
 	public async onDeleted(): Promise<void> {
 		this.debounceScheduler.destroy();
-
-		for (const flow of this.flows) {
-			await flow.unregister();
-		}
 	}
 
 	public async getVehicle(): Promise<Vehicle> {
@@ -161,7 +147,7 @@ export default class VolkswagenDevice extends Homey.Device {
 
 	private async fetchVehicleData(
 		vehicle: Vehicle | null = null,
-	): Promise<VehicleData> {
+	): Promise<FetchData> {
 		if (!vehicle) {
 			vehicle = await this.getVehicle();
 		}
@@ -175,27 +161,12 @@ export default class VolkswagenDevice extends Homey.Device {
 	}
 
 	private async setCapabilities(
-		vehicleData: VehicleData | null = null,
+		fetchData: FetchData | null = null,
 	): Promise<void> {
-		if (!vehicleData) {
-			vehicleData = await this.fetchVehicleData();
+		if (!fetchData) {
+			fetchData = await this.fetchVehicleData();
 		}
 
-		const errors: unknown[] = [];
-
-		for (const capabilityGroup of this.capabilityGroups) {
-			try {
-				await capabilityGroup.run(vehicleData);
-			} catch (error) {
-				errors.push(error);
-			}
-		}
-
-		if (errors.length) {
-			throw new AggregateError(
-				errors,
-				"Errors occurred while setting capabilities",
-			);
-		}
+		await this.capabilityGroupProcessor.run(fetchData);
 	}
 }

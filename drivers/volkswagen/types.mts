@@ -26,6 +26,14 @@ export type UiComponent =
 	| "ternary"
 	| "button";
 
+export interface CapabilityOptions {
+	title: string;
+	getable: boolean;
+	setable: boolean;
+	units: string;
+	uiComponent: UiComponent | null;
+}
+
 export type Locale =
 	| "da"
 	| "de"
