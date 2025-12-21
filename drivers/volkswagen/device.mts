@@ -4,23 +4,23 @@ import type { FetchData } from "./api/fetch.mjs";
 import User from "./api/user.mjs";
 import type Vehicle from "./api/vehicle.mjs";
 import TranslatableError from "./errors/translatable-error.mjs";
-import ControlCharging from "./flows/control-charging.mjs";
-import ControlClimatisation from "./flows/control-climatisation.mjs";
-import type Flow from "./flows/flow.mjs";
-import UpdateChargingSettings from "./flows/update-charge-settings.mjs";
-import AccessStatusCapabilityGroup from "./processors/access-status/index.mjs";
-import BatteryStatusCapabilityGroup from "./processors/battery-status/index.mjs";
-import ChargingSettingsCapabilityGroup from "./processors/charging-settings/index.mjs";
-import ChargingStatusCapabilityGroup from "./processors/charging-status/index.mjs";
-import ClimatisationStatusCapabilityGroup from "./processors/climatisation-status/index.mjs";
-import MaintenanceStatusCapabilityGroup from "./processors/maintenance-status/index.mjs";
-import OdometerStatusCapabilityGroup from "./processors/odometer-status/index.mjs";
-import ParkingPositionCapabilityGroup from "./processors/parking-position/index.mjs";
-import PlugStatusCapabilityGroup from "./processors/plug-status/index.mjs";
+import AccessStatusCapabilityGroup from "./processors/capabilities/access-status/index.mjs";
+import BatteryStatusCapabilityGroup from "./processors/capabilities/battery-status/index.mjs";
+import ChargingSettingsCapabilityGroup from "./processors/capabilities/charging-settings/index.mjs";
+import ChargingStatusCapabilityGroup from "./processors/capabilities/charging-status/index.mjs";
+import ClimatisationStatusCapabilityGroup from "./processors/capabilities/climatisation-status/index.mjs";
+import MaintenanceStatusCapabilityGroup from "./processors/capabilities/maintenance-status/index.mjs";
+import OdometerStatusCapabilityGroup from "./processors/capabilities/odometer-status/index.mjs";
+import ParkingPositionCapabilityGroup from "./processors/capabilities/parking-position/index.mjs";
+import PlugStatusCapabilityGroup from "./processors/capabilities/plug-status/index.mjs";
+import ReadinessStatusCapabilityGroup from "./processors/capabilities/readiness-status/index.mjs";
+import TemperatureBatteryStatusCapabilityGroup from "./processors/capabilities/temperature-battery-status/index.mjs";
+import UserCapabilitiesCapabilityGroup from "./processors/capabilities/user-capabilities/index.mjs";
+import ControlChargingFlow from "./processors/flows/control-charging.mjs";
+import ControlClimatisationFlow from "./processors/flows/control-climatisation.mjs";
+import UpdateChargingSettingsFlow from "./processors/flows/update-charge-settings.mjs";
 import Processor from "./processors/processable.mjs";
-import ReadinessStatusCapabilityGroup from "./processors/readiness-status/index.mjs";
-import TemperatureBatteryStatusCapabilityGroup from "./processors/temperature-battery-status/index.mjs";
-import UserCapabilitiesCapabilityGroup from "./processors/user-capabilities/index.mjs";
+import EnergySetting from "./processors/settings/energy.mjs";
 
 const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
@@ -37,7 +37,8 @@ export default class VolkswagenDevice extends Homey.Device {
 	private readonly debounceScheduler: DebounceScheduler<void> =
 		new DebounceScheduler<void>(this.setCapabilities.bind(this));
 
-	private readonly capabilityGroupProcessor: Processor = new Processor([
+	private readonly processor: Processor = new Processor([
+		new EnergySetting(this),
 		new AccessStatusCapabilityGroup(this),
 		new BatteryStatusCapabilityGroup(this),
 		new ChargingSettingsCapabilityGroup(this),
@@ -50,13 +51,10 @@ export default class VolkswagenDevice extends Homey.Device {
 		new ReadinessStatusCapabilityGroup(this),
 		new TemperatureBatteryStatusCapabilityGroup(this),
 		new UserCapabilitiesCapabilityGroup(this),
+		new ControlChargingFlow(this),
+		new ControlClimatisationFlow(this),
+		new UpdateChargingSettingsFlow(this),
 	]);
-
-	private readonly flows: Flow[] = [
-		new UpdateChargingSettings(this),
-		new ControlCharging(this),
-		new ControlClimatisation(this),
-	];
 
 	public async onInit(): Promise<void> {
 		const vehicle = await this.getVehicle();
@@ -64,12 +62,7 @@ export default class VolkswagenDevice extends Homey.Device {
 
 		const fetchData = await this.fetchVehicleData(vehicle);
 
-		await this.capabilityGroupProcessor.register(fetchData);
-
-		for (const flow of this.flows) {
-			await flow.register();
-		}
-
+		await this.processor.register(fetchData);
 		await this.setCapabilities(fetchData).catch(this.error.bind(this));
 
 		const intervalDelay =
@@ -167,6 +160,6 @@ export default class VolkswagenDevice extends Homey.Device {
 			fetchData = await this.fetchVehicleData();
 		}
 
-		await this.capabilityGroupProcessor.run(fetchData);
+		await this.processor.run(fetchData);
 	}
 }
