@@ -12,8 +12,8 @@ export default class ReadinessStatusCapabilityGroup extends CapabilityGroup {
 
 	protected getCapabilityTimestamp(
 		_fetchData: FetchData,
-	): DateTimeString | undefined {
-		return undefined;
+	): DateTimeString | null {
+		return null;
 	}
 
 	protected async getProcessables(

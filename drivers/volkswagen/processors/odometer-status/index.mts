@@ -11,9 +11,11 @@ export default class OdometerStatusCapabilityGroup extends CapabilityGroup {
 
 	protected getCapabilityTimestamp({
 		capabilities,
-	}: FetchData): DateTimeString | undefined {
-		return capabilities.measurements?.odometerStatus?.value
-			?.carCapturedTimestamp;
+	}: FetchData): DateTimeString | null {
+		return (
+			capabilities.measurements?.odometerStatus?.value?.carCapturedTimestamp ??
+			null
+		);
 	}
 
 	protected async getProcessables(

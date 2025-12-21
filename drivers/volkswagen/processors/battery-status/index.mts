@@ -15,8 +15,10 @@ export default class BatteryStatusCapabilityGroup extends CapabilityGroup {
 
 	protected getCapabilityTimestamp({
 		capabilities,
-	}: FetchData): DateTimeString | undefined {
-		return capabilities.charging?.batteryStatus?.value?.carCapturedTimestamp;
+	}: FetchData): DateTimeString | null {
+		return (
+			capabilities.charging?.batteryStatus?.value?.carCapturedTimestamp ?? null
+		);
 	}
 
 	protected async getProcessables(

@@ -13,9 +13,11 @@ export default class ClimatisationStatusCapabilityGroup extends CapabilityGroup 
 
 	protected getCapabilityTimestamp({
 		capabilities,
-	}: FetchData): DateTimeString | undefined {
-		return capabilities.climatisation?.climatisationStatus?.value
-			?.carCapturedTimestamp;
+	}: FetchData): DateTimeString | null {
+		return (
+			capabilities.climatisation?.climatisationStatus?.value
+				?.carCapturedTimestamp ?? null
+		);
 	}
 
 	protected async getProcessables(

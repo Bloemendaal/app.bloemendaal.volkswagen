@@ -11,9 +11,11 @@ export default class MaintenanceStatusCapabilityGroup extends CapabilityGroup {
 
 	protected getCapabilityTimestamp({
 		capabilities,
-	}: FetchData): DateTimeString | undefined {
-		return capabilities.vehicleHealthInspection?.maintenanceStatus?.value
-			?.carCapturedTimestamp;
+	}: FetchData): DateTimeString | null {
+		return (
+			capabilities.vehicleHealthInspection?.maintenanceStatus?.value
+				?.carCapturedTimestamp ?? null
+		);
 	}
 
 	protected async getProcessables(

@@ -13,8 +13,8 @@ export default class ParkingPositionCapabilityGroup extends CapabilityGroup {
 
 	protected getCapabilityTimestamp({
 		parkingPosition,
-	}: FetchData): DateTimeString | undefined {
-		return parkingPosition?.carCapturedTimestamp;
+	}: FetchData): DateTimeString | null {
+		return parkingPosition?.carCapturedTimestamp ?? null;
 	}
 
 	protected async getProcessables(

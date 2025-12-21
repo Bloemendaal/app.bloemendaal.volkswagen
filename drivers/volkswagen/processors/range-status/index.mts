@@ -11,8 +11,10 @@ export default class RangeStatusCapabilityGroup extends CapabilityGroup {
 
 	protected getCapabilityTimestamp({
 		capabilities,
-	}: FetchData): DateTimeString | undefined {
-		return capabilities.fuelStatus?.rangeStatus?.value?.carCapturedTimestamp;
+	}: FetchData): DateTimeString | null {
+		return (
+			capabilities.fuelStatus?.rangeStatus?.value?.carCapturedTimestamp ?? null
+		);
 	}
 
 	protected async getProcessables(

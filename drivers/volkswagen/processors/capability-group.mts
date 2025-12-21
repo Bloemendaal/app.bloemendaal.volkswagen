@@ -29,14 +29,14 @@ export default abstract class CapabilityGroup implements Processable {
 
 	protected abstract getCapabilityTimestamp(
 		fetchData: FetchData,
-	): DateTimeString | undefined;
+	): DateTimeString | null;
 
 	protected abstract getProcessables(
 		fetchData: FetchData,
 	): Promise<Processable[]>;
 
 	protected async addTimestampCapability(
-		timestamp: DateTimeString | null = null,
+		timestamp: DateTimeString | null,
 	): Promise<boolean> {
 		const date = new Date(timestamp ?? 0);
 

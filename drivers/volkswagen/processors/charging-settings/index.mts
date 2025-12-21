@@ -11,8 +11,11 @@ export default class ChargingSettingsCapabilityGroup extends CapabilityGroup {
 
 	protected getCapabilityTimestamp({
 		capabilities,
-	}: FetchData): DateTimeString | undefined {
-		return capabilities.charging?.chargingSettings?.value?.carCapturedTimestamp;
+	}: FetchData): DateTimeString | null {
+		return (
+			capabilities.charging?.chargingSettings?.value?.carCapturedTimestamp ??
+			null
+		);
 	}
 
 	protected async getProcessables(

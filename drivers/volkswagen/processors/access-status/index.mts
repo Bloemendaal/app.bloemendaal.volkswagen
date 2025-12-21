@@ -14,8 +14,10 @@ export default class AccessStatusCapabilityGroup extends CapabilityGroup {
 
 	protected getCapabilityTimestamp({
 		capabilities,
-	}: FetchData): DateTimeString | undefined {
-		return capabilities.access?.accessStatus?.value?.carCapturedTimestamp;
+	}: FetchData): DateTimeString | null {
+		return (
+			capabilities.access?.accessStatus?.value?.carCapturedTimestamp ?? null
+		);
 	}
 
 	protected async getProcessables({
