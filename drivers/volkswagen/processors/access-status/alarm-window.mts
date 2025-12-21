@@ -24,6 +24,6 @@ export default class AlarmWindowCapability extends Capability<boolean> {
 			throw new InvalidValueError(window);
 		}
 
-		return window.status.includes("unlocked");
+		return !window.status.includes("closed");
 	}
 }
