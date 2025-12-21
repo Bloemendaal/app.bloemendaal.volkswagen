@@ -27,10 +27,10 @@ export type UiComponent =
 	| "button";
 
 export interface CapabilityOptions {
-	title: string;
+	title: Translatable;
 	getable: boolean;
 	setable: boolean;
-	units: string;
+	units: Translatable;
 	uiComponent: UiComponent | null;
 }
 
