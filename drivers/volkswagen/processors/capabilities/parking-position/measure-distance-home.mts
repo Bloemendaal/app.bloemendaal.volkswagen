@@ -1,6 +1,5 @@
 import type { FetchData } from "../../../api/fetch.mjs";
 import type { ParkingPositionData } from "../../../api/parking-position.mjs";
-
 import InvalidValueError from "../../../errors/invalid-value-error.mjs";
 import Capability from "../capability.mjs";
 

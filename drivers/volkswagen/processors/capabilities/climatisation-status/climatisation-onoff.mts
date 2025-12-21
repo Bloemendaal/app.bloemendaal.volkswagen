@@ -1,6 +1,5 @@
 import type { StartClimatisationSettings } from "../../../api/climatisation.mjs";
 import type { FetchData } from "../../../api/fetch.mjs";
-
 import InvalidValueError from "../../../errors/invalid-value-error.mjs";
 import Capability from "../capability.mjs";
 
