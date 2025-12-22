@@ -173,6 +173,39 @@
 					"ru": "Интервал в минутах для опроса автомобиля на наличие новых данных. Уменьшение этого значения может привести к разрядке аккумулятора.",
 					"ko": "새 데이터를 위해 차량을 폴링하는 간격(분). 이 값을 낮추면 배터리가 소모될 수 있습니다."
 				}
+			},
+			{
+				"id": "enableLogging",
+				"type": "checkbox",
+				"label": {
+					"en": "Enable logging",
+					"nl": "Loggen inschakelen",
+					"da": "Aktivér logning",
+					"de": "Protokollierung aktivieren",
+					"es": "Habilitar registro",
+					"fr": "Activer la journalisation",
+					"it": "Abilita registrazione",
+					"no": "Aktiver logging",
+					"sv": "Aktivera loggning",
+					"pl": "Włącz rejestrowanie",
+					"ru": "Включить ведение журнала",
+					"ko": "로깅 활성화"
+				},
+				"value": false,
+				"hint": {
+					"en": "When enabled, logs all vehicle data to Homey. This data is only included in diagnostics reports if you create one, making it easier to debug issues. Logging is optional and can only be read by the developer if a diagnostics report is sent. Errors are always logged and do not contain user data.",
+					"nl": "Wanneer ingeschakeld, worden alle voertuiggegevens gelogd naar Homey. Deze gegevens worden toegevoegd aan diagnostische rapporten als je die aanmaakt, waardoor eventuele problemen die je ervaart gemakkelijker op te lossen zijn. Loggen is optioneel en kan alleen door de ontwikkelaar worden gelezen als je diagnostisch rapport verzendt. Crashes worden altijd gelogd en bevatten geen persoonsgegevens.",
+					"da": "Når aktiveret, logger alle køretøjsdata til Homey. Disse data inkluderes kun i diagnostiske rapporter, hvis du opretter en, hvilket gør det lettere at fejlfinde problemer. Logning er valgfri og kan kun læses af udvikleren, hvis en diagnostisk rapport sendes. Fejl logges altid og indeholder ikke brugerdata.",
+					"de": "Wenn aktiviert, werden alle Fahrzeugdaten in Homey protokolliert. Diese Daten werden nur in Diagnoseberichte aufgenommen, wenn Sie einen erstellen, was die Fehlersuche erleichtert. Die Protokollierung ist optional und kann nur vom Entwickler gelesen werden, wenn ein Diagnosebericht gesendet wird. Fehler werden immer protokolliert und enthalten keine Benutzerdaten.",
+					"es": "Cuando está habilitado, registra todos los datos del vehículo en Homey. Estos datos solo se incluyen en informes de diagnóstico si creas uno, facilitando la depuración de problemas. El registro es opcional y solo puede ser leído por el desarrollador si se envía un informe de diagnóstico. Los errores siempre se registran y no contienen datos de usuario.",
+					"fr": "Lorsqu'elle est activée, enregistre toutes les données du véhicule dans Homey. Ces données ne sont incluses dans les rapports de diagnostic que si vous en créez un, ce qui facilite le débogage des problèmes. La journalisation est facultative et ne peut être lue par le développeur que si un rapport de diagnostic est envoyé. Les erreurs sont toujours enregistrées et ne contiennent pas de données utilisateur.",
+					"it": "Quando abilitato, registra tutti i dati del veicolo su Homey. Questi dati vengono inclusi solo nei rapporti diagnostici se ne crei uno, rendendo più facile il debug dei problemi. La registrazione è facoltativa e può essere letta solo dallo sviluppatore se viene inviato un rapporto diagnostico. Gli errori vengono sempre registrati e non contengono dati utente.",
+					"no": "Når aktivert, logger alle kjøretøydata til Homey. Disse dataene inkluderes kun i diagnostiske rapporter hvis du oppretter en, noe som gjør det enklere å feilsøke problemer. Logging er valgfritt og kan bare leses av utvikleren hvis en diagnostisk rapport sendes. Feil logges alltid og inneholder ikke brukerdata.",
+					"sv": "När den är aktiverad loggas alla fordonsdata till Homey. Dessa data inkluderas endast i diagnostiska rapporter om du skapar en, vilket gör det lättare att felsöka problem. Loggning är valfritt och kan endast läsas av utvecklaren om en diagnostisk rapport skickas. Fel loggas alltid och innehåller inte användardata.",
+					"pl": "Po włączeniu rejestruje wszystkie dane pojazdu w Homey. Te dane są uwzględniane tylko w raportach diagnostycznych, jeśli je utworzysz, co ułatwia debugowanie problemów. Rejestrowanie jest opcjonalne i może być odczytane tylko przez dewelopera, jeśli zostanie wysłany raport diagnostyczny. Błędy są zawsze rejestrowane i nie zawierają danych użytkownika.",
+					"ru": "При включении регистрирует все данные автомобиля в Homey. Эти данные включаются только в диагностические отчеты, если вы их создаете, что упрощает отладку проблем. Ведение журнала является необязательным и может быть прочитано разработчиком только в случае отправки диагностического отчета. Ошибки всегда регистрируются и не содержат пользовательских данных.",
+					"ko": "활성화하면 모든 차량 데이터를 Homey에 기록합니다. 이 데이터는 진단 보고서를 만들 때만 포함되어 문제를 더 쉽게 디버그할 수 있습니다. 로깅은 선택 사항이며 진단 보고서가 전송되는 경우에만 개발자가 읽을 수 있습니다. 오류는 항상 기록되며 사용자 데이터를 포함하지 않습니다."
+				}
 			}
 		]
 	}

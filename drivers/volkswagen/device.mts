@@ -92,6 +92,11 @@ export default class VolkswagenDevice extends Homey.Device {
 
 			this.debounceScheduler.startInterval(interval);
 		}
+
+		if (changedKeys.includes("enableLogging") && newSettings.enableLogging) {
+			// We intentionally do not await this because Homey won't apply the settings until this method resolves
+			this.requestRefresh(1000, 4000);
+		}
 	}
 
 	public async onUninit(): Promise<void> {
@@ -158,6 +163,10 @@ export default class VolkswagenDevice extends Homey.Device {
 	): Promise<void> {
 		if (!fetchData) {
 			fetchData = await this.fetchVehicleData();
+		}
+
+		if (this.getSetting("enableLogging")) {
+			this.log(`Fetched data: ${JSON.stringify(fetchData)}`);
 		}
 
 		await this.processor.run(fetchData);
