@@ -19,7 +19,7 @@ export default class IsParkedCapability extends Capability<boolean> {
 
 	/**
 	 * Ensure that when the carCapturedTimestamp doesn't exist, we
-	 * stillset this value because we know this by the status code
+	 * still set this value because we know this by the status code
 	 * and not by an actual value from the API JSON response.
 	 */
 	protected override shouldSetCapabilityValue(): boolean {
