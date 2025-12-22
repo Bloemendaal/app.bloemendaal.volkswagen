@@ -38,6 +38,10 @@ export default class MeasureDistanceHomeCapability extends Capability<number> {
 			return null;
 		}
 
+		if (!parkingPosition.parked) {
+			return null;
+		}
+
 		const carLat = parkingPosition.lat;
 		const carLon = parkingPosition.lon;
 

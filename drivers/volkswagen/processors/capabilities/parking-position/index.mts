@@ -14,6 +14,10 @@ export default class ParkingPositionCapabilityGroup extends CapabilityGroup {
 	protected getCapabilityTimestamp({
 		parkingPosition,
 	}: FetchData): DateTimeString | null {
+		if (!parkingPosition?.parked) {
+			return null;
+		}
+
 		return parkingPosition?.carCapturedTimestamp ?? null;
 	}
 
