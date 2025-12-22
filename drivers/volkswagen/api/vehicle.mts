@@ -96,7 +96,7 @@ export default class Vehicle extends Authenticatable implements VehicleData {
 
 		const client = await this.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/doors/lock`, {
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/access/lock`, {
 			spin: this.configuration.sPin,
 		});
 	}
@@ -108,7 +108,7 @@ export default class Vehicle extends Authenticatable implements VehicleData {
 
 		const client = await this.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/doors/unlock`, {
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/access/unlock`, {
 			spin: this.configuration.sPin,
 		});
 	}
