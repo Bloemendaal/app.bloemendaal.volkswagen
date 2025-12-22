@@ -79,5 +79,8 @@
 	},
 	"1.1.9": {
 		"en": "Add optional data logging"
+	},
+	"1.1.10": {
+		"en": "Fix locking and unlocking the vehicle"
 	}
 }
