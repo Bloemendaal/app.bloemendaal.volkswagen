@@ -4,6 +4,7 @@ import type { Processable } from "../../processable.mjs";
 import CapabilityGroup from "../capability-group.mjs";
 import CoordinateLatitudeCapability from "./coordinate-latitude.mjs";
 import CoordinateLongitudeCapability from "./coordinate-longitude.mjs";
+import IsParkedCapability from "./is-parked.mjs";
 import MeasureDistanceHomeCapability from "./measure-distance-home.mjs";
 
 export default class ParkingPositionCapabilityGroup extends CapabilityGroup {
@@ -27,6 +28,7 @@ export default class ParkingPositionCapabilityGroup extends CapabilityGroup {
 		return [
 			new CoordinateLatitudeCapability(this.volkswagenDevice),
 			new CoordinateLongitudeCapability(this.volkswagenDevice),
+			new IsParkedCapability(this.volkswagenDevice),
 			new MeasureDistanceHomeCapability(this.volkswagenDevice),
 		];
 	}
