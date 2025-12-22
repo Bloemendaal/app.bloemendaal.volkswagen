@@ -3,7 +3,7 @@ import type {
 	FloatString,
 	Integer,
 	PossiblyUnknownString,
-} from "../types.mjs";
+} from "../../types.mjs";
 
 export interface RangeStatusData {
 	carCapturedTimestamp: DateTimeString;

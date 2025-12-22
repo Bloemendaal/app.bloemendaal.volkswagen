@@ -1,4 +1,4 @@
-import type { DateTimeString, Float } from "./types.mjs";
+import type { DateTimeString, Float } from "../types.mjs";
 
 export interface ParkingPositionData {
 	lon: Float;

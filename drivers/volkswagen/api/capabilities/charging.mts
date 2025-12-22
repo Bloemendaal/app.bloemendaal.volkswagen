@@ -2,7 +2,7 @@ import type {
 	DateTimeString,
 	Integer,
 	PossiblyUnknownString,
-} from "../types.mjs";
+} from "../../types.mjs";
 
 export interface BatteryStatusData {
 	carCapturedTimestamp: DateTimeString;

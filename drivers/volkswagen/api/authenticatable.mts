@@ -7,7 +7,7 @@ import {
 	AuthorizationUrlError,
 	LoginFailedError,
 	TokenExchangeError,
-} from "./errors/authentication-errors.mjs";
+} from "../errors/authentication-errors.mjs";
 
 const REGION = "emea";
 const BASE_URL = "https://emea.bff.cariad.digital";

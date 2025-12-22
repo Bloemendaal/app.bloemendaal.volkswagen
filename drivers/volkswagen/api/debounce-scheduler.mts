@@ -168,7 +168,6 @@ export default class DebounceScheduler<T> {
 	): void {
 		this.stopInterval();
 
-		this.handleInterval(delayBounds, handlers);
 		this.pollingInterval = setInterval(
 			() => this.handleInterval(delayBounds, handlers),
 			delay,
