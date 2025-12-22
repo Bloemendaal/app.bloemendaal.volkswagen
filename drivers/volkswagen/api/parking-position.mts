@@ -6,7 +6,7 @@ export interface ParkingPositionResponse {
 	carCapturedTimestamp: DateTimeString;
 }
 
-interface ParkedPosition extends ParkingPositionResponse {
+export interface ParkedPosition extends ParkingPositionResponse {
 	parked: true;
 }
 

@@ -1,5 +1,5 @@
 import type { FetchData } from "../../../api/fetch.mjs";
-import type { ParkingPositionData } from "../../../api/parking-position.mjs";
+import type { ParkedPosition } from "../../../api/parking-position.mjs";
 import InvalidValueError from "../../../errors/invalid-value-error.mjs";
 import Capability from "../capability.mjs";
 
@@ -13,7 +13,7 @@ export default class MeasureDistanceHomeCapability extends Capability<number> {
 	public override async getter({
 		parkingPosition,
 	}: FetchData): Promise<number> {
-		if (!parkingPosition) {
+		if (!parkingPosition?.parked) {
 			throw new InvalidValueError(parkingPosition);
 		}
 
@@ -27,7 +27,7 @@ export default class MeasureDistanceHomeCapability extends Capability<number> {
 	}
 
 	private calculateDistanceFromHome(
-		parkingPosition: ParkingPositionData,
+		parkingPosition: ParkedPosition,
 	): number | null {
 		const homey = this.volkswagenDevice.homey;
 
@@ -35,10 +35,6 @@ export default class MeasureDistanceHomeCapability extends Capability<number> {
 		const homeLon = homey.geolocation.getLongitude();
 
 		if (!this.isNumber(homeLat) || !this.isNumber(homeLon)) {
-			return null;
-		}
-
-		if (!parkingPosition.parked) {
 			return null;
 		}
 
