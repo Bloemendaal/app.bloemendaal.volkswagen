@@ -82,5 +82,8 @@
 	},
 	"1.1.10": {
 		"en": "Fix locking and unlocking the vehicle"
+	},
+	"1.1.11": {
+		"en": "Add missing guard structure for settable only capabilities"
 	}
 }
