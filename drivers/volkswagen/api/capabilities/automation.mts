@@ -1,4 +1,5 @@
 import type {
+	ApiResponse,
 	DateTimeString,
 	Integer,
 	PossiblyUnknownString,
@@ -82,10 +83,6 @@ export interface ChargingProfilesData {
 }
 
 export interface AutomationCapabilitiesData {
-	climatisationTimer?: {
-		value?: ClimatisationTimerData;
-	};
-	chargingProfiles?: {
-		value?: ChargingProfilesData;
-	};
+	climatisationTimer?: ApiResponse<ClimatisationTimerData>;
+	chargingProfiles?: ApiResponse<ChargingProfilesData>;
 }

@@ -1,7 +1,6 @@
+import type { ApiResponse } from "../../types.mjs";
 import type { ChargingProfilesData } from "./automation.mjs";
 
 export interface ChargingProfilesCapabilitiesData {
-	chargingProfilesStatus?: {
-		value?: ChargingProfilesData;
-	};
+	chargingProfilesStatus?: ApiResponse<ChargingProfilesData>;
 }

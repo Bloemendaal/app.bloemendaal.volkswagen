@@ -1,9 +1,11 @@
 import type {
+	ApiResponse,
 	DateTimeString,
 	FloatString,
 	Integer,
 	PossiblyUnknownString,
 } from "../../types.mjs";
+import type { PrimaryEngineData } from "./fuel-status.mjs";
 
 export interface RangeStatusData {
 	carCapturedTimestamp: DateTimeString;
@@ -22,21 +24,14 @@ export interface TemperatureBatteryStatusData {
 
 export interface FuelLevelStatusData {
 	carCapturedTimestamp: DateTimeString;
-	primaryEngineType: "electric" | PossiblyUnknownString;
-	carType: "electric" | PossiblyUnknownString;
+	currentFuelLevel_pct?: Integer;
+	primaryEngineType: PrimaryEngineData["type"] | PossiblyUnknownString;
+	carType: PrimaryEngineData["type"] | PossiblyUnknownString;
 }
 
 export interface MeasurementsCapabilitiesData {
-	rangeStatus?: {
-		value?: RangeStatusData;
-	};
-	odometerStatus?: {
-		value?: OdometerStatusData;
-	};
-	temperatureBatteryStatus?: {
-		value?: TemperatureBatteryStatusData;
-	};
-	fuelLevelStatus?: {
-		value?: FuelLevelStatusData;
-	};
+	rangeStatus?: ApiResponse<RangeStatusData>;
+	odometerStatus?: ApiResponse<OdometerStatusData>;
+	temperatureBatteryStatus?: ApiResponse<TemperatureBatteryStatusData>;
+	fuelLevelStatus?: ApiResponse<FuelLevelStatusData>;
 }

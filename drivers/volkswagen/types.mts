@@ -5,6 +5,19 @@ export type FloatString = string;
 export type DateTimeString = string;
 export type PossiblyUnknownString = string;
 
+export interface ApiError {
+	message: string;
+	errorTimeStamp: DateTimeString;
+	info: string;
+	code: Integer;
+	group: Integer;
+	retry: boolean;
+}
+
+export type ApiResponse<T> =
+	| { value: T; error?: never }
+	| { value?: never; error: ApiError };
+
 export type Weekday =
 	| "monday"
 	| "tuesday"

@@ -1,4 +1,5 @@
 import type {
+	ApiResponse,
 	DateTimeString,
 	Integer,
 	PossiblyUnknownString,
@@ -30,13 +31,7 @@ export interface WindowHeatingStatusData {
 }
 
 export interface ClimatisationCapabilitiesData {
-	climatisationSettings?: {
-		value?: ClimatisationSettingsData;
-	};
-	climatisationStatus?: {
-		value?: ClimatisationStatusData;
-	};
-	windowHeatingStatus?: {
-		value?: WindowHeatingStatusData;
-	};
+	climatisationSettings?: ApiResponse<ClimatisationSettingsData>;
+	climatisationStatus?: ApiResponse<ClimatisationStatusData>;
+	windowHeatingStatus?: ApiResponse<WindowHeatingStatusData>;
 }

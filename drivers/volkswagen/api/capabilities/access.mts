@@ -1,4 +1,5 @@
 import type {
+	ApiResponse,
 	DateTimeString,
 	Integer,
 	PossiblyUnknownString,
@@ -37,7 +38,5 @@ export interface AccessStatusData {
 }
 
 export interface AccessCapabilitiesData {
-	accessStatus?: {
-		value?: AccessStatusData;
-	};
+	accessStatus?: ApiResponse<AccessStatusData>;
 }

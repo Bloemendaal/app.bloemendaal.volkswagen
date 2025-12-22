@@ -1,9 +1,7 @@
-import type { PossiblyUnknownString } from "../../types.mjs";
+import type { ApiResponse, PossiblyUnknownString } from "../../types.mjs";
 
 export interface BatteryChargingCareCapabilitiesData {
-	chargingCareSettings?: {
-		value?: {
-			batteryCareMode: "activated" | PossiblyUnknownString;
-		};
-	};
+	chargingCareSettings?: ApiResponse<{
+		batteryCareMode: "activated" | PossiblyUnknownString;
+	}>;
 }

@@ -1,4 +1,4 @@
-import type { DateTimeString, Integer } from "../../types.mjs";
+import type { ApiResponse, DateTimeString, Integer } from "../../types.mjs";
 
 export interface WarningLightsData {
 	carCapturedTimestamp: DateTimeString;
@@ -6,7 +6,5 @@ export interface WarningLightsData {
 }
 
 export interface VehicleHealthWarningsCapabilitiesData {
-	warningLights?: {
-		value?: WarningLightsData;
-	};
+	warningLights?: ApiResponse<WarningLightsData>;
 }

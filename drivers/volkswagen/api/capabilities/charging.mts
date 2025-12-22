@@ -1,4 +1,5 @@
 import type {
+	ApiResponse,
 	DateTimeString,
 	Integer,
 	PossiblyUnknownString,
@@ -58,22 +59,10 @@ export interface ChargingCareSettingsData {
 }
 
 export interface ChargingCapabilitiesData {
-	batteryStatus?: {
-		value?: BatteryStatusData;
-	};
-	chargingStatus?: {
-		value?: ChargingStatusData;
-	};
-	chargingSettings?: {
-		value?: ChargingSettingsData;
-	};
-	plugStatus?: {
-		value?: PlugStatusData;
-	};
-	chargeMode?: {
-		value?: ChargeModeData;
-	};
-	chargingCareSettings?: {
-		value?: ChargingCareSettingsData;
-	};
+	batteryStatus?: ApiResponse<BatteryStatusData>;
+	chargingStatus?: ApiResponse<ChargingStatusData>;
+	chargingSettings?: ApiResponse<ChargingSettingsData>;
+	plugStatus?: ApiResponse<PlugStatusData>;
+	chargeMode?: ApiResponse<ChargeModeData>;
+	chargingCareSettings?: ApiResponse<ChargingCareSettingsData>;
 }

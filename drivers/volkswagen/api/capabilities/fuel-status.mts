@@ -1,14 +1,23 @@
 import type {
+	ApiResponse,
 	DateTimeString,
 	Integer,
 	PossiblyUnknownString,
 } from "../../types.mjs";
 
-export interface PrimaryEngineData {
-	type: "electric" | PossiblyUnknownString;
+export interface ElectricEngineData {
+	type: "electric";
 	currentSOC_pct: Integer;
 	remainingRange_km: Integer;
 }
+
+export interface GasolineEngineData {
+	type: "gasoline";
+	currentSOC_pct: Integer;
+	currentFuelLevel_pct: Integer;
+}
+
+export type PrimaryEngineData = ElectricEngineData | GasolineEngineData;
 
 export interface RangeStatusData {
 	carCapturedTimestamp: DateTimeString;
@@ -18,7 +27,5 @@ export interface RangeStatusData {
 }
 
 export interface FuelStatusCapabilitiesData {
-	rangeStatus?: {
-		value?: RangeStatusData;
-	};
+	rangeStatus?: ApiResponse<RangeStatusData>;
 }

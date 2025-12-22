@@ -1,9 +1,7 @@
-import type { PossiblyUnknownString } from "../../types.mjs";
+import type { ApiResponse, PossiblyUnknownString } from "../../types.mjs";
 
 export interface BatterySupportCapabilitiesData {
-	batterySupportStatus?: {
-		value?: {
-			batterySupport: "disabled" | "enabled" | PossiblyUnknownString;
-		};
-	};
+	batterySupportStatus?: ApiResponse<{
+		batterySupport: "disabled" | "enabled" | PossiblyUnknownString;
+	}>;
 }

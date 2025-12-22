@@ -1,4 +1,4 @@
-import type { PossiblyUnknownString } from "../../types.mjs";
+import type { ApiResponse, PossiblyUnknownString } from "../../types.mjs";
 
 export interface ConnectionState {
 	isOnline: boolean;
@@ -18,7 +18,5 @@ export interface ReadinessStatus {
 }
 
 export interface ReadinessCapabilitiesData {
-	readinessStatus?: {
-		value?: ReadinessStatus;
-	};
+	readinessStatus?: ApiResponse<ReadinessStatus>;
 }

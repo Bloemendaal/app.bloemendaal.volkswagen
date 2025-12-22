@@ -8,6 +8,7 @@ import type { ClimatisationCapabilitiesData } from "./capabilities/climatisation
 import type { ClimatisationTimersCapabilitiesData } from "./capabilities/climatisation-timers.mjs";
 import type { FuelStatusCapabilitiesData } from "./capabilities/fuel-status.mjs";
 import type { MeasurementsCapabilitiesData } from "./capabilities/measurements.mjs";
+import type { OilLevelCapabilitiesData } from "./capabilities/oil-level.mjs";
 import type { ReadinessCapabilitiesData } from "./capabilities/readiness.mjs";
 import type { UserCapabilitiesData } from "./capabilities/user-capabilities.mjs";
 import type { VehicleHealthInspectionCapabilitiesData } from "./capabilities/vehicle-health-inspection.mjs";
@@ -29,7 +30,7 @@ export interface SelectiveStatusCapabilitiesData {
 	fuelStatus: FuelStatusCapabilitiesData;
 	lvBattery: unknown;
 	measurements: MeasurementsCapabilitiesData;
-	oilLevel: unknown;
+	oilLevel: OilLevelCapabilitiesData;
 	readiness: ReadinessCapabilitiesData;
 	userCapabilities: UserCapabilitiesData;
 	vehicleHealthInspection: VehicleHealthInspectionCapabilitiesData;

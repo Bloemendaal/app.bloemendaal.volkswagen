@@ -1,4 +1,8 @@
-import type { DateTimeString, PossiblyUnknownString } from "../../types.mjs";
+import type {
+	ApiResponse,
+	DateTimeString,
+	PossiblyUnknownString,
+} from "../../types.mjs";
 
 export interface LightData {
 	name: "right" | "left";
@@ -11,7 +15,5 @@ export interface LightsStatusData {
 }
 
 export interface VehicleLightsCapabilitiesData {
-	lightsStatus?: {
-		value?: LightsStatusData;
-	};
+	lightsStatus?: ApiResponse<LightsStatusData>;
 }
