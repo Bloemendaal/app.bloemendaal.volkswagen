@@ -20,6 +20,12 @@ export default abstract class Capability<TValue> implements Processable {
 	}
 
 	public async run(fetchData: FetchData, options?: RunOptions): Promise<void> {
+		const canRun = await this.guard(fetchData);
+
+		if (!canRun) {
+			return;
+		}
+
 		const name = this.getCapabilityName();
 
 		try {
@@ -27,7 +33,7 @@ export default abstract class Capability<TValue> implements Processable {
 
 			await this.addCapability(name, fetchData);
 
-			if (this.shouldSetCapabilityValue(name, options)) {
+			if (this.shouldSetCapabilityValue(name, value, options)) {
 				await this.volkswagenDevice.setCapabilityValue(name, value);
 			}
 		} catch (error) {
@@ -42,6 +48,14 @@ export default abstract class Capability<TValue> implements Processable {
 
 			throw error;
 		}
+	}
+
+	/**
+	 * For when you don't want to run the getter and just want to check if the value is valid.
+	 * The guard runs before the getter.
+	 */
+	protected async guard(_fetchData: FetchData): Promise<boolean> {
+		return true;
 	}
 
 	/**
@@ -65,15 +79,20 @@ export default abstract class Capability<TValue> implements Processable {
 
 	protected shouldSetCapabilityValue(
 		name: string,
+		value: TValue,
 		options?: RunOptions,
 	): boolean {
+		if (value === undefined) {
+			return false;
+		}
+
 		if (!options?.isOutdated) {
 			return true;
 		}
 
 		const currentValue = this.volkswagenDevice.getCapabilityValue(name);
 
-		return currentValue === null || currentValue === undefined;
+		return currentValue === null;
 	}
 
 	protected async addCapability(

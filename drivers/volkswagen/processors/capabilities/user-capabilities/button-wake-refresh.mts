@@ -6,11 +6,15 @@ export default class ButtonWakeRefreshCapability extends Capability<never> {
 		return "button_wake_refresh";
 	}
 
-	public override async setter({ capabilities }: FetchData): Promise<void> {
-		const canWakeUp = await this.can(
+	public override async guard({ capabilities }: FetchData): Promise<boolean> {
+		return await this.can(
 			"vehicleWakeUpTrigger",
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
+	}
+
+	public override async setter(fetchData: FetchData): Promise<void> {
+		const canWakeUp = await this.guard(fetchData);
 
 		if (!canWakeUp) {
 			return;

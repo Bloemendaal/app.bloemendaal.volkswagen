@@ -6,11 +6,15 @@ export default class ButtonFlashCapability extends Capability<never> {
 		return "button_flash";
 	}
 
-	public override async setter({ capabilities }: FetchData): Promise<void> {
-		const canHonkAndFlash = await this.can(
+	public override async guard({ capabilities }: FetchData): Promise<boolean> {
+		return await this.can(
 			"honkAndFlash",
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
+	}
+
+	public override async setter(fetchData: FetchData): Promise<void> {
+		const canHonkAndFlash = await this.guard(fetchData);
 
 		if (!canHonkAndFlash) {
 			return;
