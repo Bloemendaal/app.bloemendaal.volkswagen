@@ -10,7 +10,7 @@ export default class CoordinateLatitudeCapability extends Capability<number> {
 	public override async getter({
 		parkingPosition,
 	}: FetchData): Promise<number> {
-		if (!parkingPosition) {
+		if (!parkingPosition?.parked) {
 			throw new InvalidValueError(parkingPosition);
 		}
 

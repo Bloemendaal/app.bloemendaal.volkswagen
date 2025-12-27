@@ -30,8 +30,14 @@ export default class ButtonHonkFlashCapability extends Capability<never> {
 					mode: "honk-and-flash",
 					duration: 10,
 					userPosition: {
-						latitude: position.lat,
-						longitude: position.lon,
+						latitude:
+							"lat" in position
+								? position.lat
+								: this.volkswagenDevice.homey.geolocation.getLatitude(),
+						longitude:
+							"lon" in position
+								? position.lon
+								: this.volkswagenDevice.homey.geolocation.getLongitude(),
 					},
 				});
 			},

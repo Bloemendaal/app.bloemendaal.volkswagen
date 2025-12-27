@@ -33,7 +33,7 @@ export default abstract class Capability<TValue> implements Processable {
 
 			await this.addCapability(name, fetchData);
 
-			if (this.shouldSetCapabilityValue(name, value, options)) {
+			if (this.shouldSetCapabilityValue(value, options)) {
 				await this.volkswagenDevice.setCapabilityValue(name, value);
 			}
 		} catch (error) {
@@ -78,7 +78,6 @@ export default abstract class Capability<TValue> implements Processable {
 	protected abstract getCapabilityName(): string;
 
 	protected shouldSetCapabilityValue(
-		name: string,
 		value: TValue,
 		options?: RunOptions,
 	): boolean {
@@ -90,6 +89,7 @@ export default abstract class Capability<TValue> implements Processable {
 			return true;
 		}
 
+		const name = this.getCapabilityName();
 		const currentValue = this.volkswagenDevice.getCapabilityValue(name);
 
 		return currentValue === null;

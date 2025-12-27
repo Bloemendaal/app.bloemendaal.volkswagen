@@ -1,0 +1,50 @@
+{
+	"type": "boolean",
+	"title": {
+		"en": "Parked",
+		"nl": "Geparkeerd",
+		"de": "Geparkt",
+		"fr": "Garé",
+		"es": "Aparcado",
+		"da": "Parkeret",
+		"it": "Parcheggiato",
+		"ko": "주차됨",
+		"no": "Parkert",
+		"pl": "Zaparkowany",
+		"ru": "Припаркован",
+		"sv": "Parkerad"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "assets/capabilities/is_parked.svg",
+	"insights": false,
+	"insightsTitleTrue": {
+		"en": "Parked",
+		"nl": "Geparkeerd",
+		"de": "Geparkt",
+		"fr": "Garé",
+		"es": "Aparcado",
+		"da": "Parkeret",
+		"it": "Parcheggiato",
+		"ko": "주차됨",
+		"no": "Parkert",
+		"pl": "Zaparkowany",
+		"ru": "Припаркован",
+		"sv": "Parkerad"
+	},
+	"insightsTitleFalse": {
+		"en": "On the move",
+		"nl": "Onderweg",
+		"de": "Unterwegs",
+		"fr": "En déplacement",
+		"es": "En movimiento",
+		"da": "På farten",
+		"it": "In movimento",
+		"ko": "이동 중",
+		"no": "På farten",
+		"pl": "W ruchu",
+		"ru": "В движении",
+		"sv": "På väg"
+	}
+}
