@@ -107,6 +107,11 @@ export default class VolkswagenDevice extends Homey.Device {
 		this.debounceScheduler.destroy();
 	}
 
+	public errorAndThrow(error: unknown): never {
+		this.error(error);
+		throw error;
+	}
+
 	public async getVehicle(): Promise<Vehicle> {
 		if (this.vehicle) {
 			return this.vehicle;
@@ -162,13 +167,15 @@ export default class VolkswagenDevice extends Homey.Device {
 		fetchData: FetchData | null = null,
 	): Promise<void> {
 		if (!fetchData) {
-			fetchData = await this.fetchVehicleData();
+			fetchData = await this.fetchVehicleData().catch(
+				this.errorAndThrow.bind(this),
+			);
 		}
 
 		if (this.getSetting("enableLogging")) {
 			this.log(`Fetched data: ${JSON.stringify(fetchData)}`);
 		}
 
-		await this.processor.run(fetchData);
+		await this.processor.run(fetchData).catch(this.errorAndThrow.bind(this));
 	}
 }

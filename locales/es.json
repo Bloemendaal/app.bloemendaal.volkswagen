@@ -70,5 +70,12 @@
 				"wake_up_trigger": "Activador de despertador"
 			}
 		}
+	},
+	"flows": {
+		"unchanged": "Sin cambios",
+		"charge_current": {
+			"reduced": "Reducido",
+			"maximum": "Máximo"
+		}
 	}
 }

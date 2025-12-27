@@ -12,12 +12,14 @@ export default class ControlChargingFlow extends Flow {
 	}
 
 	private async handleAction(args: ControlChargingArgs): Promise<void> {
-		const vehicle = await this.device.getVehicle();
+		const vehicle = await this.device
+			.getVehicle()
+			.catch((e) => this.device.errorAndThrow(e));
 
 		if (args.action === "start") {
-			await vehicle.startCharging();
+			await vehicle.startCharging().catch((e) => this.device.errorAndThrow(e));
 		} else {
-			await vehicle.stopCharging();
+			await vehicle.stopCharging().catch((e) => this.device.errorAndThrow(e));
 		}
 
 		await this.device.requestRefresh(500, 1000);

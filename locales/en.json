@@ -70,5 +70,12 @@
 				"wake_up_trigger": "Wake up trigger"
 			}
 		}
+	},
+	"flows": {
+		"unchanged": "Unchanged",
+		"charge_current": {
+			"reduced": "Reduced",
+			"maximum": "Maximum"
+		}
 	}
 }

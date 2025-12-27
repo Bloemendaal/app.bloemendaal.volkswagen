@@ -35,7 +35,8 @@ export interface ChargingStatusData {
 
 export interface ChargingSettingsData {
 	carCapturedTimestamp: DateTimeString;
-	maxChargeCurrentAC: "maximum" | "reduced" | PossiblyUnknownString;
+	maxChargeCurrentAC?: "maximum" | "reduced";
+	maxChargeCurrentAC_A?: Integer;
 	autoUnlockPlugWhenCharged: "on" | "off" | PossiblyUnknownString;
 	autoUnlockPlugWhenChargedAC: "on" | "off" | PossiblyUnknownString;
 	targetSOC_pct: Integer;

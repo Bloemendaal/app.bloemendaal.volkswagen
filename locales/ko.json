@@ -70,5 +70,12 @@
 				"wake_up_trigger": "기상 트리거"
 			}
 		}
+	},
+	"flows": {
+		"unchanged": "변경 없음",
+		"charge_current": {
+			"reduced": "감소",
+			"maximum": "최대"
+		}
 	}
 }
