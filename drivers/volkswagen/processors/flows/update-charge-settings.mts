@@ -22,7 +22,9 @@ export default class UpdateChargingSettingsFlow extends Flow {
 	}
 
 	private async handleAction(args: UpdateChargingSettingsArgs): Promise<void> {
-		const vehicle = await this.device.getVehicle();
+		const vehicle = await this.device
+			.getVehicle()
+			.catch((e) => this.device.errorAndThrow(e));
 
 		const settings: ChargingSettings = {};
 
@@ -52,7 +54,9 @@ export default class UpdateChargingSettingsFlow extends Flow {
 			return;
 		}
 
-		await vehicle.updateChargingSettings(settings);
+		await vehicle
+			.updateChargingSettings(settings)
+			.catch((e) => this.device.errorAndThrow(e));
 
 		await this.device.requestRefresh(500, 1000);
 	}
