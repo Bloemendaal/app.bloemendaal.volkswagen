@@ -85,5 +85,8 @@
 	},
 	"1.1.11": {
 		"en": "Add missing guard structure for settable only capabilities"
+	},
+	"1.1.12": {
+		"en": "Improve error logging in flows"
 	}
 }
