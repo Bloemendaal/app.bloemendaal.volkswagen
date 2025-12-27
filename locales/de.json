@@ -70,5 +70,12 @@
 				"wake_up_trigger": "Weck-Auslöser"
 			}
 		}
+	},
+	"flows": {
+		"unchanged": "Unverändert",
+		"charge_current": {
+			"reduced": "Reduziert",
+			"maximum": "Maximum"
+		}
 	}
 }

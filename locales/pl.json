@@ -70,5 +70,12 @@
 				"wake_up_trigger": "Wyzwalacz budzenia"
 			}
 		}
+	},
+	"flows": {
+		"unchanged": "Nie zmieniono",
+		"charge_current": {
+			"reduced": "Zmniejszony",
+			"maximum": "Maksymalny"
+		}
 	}
 }

@@ -1,0 +1,22 @@
+{
+	"type": "boolean",
+	"title": {
+		"en": "Expects max charging current in ampere",
+		"nl": "Verwacht maximale laadstroom in ampère",
+		"da": "Forventer maksimal opladningsstrøm i ampere",
+		"de": "Erwartet maximale Ladestromstärke in Ampere",
+		"es": "Espera corriente de carga máxima en amperios",
+		"fr": "Attend le courant de charge maximal en ampères",
+		"it": "Prevede corrente di carica massima in ampere",
+		"no": "Forventer maksimal ladestrøm i ampere",
+		"sv": "Förväntar maximal laddström i ampere",
+		"pl": "Oczekuje maksymalnego prądu ładowania w amperach",
+		"ru": "Ожидает максимальный ток зарядки в амперах",
+		"ko": "암페어 단위 최대 충전 전류 예상"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": null,
+	"icon": "/assets/capabilities/measure_charging.svg",
+	"insights": false
+}

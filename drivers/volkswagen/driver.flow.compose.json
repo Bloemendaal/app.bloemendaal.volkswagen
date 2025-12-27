@@ -123,7 +123,7 @@
 			"$filter": "capabilities=target_soc",
 			"args": [
 				{
-					"type": "dropdown",
+					"type": "autocomplete",
 					"name": "max_charge_current",
 					"title": {
 						"en": "Maximum charge current",
@@ -138,128 +138,7 @@
 						"pl": "Maksymalny prąd ładowania",
 						"ru": "Максимальный ток зарядки",
 						"ko": "최대 충전 전류"
-					},
-					"values": [
-						{
-							"id": "unchanged",
-							"title": {
-								"en": "Unchanged",
-								"nl": "Ongewijzigd",
-								"de": "Unverändert",
-								"fr": "Inchangé",
-								"da": "Uændret",
-								"es": "Sin cambios",
-								"it": "Invariato",
-								"no": "Uendret",
-								"sv": "Oförändrad",
-								"pl": "Bez zmian",
-								"ru": "Без изменений",
-								"ko": "변경 없음"
-							}
-						},
-						{
-							"id": "reduced",
-							"title": {
-								"en": "Reduced",
-								"nl": "Verlaagd",
-								"de": "Reduziert",
-								"fr": "Réduit",
-								"da": "Reduceret",
-								"es": "Reducido",
-								"it": "Ridotto",
-								"no": "Redusert",
-								"sv": "Reducerad",
-								"pl": "Zmniejszony",
-								"ru": "Уменьшенный",
-								"ko": "감소"
-							}
-						},
-						{
-							"id": "maximum",
-							"title": {
-								"en": "Maximum",
-								"nl": "Maximum",
-								"de": "Maximum",
-								"fr": "Maximum",
-								"da": "Maksimum",
-								"es": "Máximo",
-								"it": "Massimo",
-								"no": "Maksimum",
-								"sv": "Maximum",
-								"pl": "Maksymalny",
-								"ru": "Максимальный",
-								"ko": "최대"
-							}
-						},
-						{
-							"id": "5",
-							"title": {
-								"en": "5A (experimental)",
-								"nl": "5A (experimenteel)",
-								"de": "5A (experimentell)",
-								"fr": "5A (expérimental)",
-								"da": "5A (eksperimentel)",
-								"es": "5A (experimental)",
-								"it": "5A (sperimentale)",
-								"no": "5A (eksperimentell)",
-								"sv": "5A (experimentell)",
-								"pl": "5A (eksperymentalny)",
-								"ru": "5A (экспериментально)",
-								"ko": "5A (실험용)"
-							}
-						},
-						{
-							"id": "10",
-							"title": {
-								"en": "10A (experimental)",
-								"nl": "10A (experimenteel)",
-								"de": "10A (experimentell)",
-								"fr": "10A (expérimental)",
-								"da": "10A (eksperimentel)",
-								"es": "10A (experimental)",
-								"it": "10A (sperimentale)",
-								"no": "10A (eksperimentell)",
-								"sv": "10A (experimentell)",
-								"pl": "10A (eksperymentalny)",
-								"ru": "10A (экспериментально)",
-								"ko": "10A (실험용)"
-							}
-						},
-						{
-							"id": "13",
-							"title": {
-								"en": "13A (experimental)",
-								"nl": "13A (experimenteel)",
-								"de": "13A (experimentell)",
-								"fr": "13A (expérimental)",
-								"da": "13A (eksperimentel)",
-								"es": "13A (experimental)",
-								"it": "13A (sperimentale)",
-								"no": "13A (eksperimentell)",
-								"sv": "13A (experimentell)",
-								"pl": "13A (eksperymentalny)",
-								"ru": "13A (экспериментально)",
-								"ko": "13A (실험용)"
-							}
-						},
-						{
-							"id": "32",
-							"title": {
-								"en": "32A (experimental)",
-								"nl": "32A (experimenteel)",
-								"de": "32A (experimentell)",
-								"fr": "32A (expérimental)",
-								"da": "32A (eksperimentel)",
-								"es": "32A (experimental)",
-								"it": "32A (sperimentale)",
-								"no": "32A (eksperimentell)",
-								"sv": "32A (experimentell)",
-								"pl": "32A (eksperymentalny)",
-								"ru": "32A (экспериментально)",
-								"ko": "32A (실험용)"
-							}
-						}
-					]
+					}
 				},
 				{
 					"type": "number",

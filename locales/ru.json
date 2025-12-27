@@ -70,5 +70,12 @@
 				"wake_up_trigger": "Триггер пробуждения"
 			}
 		}
+	},
+	"flows": {
+		"unchanged": "Без изменений",
+		"charge_current": {
+			"reduced": "Уменьшенный",
+			"maximum": "Максимальный"
+		}
 	}
 }

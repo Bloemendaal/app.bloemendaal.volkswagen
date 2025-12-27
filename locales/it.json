@@ -70,5 +70,12 @@
 				"wake_up_trigger": "Attivazione sveglia"
 			}
 		}
+	},
+	"flows": {
+		"unchanged": "Invariato",
+		"charge_current": {
+			"reduced": "Ridotto",
+			"maximum": "Massimo"
+		}
 	}
 }

@@ -30,10 +30,14 @@ export type VehicleImagesData = object;
 export type CoUserData = unknown;
 export type TagData = unknown;
 
+export interface ChargingSettingsAC {
+	maxChargeCurrentAC: number | "reduced" | "maximum";
+	autoUnlockPlugWhenChargedAC: boolean;
+}
+
 export interface ChargingSettings {
-	maxChargeCurrentAC?: number | "reduced" | "maximum";
-	autoUnlockPlugWhenChargedAC?: boolean;
 	targetSOC_pct?: number;
+	chargingSettingsAC?: ChargingSettingsAC;
 }
 
 export default class Vehicle extends Authenticatable implements VehicleData {
@@ -197,27 +201,30 @@ export default class Vehicle extends Authenticatable implements VehicleData {
 
 		const payload: Record<string, unknown> = {};
 
-		if (typeof settings.maxChargeCurrentAC === "number") {
-			const maxChargeCurrentAC = settings.maxChargeCurrentAC;
+		if (settings.chargingSettingsAC) {
+			const { maxChargeCurrentAC, autoUnlockPlugWhenChargedAC } =
+				settings.chargingSettingsAC;
 
-			const [amperage] = [5, 10, 13, 32].sort(
-				(a, b) =>
-					Math.abs(a - maxChargeCurrentAC) - Math.abs(b - maxChargeCurrentAC),
-			);
+			if (typeof maxChargeCurrentAC === "number") {
+				const [amperage] = [5, 10, 13, 32].sort(
+					(a, b) =>
+						Math.abs(a - maxChargeCurrentAC) - Math.abs(b - maxChargeCurrentAC),
+				);
 
-			payload.maxChargeCurrentAC_A = amperage;
-		} else if (typeof settings.maxChargeCurrentAC === "string") {
-			payload.maxChargeCurrentAC = settings.maxChargeCurrentAC;
-		}
+				payload.maxChargeCurrentAC_A = amperage;
+			} else {
+				payload.maxChargeCurrentAC = maxChargeCurrentAC;
+			}
 
-		if (settings.autoUnlockPlugWhenChargedAC !== undefined) {
-			payload.autoUnlockPlugWhenChargedAC = settings.autoUnlockPlugWhenChargedAC
+			payload.autoUnlockPlugWhenChargedAC = autoUnlockPlugWhenChargedAC
 				? "on"
 				: "off";
 		}
 
-		if (settings.targetSOC_pct !== undefined) {
-			payload.targetSOC_pct = Math.round(settings.targetSOC_pct);
+		if (typeof settings.targetSOC_pct === "number") {
+			payload.targetSOC_pct = Math.round(
+				Math.min(Math.max(settings.targetSOC_pct, 50), 100),
+			);
 		}
 
 		await client.put(

@@ -70,5 +70,12 @@
 				"wake_up_trigger": "Väckningsutlösare"
 			}
 		}
+	},
+	"flows": {
+		"unchanged": "Oförändrad",
+		"charge_current": {
+			"reduced": "Reducerad",
+			"maximum": "Maximum"
+		}
 	}
 }

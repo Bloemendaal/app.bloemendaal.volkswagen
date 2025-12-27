@@ -70,5 +70,12 @@
 				"wake_up_trigger": "Activeer trigger"
 			}
 		}
+	},
+	"flows": {
+		"unchanged": "Ongewijzigd",
+		"charge_current": {
+			"reduced": "Verlaagd",
+			"maximum": "Maximum"
+		}
 	}
 }

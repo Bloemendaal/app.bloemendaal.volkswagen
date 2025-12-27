@@ -1,0 +1,24 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Maximum charge current",
+		"nl": "Maximale laadstroom",
+		"da": "Maksimal opladningsstrøm",
+		"de": "Maximale Ladestromstärke",
+		"es": "Corriente de carga máxima",
+		"fr": "Courant de charge maximal",
+		"it": "Corrente di carica massima",
+		"no": "Maksimal ladestrøm",
+		"sv": "Maximal laddström",
+		"pl": "Maksymalny prąd ładowania",
+		"ru": "Максимальный ток зарядки",
+		"ko": "최대 충전 전류"
+	},
+	"units": "A",
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/measure_charging.svg",
+	"insights": false,
+	"decimals": 0
+}

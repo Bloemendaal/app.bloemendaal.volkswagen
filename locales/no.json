@@ -70,5 +70,12 @@
 				"wake_up_trigger": "Våkn opp trigger"
 			}
 		}
+	},
+	"flows": {
+		"unchanged": "Uendret",
+		"charge_current": {
+			"reduced": "Redusert",
+			"maximum": "Maksimum"
+		}
 	}
 }
