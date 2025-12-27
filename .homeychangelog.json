@@ -88,5 +88,8 @@
 	},
 	"1.1.12": {
 		"en": "Improve error logging in flows"
+	},
+	"1.1.13": {
+		"en": "Fix updating charging settings flow with unchanged values"
 	}
 }
