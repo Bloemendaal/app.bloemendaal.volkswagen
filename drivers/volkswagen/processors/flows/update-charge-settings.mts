@@ -2,6 +2,10 @@ import type {
 	ChargingSettings,
 	ChargingSettingsAC,
 } from "../../api/vehicle.mjs";
+import {
+	MAX_CHARGING_CURRENT,
+	REDUCED_CHARGING_CURRENT,
+} from "../capabilities/charging-settings/max-charging-current.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdateChargingSettingsArgs {
@@ -97,7 +101,22 @@ export default class UpdateChargingSettingsFlow extends Flow {
 		max_charge_current,
 	}: UpdateChargingSettingsArgs): ChargingSettingsAC["maxChargeCurrentAC"] {
 		if (max_charge_current === "unchanged") {
-			return this.device.getCapabilityValue("max_charging_current");
+			const currentValue = this.device.getCapabilityValue(
+				"max_charging_current",
+			);
+
+			const expectsInAmpere = this.device.getCapabilityValue(
+				"expects_max_charging_current_in_ampere",
+			);
+
+			if (expectsInAmpere) {
+				return currentValue;
+			}
+
+			return Math.abs(MAX_CHARGING_CURRENT - currentValue) <
+				Math.abs(REDUCED_CHARGING_CURRENT - currentValue)
+				? "maximum"
+				: "reduced";
 		}
 
 		if (max_charge_current === "maximum" || max_charge_current === "reduced") {
