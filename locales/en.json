@@ -2,8 +2,10 @@
 	"errors": {
 		"authentication": {
 			"authorization_url_failed": "Couldn't retrieve the authorization URL from WeConnect. Please check your internet connection and try again.",
-			"login_failed": "Login failed. Please check your email and password. If you have recently changed your password, make sure you're using the correct one. You may also need to accept terms and conditions in the Volkswagen app.",
-			"authorization_parameters_failed": "Authentication completed but couldn't retrieve security parameters. Please try again.",
+			"identity_provider_failed": "Couldn't connect to the identity provider. Please try again later.",
+			"email_submission_failed": "Couldn't submit your email address. Please verify the address and try again.",
+			"password_form_parse_failed": "Couldn't process the password form. Please try again.",
+			"password_submission_failed": "Password submission failed. Possible reasons: incorrect password, too many attempts in a short time, or you still need to accept the terms and conditions in the Volkswagen app. To accept them, log out of the Volkswagen app and then log back in.",
 			"token_exchange_failed": "Couldn't obtain access tokens. Please try again or consult the community forum."
 		}
 	},
