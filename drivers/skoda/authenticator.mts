@@ -177,6 +177,24 @@ export default class SkodaAuthenticator implements Authenticatable {
 		return expiresAt - now < TOKEN_EXPIRY_BUFFER_MS;
 	}
 
+	private decodeJwtExpiration(token: string): number {
+		const parts = token.split(".");
+
+		if (parts.length !== 3) {
+			throw new Error("Invalid JWT format");
+		}
+
+		const payload = JSON.parse(
+			Buffer.from(parts[1], "base64url").toString("utf-8"),
+		);
+
+		if (!payload.exp) {
+			throw new Error("No expiration claim in JWT");
+		}
+
+		return payload.exp;
+	}
+
 	private generateCodeVerifier(): string {
 		// Generate a random 16-character verifier (matching Python implementation)
 		const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -284,8 +302,9 @@ export default class SkodaAuthenticator implements Authenticatable {
 				},
 			);
 
-			// Skoda doesn't provide explicit expiration time, so we default to 3600 seconds
-			const expiresAt = Math.floor(Date.now() / 1000) + 3600;
+			const expiresAt = this.decodeJwtExpiration(
+				tokenResponse.data.accessToken,
+			);
 
 			return {
 				expiresAt,
@@ -458,10 +477,6 @@ export default class SkodaAuthenticator implements Authenticatable {
 				}
 
 				if (redirectUrl.includes("terms-and-conditions")) {
-					console.warn(
-						"Terms and conditions detected, attempting to accept...",
-					);
-
 					const response = await this.authenticationClient.get(redirectUrl);
 
 					const $ = cheerio.load(response.data);
@@ -561,8 +576,9 @@ export default class SkodaAuthenticator implements Authenticatable {
 
 			console.log("Token response data:", tokenResponse.data);
 
-			// Skoda doesn't provide explicit expiration time, so we default to 3600 seconds
-			const expiresAt = Math.floor(Date.now() / 1000) + 3600;
+			const expiresAt = this.decodeJwtExpiration(
+				tokenResponse.data.accessToken,
+			);
 
 			return {
 				expiresAt,
