@@ -1,5 +1,12 @@
 import crypto from "node:crypto";
-import type { Authenticatable } from "@lib/api/authenticatable.mjs";
+import type {
+	Authenticatable,
+	AuthSettings,
+	Configuration,
+	Credentials,
+	SettingsUpdateCallback,
+	TokenStore,
+} from "@lib/api/authenticatable.mjs";
 import {
 	AuthorizationUrlError,
 	EmailSubmissionError,
@@ -22,24 +29,6 @@ const SCOPE =
 const MAXIMUM_REDIRECTS = 10;
 const TOKEN_EXPIRY_BUFFER_MS = 60 * 1000; // 1 minute
 
-export interface Credentials {
-	email: string;
-	password: string;
-}
-
-export interface TokenStore {
-	idToken: string;
-	accessToken: string;
-	refreshToken?: string;
-	expiresAt: number;
-}
-
-export interface Configuration {
-	credentials: Credentials;
-	tokenStore?: TokenStore | null;
-	sPin?: string | null;
-}
-
 interface SkodaTokenResponse {
 	accessToken: string;
 	idToken: string;
@@ -61,12 +50,6 @@ interface PasswordFormData {
 		password: string;
 	};
 }
-
-export interface AuthSettings extends Credentials, TokenStore {
-	sPin?: string | null;
-}
-
-type SettingsUpdateCallback = (settings: AuthSettings) => void;
 
 export default class SkodaAuthenticator implements Authenticatable {
 	private readonly credentials: Credentials;
