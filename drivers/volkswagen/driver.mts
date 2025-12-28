@@ -1,6 +1,6 @@
-import User from "@lib/api/user.mjs";
 import Homey from "homey";
 import type { PairSession } from "homey/lib/Driver.js";
+import User from "#lib/api/user.mjs";
 import VolkswagenAuthenticator from "./authenticator.mjs";
 
 export default class VolkswagenDriver extends Homey.Driver {

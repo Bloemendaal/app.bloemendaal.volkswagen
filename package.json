@@ -20,5 +20,8 @@
 		"axios": "^1.13.2",
 		"axios-cookiejar-support": "^6.0.5",
 		"tough-cookie": "^6.0.0"
+	},
+	"imports": {
+		"#lib/*": "./lib/*"
 	}
 }

@@ -1,4 +1,7 @@
 import crypto from "node:crypto";
+import axios, { type AxiosInstance } from "axios";
+import { wrapper } from "axios-cookiejar-support";
+import { CookieJar } from "tough-cookie";
 import type {
 	Authenticatable,
 	AuthSettings,
@@ -6,16 +9,13 @@ import type {
 	Credentials,
 	SettingsUpdateCallback,
 	TokenStore,
-} from "@lib/api/authenticatable.mjs";
+} from "#lib/api/authenticatable.mjs";
 import {
 	AuthorizationParametersError,
 	AuthorizationUrlError,
 	LoginFailedError,
 	TokenExchangeError,
-} from "@lib/errors/authentication-errors.mjs";
-import axios, { type AxiosInstance } from "axios";
-import { wrapper } from "axios-cookiejar-support";
-import { CookieJar } from "tough-cookie";
+} from "#lib/errors/authentication-errors.mjs";
 
 const REGION = "emea";
 const BASE_URL = "https://emea.bff.cariad.digital";

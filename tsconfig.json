@@ -5,7 +5,7 @@
 		"outDir": ".homeybuild/",
 		"baseUrl": ".",
 		"paths": {
-			"@lib/*": ["lib/*"],
+			"#lib/*": ["lib/*"],
 			"@drivers/*": ["drivers/*"]
 		}
 	}
