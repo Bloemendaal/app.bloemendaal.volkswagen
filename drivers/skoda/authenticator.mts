@@ -1,4 +1,8 @@
 import crypto from "node:crypto";
+import axios, { type AxiosInstance, type AxiosResponse } from "axios";
+import { wrapper } from "axios-cookiejar-support";
+import * as cheerio from "cheerio";
+import { CookieJar } from "tough-cookie";
 import type {
 	Authenticatable,
 	AuthSettings,
@@ -6,7 +10,7 @@ import type {
 	Credentials,
 	SettingsUpdateCallback,
 	TokenStore,
-} from "@lib/api/authenticatable.mjs";
+} from "#lib/api/authenticatable.mjs";
 import {
 	AuthorizationUrlError,
 	EmailSubmissionError,
@@ -14,11 +18,7 @@ import {
 	PasswordFormParseError,
 	PasswordSubmissionError,
 	TokenExchangeError,
-} from "@lib/errors/authentication-errors.mjs";
-import axios, { type AxiosInstance, type AxiosResponse } from "axios";
-import { wrapper } from "axios-cookiejar-support";
-import * as cheerio from "cheerio";
-import { CookieJar } from "tough-cookie";
+} from "#lib/errors/authentication-errors.mjs";
 
 const BASE_URL = "https://mysmob.api.connect.skoda-auto.cz";
 const AUTH_BASE = "https://identity.vwgroup.io";
@@ -558,6 +558,8 @@ export default class SkodaAuthenticator implements Authenticatable {
 					},
 				},
 			);
+
+			console.log("Token response data:", tokenResponse.data);
 
 			// Skoda doesn't provide explicit expiration time, so we default to 3600 seconds
 			const expiresAt = Math.floor(Date.now() / 1000) + 3600;
