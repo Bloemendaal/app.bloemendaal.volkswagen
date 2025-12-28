@@ -574,8 +574,6 @@ export default class SkodaAuthenticator implements Authenticatable {
 				},
 			);
 
-			console.log("Token response data:", tokenResponse.data);
-
 			const expiresAt = this.decodeJwtExpiration(
 				tokenResponse.data.accessToken,
 			);
