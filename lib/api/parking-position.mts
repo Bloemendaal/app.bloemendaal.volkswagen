@@ -1,7 +1,13 @@
 import type { DateTimeString, Float } from "../types.mjs";
 
-export interface ParkingPositionData {
+export interface ParkingPositionResponse {
 	lon: Float;
 	lat: Float;
 	carCapturedTimestamp: DateTimeString;
 }
+
+export interface ParkedPosition extends ParkingPositionResponse {
+	parked: true;
+}
+
+export type ParkingPositionData = ParkedPosition | { parked: false };
