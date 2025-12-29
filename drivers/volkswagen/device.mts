@@ -158,7 +158,10 @@ export default class VolkswagenDevice extends Homey.Device {
 		const capabilities = await vehicle.getVehicleCapabilities();
 		const parkingPosition = await vehicle
 			.getParkingPosition()
-			.catch(() => null);
+			.catch((error) => {
+				this.error(error);
+				return null;
+			});
 
 		return { capabilities, parkingPosition };
 	}

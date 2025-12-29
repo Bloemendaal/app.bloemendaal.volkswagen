@@ -8,7 +8,10 @@ import type {
 	ClimatisationSettings,
 	StartClimatisationSettings,
 } from "./climatisation.mjs";
-import type { ParkingPositionData } from "./parking-position.mjs";
+import type {
+	ParkingPositionData,
+	ParkingPositionResponse,
+} from "./parking-position.mjs";
 
 export interface VehicleData {
 	vin: string;
@@ -86,11 +89,18 @@ export default class Vehicle extends Authenticatable implements VehicleData {
 	public async getParkingPosition(): Promise<ParkingPositionData> {
 		const client = await this.getClient();
 
-		const response = await client.get<{ data: ParkingPositionData }>(
+		const response = await client.get<{ data: ParkingPositionResponse }>(
 			`/vehicle/v1/vehicles/${this.vin}/parkingposition`,
 		);
 
-		return response.data.data;
+		if (response.status === 204) {
+			return { parked: false };
+		}
+
+		return {
+			...response.data.data,
+			parked: true,
+		};
 	}
 
 	public async lock(): Promise<void> {
