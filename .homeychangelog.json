@@ -94,5 +94,8 @@
 	},
 	"1.1.14": {
 		"en": "Always pick the closest max charging capacity when the vehicle expects a string-based parameter"
+	},
+	"1.1.15": {
+		"en": "Add is_parked capability"
 	}
 }
