@@ -30,8 +30,14 @@ export default class ButtonFlashCapability extends Capability<never> {
 					mode: "flash",
 					duration: 10,
 					userPosition: {
-						latitude: position.lat,
-						longitude: position.lon,
+						latitude:
+							"lat" in position
+								? position.lat
+								: this.vagDevice.homey.geolocation.getLatitude(),
+						longitude:
+							"lon" in position
+								? position.lon
+								: this.vagDevice.homey.geolocation.getLongitude(),
 					},
 				});
 			},

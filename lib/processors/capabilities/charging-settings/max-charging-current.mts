@@ -2,6 +2,9 @@ import type { FetchData } from "../../../api/fetch.mjs";
 import InvalidValueError from "../../../errors/invalid-value-error.mjs";
 import Capability from "../capability.mjs";
 
+export const MAX_CHARGING_CURRENT = 16;
+export const REDUCED_CHARGING_CURRENT = 6;
+
 export default class MaxChargingCurrentCapability extends Capability<number> {
 	protected getCapabilityName(): string {
 		return "max_charging_current";
@@ -23,11 +26,11 @@ export default class MaxChargingCurrentCapability extends Capability<number> {
 		const maxChargeCurrentAC = chargingSettings.maxChargeCurrentAC;
 
 		if (maxChargeCurrentAC === "maximum") {
-			return 16;
+			return MAX_CHARGING_CURRENT;
 		}
 
 		if (maxChargeCurrentAC === "reduced") {
-			return 6;
+			return REDUCED_CHARGING_CURRENT;
 		}
 
 		throw new InvalidValueError({ maxChargeCurrentAC, maxChargeCurrentAC_A });
