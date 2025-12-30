@@ -33,11 +33,11 @@ export default class ButtonFlashCapability extends Capability<never> {
 						latitude:
 							"lat" in position
 								? position.lat
-								: this.volkswagenDevice.homey.geolocation.getLatitude(),
+								: this.vagDevice.homey.geolocation.getLatitude(),
 						longitude:
 							"lon" in position
 								? position.lon
-								: this.volkswagenDevice.homey.geolocation.getLongitude(),
+								: this.vagDevice.homey.geolocation.getLongitude(),
 					},
 				});
 			},
