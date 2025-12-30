@@ -2,8 +2,10 @@
 	"errors": {
 		"authentication": {
 			"authorization_url_failed": "Kunne ikke hente autorisations-URL fra WeConnect. Tjek din internetforbindelse og prøv igen.",
-			"login_failed": "Login mislykkedes. Tjek din e-mail og adgangskode. Hvis du har ændret din adgangskode for nylig, skal du sikre dig, at du bruger den korrekte. Du skal muligvis også acceptere vilkår og betingelser i Volkswagen-appen.",
-			"authorization_parameters_failed": "Autentificering gennemført, men kunne ikke hente sikkerhedsparametre. Prøv igen.",
+			"identity_provider_failed": "Kunne ikke oprette forbindelse til identitetsudbyderen. Prøv igen senere.",
+			"email_submission_failed": "E-mailadresse kunne ikke sendes. Kontrollér adressen og prøv igen.",
+			"password_form_parse_failed": "Adgangskodeformularen kunne ikke behandles. Prøv igen.",
+			"password_submission_failed": "Adgangskoden kunne ikke sendes. Mulige årsager: forkert adgangskode, for mange loginforsøg på kort tid eller du mangler at acceptere vilkår og betingelser i Volkswagen-appen. Log ud af Volkswagen-appen og log derefter ind igen for at acceptere dem.",
 			"token_exchange_failed": "Adgangstokens kunne ikke hentes. Prøv igen eller se i community-forummet."
 		}
 	},
