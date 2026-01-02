@@ -265,7 +265,7 @@
 				"ru": "[[action]] зарядку",
 				"ko": "충전 [[action]]"
 			},
-			"$filter": "capabilities=measure_charging_power",
+			"$filter": "capabilities=ev_charging_state",
 			"args": [
 				{
 					"type": "dropdown",

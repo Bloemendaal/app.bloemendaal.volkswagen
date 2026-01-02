@@ -350,7 +350,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=volkswagen&capabilities=measure_charging_power"
+            "filter": "driver_id=volkswagen&capabilities=ev_charging_state"
           },
           {
             "type": "dropdown",
