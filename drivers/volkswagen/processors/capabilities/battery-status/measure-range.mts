@@ -11,10 +11,13 @@ export default class MeasureRangeCapability extends Capability<number> {
 		const cruisingRangeElectric =
 			capabilities.charging?.batteryStatus?.value?.cruisingRangeElectric_km;
 
-		if (!this.isNumber(cruisingRangeElectric)) {
+		if (
+			!this.isNumber(cruisingRangeElectric) &&
+			!this.isFloatString(cruisingRangeElectric)
+		) {
 			throw new InvalidValueError(cruisingRangeElectric);
 		}
 
-		return cruisingRangeElectric;
+		return Number(cruisingRangeElectric);
 	}
 }
