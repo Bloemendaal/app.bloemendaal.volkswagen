@@ -15,6 +15,6 @@ export default class MeasureRangeCapability extends Capability<number> {
 			throw new InvalidValueError(cruisingRangeElectric);
 		}
 
-		return cruisingRangeElectric;
+		return Number(cruisingRangeElectric);
 	}
 }

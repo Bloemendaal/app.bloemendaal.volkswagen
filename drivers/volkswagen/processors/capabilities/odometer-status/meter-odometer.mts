@@ -14,6 +14,6 @@ export default class MeterOdometerCapability extends Capability<number> {
 			throw new InvalidValueError(odometer);
 		}
 
-		return odometer;
+		return Number(odometer);
 	}
 }
