@@ -14,7 +14,13 @@ export default class CoordinateLongitudeCapability extends Capability<number> {
 			throw new InvalidValueError(parkingPosition);
 		}
 
-		return Number(parkingPosition.lon);
+		const lon = parkingPosition.lon;
+
+		if (!this.isNumber(lon)) {
+			throw new InvalidValueError(lon);
+		}
+
+		return Number(lon);
 	}
 
 	public override async setter(_fetchData: FetchData): Promise<void> {
