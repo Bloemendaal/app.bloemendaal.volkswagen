@@ -10,7 +10,7 @@ export default class MeterOdometerCapability extends Capability<number> {
 	public override async getter({ capabilities }: FetchData): Promise<number> {
 		const odometer = capabilities.measurements?.odometerStatus?.value?.odometer;
 
-		if (!this.isNumber(odometer)) {
+		if (!this.isNumber(odometer) && !this.isFloatString(odometer)) {
 			throw new InvalidValueError(odometer);
 		}
 

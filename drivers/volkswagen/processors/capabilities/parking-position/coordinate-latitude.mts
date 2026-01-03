@@ -16,7 +16,7 @@ export default class CoordinateLatitudeCapability extends Capability<number> {
 
 		const lat = parkingPosition.lat;
 
-		if (!this.isNumber(lat)) {
+		if (!this.isNumber(lat) && !this.isFloatString(lat)) {
 			throw new InvalidValueError(lat);
 		}
 

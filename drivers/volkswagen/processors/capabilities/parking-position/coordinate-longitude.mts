@@ -16,7 +16,7 @@ export default class CoordinateLongitudeCapability extends Capability<number> {
 
 		const lon = parkingPosition.lon;
 
-		if (!this.isNumber(lon)) {
+		if (!this.isNumber(lon) && !this.isFloatString(lon)) {
 			throw new InvalidValueError(lon);
 		}
 
