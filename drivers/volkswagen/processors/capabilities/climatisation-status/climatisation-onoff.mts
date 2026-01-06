@@ -27,7 +27,7 @@ export default class ClimatisationOnOffCapability extends Capability<boolean> {
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
-		this.volkswagenDevice.setCapabilityOptions(
+		this.device.setCapabilityOptions(
 			name,
 			isSetable
 				? { setable: true, uiComponent: "toggle" }
@@ -38,30 +38,27 @@ export default class ClimatisationOnOffCapability extends Capability<boolean> {
 			return;
 		}
 
-		this.volkswagenDevice.registerCapabilityListener(
-			name,
-			async (value: boolean) => {
-				const vehicle = await this.volkswagenDevice.getVehicle();
+		this.device.registerCapabilityListener(name, async (value: boolean) => {
+			const vehicle = await this.device.getVehicle();
 
-				if (value) {
-					const currentTargetTemp =
-						this.volkswagenDevice.getCapabilityValue("target_temperature");
+			if (value) {
+				const currentTargetTemp =
+					this.device.getCapabilityValue("target_temperature");
 
-					const settings: StartClimatisationSettings = {
-						targetTemperatureUnit: "celsius",
-					};
+				const settings: StartClimatisationSettings = {
+					targetTemperatureUnit: "celsius",
+				};
 
-					if (typeof currentTargetTemp === "number") {
-						settings.targetTemperature = currentTargetTemp;
-					}
-
-					await vehicle.startClimatisation(settings);
-				} else {
-					await vehicle.stopClimatisation();
+				if (typeof currentTargetTemp === "number") {
+					settings.targetTemperature = currentTargetTemp;
 				}
 
-				await this.volkswagenDevice.requestRefresh();
-			},
-		);
+				await vehicle.startClimatisation(settings);
+			} else {
+				await vehicle.stopClimatisation();
+			}
+
+			await this.device.requestRefresh();
+		});
 	}
 }

@@ -3,7 +3,7 @@ import type VolkswagenDevice from "../../device.mjs";
 import type { Processable } from "../processable.mjs";
 
 export default abstract class Setting implements Processable {
-	constructor(protected readonly volkswagenDevice: VolkswagenDevice) {}
+	constructor(protected readonly device: VolkswagenDevice) {}
 
 	public abstract register(fetchData: FetchData): Promise<void>;
 

@@ -21,6 +21,6 @@ export default class OdometerStatusCapabilityGroup extends CapabilityGroup {
 	protected async getProcessables(
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
-		return [new MeterOdometerCapability(this.volkswagenDevice)];
+		return [new MeterOdometerCapability(this.device)];
 	}
 }

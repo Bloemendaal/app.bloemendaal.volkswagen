@@ -26,7 +26,7 @@ export default class LockedCapability extends Capability<boolean> {
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
-		await this.volkswagenDevice.setCapabilityOptions(
+		await this.device.setCapabilityOptions(
 			name,
 			isSetable
 				? { setable: true, uiComponent: "toggle" }
@@ -37,12 +37,9 @@ export default class LockedCapability extends Capability<boolean> {
 			return;
 		}
 
-		this.volkswagenDevice.registerCapabilityListener(
-			name,
-			async (value: boolean) => {
-				const vehicle = await this.volkswagenDevice.getVehicle();
-				await vehicle.lockOrUnlock(value);
-			},
-		);
+		this.device.registerCapabilityListener(name, async (value: boolean) => {
+			const vehicle = await this.device.getVehicle();
+			await vehicle.lockOrUnlock(value);
+		});
 	}
 }

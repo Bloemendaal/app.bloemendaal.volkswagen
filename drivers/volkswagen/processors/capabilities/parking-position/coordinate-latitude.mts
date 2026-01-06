@@ -18,9 +18,9 @@ export default class CoordinateLatitudeCapability extends Capability<number> {
 	}
 
 	public override async setter(_fetchData: FetchData): Promise<void> {
-		this.volkswagenDevice.setCapabilityOptions(this.getCapabilityName(), {
-			title: this.volkswagenDevice.homey.__("capabilities.coordinate.title", {
-				name: this.volkswagenDevice.homey.__(
+		this.device.setCapabilityOptions(this.getCapabilityName(), {
+			title: this.device.homey.__("capabilities.coordinate.title", {
+				name: this.device.homey.__(
 					"capabilities.coordinate.variables.latitude",
 				),
 			}),

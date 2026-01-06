@@ -25,11 +25,11 @@ export default class ChargingStatusCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-			new EvChargingStateCapability(this.volkswagenDevice),
-			new IsChargingCapability(this.volkswagenDevice),
-			new MeasureChargingPowerCapability(this.volkswagenDevice),
-			new MeasureChargingRateCapability(this.volkswagenDevice),
-			new MeasureRemainingChargingTimeCapability(this.volkswagenDevice),
+			new EvChargingStateCapability(this.device),
+			new IsChargingCapability(this.device),
+			new MeasureChargingPowerCapability(this.device),
+			new MeasureChargingRateCapability(this.device),
+			new MeasureRemainingChargingTimeCapability(this.device),
 		];
 	}
 }

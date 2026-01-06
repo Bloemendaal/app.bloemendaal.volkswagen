@@ -5,10 +5,10 @@ import Capability from "../capability.mjs";
 
 export default class AlarmDoorCapability extends Capability<boolean> {
 	constructor(
-		volkswagenDevice: VolkswagenDevice,
+		device: VolkswagenDevice,
 		private readonly subCapabilityName: string,
 	) {
-		super(volkswagenDevice);
+		super(device);
 	}
 
 	protected getCapabilityName(): string {

@@ -27,7 +27,7 @@ export default class TargetTemperatureCapability extends Capability<number> {
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
-		await this.volkswagenDevice.setCapabilityOptions(
+		await this.device.setCapabilityOptions(
 			name,
 			isSetable
 				? { setable: true, uiComponent: "thermostat" }
@@ -38,18 +38,15 @@ export default class TargetTemperatureCapability extends Capability<number> {
 			return;
 		}
 
-		this.volkswagenDevice.registerCapabilityListener(
-			name,
-			async (value: number) => {
-				const vehicle = await this.volkswagenDevice.getVehicle();
+		this.device.registerCapabilityListener(name, async (value: number) => {
+			const vehicle = await this.device.getVehicle();
 
-				await vehicle.updateClimatisation({
-					targetTemperature: value,
-					targetTemperatureUnit: "celsius",
-				});
+			await vehicle.updateClimatisation({
+				targetTemperature: value,
+				targetTemperatureUnit: "celsius",
+			});
 
-				await this.volkswagenDevice.requestRefresh();
-			},
-		);
+			await this.device.requestRefresh();
+		});
 	}
 }

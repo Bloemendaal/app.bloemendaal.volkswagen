@@ -5,7 +5,7 @@ import type { Processable } from "../processable.mjs";
 import Processor from "../processable.mjs";
 
 export default abstract class CapabilityGroup implements Processable {
-	constructor(protected readonly volkswagenDevice: VolkswagenDevice) {}
+	constructor(protected readonly device: VolkswagenDevice) {}
 
 	public async register(fetchData: FetchData): Promise<void> {
 		const capabilities = await this.getProcessables(fetchData);
@@ -46,23 +46,19 @@ export default abstract class CapabilityGroup implements Processable {
 
 		const capabilityId = `timestamp.${this.getCapabilityGroupName()}`;
 
-		if (!this.volkswagenDevice.hasCapability(capabilityId)) {
+		if (!this.device.hasCapability(capabilityId)) {
 			await this.registerTimestampCapability(capabilityId);
 		}
 
 		const carCapturedTimestamp = new Date(timestamp ?? 0).getTime();
 
-		const latestTimestamp =
-			+this.volkswagenDevice.getCapabilityValue(capabilityId);
+		const latestTimestamp = +this.device.getCapabilityValue(capabilityId);
 
 		if (carCapturedTimestamp <= latestTimestamp) {
 			return false;
 		}
 
-		await this.volkswagenDevice.setCapabilityValue(
-			capabilityId,
-			carCapturedTimestamp,
-		);
+		await this.device.setCapabilityValue(capabilityId, carCapturedTimestamp);
 
 		return true;
 	}
@@ -70,11 +66,11 @@ export default abstract class CapabilityGroup implements Processable {
 	private async registerTimestampCapability(
 		capabilityId: string,
 	): Promise<void> {
-		await this.volkswagenDevice.addCapability(capabilityId);
+		await this.device.addCapability(capabilityId);
 
-		await this.volkswagenDevice.setCapabilityOptions(capabilityId, {
-			title: this.volkswagenDevice.homey.__("capabilities.timestamp.title", {
-				name: this.volkswagenDevice.homey.__(
+		await this.device.setCapabilityOptions(capabilityId, {
+			title: this.device.homey.__("capabilities.timestamp.title", {
+				name: this.device.homey.__(
 					`capabilities.timestamp.variables.${this.getCapabilityGroupName()}`,
 				),
 			}),

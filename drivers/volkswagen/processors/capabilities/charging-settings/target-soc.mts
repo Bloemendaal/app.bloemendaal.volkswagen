@@ -19,10 +19,10 @@ export default class TargetSocCapability extends Capability<number> {
 	}
 
 	public override async setter(_fetchData: FetchData): Promise<void> {
-		this.volkswagenDevice.registerCapabilityListener(
+		this.device.registerCapabilityListener(
 			this.getCapabilityName(),
 			async (value: number) => {
-				const vehicle = await this.volkswagenDevice.getVehicle();
+				const vehicle = await this.device.getVehicle();
 
 				await vehicle.updateChargingSettings({
 					targetSOC_pct: Math.round(value),
