@@ -100,5 +100,8 @@
 	},
 	"1.1.16": {
 		"en": "Base control_charging on ev_charging_state capability"
+	},
+	"1.1.17": {
+		"en": "Add timestamp updated trigger card"
 	}
 }
