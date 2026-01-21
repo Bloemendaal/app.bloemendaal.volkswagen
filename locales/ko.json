@@ -66,6 +66,7 @@
 				"maintenance_status": "정비 상태",
 				"odometer_status": "주행 거리계 상태",
 				"plug_status": "플러그 상태",
+				"range_status": "주행 거리 상태",
 				"readiness_status": "준비 상태",
 				"temperature_battery_status": "배터리 온도 상태",
 				"wake_up_trigger": "기상 트리거"

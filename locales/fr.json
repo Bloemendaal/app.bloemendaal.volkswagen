@@ -66,6 +66,7 @@
 				"maintenance_status": "État de maintenance",
 				"odometer_status": "État de l'odomètre",
 				"plug_status": "État de la prise",
+				"range_status": "État de l'autonomie",
 				"readiness_status": "État de préparation",
 				"temperature_battery_status": "État de la température de la batterie",
 				"wake_up_trigger": "Déclencheur de réveil"

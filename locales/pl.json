@@ -66,6 +66,7 @@
 				"maintenance_status": "Stan konserwacji",
 				"odometer_status": "Stan licznika",
 				"plug_status": "Stan wtyczki",
+				"range_status": "Stan zasięgu",
 				"readiness_status": "Stan gotowości",
 				"temperature_battery_status": "Stan temperatury baterii",
 				"wake_up_trigger": "Wyzwalacz budzenia"

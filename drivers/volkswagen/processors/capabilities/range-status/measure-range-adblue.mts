@@ -2,19 +2,19 @@ import type { FetchData } from "../../../api/fetch.mjs";
 import InvalidValueError from "../../../errors/invalid-value-error.mjs";
 import Capability from "../capability.mjs";
 
-export default class MeasureRangeCapability extends Capability<number> {
+export default class MeasureRangeAdBlueCapability extends Capability<number> {
 	protected getCapabilityName(): string {
-		return "measure_range";
+		return "measure_range.adblue";
 	}
 
 	public override async getter({ capabilities }: FetchData): Promise<number> {
-		const totalRange =
-			capabilities.measurements?.rangeStatus?.value?.totalRange_km;
+		const adBlueRange =
+			capabilities.measurements?.rangeStatus?.value?.adBlueRange;
 
-		if (!this.isNumber(totalRange)) {
-			throw new InvalidValueError(totalRange);
+		if (!this.isNumber(adBlueRange)) {
+			throw new InvalidValueError(adBlueRange);
 		}
 
-		return totalRange;
+		return adBlueRange;
 	}
 }

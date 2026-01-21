@@ -66,6 +66,7 @@
 				"maintenance_status": "Wartungsstatus",
 				"odometer_status": "Kilometerzählerstatus",
 				"plug_status": "Steckerstatus",
+				"range_status": "Reichweitenstatus",
 				"readiness_status": "Bereitschaftsstatus",
 				"temperature_battery_status": "Batterietemperaturstatus",
 				"wake_up_trigger": "Weck-Auslöser"

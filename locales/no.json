@@ -66,6 +66,7 @@
 				"maintenance_status": "Vedlikeholdsstatus",
 				"odometer_status": "Kilometertellerstatus",
 				"plug_status": "Pluggstatus",
+				"range_status": "Rekkeviddestatus",
 				"readiness_status": "Beredskapsstatus",
 				"temperature_battery_status": "Batteritemperaturstatus",
 				"wake_up_trigger": "Våkn opp trigger"

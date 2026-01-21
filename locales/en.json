@@ -66,6 +66,7 @@
 				"maintenance_status": "Maintenance status",
 				"odometer_status": "Odometer status",
 				"plug_status": "Plug status",
+				"range_status": "Range status",
 				"readiness_status": "Readiness status",
 				"temperature_battery_status": "Battery temperature status",
 				"wake_up_trigger": "Wake up trigger"

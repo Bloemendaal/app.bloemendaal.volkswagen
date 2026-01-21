@@ -66,6 +66,7 @@
 				"maintenance_status": "Underhållsstatus",
 				"odometer_status": "Odometerstatus",
 				"plug_status": "Kontaktstatus",
+				"range_status": "Räckviddsstatus",
 				"readiness_status": "Beredskapsstatus",
 				"temperature_battery_status": "Batteritemperaturstatus",
 				"wake_up_trigger": "Väckningsutlösare"

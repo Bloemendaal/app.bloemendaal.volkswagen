@@ -66,6 +66,7 @@
 				"maintenance_status": "Состояние обслуживания",
 				"odometer_status": "Состояние одометра",
 				"plug_status": "Состояние разъёма",
+				"range_status": "Состояние запаса хода",
 				"readiness_status": "Состояние готовности",
 				"temperature_battery_status": "Состояние температуры батареи",
 				"wake_up_trigger": "Триггер пробуждения"

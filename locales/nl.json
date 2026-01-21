@@ -66,6 +66,7 @@
 				"maintenance_status": "Onderhoudsstatus",
 				"odometer_status": "Kilometerteller status",
 				"plug_status": "Stekkerstatus",
+				"range_status": "Bereikstatus",
 				"readiness_status": "Gereedheidsstatus",
 				"temperature_battery_status": "Batterijtemperatuur status",
 				"wake_up_trigger": "Activeer trigger"
