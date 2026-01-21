@@ -1,6 +1,7 @@
 import Homey from "homey";
 import type { PairSession } from "homey/lib/Driver.js";
-import User from "./api/user.mjs";
+import User from "#lib/api/user.mjs";
+import VolkswagenAuthenticator from "./authenticator.mjs";
 
 export default class VolkswagenDriver extends Homey.Driver {
 	public async onPair(session: PairSession): Promise<void> {
@@ -19,7 +20,10 @@ export default class VolkswagenDriver extends Homey.Driver {
 				email = data.username;
 				password = data.password;
 
-				user = new User({ credentials: { email, password } });
+				const authenticator = new VolkswagenAuthenticator({
+					credentials: { email, password },
+				});
+				user = new User(authenticator);
 
 				return await user.canLogin(this.homey);
 			},
@@ -30,20 +34,26 @@ export default class VolkswagenDriver extends Homey.Driver {
 			async (pincode: string[]): Promise<boolean> => {
 				sPin = pincode.join("");
 
-				const userInstance =
-					user ?? new User({ sPin, credentials: { email, password } });
+				const authenticator = new VolkswagenAuthenticator({
+					sPin,
+					credentials: { email, password },
+				});
+				const userInstance = user ?? new User(authenticator);
 
-				userInstance.setSPin(sPin);
+				userInstance.getAuthenticator().setSPin(sPin);
 
 				return await userInstance.verifySPin();
 			},
 		);
 
 		session.setHandler("list_devices", async () => {
-			const userInstance =
-				user ?? new User({ sPin, credentials: { email, password } });
+			const authenticator = new VolkswagenAuthenticator({
+				sPin,
+				credentials: { email, password },
+			});
+			const userInstance = user ?? new User(authenticator);
 
-			userInstance.setSPin(sPin);
+			userInstance.getAuthenticator().setSPin(sPin);
 
 			const vehicles = await userInstance.getVehicles();
 			const settings = await userInstance.getSettings();
