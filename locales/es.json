@@ -10,6 +10,8 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ abierto",
+			"insightsTitleTrue": "__name__ abierta",
+			"insightsTitleFalse": "__name__ cerrada",
 			"variables": {
 				"bonnet": "Capó",
 				"trunk": "Maletero",
@@ -21,6 +23,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ abierto",
+			"insightsTitleTrue": "__name__ abierta",
+			"insightsTitleFalse": "__name__ cerrada",
 			"variables": {
 				"sunRoof": "Techo solar",
 				"roofCover": "Cubierta del techo",
@@ -50,6 +54,15 @@
 			"variables": {
 				"until_target_soc": "Hasta nivel de carga objetivo",
 				"until_full": "Hasta llena"
+			}
+		},
+		"measure_range": {
+			"title": "Alcance de __name__",
+			"variables": {
+				"electric": "Eléctrico",
+				"diesel": "Diésel",
+				"adblue": "AdBlue",
+				"gasoline": "Gasolina"
 			}
 		},
 		"timestamp": {

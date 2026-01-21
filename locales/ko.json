@@ -10,9 +10,11 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ 열림",
+			"insightsTitleTrue": "__name__ 열림",
+			"insightsTitleFalse": "__name__ 닫힘",
 			"variables": {
 				"bonnet": "보닛",
-				"trunk": "트렁크",
+				"trunk": "트럭크",
 				"frontLeft": "앞왼쪽 문",
 				"frontRight": "앞오른쪽 문",
 				"rearLeft": "뒤왼쪽 문",
@@ -21,6 +23,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ 열림",
+			"insightsTitleTrue": "__name__ 열림",
+			"insightsTitleFalse": "__name__ 닫힘",
 			"variables": {
 				"sunRoof": "선루프",
 				"roofCover": "루프 커버",
@@ -50,6 +54,15 @@
 			"variables": {
 				"until_target_soc": "목표 충전 수준까지",
 				"until_full": "완충까지"
+			}
+		},
+		"measure_range": {
+			"title": "__name__ 주행 거리",
+			"variables": {
+				"electric": "전기",
+				"diesel": "디젤",
+				"adblue": "AdBlue",
+				"gasoline": "가솔린"
 			}
 		},
 		"timestamp": {

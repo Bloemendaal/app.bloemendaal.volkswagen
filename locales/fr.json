@@ -10,6 +10,8 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ ouvert",
+			"insightsTitleTrue": "__name__ ouverte",
+			"insightsTitleFalse": "__name__ fermée",
 			"variables": {
 				"bonnet": "Capot",
 				"trunk": "Coffre",
@@ -21,6 +23,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ ouvert",
+			"insightsTitleTrue": "__name__ ouverte",
+			"insightsTitleFalse": "__name__ fermée",
 			"variables": {
 				"sunRoof": "Toit ouvrant",
 				"roofCover": "Couvre-toit",
@@ -50,6 +54,15 @@
 			"variables": {
 				"until_target_soc": "Jusqu'au niveau de charge cible",
 				"until_full": "Jusqu'à pleine"
+			}
+		},
+		"measure_range": {
+			"title": "Autonomie de __name__",
+			"variables": {
+				"electric": "Électrique",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Essence"
 			}
 		},
 		"timestamp": {

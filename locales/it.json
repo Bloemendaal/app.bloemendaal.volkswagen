@@ -10,6 +10,8 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ aperto",
+			"insightsTitleTrue": "__name__ aperta",
+			"insightsTitleFalse": "__name__ chiusa",
 			"variables": {
 				"bonnet": "Cofano",
 				"trunk": "Bagagliaio",
@@ -21,6 +23,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ aperto",
+			"insightsTitleTrue": "__name__ aperta",
+			"insightsTitleFalse": "__name__ chiusa",
 			"variables": {
 				"sunRoof": "Tettuccio apribile",
 				"roofCover": "Copertura del tetto",
@@ -50,6 +54,15 @@
 			"variables": {
 				"until_target_soc": "Fino al livello di carica obiettivo",
 				"until_full": "Fino a piena"
+			}
+		},
+		"measure_range": {
+			"title": "Autonomia di __name__",
+			"variables": {
+				"electric": "Elettrico",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Benzina"
 			}
 		},
 		"timestamp": {

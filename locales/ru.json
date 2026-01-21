@@ -10,6 +10,8 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ открыта",
+			"insightsTitleTrue": "__name__ открыта",
+			"insightsTitleFalse": "__name__ закрыта",
 			"variables": {
 				"bonnet": "Капот",
 				"trunk": "Багажник",
@@ -21,6 +23,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ открыто",
+			"insightsTitleTrue": "__name__ открыто",
+			"insightsTitleFalse": "__name__ закрыто",
 			"variables": {
 				"sunRoof": "Люк на крыше",
 				"roofCover": "Крышка крыши",
@@ -50,6 +54,15 @@
 			"variables": {
 				"until_target_soc": "До целевой уровень заряда",
 				"until_full": "До полной"
+			}
+		},
+		"measure_range": {
+			"title": "Запас хода __name__",
+			"variables": {
+				"electric": "Электрический",
+				"diesel": "Дизель",
+				"adblue": "AdBlue",
+				"gasoline": "Бензин"
 			}
 		},
 		"timestamp": {

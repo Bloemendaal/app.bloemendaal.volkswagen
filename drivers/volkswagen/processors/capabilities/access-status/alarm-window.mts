@@ -26,4 +26,24 @@ export default class AlarmWindowCapability extends Capability<boolean> {
 
 		return !window.status.includes("closed");
 	}
+
+	public override async setter(_fetchData: FetchData): Promise<void> {
+		this.device.setCapabilityOptions(this.getCapabilityName(), {
+			title: this.device.homey.__("capabilities.alarm_window.title", {
+				name: this.device.homey.__(
+					`capabilities.alarm_window.variables.${this.subCapabilityName}`,
+				),
+			}),
+			insightsTitleTrue: this.device.homey.__("capabilities.alarm_window.insightsTitleTrue", {
+				name: this.device.homey.__(
+					`capabilities.alarm_window.variables.${this.subCapabilityName}`,
+				),
+			}),
+			insightsTitleFalse: this.device.homey.__("capabilities.alarm_window.insightsTitleFalse", {
+				name: this.device.homey.__(
+					`capabilities.alarm_window.variables.${this.subCapabilityName}`,
+				),
+			}),
+		});
+	}
 }

@@ -10,6 +10,8 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ otwarte",
+			"insightsTitleTrue": "__name__ otwarte",
+			"insightsTitleFalse": "__name__ zamknięte",
 			"variables": {
 				"bonnet": "Maska",
 				"trunk": "Bagażnik",
@@ -21,6 +23,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ otwarte",
+			"insightsTitleTrue": "__name__ otwarte",
+			"insightsTitleFalse": "__name__ zamknięte",
 			"variables": {
 				"sunRoof": "Szyberdach",
 				"roofCover": "Pokrywa dachowa",
@@ -50,6 +54,15 @@
 			"variables": {
 				"until_target_soc": "Do docelowy poziom naładowania",
 				"until_full": "Do pełna"
+			}
+		},
+		"measure_range": {
+			"title": "Zasięg __name__",
+			"variables": {
+				"electric": "Elektryczny",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Benzyna"
 			}
 		},
 		"timestamp": {

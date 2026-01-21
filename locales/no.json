@@ -9,7 +9,9 @@
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ åpnet",
+			"title": "__name__ åpen",
+			"insightsTitleTrue": "__name__ åpnet",
+			"insightsTitleFalse": "__name__ lukket",
 			"variables": {
 				"bonnet": "Panser",
 				"trunk": "Bagasjerom",
@@ -20,7 +22,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ åpnet",
+			"title": "__name__ åpen",
+			"insightsTitleTrue": "__name__ åpnet",
+			"insightsTitleFalse": "__name__ lukket",
 			"variables": {
 				"sunRoof": "Soltak",
 				"roofCover": "Takdeksel",
@@ -50,6 +54,15 @@
 			"variables": {
 				"until_target_soc": "Til målnivå for lading",
 				"until_full": "Til full"
+			}
+		},
+		"measure_range": {
+			"title": "__name__ rekkevidde",
+			"variables": {
+				"electric": "Elektrisk",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Bensin"
 			}
 		},
 		"timestamp": {

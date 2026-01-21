@@ -9,7 +9,9 @@
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ öppnad",
+			"title": "__name__ öppen",
+			"insightsTitleTrue": "__name__ öppnad",
+			"insightsTitleFalse": "__name__ stängd",
 			"variables": {
 				"bonnet": "Motorhuv",
 				"trunk": "Bagageutrymme",
@@ -20,7 +22,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ öppnad",
+			"title": "__name__ öppet",
+			"insightsTitleTrue": "__name__ öppnat",
+			"insightsTitleFalse": "__name__ stängd",
 			"variables": {
 				"sunRoof": "Soltak",
 				"roofCover": "Taksäte",
@@ -50,6 +54,15 @@
 			"variables": {
 				"until_target_soc": "Till målnivå för laddning",
 				"until_full": "Till full"
+			}
+		},
+		"measure_range": {
+			"title": "__name__ räckvidd",
+			"variables": {
+				"electric": "Elektrisk",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Bensin"
 			}
 		},
 		"timestamp": {

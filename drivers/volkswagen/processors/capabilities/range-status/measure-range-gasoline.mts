@@ -17,4 +17,14 @@ export default class MeasureRangeGasolineCapability extends Capability<number> {
 
 		return gasolineRange;
 	}
+
+	public override async setter(_fetchData: FetchData): Promise<void> {
+		this.device.setCapabilityOptions(this.getCapabilityName(), {
+			title: this.device.homey.__("capabilities.measure_range.title", {
+				name: this.device.homey.__(
+					"capabilities.measure_range.variables.gasoline",
+				),
+			}),
+		});
+	}
 }
