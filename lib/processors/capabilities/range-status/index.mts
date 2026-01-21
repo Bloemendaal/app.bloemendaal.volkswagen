@@ -1,5 +1,5 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import type { DateTimeString } from "../../../types.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type { DateTimeString } from "#lib/types.mjs";
 import type { Processable } from "../../processable.mjs";
 import CapabilityGroup from "../capability-group.mjs";
 import MeasureRangeCapability from "./measure-range.mjs";

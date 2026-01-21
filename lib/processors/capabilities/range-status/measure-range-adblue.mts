@@ -1,5 +1,5 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
 import Capability from "../capability.mjs";
 
 export default class MeasureRangeAdBlueCapability extends Capability<number> {
