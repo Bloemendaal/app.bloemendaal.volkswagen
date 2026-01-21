@@ -61,6 +61,7 @@
 				"charging_status": "Laddningsstatus",
 				"climatisation_status": "Klimatstatus",
 				"distance_home": "Avstånd från hemmet",
+				"fuel_level_status": "Bränslenivåstatus",
 				"hook_and_flash": "Tuta och blinka",
 				"maintenance_status": "Underhållsstatus",
 				"odometer_status": "Odometerstatus",

@@ -1,0 +1,26 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Fuel level",
+		"nl": "Brandstofniveau",
+		"da": "Brændstofniveau",
+		"de": "Kraftstoffstand",
+		"es": "Nivel de combustible",
+		"fr": "Niveau de carburant",
+		"it": "Livello carburante",
+		"no": "Drivstoffnivå",
+		"sv": "Bränslenivå",
+		"pl": "Poziom paliwa",
+		"ru": "Уровень топлива",
+		"ko": "연료 수준"
+	},
+	"units": "%",
+	"getable": true,
+	"setable": false,
+	"uiComponent": null,
+	"icon": "./assets/capabilities/measure_fuel_level.svg",
+	"insights": true,
+	"decimals": 0,
+	"min": 0,
+	"max": 100
+}

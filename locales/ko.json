@@ -61,6 +61,7 @@
 				"charging_status": "충전 상태",
 				"climatisation_status": "냉난방 상태",
 				"distance_home": "집에서의 거리",
+				"fuel_level_status": "연료 수준 상태",
 				"hook_and_flash": "경적 및 깜박이",
 				"maintenance_status": "정비 상태",
 				"odometer_status": "주행 거리계 상태",

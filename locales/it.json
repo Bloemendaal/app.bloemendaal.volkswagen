@@ -61,6 +61,7 @@
 				"charging_status": "Stato di ricarica",
 				"climatisation_status": "Stato della climatizzazione",
 				"distance_home": "Distanza da casa",
+				"fuel_level_status": "Stato del livello carburante",
 				"hook_and_flash": "Clacson e lampeggio",
 				"maintenance_status": "Stato della manutenzione",
 				"odometer_status": "Stato odometro",

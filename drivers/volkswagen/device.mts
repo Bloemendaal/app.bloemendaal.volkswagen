@@ -9,6 +9,7 @@ import BatteryStatusCapabilityGroup from "./processors/capabilities/battery-stat
 import ChargingSettingsCapabilityGroup from "./processors/capabilities/charging-settings/index.mjs";
 import ChargingStatusCapabilityGroup from "./processors/capabilities/charging-status/index.mjs";
 import ClimatisationStatusCapabilityGroup from "./processors/capabilities/climatisation-status/index.mjs";
+import FuelLevelStatusCapabilityGroup from "./processors/capabilities/fuel-level-status/index.mjs";
 import MaintenanceStatusCapabilityGroup from "./processors/capabilities/maintenance-status/index.mjs";
 import OdometerStatusCapabilityGroup from "./processors/capabilities/odometer-status/index.mjs";
 import ParkingPositionCapabilityGroup from "./processors/capabilities/parking-position/index.mjs";
@@ -45,6 +46,7 @@ export default class VolkswagenDevice extends Homey.Device {
 		new ChargingSettingsCapabilityGroup(this),
 		new ChargingStatusCapabilityGroup(this),
 		new ClimatisationStatusCapabilityGroup(this),
+		new FuelLevelStatusCapabilityGroup(this),
 		new MaintenanceStatusCapabilityGroup(this),
 		new OdometerStatusCapabilityGroup(this),
 		new ParkingPositionCapabilityGroup(this),

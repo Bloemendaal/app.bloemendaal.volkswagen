@@ -61,6 +61,7 @@
 				"charging_status": "Ladestatus",
 				"climatisation_status": "Klimastatus",
 				"distance_home": "Avstand fra hjemmet",
+				"fuel_level_status": "Drivstoffnivåstatus",
 				"hook_and_flash": "Tut og blink",
 				"maintenance_status": "Vedlikeholdsstatus",
 				"odometer_status": "Kilometertellerstatus",

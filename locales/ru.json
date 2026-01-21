@@ -61,6 +61,7 @@
 				"charging_status": "Состояние зарядки",
 				"climatisation_status": "Состояние климатизации",
 				"distance_home": "Расстояние от дома",
+				"fuel_level_status": "Состояние уровня топлива",
 				"hook_and_flash": "Сигнал и вспышка",
 				"maintenance_status": "Состояние обслуживания",
 				"odometer_status": "Состояние одометра",
