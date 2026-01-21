@@ -10,6 +10,8 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ abierto",
+			"insightsTitleTrue": "__name__ abierta",
+			"insightsTitleFalse": "__name__ cerrada",
 			"variables": {
 				"bonnet": "Capó",
 				"trunk": "Maletero",
@@ -21,6 +23,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ abierto",
+			"insightsTitleTrue": "__name__ abierta",
+			"insightsTitleFalse": "__name__ cerrada",
 			"variables": {
 				"sunRoof": "Techo solar",
 				"roofCover": "Cubierta del techo",
@@ -52,6 +56,15 @@
 				"until_full": "Hasta llena"
 			}
 		},
+		"measure_range": {
+			"title": "Alcance de __name__",
+			"variables": {
+				"electric": "Eléctrico",
+				"diesel": "Diésel",
+				"adblue": "AdBlue",
+				"gasoline": "Gasolina"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ última actualización a las",
 			"variables": {
@@ -61,10 +74,12 @@
 				"charging_status": "Estado de la carga",
 				"climatisation_status": "Estado de climatización",
 				"distance_home": "Distancia desde casa",
+				"fuel_level_status": "Estado del nivel de combustible",
 				"hook_and_flash": "Tocar bocina y destellos",
 				"maintenance_status": "Estado del mantenimiento",
 				"odometer_status": "Estado del odómetro",
 				"plug_status": "Estado del enchufe",
+				"range_status": "Estado del alcance",
 				"readiness_status": "Estado de preparación",
 				"temperature_battery_status": "Estado de la temperatura de la batería",
 				"wake_up_trigger": "Activador de despertador"

@@ -29,7 +29,7 @@ export default class MeasureDistanceHomeCapability extends Capability<number> {
 	private calculateDistanceFromHome(
 		parkingPosition: ParkedPosition,
 	): number | null {
-		const homey = this.vagDevice.homey;
+		const homey = this.device.homey;
 
 		const homeLat = homey.geolocation.getLatitude();
 		const homeLon = homey.geolocation.getLongitude();

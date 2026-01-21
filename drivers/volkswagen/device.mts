@@ -14,10 +14,13 @@ import TemperatureBatteryStatusCapabilityGroup from "#lib/processors/capabilitie
 import UserCapabilitiesCapabilityGroup from "#lib/processors/capabilities/user-capabilities/index.mjs";
 import ControlChargingFlow from "#lib/processors/flows/control-charging.mjs";
 import ControlClimatisationFlow from "#lib/processors/flows/control-climatisation.mjs";
+import TimestampUpdatedFlow from "#lib/processors/flows/timestamp-updated.mjs";
 import UpdateChargingSettingsFlow from "#lib/processors/flows/update-charge-settings.mjs";
 import Processor from "#lib/processors/processable.mjs";
 import EnergySetting from "#lib/processors/settings/energy.mjs";
 import VolkswagenAuthenticator from "./authenticator.mjs";
+import FuelLevelStatusCapabilityGroup from "./processors/capabilities/fuel-level-status/index.mjs";
+import RangeStatusCapabilityGroup from "./processors/capabilities/range-status/index.mjs";
 
 export default class VolkswagenDevice extends VagDevice {
 	protected readonly processor: Processor = new Processor([
@@ -27,15 +30,18 @@ export default class VolkswagenDevice extends VagDevice {
 		new ChargingSettingsCapabilityGroup(this),
 		new ChargingStatusCapabilityGroup(this),
 		new ClimatisationStatusCapabilityGroup(this),
+		new FuelLevelStatusCapabilityGroup(this),
 		new MaintenanceStatusCapabilityGroup(this),
 		new OdometerStatusCapabilityGroup(this),
 		new ParkingPositionCapabilityGroup(this),
 		new PlugStatusCapabilityGroup(this),
+		new RangeStatusCapabilityGroup(this),
 		new ReadinessStatusCapabilityGroup(this),
 		new TemperatureBatteryStatusCapabilityGroup(this),
 		new UserCapabilitiesCapabilityGroup(this),
 		new ControlChargingFlow(this),
 		new ControlClimatisationFlow(this),
+		new TimestampUpdatedFlow(this),
 		new UpdateChargingSettingsFlow(this),
 	]);
 

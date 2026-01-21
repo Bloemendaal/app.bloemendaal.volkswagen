@@ -10,9 +10,11 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ 열림",
+			"insightsTitleTrue": "__name__ 열림",
+			"insightsTitleFalse": "__name__ 닫힘",
 			"variables": {
 				"bonnet": "보닛",
-				"trunk": "트렁크",
+				"trunk": "트럭크",
 				"frontLeft": "앞왼쪽 문",
 				"frontRight": "앞오른쪽 문",
 				"rearLeft": "뒤왼쪽 문",
@@ -21,6 +23,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ 열림",
+			"insightsTitleTrue": "__name__ 열림",
+			"insightsTitleFalse": "__name__ 닫힘",
 			"variables": {
 				"sunRoof": "선루프",
 				"roofCover": "루프 커버",
@@ -52,6 +56,15 @@
 				"until_full": "완충까지"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ 주행 거리",
+			"variables": {
+				"electric": "전기",
+				"diesel": "디젤",
+				"adblue": "AdBlue",
+				"gasoline": "가솔린"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ 마지막 업데이트 시각",
 			"variables": {
@@ -61,10 +74,12 @@
 				"charging_status": "충전 상태",
 				"climatisation_status": "냉난방 상태",
 				"distance_home": "집에서의 거리",
+				"fuel_level_status": "연료 수준 상태",
 				"hook_and_flash": "경적 및 깜박이",
 				"maintenance_status": "정비 상태",
 				"odometer_status": "주행 거리계 상태",
 				"plug_status": "플러그 상태",
+				"range_status": "주행 거리 상태",
 				"readiness_status": "준비 상태",
 				"temperature_battery_status": "배터리 온도 상태",
 				"wake_up_trigger": "기상 트리거"

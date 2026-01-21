@@ -10,6 +10,8 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ otwarte",
+			"insightsTitleTrue": "__name__ otwarte",
+			"insightsTitleFalse": "__name__ zamknięte",
 			"variables": {
 				"bonnet": "Maska",
 				"trunk": "Bagażnik",
@@ -21,6 +23,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ otwarte",
+			"insightsTitleTrue": "__name__ otwarte",
+			"insightsTitleFalse": "__name__ zamknięte",
 			"variables": {
 				"sunRoof": "Szyberdach",
 				"roofCover": "Pokrywa dachowa",
@@ -52,6 +56,15 @@
 				"until_full": "Do pełna"
 			}
 		},
+		"measure_range": {
+			"title": "Zasięg __name__",
+			"variables": {
+				"electric": "Elektryczny",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Benzyna"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ ostatnia aktualizacja o",
 			"variables": {
@@ -61,10 +74,12 @@
 				"charging_status": "Stan ładowania",
 				"climatisation_status": "Stan klimatyzacji",
 				"distance_home": "Odległość od domu",
+				"fuel_level_status": "Stan poziomu paliwa",
 				"hook_and_flash": "Klakson i błysk",
 				"maintenance_status": "Stan konserwacji",
 				"odometer_status": "Stan licznika",
 				"plug_status": "Stan wtyczki",
+				"range_status": "Stan zasięgu",
 				"readiness_status": "Stan gotowości",
 				"temperature_battery_status": "Stan temperatury baterii",
 				"wake_up_trigger": "Wyzwalacz budzenia"

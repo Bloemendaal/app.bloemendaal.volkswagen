@@ -9,7 +9,9 @@
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ öppnad",
+			"title": "__name__ öppen",
+			"insightsTitleTrue": "__name__ öppnad",
+			"insightsTitleFalse": "__name__ stängd",
 			"variables": {
 				"bonnet": "Motorhuv",
 				"trunk": "Bagageutrymme",
@@ -20,7 +22,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ öppnad",
+			"title": "__name__ öppet",
+			"insightsTitleTrue": "__name__ öppnat",
+			"insightsTitleFalse": "__name__ stängd",
 			"variables": {
 				"sunRoof": "Soltak",
 				"roofCover": "Taksäte",
@@ -52,6 +56,15 @@
 				"until_full": "Till full"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ räckvidd",
+			"variables": {
+				"electric": "Elektrisk",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Bensin"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ senast uppdaterad kl.",
 			"variables": {
@@ -61,10 +74,12 @@
 				"charging_status": "Laddningsstatus",
 				"climatisation_status": "Klimatstatus",
 				"distance_home": "Avstånd från hemmet",
+				"fuel_level_status": "Bränslenivåstatus",
 				"hook_and_flash": "Tuta och blinka",
 				"maintenance_status": "Underhållsstatus",
 				"odometer_status": "Odometerstatus",
 				"plug_status": "Kontaktstatus",
+				"range_status": "Räckviddsstatus",
 				"readiness_status": "Beredskapsstatus",
 				"temperature_battery_status": "Batteritemperaturstatus",
 				"wake_up_trigger": "Väckningsutlösare"

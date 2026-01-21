@@ -9,7 +9,9 @@
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ åbnet",
+			"title": "__name__ åben",
+			"insightsTitleTrue": "__name__ åbnet",
+			"insightsTitleFalse": "__name__ lukket",
 			"variables": {
 				"bonnet": "Motorhjelm",
 				"trunk": "Bagagerum",
@@ -20,7 +22,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ åbnet",
+			"title": "__name__ åben",
+			"insightsTitleTrue": "__name__ åbnet",
+			"insightsTitleFalse": "__name__ lukket",
 			"variables": {
 				"sunRoof": "Soltag",
 				"roofCover": "Tagdække",
@@ -52,6 +56,15 @@
 				"until_full": "Indtil fuld"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ rækkevidde",
+			"variables": {
+				"electric": "Elektrisk",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Benzin"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ sidst opdateret kl.",
 			"variables": {
@@ -61,10 +74,12 @@
 				"charging_status": "Ladestatus",
 				"climatisation_status": "Klimastatus",
 				"distance_home": "Afstand fra hjem",
+				"fuel_level_status": "Brændstofniveaustatus",
 				"hook_and_flash": "Dytten og blink",
 				"maintenance_status": "Vedligeholdelsesstatus",
 				"odometer_status": "Kilometertællerstatus",
 				"plug_status": "Stikstatus",
+				"range_status": "Rækkeviddestatus",
 				"readiness_status": "Forberedelsesstatus",
 				"temperature_battery_status": "Batteri temperaturstatus",
 				"wake_up_trigger": "Vække trigger"

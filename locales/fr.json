@@ -10,6 +10,8 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ ouvert",
+			"insightsTitleTrue": "__name__ ouverte",
+			"insightsTitleFalse": "__name__ fermée",
 			"variables": {
 				"bonnet": "Capot",
 				"trunk": "Coffre",
@@ -21,6 +23,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ ouvert",
+			"insightsTitleTrue": "__name__ ouverte",
+			"insightsTitleFalse": "__name__ fermée",
 			"variables": {
 				"sunRoof": "Toit ouvrant",
 				"roofCover": "Couvre-toit",
@@ -52,6 +56,15 @@
 				"until_full": "Jusqu'à pleine"
 			}
 		},
+		"measure_range": {
+			"title": "Autonomie de __name__",
+			"variables": {
+				"electric": "Électrique",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Essence"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ mis à jour pour la dernière fois à",
 			"variables": {
@@ -61,10 +74,12 @@
 				"charging_status": "État de charge",
 				"climatisation_status": "État de climatisation",
 				"distance_home": "Distance de la maison",
+				"fuel_level_status": "État du niveau de carburant",
 				"hook_and_flash": "Klaxon et clignotants",
 				"maintenance_status": "État de maintenance",
 				"odometer_status": "État de l'odomètre",
 				"plug_status": "État de la prise",
+				"range_status": "État de l'autonomie",
 				"readiness_status": "État de préparation",
 				"temperature_battery_status": "État de la température de la batterie",
 				"wake_up_trigger": "Déclencheur de réveil"

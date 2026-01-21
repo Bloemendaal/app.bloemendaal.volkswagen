@@ -9,7 +9,9 @@
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ geopend",
+			"title": "__name__ open",
+			"insightsTitleTrue": "__name__ geopend",
+			"insightsTitleFalse": "__name__ gesloten",
 			"variables": {
 				"bonnet": "Motorkap",
 				"trunk": "Kofferbak",
@@ -20,7 +22,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ geopend",
+			"title": "__name__ open",
+			"insightsTitleTrue": "__name__ geopend",
+			"insightsTitleFalse": "__name__ gesloten",
 			"variables": {
 				"sunRoof": "Zonnedak",
 				"roofCover": "Dakafdekking",
@@ -52,6 +56,15 @@
 				"until_full": "Tot vol"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ bereik",
+			"variables": {
+				"electric": "Elektrisch",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Benzine"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ laatst bijgewerkt om",
 			"variables": {
@@ -61,10 +74,12 @@
 				"charging_status": "Laadstatus",
 				"climatisation_status": "Klimaatstatus",
 				"distance_home": "Afstand van huis",
+				"fuel_level_status": "Brandstofniveaustatus",
 				"hook_and_flash": "Toeter en knipperlicht",
 				"maintenance_status": "Onderhoudsstatus",
 				"odometer_status": "Kilometerteller status",
 				"plug_status": "Stekkerstatus",
+				"range_status": "Bereikstatus",
 				"readiness_status": "Gereedheidsstatus",
 				"temperature_battery_status": "Batterijtemperatuur status",
 				"wake_up_trigger": "Activeer trigger"

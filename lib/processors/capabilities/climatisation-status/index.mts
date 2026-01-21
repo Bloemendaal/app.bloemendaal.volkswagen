@@ -24,9 +24,9 @@ export default class ClimatisationStatusCapabilityGroup extends CapabilityGroup 
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-			new ClimatisationOnOffCapability(this.vagDevice),
-			new TargetTemperatureCapability(this.vagDevice),
-			new MeasureRemainingClimatisationTimeCapability(this.vagDevice),
+			new ClimatisationOnOffCapability(this.device),
+			new TargetTemperatureCapability(this.device),
+			new MeasureRemainingClimatisationTimeCapability(this.device),
 		];
 	}
 }

@@ -24,21 +24,21 @@ export default class AccessStatusCapabilityGroup extends CapabilityGroup {
 		capabilities,
 	}: FetchData): Promise<Processable[]> {
 		const capabilitiesList: Processable[] = [
-			new LockedCapability(this.vagDevice),
-			new AlarmGeneralCapability(this.vagDevice),
+			new LockedCapability(this.device),
+			new AlarmGeneralCapability(this.device),
 		];
 
 		const doors = capabilities.access?.accessStatus?.value?.doors ?? [];
 
 		for (const door of doors) {
-			capabilitiesList.push(new AlarmDoorCapability(this.vagDevice, door.name));
+			capabilitiesList.push(new AlarmDoorCapability(this.device, door.name));
 		}
 
 		const windows = capabilities.access?.accessStatus?.value?.windows ?? [];
 
 		for (const window of windows) {
 			capabilitiesList.push(
-				new AlarmWindowCapability(this.vagDevice, window.name),
+				new AlarmWindowCapability(this.device, window.name),
 			);
 		}
 

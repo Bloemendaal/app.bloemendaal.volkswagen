@@ -9,7 +9,9 @@
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ opened",
+			"title": "__name__ open",
+			"insightsTitleTrue": "__name__ opened",
+			"insightsTitleFalse": "__name__ closed",
 			"variables": {
 				"bonnet": "Bonnet",
 				"trunk": "Trunk",
@@ -20,7 +22,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ opened",
+			"title": "__name__ open",
+			"insightsTitleTrue": "__name__ opened",
+			"insightsTitleFalse": "__name__ closed",
 			"variables": {
 				"sunRoof": "Sun roof",
 				"roofCover": "Roof cover",
@@ -52,6 +56,15 @@
 				"until_full": "Until full"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ range",
+			"variables": {
+				"electric": "Electric",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Gasoline"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ last updated at",
 			"variables": {
@@ -61,10 +74,12 @@
 				"charging_status": "Charging status",
 				"climatisation_status": "Climatisation status",
 				"distance_home": "Distance from home",
+				"fuel_level_status": "Fuel level status",
 				"hook_and_flash": "Honk and flash",
 				"maintenance_status": "Maintenance status",
 				"odometer_status": "Odometer status",
 				"plug_status": "Plug status",
+				"range_status": "Range status",
 				"readiness_status": "Readiness status",
 				"temperature_battery_status": "Battery temperature status",
 				"wake_up_trigger": "Wake up trigger"

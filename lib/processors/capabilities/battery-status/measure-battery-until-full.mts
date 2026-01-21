@@ -19,10 +19,10 @@ export default class MeasureBatteryUntilFullCapability extends Capability<number
 	}
 
 	public override async setter(_fetchData: FetchData): Promise<void> {
-		this.vagDevice.setCapabilityOptions(this.getCapabilityName(), {
+		this.device.setCapabilityOptions(this.getCapabilityName(), {
 			uiComponent: "sensor",
-			title: this.vagDevice.homey.__("capabilities.measure_battery.title", {
-				name: this.vagDevice.homey.__(
+			title: this.device.homey.__("capabilities.measure_battery.title", {
+				name: this.device.homey.__(
 					"capabilities.measure_battery.variables.until_full",
 				),
 			}),

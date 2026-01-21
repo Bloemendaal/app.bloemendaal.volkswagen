@@ -1,13 +1,13 @@
 {
 	"type": "boolean",
 	"title": {
-		"en": "Door open",
-		"nl": "Deur open",
 		"da": "Dør åben",
 		"de": "Tür offen",
+		"en": "Door open",
 		"es": "Puerta abierta",
 		"fr": "Porte ouverte",
 		"it": "Porta aperta",
+		"nl": "Deur open",
 		"no": "Dør åpen",
 		"sv": "Dörr öppen",
 		"pl": "Drzwi otwarte",

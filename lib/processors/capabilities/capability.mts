@@ -11,10 +11,10 @@ export interface RunOptions {
 }
 
 export default abstract class Capability<TValue> implements Processable {
-	constructor(protected readonly vagDevice: VagDevice) {}
+	constructor(protected readonly device: VagDevice) {}
 
 	public async register(fetchData: FetchData): Promise<void> {
-		if (this.vagDevice.hasCapability(this.getCapabilityName())) {
+		if (this.device.hasCapability(this.getCapabilityName())) {
 			await this.setter(fetchData);
 		}
 	}
@@ -34,7 +34,7 @@ export default abstract class Capability<TValue> implements Processable {
 			await this.addCapability(name, fetchData);
 
 			if (this.shouldSetCapabilityValue(value, options)) {
-				await this.vagDevice.setCapabilityValue(name, value);
+				await this.device.setCapabilityValue(name, value);
 			}
 		} catch (error) {
 			if (error instanceof NotImplementedError) {
@@ -90,7 +90,7 @@ export default abstract class Capability<TValue> implements Processable {
 		}
 
 		const name = this.getCapabilityName();
-		const currentValue = this.vagDevice.getCapabilityValue(name);
+		const currentValue = this.device.getCapabilityValue(name);
 
 		return currentValue === null;
 	}
@@ -99,8 +99,8 @@ export default abstract class Capability<TValue> implements Processable {
 		name: string,
 		fetchData: FetchData,
 	): Promise<void> {
-		if (!this.vagDevice.hasCapability(name)) {
-			await this.vagDevice.addCapability(name);
+		if (!this.device.hasCapability(name)) {
+			await this.device.addCapability(name);
 			await this.setter(fetchData);
 		}
 	}
@@ -115,7 +115,7 @@ export default abstract class Capability<TValue> implements Processable {
 			return true;
 		}
 
-		const vehicle = await this.vagDevice.getVehicle();
+		const vehicle = await this.device.getVehicle();
 
 		return vehicle.capabilities.some(callback);
 	}

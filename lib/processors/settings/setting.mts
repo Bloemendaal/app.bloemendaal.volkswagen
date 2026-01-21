@@ -3,7 +3,7 @@ import type VagDevice from "../../drivers/vag-device.mjs";
 import type { Processable } from "../processable.mjs";
 
 export default abstract class Setting implements Processable {
-	constructor(protected readonly vagDevice: VagDevice) {}
+	constructor(protected readonly device: VagDevice) {}
 
 	public abstract register(fetchData: FetchData): Promise<void>;
 
