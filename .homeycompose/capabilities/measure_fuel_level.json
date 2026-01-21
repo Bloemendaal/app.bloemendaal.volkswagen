@@ -17,7 +17,7 @@
 	"units": "%",
 	"getable": true,
 	"setable": false,
-	"uiComponent": null,
+	"uiComponent": "sensor",
 	"icon": "./assets/capabilities/measure_fuel_level.svg",
 	"insights": true,
 	"decimals": 0,
