@@ -5,7 +5,7 @@ import type {
 	PossiblyUnknownString,
 	TimeString,
 	Weekday,
-} from "../../types.mjs";
+} from "#lib/types.mjs";
 
 export interface RecurringTimerData {
 	startTime: TimeString;

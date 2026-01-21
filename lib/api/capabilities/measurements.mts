@@ -3,12 +3,16 @@ import type {
 	DateTimeString,
 	FloatString,
 	Integer,
-	PossiblyUnknownString,
-} from "../../types.mjs";
-import type { PrimaryEngineData } from "./fuel-status.mjs";
+} from "#lib/types.mjs";
+import type { CarType, EngineData } from "./fuel-status.mjs";
 
 export interface RangeStatusData {
 	carCapturedTimestamp: DateTimeString;
+	adBlueRange?: Integer;
+	dieselRange?: Integer;
+	electricRange?: Integer;
+	gasolineRange?: Integer;
+	totalRange_km?: Integer;
 }
 
 export interface OdometerStatusData {
@@ -25,8 +29,8 @@ export interface TemperatureBatteryStatusData {
 export interface FuelLevelStatusData {
 	carCapturedTimestamp: DateTimeString;
 	currentFuelLevel_pct?: Integer;
-	primaryEngineType: PrimaryEngineData["type"] | PossiblyUnknownString;
-	carType: PrimaryEngineData["type"] | PossiblyUnknownString;
+	primaryEngineType: EngineData["type"];
+	carType: CarType;
 }
 
 export interface MeasurementsCapabilitiesData {

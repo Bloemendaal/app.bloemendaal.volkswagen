@@ -1,6 +1,6 @@
-import type { FetchData } from "../../api/fetch.mjs";
-import type VagDevice from "../../drivers/vag-device.mjs";
-import type { Processable, RunOptions } from "../processable.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type VagDevice from "#lib/drivers/vag-device.mjs";
+import type { Processable, RunOptions } from "#lib/processors/processable.mjs";
 
 export default abstract class Flow implements Processable {
 	constructor(protected readonly device: VagDevice) {}

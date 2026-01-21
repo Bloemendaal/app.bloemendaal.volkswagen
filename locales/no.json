@@ -11,7 +11,9 @@
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ åpnet",
+			"title": "__name__ åpen",
+			"insightsTitleTrue": "__name__ åpnet",
+			"insightsTitleFalse": "__name__ lukket",
 			"variables": {
 				"bonnet": "Panser",
 				"trunk": "Bagasjerom",
@@ -22,7 +24,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ åpnet",
+			"title": "__name__ åpen",
+			"insightsTitleTrue": "__name__ åpnet",
+			"insightsTitleFalse": "__name__ lukket",
 			"variables": {
 				"sunRoof": "Soltak",
 				"roofCover": "Takdeksel",
@@ -54,6 +58,15 @@
 				"until_full": "Til full"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ rekkevidde",
+			"variables": {
+				"electric": "Elektrisk",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Bensin"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ sist oppdatert kl",
 			"variables": {
@@ -63,10 +76,12 @@
 				"charging_status": "Ladestatus",
 				"climatisation_status": "Klimastatus",
 				"distance_home": "Avstand fra hjemmet",
+				"fuel_level_status": "Drivstoffnivåstatus",
 				"hook_and_flash": "Tut og blink",
 				"maintenance_status": "Vedlikeholdsstatus",
 				"odometer_status": "Kilometertellerstatus",
 				"plug_status": "Pluggstatus",
+				"range_status": "Rekkeviddestatus",
 				"readiness_status": "Beredskapsstatus",
 				"temperature_battery_status": "Batteritemperaturstatus",
 				"wake_up_trigger": "Våkn opp trigger"

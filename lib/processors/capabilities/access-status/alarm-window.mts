@@ -1,14 +1,14 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import type VagDevice from "../../../drivers/vag-device.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type VagDevice from "#lib/drivers/vag-device.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class AlarmWindowCapability extends Capability<boolean> {
 	constructor(
-		vagDevice: VagDevice,
+		device: VagDevice,
 		private readonly subCapabilityName: string,
 	) {
-		super(vagDevice);
+		super(device);
 	}
 
 	protected getCapabilityName(): string {
@@ -25,5 +25,31 @@ export default class AlarmWindowCapability extends Capability<boolean> {
 		}
 
 		return !window.status.includes("closed");
+	}
+
+	public override async setter(_fetchData: FetchData): Promise<void> {
+		this.device.setCapabilityOptions(this.getCapabilityName(), {
+			title: this.device.homey.__("capabilities.alarm_window.title", {
+				name: this.device.homey.__(
+					`capabilities.alarm_window.variables.${this.subCapabilityName}`,
+				),
+			}),
+			insightsTitleTrue: this.device.homey.__(
+				"capabilities.alarm_window.insightsTitleTrue",
+				{
+					name: this.device.homey.__(
+						`capabilities.alarm_window.variables.${this.subCapabilityName}`,
+					),
+				},
+			),
+			insightsTitleFalse: this.device.homey.__(
+				"capabilities.alarm_window.insightsTitleFalse",
+				{
+					name: this.device.homey.__(
+						`capabilities.alarm_window.variables.${this.subCapabilityName}`,
+					),
+				},
+			),
+		});
 	}
 }

@@ -12,6 +12,8 @@
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ открыта",
+			"insightsTitleTrue": "__name__ открыта",
+			"insightsTitleFalse": "__name__ закрыта",
 			"variables": {
 				"bonnet": "Капот",
 				"trunk": "Багажник",
@@ -23,6 +25,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ открыто",
+			"insightsTitleTrue": "__name__ открыто",
+			"insightsTitleFalse": "__name__ закрыто",
 			"variables": {
 				"sunRoof": "Люк на крыше",
 				"roofCover": "Крышка крыши",
@@ -54,6 +58,15 @@
 				"until_full": "До полной"
 			}
 		},
+		"measure_range": {
+			"title": "Запас хода __name__",
+			"variables": {
+				"electric": "Электрический",
+				"diesel": "Дизель",
+				"adblue": "AdBlue",
+				"gasoline": "Бензин"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ последнее обновление в",
 			"variables": {
@@ -63,10 +76,12 @@
 				"charging_status": "Состояние зарядки",
 				"climatisation_status": "Состояние климатизации",
 				"distance_home": "Расстояние от дома",
+				"fuel_level_status": "Состояние уровня топлива",
 				"hook_and_flash": "Сигнал и вспышка",
 				"maintenance_status": "Состояние обслуживания",
 				"odometer_status": "Состояние одометра",
 				"plug_status": "Состояние разъёма",
+				"range_status": "Состояние запаса хода",
 				"readiness_status": "Состояние готовности",
 				"temperature_battery_status": "Состояние температуры батареи",
 				"wake_up_trigger": "Триггер пробуждения"

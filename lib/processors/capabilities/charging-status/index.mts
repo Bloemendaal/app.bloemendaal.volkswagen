@@ -1,7 +1,7 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import type { DateTimeString } from "../../../types.mjs";
-import type { Processable } from "../../processable.mjs";
-import CapabilityGroup from "../capability-group.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import CapabilityGroup from "#lib/processors/capabilities/capability-group.mjs";
+import type { Processable } from "#lib/processors/processable.mjs";
+import type { DateTimeString } from "#lib/types.mjs";
 import EvChargingStateCapability from "./ev-charging-state.mjs";
 import IsChargingCapability from "./is-charging.mjs";
 import MeasureChargingPowerCapability from "./measure-charging-power.mjs";
@@ -25,11 +25,11 @@ export default class ChargingStatusCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-			new EvChargingStateCapability(this.vagDevice),
-			new IsChargingCapability(this.vagDevice),
-			new MeasureChargingPowerCapability(this.vagDevice),
-			new MeasureChargingRateCapability(this.vagDevice),
-			new MeasureRemainingChargingTimeCapability(this.vagDevice),
+			new EvChargingStateCapability(this.device),
+			new IsChargingCapability(this.device),
+			new MeasureChargingPowerCapability(this.device),
+			new MeasureChargingRateCapability(this.device),
+			new MeasureRemainingChargingTimeCapability(this.device),
 		];
 	}
 }

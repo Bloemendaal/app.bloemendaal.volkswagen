@@ -1,7 +1,7 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import type { DateTimeString } from "../../../types.mjs";
-import type { Processable } from "../../processable.mjs";
-import CapabilityGroup from "../capability-group.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import CapabilityGroup from "#lib/processors/capabilities/capability-group.mjs";
+import type { Processable } from "#lib/processors/processable.mjs";
+import type { DateTimeString } from "#lib/types.mjs";
 import CoordinateLatitudeCapability from "./coordinate-latitude.mjs";
 import CoordinateLongitudeCapability from "./coordinate-longitude.mjs";
 import IsParkedCapability from "./is-parked.mjs";
@@ -26,10 +26,10 @@ export default class ParkingPositionCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-			new CoordinateLatitudeCapability(this.vagDevice),
-			new CoordinateLongitudeCapability(this.vagDevice),
-			new IsParkedCapability(this.vagDevice),
-			new MeasureDistanceHomeCapability(this.vagDevice),
+			new CoordinateLatitudeCapability(this.device),
+			new CoordinateLongitudeCapability(this.device),
+			new IsParkedCapability(this.device),
+			new MeasureDistanceHomeCapability(this.device),
 		];
 	}
 }

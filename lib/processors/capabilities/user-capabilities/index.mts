@@ -1,7 +1,7 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import type { DateTimeString } from "../../../types.mjs";
-import type { Processable } from "../../processable.mjs";
-import CapabilityGroup from "../capability-group.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import CapabilityGroup from "#lib/processors/capabilities/capability-group.mjs";
+import type { Processable } from "#lib/processors/processable.mjs";
+import type { DateTimeString } from "#lib/types.mjs";
 import ButtonFlashCapability from "./button-flash.mjs";
 import ButtonHonkFlashCapability from "./button-honk-flash.mjs";
 import ButtonWakeCapability from "./button-wake.mjs";
@@ -22,10 +22,10 @@ export default class UserCapabilitiesCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-			new ButtonFlashCapability(this.vagDevice),
-			new ButtonHonkFlashCapability(this.vagDevice),
-			new ButtonWakeCapability(this.vagDevice),
-			new ButtonWakeRefreshCapability(this.vagDevice),
+			new ButtonFlashCapability(this.device),
+			new ButtonHonkFlashCapability(this.device),
+			new ButtonWakeCapability(this.device),
+			new ButtonWakeRefreshCapability(this.device),
 		];
 	}
 }

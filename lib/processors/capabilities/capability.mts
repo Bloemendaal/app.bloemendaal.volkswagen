@@ -1,20 +1,20 @@
-import type { CapabilitiesStatusData } from "../../api/capabilities/user-capabilities.mjs";
-import type { FetchData } from "../../api/fetch.mjs";
-import type VagDevice from "../../drivers/vag-device.mjs";
-import InvalidValueError from "../../errors/invalid-value-error.mjs";
-import NotImplementedError from "../../errors/not-implemented-error.mjs";
-import type { FloatString } from "../../types.mjs";
-import type { Processable } from "../processable.mjs";
+import type { CapabilitiesStatusData } from "#lib/api/capabilities/user-capabilities.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type VagDevice from "#lib/drivers/vag-device.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import NotImplementedError from "#lib/errors/not-implemented-error.mjs";
+import type { Processable } from "#lib/processors/processable.mjs";
+import type { FloatString } from "#lib/types.mjs";
 
 export interface RunOptions {
 	isOutdated: boolean;
 }
 
 export default abstract class Capability<TValue> implements Processable {
-	constructor(protected readonly vagDevice: VagDevice) {}
+	constructor(protected readonly device: VagDevice) {}
 
 	public async register(fetchData: FetchData): Promise<void> {
-		if (this.vagDevice.hasCapability(this.getCapabilityName())) {
+		if (this.device.hasCapability(this.getCapabilityName())) {
 			await this.setter(fetchData);
 		}
 	}
@@ -34,7 +34,7 @@ export default abstract class Capability<TValue> implements Processable {
 			await this.addCapability(name, fetchData);
 
 			if (this.shouldSetCapabilityValue(value, options)) {
-				await this.vagDevice.setCapabilityValue(name, value);
+				await this.device.setCapabilityValue(name, value);
 			}
 		} catch (error) {
 			if (error instanceof NotImplementedError) {
@@ -90,7 +90,7 @@ export default abstract class Capability<TValue> implements Processable {
 		}
 
 		const name = this.getCapabilityName();
-		const currentValue = this.vagDevice.getCapabilityValue(name);
+		const currentValue = this.device.getCapabilityValue(name);
 
 		return currentValue === null;
 	}
@@ -99,8 +99,8 @@ export default abstract class Capability<TValue> implements Processable {
 		name: string,
 		fetchData: FetchData,
 	): Promise<void> {
-		if (!this.vagDevice.hasCapability(name)) {
-			await this.vagDevice.addCapability(name);
+		if (!this.device.hasCapability(name)) {
+			await this.device.addCapability(name);
 			await this.setter(fetchData);
 		}
 	}
@@ -115,7 +115,7 @@ export default abstract class Capability<TValue> implements Processable {
 			return true;
 		}
 
-		const vehicle = await this.vagDevice.getVehicle();
+		const vehicle = await this.device.getVehicle();
 
 		return vehicle.capabilities.some(callback);
 	}

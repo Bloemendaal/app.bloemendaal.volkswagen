@@ -11,7 +11,9 @@
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ geöffnet",
+			"title": "__name__ offen",
+			"insightsTitleTrue": "__name__ geöffnet",
+			"insightsTitleFalse": "__name__ geschlossen",
 			"variables": {
 				"bonnet": "Motorhaube",
 				"trunk": "Kofferraum",
@@ -22,7 +24,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ geöffnet",
+			"title": "__name__ offen",
+			"insightsTitleTrue": "__name__ geöffnet",
+			"insightsTitleFalse": "__name__ geschlossen",
 			"variables": {
 				"sunRoof": "Schiebedach",
 				"roofCover": "Dachabdeckung",
@@ -54,6 +58,15 @@
 				"until_full": "Bis voll"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ Reichweite",
+			"variables": {
+				"electric": "Elektrisch",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Benzin"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ zuletzt aktualisiert um",
 			"variables": {
@@ -63,10 +76,12 @@
 				"charging_status": "Ladestatus",
 				"climatisation_status": "Klimatisierungsstatus",
 				"distance_home": "Entfernung von zu Hause",
+				"fuel_level_status": "Kraftstoffstandstatus",
 				"hook_and_flash": "Hupe und Blinker",
 				"maintenance_status": "Wartungsstatus",
 				"odometer_status": "Kilometerzählerstatus",
 				"plug_status": "Steckerstatus",
+				"range_status": "Reichweitenstatus",
 				"readiness_status": "Bereitschaftsstatus",
 				"temperature_battery_status": "Batterietemperaturstatus",
 				"wake_up_trigger": "Weck-Auslöser"

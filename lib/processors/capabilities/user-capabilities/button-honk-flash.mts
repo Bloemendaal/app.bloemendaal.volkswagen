@@ -1,5 +1,5 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class ButtonHonkFlashCapability extends Capability<never> {
 	protected getCapabilityName(): string {
@@ -20,10 +20,10 @@ export default class ButtonHonkFlashCapability extends Capability<never> {
 			return;
 		}
 
-		this.vagDevice.registerCapabilityListener(
+		this.device.registerCapabilityListener(
 			this.getCapabilityName(),
 			async () => {
-				const vehicle = await this.vagDevice.getVehicle();
+				const vehicle = await this.device.getVehicle();
 				const position = await vehicle.getParkingPosition();
 
 				await vehicle.honkAndFlash({
@@ -33,11 +33,11 @@ export default class ButtonHonkFlashCapability extends Capability<never> {
 						latitude:
 							"lat" in position
 								? position.lat
-								: this.vagDevice.homey.geolocation.getLatitude(),
+								: this.device.homey.geolocation.getLatitude(),
 						longitude:
 							"lon" in position
 								? position.lon
-								: this.vagDevice.homey.geolocation.getLongitude(),
+								: this.device.homey.geolocation.getLongitude(),
 					},
 				});
 			},

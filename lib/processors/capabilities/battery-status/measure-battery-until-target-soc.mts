@@ -1,6 +1,6 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class MeasureBatteryUntilTargetSocCapability extends Capability<number> {
 	protected getCapabilityName(): string {
@@ -22,10 +22,10 @@ export default class MeasureBatteryUntilTargetSocCapability extends Capability<n
 	}
 
 	public override async setter(_fetchData: FetchData): Promise<void> {
-		this.vagDevice.setCapabilityOptions(this.getCapabilityName(), {
+		this.device.setCapabilityOptions(this.getCapabilityName(), {
 			uiComponent: "sensor",
-			title: this.vagDevice.homey.__("capabilities.measure_battery.title", {
-				name: this.vagDevice.homey.__(
+			title: this.device.homey.__("capabilities.measure_battery.title", {
+				name: this.device.homey.__(
 					"capabilities.measure_battery.variables.until_target_soc",
 				),
 			}),

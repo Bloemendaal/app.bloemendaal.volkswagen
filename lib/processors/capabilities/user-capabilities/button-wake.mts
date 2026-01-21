@@ -1,5 +1,5 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class ButtonWakeCapability extends Capability<never> {
 	protected getCapabilityName(): string {
@@ -20,10 +20,10 @@ export default class ButtonWakeCapability extends Capability<never> {
 			return;
 		}
 
-		this.vagDevice.registerCapabilityListener(
+		this.device.registerCapabilityListener(
 			this.getCapabilityName(),
 			async () => {
-				const vehicle = await this.vagDevice.getVehicle();
+				const vehicle = await this.device.getVehicle();
 				await vehicle.wake();
 			},
 		);

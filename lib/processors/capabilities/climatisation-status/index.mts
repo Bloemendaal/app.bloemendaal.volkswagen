@@ -1,7 +1,7 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import type { DateTimeString } from "../../../types.mjs";
-import type { Processable } from "../../processable.mjs";
-import CapabilityGroup from "../capability-group.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import CapabilityGroup from "#lib/processors/capabilities/capability-group.mjs";
+import type { Processable } from "#lib/processors/processable.mjs";
+import type { DateTimeString } from "#lib/types.mjs";
 import ClimatisationOnOffCapability from "./climatisation-onoff.mjs";
 import MeasureRemainingClimatisationTimeCapability from "./measure-remaining-climatisation-time.mjs";
 import TargetTemperatureCapability from "./target-temperature.mjs";
@@ -24,9 +24,9 @@ export default class ClimatisationStatusCapabilityGroup extends CapabilityGroup 
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-			new ClimatisationOnOffCapability(this.vagDevice),
-			new TargetTemperatureCapability(this.vagDevice),
-			new MeasureRemainingClimatisationTimeCapability(this.vagDevice),
+			new ClimatisationOnOffCapability(this.device),
+			new TargetTemperatureCapability(this.device),
+			new MeasureRemainingClimatisationTimeCapability(this.device),
 		];
 	}
 }

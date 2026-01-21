@@ -1,6 +1,6 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class LockedCapability extends Capability<boolean> {
 	protected getCapabilityName(): string {
@@ -26,7 +26,7 @@ export default class LockedCapability extends Capability<boolean> {
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
-		await this.vagDevice.setCapabilityOptions(
+		await this.device.setCapabilityOptions(
 			name,
 			isSetable
 				? { setable: true, uiComponent: "toggle" }
@@ -37,8 +37,8 @@ export default class LockedCapability extends Capability<boolean> {
 			return;
 		}
 
-		this.vagDevice.registerCapabilityListener(name, async (value: boolean) => {
-			const vehicle = await this.vagDevice.getVehicle();
+		this.device.registerCapabilityListener(name, async (value: boolean) => {
+			const vehicle = await this.device.getVehicle();
 			await vehicle.lockOrUnlock(value);
 		});
 	}

@@ -1,11 +1,11 @@
 import Homey from "homey";
-import type { Authenticatable } from "../api/authenticatable.mjs";
-import DebounceScheduler from "../api/debounce-scheduler.mjs";
-import type { FetchData } from "../api/fetch.mjs";
-import User from "../api/user.mjs";
-import type Vehicle from "../api/vehicle.mjs";
-import TranslatableError from "../errors/translatable-error.mjs";
-import type Processor from "../processors/processable.mjs";
+import type { Authenticatable } from "#lib/api/authenticatable.mjs";
+import DebounceScheduler from "#lib/api/debounce-scheduler.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import User from "#lib/api/user.mjs";
+import type Vehicle from "#lib/api/vehicle.mjs";
+import TranslatableError from "#lib/errors/translatable-error.mjs";
+import type Processor from "#lib/processors/processable.mjs";
 
 const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;

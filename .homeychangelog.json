@@ -97,5 +97,17 @@
 	},
 	"1.1.15": {
 		"en": "Add is_parked capability"
+	},
+	"1.1.16": {
+		"en": "Base control_charging on ev_charging_state capability"
+	},
+	"1.1.17": {
+		"en": "Add timestamp updated trigger card"
+	},
+	"1.1.18": {
+		"en": "Improve ranges per engine type, add support for oil percentage and add more vehicle inspection capabilities"
+	},
+	"1.1.19": {
+		"en": "Fix fuel level UI component"
 	}
 }

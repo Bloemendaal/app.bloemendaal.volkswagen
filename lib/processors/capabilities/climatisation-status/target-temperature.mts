@@ -1,6 +1,6 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class TargetTemperatureCapability extends Capability<number> {
 	protected getCapabilityName(): string {
@@ -27,7 +27,7 @@ export default class TargetTemperatureCapability extends Capability<number> {
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
-		await this.vagDevice.setCapabilityOptions(
+		await this.device.setCapabilityOptions(
 			name,
 			isSetable
 				? { setable: true, uiComponent: "thermostat" }
@@ -38,15 +38,15 @@ export default class TargetTemperatureCapability extends Capability<number> {
 			return;
 		}
 
-		this.vagDevice.registerCapabilityListener(name, async (value: number) => {
-			const vehicle = await this.vagDevice.getVehicle();
+		this.device.registerCapabilityListener(name, async (value: number) => {
+			const vehicle = await this.device.getVehicle();
 
 			await vehicle.updateClimatisation({
 				targetTemperature: value,
 				targetTemperatureUnit: "celsius",
 			});
 
-			await this.vagDevice.requestRefresh();
+			await this.device.requestRefresh();
 		});
 	}
 }

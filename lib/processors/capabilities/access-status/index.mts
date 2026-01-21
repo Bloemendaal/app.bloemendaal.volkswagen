@@ -1,7 +1,7 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import type { DateTimeString } from "../../../types.mjs";
-import type { Processable } from "../../processable.mjs";
-import CapabilityGroup from "../capability-group.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import CapabilityGroup from "#lib/processors/capabilities/capability-group.mjs";
+import type { Processable } from "#lib/processors/processable.mjs";
+import type { DateTimeString } from "#lib/types.mjs";
 import AlarmDoorCapability from "./alarm-door.mjs";
 import AlarmGeneralCapability from "./alarm-general.mjs";
 import AlarmWindowCapability from "./alarm-window.mjs";
@@ -24,21 +24,21 @@ export default class AccessStatusCapabilityGroup extends CapabilityGroup {
 		capabilities,
 	}: FetchData): Promise<Processable[]> {
 		const capabilitiesList: Processable[] = [
-			new LockedCapability(this.vagDevice),
-			new AlarmGeneralCapability(this.vagDevice),
+			new LockedCapability(this.device),
+			new AlarmGeneralCapability(this.device),
 		];
 
 		const doors = capabilities.access?.accessStatus?.value?.doors ?? [];
 
 		for (const door of doors) {
-			capabilitiesList.push(new AlarmDoorCapability(this.vagDevice, door.name));
+			capabilitiesList.push(new AlarmDoorCapability(this.device, door.name));
 		}
 
 		const windows = capabilities.access?.accessStatus?.value?.windows ?? [];
 
 		for (const window of windows) {
 			capabilitiesList.push(
-				new AlarmWindowCapability(this.vagDevice, window.name),
+				new AlarmWindowCapability(this.device, window.name),
 			);
 		}
 

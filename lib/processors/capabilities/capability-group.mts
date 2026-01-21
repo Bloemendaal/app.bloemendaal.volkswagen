@@ -1,11 +1,10 @@
-import type { FetchData } from "../../api/fetch.mjs";
-import type VagDevice from "../../drivers/vag-device.mjs";
-import type { DateTimeString } from "../../types.mjs";
-import type { Processable } from "../processable.mjs";
-import Processor from "../processable.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type VagDevice from "#lib/drivers/vag-device.mjs";
+import Processor, { type Processable } from "#lib/processors/processable.mjs";
+import type { DateTimeString } from "#lib/types.mjs";
 
 export default abstract class CapabilityGroup implements Processable {
-	constructor(protected readonly vagDevice: VagDevice) {}
+	constructor(protected readonly device: VagDevice) {}
 
 	public async register(fetchData: FetchData): Promise<void> {
 		const capabilities = await this.getProcessables(fetchData);
@@ -46,19 +45,19 @@ export default abstract class CapabilityGroup implements Processable {
 
 		const capabilityId = `timestamp.${this.getCapabilityGroupName()}`;
 
-		if (!this.vagDevice.hasCapability(capabilityId)) {
+		if (!this.device.hasCapability(capabilityId)) {
 			await this.registerTimestampCapability(capabilityId);
 		}
 
 		const carCapturedTimestamp = new Date(timestamp ?? 0).getTime();
 
-		const latestTimestamp = +this.vagDevice.getCapabilityValue(capabilityId);
+		const latestTimestamp = +this.device.getCapabilityValue(capabilityId);
 
 		if (carCapturedTimestamp <= latestTimestamp) {
 			return false;
 		}
 
-		await this.vagDevice.setCapabilityValue(capabilityId, carCapturedTimestamp);
+		await this.device.setCapabilityValue(capabilityId, carCapturedTimestamp);
 
 		return true;
 	}
@@ -66,11 +65,11 @@ export default abstract class CapabilityGroup implements Processable {
 	private async registerTimestampCapability(
 		capabilityId: string,
 	): Promise<void> {
-		await this.vagDevice.addCapability(capabilityId);
+		await this.device.addCapability(capabilityId);
 
-		await this.vagDevice.setCapabilityOptions(capabilityId, {
-			title: this.vagDevice.homey.__("capabilities.timestamp.title", {
-				name: this.vagDevice.homey.__(
+		await this.device.setCapabilityOptions(capabilityId, {
+			title: this.device.homey.__("capabilities.timestamp.title", {
+				name: this.device.homey.__(
 					`capabilities.timestamp.variables.${this.getCapabilityGroupName()}`,
 				),
 			}),
