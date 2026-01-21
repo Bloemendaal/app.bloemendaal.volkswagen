@@ -34,16 +34,22 @@ export default class AlarmWindowCapability extends Capability<boolean> {
 					`capabilities.alarm_window.variables.${this.subCapabilityName}`,
 				),
 			}),
-			insightsTitleTrue: this.device.homey.__("capabilities.alarm_window.insightsTitleTrue", {
-				name: this.device.homey.__(
-					`capabilities.alarm_window.variables.${this.subCapabilityName}`,
-				),
-			}),
-			insightsTitleFalse: this.device.homey.__("capabilities.alarm_window.insightsTitleFalse", {
-				name: this.device.homey.__(
-					`capabilities.alarm_window.variables.${this.subCapabilityName}`,
-				),
-			}),
+			insightsTitleTrue: this.device.homey.__(
+				"capabilities.alarm_window.insightsTitleTrue",
+				{
+					name: this.device.homey.__(
+						`capabilities.alarm_window.variables.${this.subCapabilityName}`,
+					),
+				},
+			),
+			insightsTitleFalse: this.device.homey.__(
+				"capabilities.alarm_window.insightsTitleFalse",
+				{
+					name: this.device.homey.__(
+						`capabilities.alarm_window.variables.${this.subCapabilityName}`,
+					),
+				},
+			),
 		});
 	}
 }

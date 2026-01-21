@@ -34,16 +34,22 @@ export default class AlarmDoorCapability extends Capability<boolean> {
 					`capabilities.alarm_door.variables.${this.subCapabilityName}`,
 				),
 			}),
-			insightsTitleTrue: this.device.homey.__("capabilities.alarm_door.insightsTitleTrue", {
-				name: this.device.homey.__(
-					`capabilities.alarm_door.variables.${this.subCapabilityName}`,
-				),
-			}),
-			insightsTitleFalse: this.device.homey.__("capabilities.alarm_door.insightsTitleFalse", {
-				name: this.device.homey.__(
-					`capabilities.alarm_door.variables.${this.subCapabilityName}`,
-				),
-			}),
+			insightsTitleTrue: this.device.homey.__(
+				"capabilities.alarm_door.insightsTitleTrue",
+				{
+					name: this.device.homey.__(
+						`capabilities.alarm_door.variables.${this.subCapabilityName}`,
+					),
+				},
+			),
+			insightsTitleFalse: this.device.homey.__(
+				"capabilities.alarm_door.insightsTitleFalse",
+				{
+					name: this.device.homey.__(
+						`capabilities.alarm_door.variables.${this.subCapabilityName}`,
+					),
+				},
+			),
 		});
 	}
 }

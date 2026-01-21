@@ -103,5 +103,8 @@
 	},
 	"1.1.17": {
 		"en": "Add timestamp updated trigger card"
+	},
+	"1.1.18": {
+		"en": "Improve ranges per engine type, add support for oil percentage and add more vehicle inspection capabilities"
 	}
 }
