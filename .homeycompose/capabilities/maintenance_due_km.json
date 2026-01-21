@@ -1,0 +1,37 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Maintenance due",
+		"nl": "Onderhoud over",
+		"da": "Vedligeholdelse skyldes",
+		"de": "Wartung fällig",
+		"es": "Mantenimiento debido",
+		"fr": "Entretien dû",
+		"it": "Manutenzione dovuta",
+		"no": "Vedlikehold skyldes",
+		"sv": "Underhåll förfaller",
+		"pl": "Konserwacja należna",
+		"ru": "Обслуживание требуется",
+		"ko": "유지 보수 예정"
+	},
+	"units": {
+		"en": "km",
+		"nl": "km",
+		"da": "km",
+		"de": "km",
+		"es": "km",
+		"fr": "km",
+		"it": "km",
+		"no": "km",
+		"sv": "km",
+		"pl": "km",
+		"ru": "км",
+		"ko": "km"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/maintenance_due_days.svg",
+	"insights": false,
+	"decimals": 0
+}

@@ -1,0 +1,37 @@
+{
+	"type": "number",
+	"title": {
+		"en": "Oil service due",
+		"nl": "Olieservice over",
+		"da": "Olieservice skyldes",
+		"de": "Ölservice fällig",
+		"es": "Servicio de aceite debido",
+		"fr": "Service d'huile dû",
+		"it": "Servizio olio dovuto",
+		"no": "Oljeservice skyldes",
+		"sv": "Oljeservice förfaller",
+		"pl": "Serwis olejowy należny",
+		"ru": "Замена масла требуется",
+		"ko": "오일 서비스 예정"
+	},
+	"units": {
+		"en": "km",
+		"nl": "km",
+		"da": "km",
+		"de": "km",
+		"es": "km",
+		"fr": "km",
+		"it": "km",
+		"no": "km",
+		"sv": "km",
+		"pl": "km",
+		"ru": "км",
+		"ko": "km"
+	},
+	"getable": true,
+	"setable": false,
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/maintenance_due_days.svg",
+	"insights": false,
+	"decimals": 0
+}
