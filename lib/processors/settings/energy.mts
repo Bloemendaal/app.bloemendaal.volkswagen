@@ -1,4 +1,4 @@
-import type { FetchData } from "../../api/fetch.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
 import Setting from "./setting.mjs";
 
 export default class EnergySetting extends Setting {

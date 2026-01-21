@@ -1,11 +1,11 @@
 import type {
 	ChargingSettings,
 	ChargingSettingsAC,
-} from "../../api/vehicle.mjs";
+} from "#lib/api/vehicle.mjs";
 import {
 	MAX_CHARGING_CURRENT,
 	REDUCED_CHARGING_CURRENT,
-} from "../capabilities/charging-settings/max-charging-current.mjs";
+} from "#lib/processors/capabilities/charging-settings/max-charging-current.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdateChargingSettingsArgs {

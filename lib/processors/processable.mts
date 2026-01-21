@@ -1,4 +1,4 @@
-import type { FetchData } from "../api/fetch.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
 
 export interface RunOptions {
 	isOutdated: boolean;

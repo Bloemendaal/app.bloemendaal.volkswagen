@@ -1,10 +1,10 @@
-import type { CapabilitiesStatusData } from "../../api/capabilities/user-capabilities.mjs";
-import type { FetchData } from "../../api/fetch.mjs";
-import type VagDevice from "../../drivers/vag-device.mjs";
-import InvalidValueError from "../../errors/invalid-value-error.mjs";
-import NotImplementedError from "../../errors/not-implemented-error.mjs";
-import type { FloatString } from "../../types.mjs";
-import type { Processable } from "../processable.mjs";
+import type { CapabilitiesStatusData } from "#lib/api/capabilities/user-capabilities.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type VagDevice from "#lib/drivers/vag-device.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import NotImplementedError from "#lib/errors/not-implemented-error.mjs";
+import type { Processable } from "#lib/processors/processable.mjs";
+import type { FloatString } from "#lib/types.mjs";
 
 export interface RunOptions {
 	isOutdated: boolean;

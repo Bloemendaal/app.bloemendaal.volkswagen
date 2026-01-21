@@ -1,6 +1,6 @@
 import type { FetchData } from "#lib/api/fetch.mjs";
 import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class MeasureRangeGasolineCapability extends Capability<number> {
 	protected getCapabilityName(): string {

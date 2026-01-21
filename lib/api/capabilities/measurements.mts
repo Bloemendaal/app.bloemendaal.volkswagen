@@ -3,7 +3,7 @@ import type {
 	DateTimeString,
 	FloatString,
 	Integer,
-} from "../../types.mjs";
+} from "#lib/types.mjs";
 import type { CarType, EngineData } from "./fuel-status.mjs";
 
 export interface RangeStatusData {

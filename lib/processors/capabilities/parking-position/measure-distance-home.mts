@@ -1,7 +1,7 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import type { ParkedPosition } from "../../../api/parking-position.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type { ParkedPosition } from "#lib/api/parking-position.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 const EARTH_RADIUS_M = 6371000;
 

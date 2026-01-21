@@ -1,4 +1,4 @@
-import TranslatableError from "../errors/translatable-error.mjs";
+import TranslatableError from "#lib/errors/translatable-error.mjs";
 import type { Authenticatable, AuthSettings } from "./authenticatable.mjs";
 import Vehicle, { type VehicleData } from "./vehicle.mjs";
 

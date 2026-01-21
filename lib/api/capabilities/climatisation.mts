@@ -3,7 +3,7 @@ import type {
 	DateTimeString,
 	Integer,
 	PossiblyUnknownString,
-} from "../../types.mjs";
+} from "#lib/types.mjs";
 
 export interface ClimatisationSettingsData {
 	carCapturedTimestamp: DateTimeString;

@@ -1,5 +1,5 @@
-import type { FetchData } from "../../../api/fetch.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class ButtonFlashCapability extends Capability<never> {
 	protected getCapabilityName(): string {
