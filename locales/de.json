@@ -2,8 +2,10 @@
 	"errors": {
 		"authentication": {
 			"authorization_url_failed": "Die Autorisierungs-URL von WeConnect konnte nicht abgerufen werden. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.",
-			"login_failed": "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail-Adresse und Ihr Passwort. Falls Sie kürzlich Ihr Passwort geändert haben, stellen Sie sicher, dass Sie das richtige verwenden. Möglicherweise müssen Sie auch die AGB in der Volkswagen-App akzeptieren.",
-			"authorization_parameters_failed": "Authentifizierung abgeschlossen, aber Sicherheitsparameter konnten nicht abgerufen werden. Bitte versuchen Sie es erneut.",
+			"identity_provider_failed": "Verbindung zum Identitätsanbieter fehlgeschlagen. Bitte versuchen Sie es später erneut.",
+			"email_submission_failed": "E-Mail-Adresse konnte nicht gesendet werden. Bitte prüfen Sie die Adresse und versuchen Sie es erneut.",
+			"password_form_parse_failed": "Passwortformular konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.",
+			"password_submission_failed": "Passwort konnte nicht gesendet werden. Mögliche Ursachen: falsches Passwort, zu viele Anmeldeversuche in kurzer Zeit oder die AGB der Volkswagen-App wurden noch nicht akzeptiert. Melden Sie sich in der Volkswagen-App ab und dann wieder an, um sie zu akzeptieren.",
 			"token_exchange_failed": "Zugriffstoken konnten nicht abgerufen werden. Bitte versuchen Sie es erneut oder sehen Sie im Community-Forum nach."
 		}
 	},
