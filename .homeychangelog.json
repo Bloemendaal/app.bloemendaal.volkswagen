@@ -112,5 +112,8 @@
 	},
 	"1.1.20": {
 		"en": "Fix timestamp registrer awaiting issue"
+	},
+	"1.1.21": {
+		"en": "Add window heating flows"
 	}
 }
