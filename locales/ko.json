@@ -65,6 +65,12 @@
 				"gasoline": "가솔린"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "앞 유리 히팅",
+				"rear": "뒷 유리 히팅"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ 마지막 업데이트 시각",
 			"variables": {
@@ -72,6 +78,7 @@
 				"battery_status": "배터리 상태",
 				"charging_settings": "충전 설정",
 				"charging_status": "충전 상태",
+				"climatisation_settings": "냉난방 설정",
 				"climatisation_status": "냉난방 상태",
 				"distance_home": "집에서의 거리",
 				"fuel_level_status": "연료 수준 상태",

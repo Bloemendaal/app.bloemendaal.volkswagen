@@ -22,10 +22,12 @@ export interface ClimatisationStatusData {
 	climatisationState: "off" | PossiblyUnknownString;
 }
 
+export type WindowLocation = "front" | "rear";
+
 export interface WindowHeatingStatusData {
 	carCapturedTimestamp: DateTimeString;
 	windowHeatingStatus: {
-		windowLocation: "front" | "rear";
+		windowLocation: WindowLocation;
 		windowHeatingState: "off" | PossiblyUnknownString;
 	}[];
 }

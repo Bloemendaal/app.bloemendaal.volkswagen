@@ -65,6 +65,12 @@
 				"gasoline": "Gasolina"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "Calefacción parabrisas delantero",
+				"rear": "Calefacción ventana trasera"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ última actualización a las",
 			"variables": {
@@ -72,6 +78,7 @@
 				"battery_status": "Estado de la batería",
 				"charging_settings": "Configuración de carga",
 				"charging_status": "Estado de la carga",
+				"climatisation_settings": "Configuración de climatización",
 				"climatisation_status": "Estado de climatización",
 				"distance_home": "Distancia desde casa",
 				"fuel_level_status": "Estado del nivel de combustible",

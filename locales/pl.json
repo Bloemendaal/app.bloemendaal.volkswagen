@@ -65,6 +65,12 @@
 				"gasoline": "Benzyna"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "Ogrzewanie przedniej szyby",
+				"rear": "Ogrzewanie tylnej szyby"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ ostatnia aktualizacja o",
 			"variables": {
@@ -72,6 +78,7 @@
 				"battery_status": "Stan baterii",
 				"charging_settings": "Ustawienia ładowania",
 				"charging_status": "Stan ładowania",
+				"climatisation_settings": "Ustawienia klimatyzacji",
 				"climatisation_status": "Stan klimatyzacji",
 				"distance_home": "Odległość od domu",
 				"fuel_level_status": "Stan poziomu paliwa",

@@ -65,6 +65,12 @@
 				"gasoline": "Benzina"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "Riscaldamento parabrezza anteriore",
+				"rear": "Riscaldamento lunotto posteriore"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ ultimo aggiornamento alle",
 			"variables": {
@@ -72,6 +78,7 @@
 				"battery_status": "Stato della batteria",
 				"charging_settings": "Impostazioni di ricarica",
 				"charging_status": "Stato di ricarica",
+				"climatisation_settings": "Impostazioni della climatizzazione",
 				"climatisation_status": "Stato della climatizzazione",
 				"distance_home": "Distanza da casa",
 				"fuel_level_status": "Stato del livello carburante",
