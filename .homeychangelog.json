@@ -109,5 +109,8 @@
 	},
 	"1.1.19": {
 		"en": "Fix fuel level UI component"
+	},
+	"1.1.20": {
+		"en": "Fix timestamp registrer awaiting issue"
 	}
 }
