@@ -1,7 +1,7 @@
 {
 	"name": "app.bloemendaal.volkswagen",
 	"type": "module",
-	"version": "1.1.21",
+	"version": "1.1.13",
 	"scripts": {
 		"build": "tsc",
 		"start": "homey app run",
@@ -19,6 +19,7 @@
 	"dependencies": {
 		"axios": "^1.13.2",
 		"axios-cookiejar-support": "^6.0.5",
+		"cheerio": "^1.1.2",
 		"tough-cookie": "^6.0.0"
 	}
 }

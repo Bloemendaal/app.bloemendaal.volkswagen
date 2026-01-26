@@ -1,13 +1,13 @@
 {
 	"type": "boolean",
 	"title": {
+		"en": "Window open",
+		"nl": "Raam open",
 		"da": "Vindue åbent",
 		"de": "Fenster offen",
-		"en": "Window open",
 		"es": "Ventana abierta",
 		"fr": "Fenêtre ouverte",
 		"it": "Finestra aperta",
-		"nl": "Raam open",
 		"no": "Vindu åpent",
 		"sv": "Fönster öppet",
 		"pl": "Okno otwarte",

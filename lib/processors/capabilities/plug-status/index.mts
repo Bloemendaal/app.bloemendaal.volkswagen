@@ -1,0 +1,25 @@
+import { FetchData } from "../../../api/fetch.mjs";
+import type { DateTimeString } from "../../../types.mjs";
+import type { Processable } from "../../processable.mjs";
+import CapabilityGroup from "../capability-group.mjs";
+import IsPlugConnectedCapability from "./is-plug-connected.mjs";
+
+export default class PlugStatusCapabilityGroup extends CapabilityGroup {
+  protected getCapabilityGroupName(): string {
+    return "plug_status";
+  }
+
+  protected getCapabilityTimestamp({
+    capabilities,
+  }: FetchData): DateTimeString | null {
+    return (
+      capabilities.charging?.plugStatus?.value?.carCapturedTimestamp ?? null
+    );
+  }
+
+  protected async getProcessables(
+    _fetchData: FetchData
+  ): Promise<Processable[]> {
+    return [new IsPlugConnectedCapability(this.baseDevice)];
+  }
+}

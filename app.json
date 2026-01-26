@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "app.bloemendaal.volkswagen",
-  "version": "1.1.21",
+  "version": "1.1.17",
   "compatibility": ">=12.9.0",
   "sdk": 3,
   "platforms": [
@@ -66,102 +66,76 @@
   },
   "esm": true,
   "flow": {
-    "triggers": [
+    "actions": [
       {
-        "id": "timestamp_updated",
-        "title": {
-          "en": "A timestamp was updated",
-          "nl": "Een tijdstempel is bijgewerkt",
-          "de": "Ein Zeitstempel wurde aktualisiert",
-          "fr": "Un horodatage a été mis à jour",
-          "es": "Se actualizó una marca de tiempo",
-          "it": "Un timestamp è stato aggiornato",
-          "da": "Et tidsstempel blev opdateret",
-          "no": "Et tidsstempel ble oppdatert",
-          "sv": "En tidsstämpel uppdaterades",
-          "pl": "Znacznik czasu został zaktualizowany",
-          "ru": "Временная метка была обновлена",
-          "ko": "타임스탬프가 업데이트되었습니다"
-        },
-        "tokens": [
-          {
-            "name": "timestamp",
-            "type": "number",
-            "title": {
-              "en": "Timestamp",
-              "nl": "Tijdstempel",
-              "de": "Zeitstempel",
-              "fr": "Horodatage",
-              "es": "Marca de tiempo",
-              "it": "Timestamp",
-              "da": "Tidsstempel",
-              "no": "Tidsstempel",
-              "sv": "Tidsstämpel",
-              "pl": "Znacznik czasu",
-              "ru": "Временная метка",
-              "ko": "타임스탬프"
-            },
-            "example": 1769900400000
-          }
-        ],
         "args": [
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=volkswagen"
+            "filter": "driver_id=volkswagen|cupra|seat|skoda"
           }
-        ]
-      }
-    ],
-    "actions": [
+        ],
+        "title": {
+          "en": "Turn off climatisation",
+          "nl": "Zet klimaatregeling uit",
+          "de": "Klimatisierung ausschalten",
+          "fr": "Désactiver la climatisation",
+          "es": "Desactivar climatización",
+          "it": "Disattiva climatizzazione",
+          "da": "Sluk for klimatisering",
+          "no": "Slå av klimatisering",
+          "sv": "Inaktivera klimatisering",
+          "pl": "Wyłącz klimatyzację",
+          "ru": "Выключить климатизацию",
+          "ko": "냉난방 끄기"
+        },
+        "id": "climatisation_onoff_off"
+      },
       {
-        "id": "climatisation_onoff_on",
-        "highlight": true,
         "title": {
           "en": "Turn on climatisation",
-          "nl": "Klimaatregeling aanzetten",
+          "nl": "Zet klimaatregeling aan",
           "de": "Klimatisierung einschalten",
           "fr": "Activer la climatisation",
-          "es": "Encender climatización",
-          "it": "Accendi climatizzazione",
-          "da": "Tænd klimaanlæg",
-          "no": "Slå på klimaanlegg",
-          "sv": "Slå på klimatanläggning",
+          "es": "Activar climatización",
+          "it": "Attiva climatizzazione",
+          "da": "Tænd for klimatisering",
+          "no": "Slå på klimatisering",
+          "sv": "Aktivera klimatisering",
           "pl": "Włącz klimatyzację",
           "ru": "Включить климатизацию",
           "ko": "냉난방 켜기"
         },
         "titleFormatted": {
-          "en": "Turn on climatisation at [[temperature]]°C",
-          "nl": "Klimaatregeling aanzetten op [[temperature]]°C",
-          "de": "Klimatisierung bei [[temperature]]°C einschalten",
-          "fr": "Activer la climatisation à [[temperature]]°C",
-          "es": "Encender climatización a [[temperature]]°C",
-          "it": "Accendi climatizzazione a [[temperature]]°C",
-          "da": "Tænd klimaanlæg ved [[temperature]]°C",
-          "no": "Slå på klimaanlegg ved [[temperature]]°C",
-          "sv": "Slå på klimatanläggning vid [[temperature]]°C",
-          "pl": "Włącz klimatyzację na [[temperature]]°C",
-          "ru": "Включить климатизацию при [[temperature]]°C",
-          "ko": "[[temperature]]°C에서 냉난방 켜기"
+          "en": "Turn on climatisation [[temperature]]",
+          "nl": "Zet klimaatregeling aan [[temperature]]",
+          "de": "Klimatisierung einschalten [[temperature]]",
+          "fr": "Activer la climatisation [[temperature]]",
+          "es": "Activar climatización [[temperature]]",
+          "it": "Attiva climatizzazione [[temperature]]",
+          "da": "Tænd for klimatisering [[temperature]]",
+          "no": "Slå på klimatisering [[temperature]]",
+          "sv": "Aktivera klimatisering [[temperature]]",
+          "pl": "Włącz klimatyzację [[temperature]]",
+          "ru": "Включить климатизацию [[temperature]]",
+          "ko": "냉난방 켜기 [[temperature]]"
         },
         "args": [
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
+            "filter": "driver_id=volkswagen|cupra|seat|skoda"
           },
           {
             "type": "number",
             "name": "temperature",
-            "required": false,
             "title": {
               "en": "Target temperature (°C)",
               "nl": "Doeltemperatuur (°C)",
               "de": "Zieltemperatur (°C)",
               "fr": "Température cible (°C)",
               "es": "Temperatura objetivo (°C)",
-              "it": "Temperatura obiettivo (°C)",
+              "it": "Temperatura target (°C)",
               "da": "Måltemperatur (°C)",
               "no": "Måltemperatur (°C)",
               "sv": "Måltemperatur (°C)",
@@ -169,431 +143,50 @@
               "ru": "Целевая температура (°C)",
               "ko": "목표 온도 (°C)"
             },
-            "min": 15,
+            "min": 16,
             "max": 30,
-            "step": 0.5
-          }
-        ]
-      },
-      {
-        "id": "climatisation_onoff_on_advanced",
-        "title": {
-          "en": "Turn on climatisation (advanced)",
-          "nl": "Klimaatregeling aanzetten (geavanceerd)",
-          "de": "Klimatisierung einschalten (erweitert)",
-          "fr": "Activer la climatisation (avancé)",
-          "es": "Encender climatización (avanzado)",
-          "it": "Accendi climatizzazione (avanzato)",
-          "da": "Tænd klimaanlæg (avanceret)",
-          "no": "Slå på klimaanlegg (avansert)",
-          "sv": "Slå på klimatanläggning (avancerat)",
-          "pl": "Włącz klimatyzację (zaawansowane)",
-          "ru": "Включить климатизацию (расширенный)",
-          "ko": "냉난방 켜기 (고급)"
-        },
-        "titleFormatted": {
-          "en": "Turn on climatisation at [[temperature]]°C, without ext. power: [[climatisationWithoutExternalPower]], at unlock: [[climatizationAtUnlock]], window heating: [[windowHeatingEnabled]], zones: FL [[zoneFrontLeftEnabled]] FR [[zoneFrontRightEnabled]] RL [[zoneRearLeftEnabled]] RR [[zoneRearRightEnabled]]",
-          "nl": "Klimaatregeling aanzetten op [[temperature]]°C, zonder ext. stroom: [[climatisationWithoutExternalPower]], bij ontgrendelen: [[climatizationAtUnlock]], ruitverwarming: [[windowHeatingEnabled]], zones: LV [[zoneFrontLeftEnabled]] RV [[zoneFrontRightEnabled]] LA [[zoneRearLeftEnabled]] RA [[zoneRearRightEnabled]]",
-          "de": "Klimatisierung bei [[temperature]]°C einschalten, ohne ext. Strom: [[climatisationWithoutExternalPower]], beim Entsperren: [[climatizationAtUnlock]], Scheibenheizung: [[windowHeatingEnabled]], Zonen: VL [[zoneFrontLeftEnabled]] VR [[zoneFrontRightEnabled]] HL [[zoneRearLeftEnabled]] HR [[zoneRearRightEnabled]]",
-          "fr": "Activer la climatisation à [[temperature]]°C, sans alim. ext.: [[climatisationWithoutExternalPower]], au déverrouillage: [[climatizationAtUnlock]], chauffage vitres: [[windowHeatingEnabled]], zones: AG [[zoneFrontLeftEnabled]] AD [[zoneFrontRightEnabled]] AG [[zoneRearLeftEnabled]] AD [[zoneRearRightEnabled]]",
-          "es": "Encender climatización a [[temperature]]°C, sin alim. ext.: [[climatisationWithoutExternalPower]], al desbloquear: [[climatizationAtUnlock]], calefacción ventanas: [[windowHeatingEnabled]], zonas: DI [[zoneFrontLeftEnabled]] DD [[zoneFrontRightEnabled]] TI [[zoneRearLeftEnabled]] TD [[zoneRearRightEnabled]]",
-          "it": "Accendi climatizzazione a [[temperature]]°C, senza alim. est.: [[climatisationWithoutExternalPower]], allo sblocco: [[climatizationAtUnlock]], riscaldamento finestrini: [[windowHeatingEnabled]], zone: AS [[zoneFrontLeftEnabled]] AD [[zoneFrontRightEnabled]] PS [[zoneRearLeftEnabled]] PD [[zoneRearRightEnabled]]",
-          "da": "Tænd klimaanlæg ved [[temperature]]°C, uden eks. strøm: [[climatisationWithoutExternalPower]], ved oplåsning: [[climatizationAtUnlock]], rudevarme: [[windowHeatingEnabled]], zoner: VF [[zoneFrontLeftEnabled]] HF [[zoneFrontRightEnabled]] VB [[zoneRearLeftEnabled]] HB [[zoneRearRightEnabled]]",
-          "no": "Slå på klimaanlegg ved [[temperature]]°C, uten eks. strøm: [[climatisationWithoutExternalPower]], ved opplåsing: [[climatizationAtUnlock]], vindusvarming: [[windowHeatingEnabled]], soner: VF [[zoneFrontLeftEnabled]] HF [[zoneFrontRightEnabled]] VB [[zoneRearLeftEnabled]] HB [[zoneRearRightEnabled]]",
-          "sv": "Slå på klimatanläggning vid [[temperature]]°C, utan ext. ström: [[climatisationWithoutExternalPower]], vid upplåsning: [[climatizationAtUnlock]], fönstervärme: [[windowHeatingEnabled]], zoner: VF [[zoneFrontLeftEnabled]] HF [[zoneFrontRightEnabled]] VB [[zoneRearLeftEnabled]] HB [[zoneRearRightEnabled]]",
-          "pl": "Włącz klimatyzację na [[temperature]]°C, bez zew. zasilania: [[climatisationWithoutExternalPower]], przy odblokowaniu: [[climatizationAtUnlock]], ogrzewanie szyb: [[windowHeatingEnabled]], strefy: LP [[zoneFrontLeftEnabled]] PP [[zoneFrontRightEnabled]] LT [[zoneRearLeftEnabled]] PT [[zoneRearRightEnabled]]",
-          "ru": "Включить климатизацию при [[temperature]]°C, без внеш. питания: [[climatisationWithoutExternalPower]], при разблокировке: [[climatizationAtUnlock]], обогрев окон: [[windowHeatingEnabled]], зоны: ПЛ [[zoneFrontLeftEnabled]] ПП [[zoneFrontRightEnabled]] ЗЛ [[zoneRearLeftEnabled]] ЗП [[zoneRearRightEnabled]]",
-          "ko": "[[temperature]]°C에서 냉난방 켜기, 외부 전원 없이: [[climatisationWithoutExternalPower]], 잠금 해제 시: [[climatizationAtUnlock]], 창문 히팅: [[windowHeatingEnabled]], 구역: 좌전 [[zoneFrontLeftEnabled]] 우전 [[zoneFrontRightEnabled]] 좌후 [[zoneRearLeftEnabled]] 우후 [[zoneRearRightEnabled]]"
-        },
-        "hint": {
-          "en": "Configure all climatisation settings including zones and additional options. Leave optional fields empty to use default settings.",
-          "nl": "Configureer alle klimaatinstellingen inclusief zones en extra opties. Laat optionele velden leeg om standaardinstellingen te gebruiken.",
-          "de": "Konfigurieren Sie alle Klimatisierungseinstellungen einschließlich Zonen und zusätzlicher Optionen. Lassen Sie optionale Felder leer, um Standardeinstellungen zu verwenden.",
-          "fr": "Configurez tous les paramètres de climatisation, y compris les zones et les options supplémentaires. Laissez les champs facultatifs vides pour utiliser les paramètres par défaut.",
-          "es": "Configure todos los ajustes de climatización, incluidas las zonas y opciones adicionales. Deje los campos opcionales vacíos para usar la configuración predeterminada.",
-          "it": "Configura tutte le impostazioni di climatizzazione, incluse le zone e le opzioni aggiuntive. Lascia i campi opzionali vuoti per utilizzare le impostazioni predefinite.",
-          "da": "Konfigurer alle klimaindstillinger, inklusive zoner og yderligere muligheder. Lad valgfrie felter være tomme for at bruge standardindstillinger.",
-          "no": "Konfigurer alle klimainnstillinger, inkludert soner og ekstra alternativer. La valgfrie felt være tomme for å bruke standardinnstillinger.",
-          "sv": "Konfigurera alla klimatinställningar, inklusive zoner och ytterligare alternativ. Lämna valfria fält tomma för att använda standardinställningar.",
-          "pl": "Skonfiguruj wszystkie ustawienia klimatyzacji, w tym strefy i dodatkowe opcje. Pozostaw pola opcjonalne puste, aby użyć ustawień domyślnych.",
-          "ru": "Настройте все параметры климатизации, включая зоны и дополнительные опции. Оставьте необязательные поля пустыми, чтобы использовать настройки по умолчанию.",
-          "ko": "구역 및 추가 옵션을 포함한 모든 냉난방 설정을 구성합니다. 기본 설정을 사용하려면 선택적 필드를 비워 두세요."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
-          },
-          {
-            "type": "number",
-            "name": "temperature",
-            "required": false,
-            "title": {
-              "en": "Target temperature (°C)",
-              "nl": "Doeltemperatuur (°C)",
-              "de": "Zieltemperatur (°C)",
-              "fr": "Température cible (°C)",
-              "es": "Temperatura objetivo (°C)",
-              "it": "Temperatura obiettivo (°C)",
-              "da": "Måltemperatur (°C)",
-              "no": "Måltemperatur (°C)",
-              "sv": "Måltemperatur (°C)",
-              "pl": "Temperatura docelowa (°C)",
-              "ru": "Целевая температура (°C)",
-              "ko": "목표 온도 (°C)"
-            },
-            "min": 15,
-            "max": 30,
-            "step": 0.5
-          },
-          {
-            "type": "checkbox",
-            "name": "climatisationWithoutExternalPower",
-            "required": false,
-            "title": {
-              "en": "Climatisation without external power",
-              "nl": "Klimaatregeling zonder externe stroom",
-              "de": "Klimatisierung ohne externe Stromversorgung",
-              "fr": "Climatisation sans alimentation externe",
-              "es": "Climatización sin alimentación externa",
-              "it": "Climatizzazione senza alimentazione esterna",
-              "da": "Klimaanlæg uden ekstern strøm",
-              "no": "Klimaanlegg uten ekstern strøm",
-              "sv": "Klimatanläggning utan extern ström",
-              "pl": "Klimatyzacja bez zewnętrznego zasilania",
-              "ru": "Климатизация без внешнего питания",
-              "ko": "외부 전원 없이 냉난방"
-            }
-          },
-          {
-            "type": "checkbox",
-            "name": "climatizationAtUnlock",
-            "required": false,
-            "title": {
-              "en": "Climatisation at unlock",
-              "nl": "Klimaatregeling bij ontgrendelen",
-              "de": "Klimatisierung beim Entsperren",
-              "fr": "Climatisation au déverrouillage",
-              "es": "Climatización al desbloquear",
-              "it": "Climatizzazione allo sblocco",
-              "da": "Klimaanlæg ved oplåsning",
-              "no": "Klimaanlegg ved opplåsing",
-              "sv": "Klimatanläggning vid upplåsning",
-              "pl": "Klimatyzacja przy odblokowaniu",
-              "ru": "Климатизация при разблокировке",
-              "ko": "잠금 해제 시 냉난방"
-            }
-          },
-          {
-            "type": "checkbox",
-            "name": "windowHeatingEnabled",
-            "required": false,
-            "title": {
-              "en": "Window heating enabled",
-              "nl": "Ruitverwarming ingeschakeld",
-              "de": "Scheibenheizung aktiviert",
-              "fr": "Chauffage des vitres activé",
-              "es": "Calefacción de ventanas activada",
-              "it": "Riscaldamento finestrini abilitato",
-              "da": "Rudevarme aktiveret",
-              "no": "Vindusvarming aktivert",
-              "sv": "Fönstervärme aktiverad",
-              "pl": "Ogrzewanie szyb włączone",
-              "ru": "Обогрев окон включен",
-              "ko": "창문 히팅 활성화"
-            }
-          },
-          {
-            "type": "checkbox",
-            "name": "zoneFrontLeftEnabled",
-            "required": false,
-            "title": {
-              "en": "Front left zone enabled",
-              "nl": "Linksvoorzone ingeschakeld",
-              "de": "Vorne links Zone aktiviert",
-              "fr": "Zone avant gauche activée",
-              "es": "Zona delantera izquierda activada",
-              "it": "Zona anteriore sinistra abilitata",
-              "da": "Venstre forzone aktiveret",
-              "no": "Venstre frontsone aktivert",
-              "sv": "Vänster framzon aktiverad",
-              "pl": "Lewa przednia strefa włączona",
-              "ru": "Передняя левая зона включена",
-              "ko": "좌측 전방 구역 활성화"
-            }
-          },
-          {
-            "type": "checkbox",
-            "name": "zoneFrontRightEnabled",
-            "required": false,
-            "title": {
-              "en": "Front right zone enabled",
-              "nl": "Rechtsvoorzone ingeschakeld",
-              "de": "Vorne rechts Zone aktiviert",
-              "fr": "Zone avant droite activée",
-              "es": "Zona delantera derecha activada",
-              "it": "Zona anteriore destra abilitata",
-              "da": "Højre forzone aktiveret",
-              "no": "Høyre frontsone aktivert",
-              "sv": "Höger framzon aktiverad",
-              "pl": "Prawa przednia strefa włączona",
-              "ru": "Передняя правая зона включена",
-              "ko": "우측 전방 구역 활성화"
-            }
-          },
-          {
-            "type": "checkbox",
-            "name": "zoneRearLeftEnabled",
-            "required": false,
-            "title": {
-              "en": "Rear left zone enabled",
-              "nl": "Linksachterzone ingeschakeld",
-              "de": "Hinten links Zone aktiviert",
-              "fr": "Zone arrière gauche activée",
-              "es": "Zona trasera izquierda activada",
-              "it": "Zona posteriore sinistra abilitata",
-              "da": "Venstre bagzone aktiveret",
-              "no": "Venstre baksone aktivert",
-              "sv": "Vänster bakzon aktiverad",
-              "pl": "Lewa tylna strefa włączona",
-              "ru": "Задняя левая зона включена",
-              "ko": "좌측 후방 구역 활성화"
-            }
-          },
-          {
-            "type": "checkbox",
-            "name": "zoneRearRightEnabled",
-            "required": false,
-            "title": {
-              "en": "Rear right zone enabled",
-              "nl": "Rechtsachterzone ingeschakeld",
-              "de": "Hinten rechts Zone aktiviert",
-              "fr": "Zone arrière droite activée",
-              "es": "Zona trasera derecha activada",
-              "it": "Zona posteriore destra abilitata",
-              "da": "Højre bagzone aktiveret",
-              "no": "Høyre baksone aktivert",
-              "sv": "Höger bakzon aktiverad",
-              "pl": "Prawa tylna strefa włączona",
-              "ru": "Задняя правая зона включена",
-              "ko": "우측 후방 구역 활성화"
+            "step": 0.5,
+            "placeholder": {
+              "en": "Optional",
+              "nl": "Optioneel",
+              "de": "Optional",
+              "fr": "Optionnel",
+              "es": "Opcional",
+              "it": "Opzionale",
+              "da": "Valgfri",
+              "no": "Valgfritt",
+              "sv": "Valfritt",
+              "pl": "Opcjonalne",
+              "ru": "Необязательно",
+              "ko": "선택 사항"
             }
           }
-        ]
+        ],
+        "id": "climatisation_onoff_on"
       },
       {
-        "id": "climatisation_onoff_off",
-        "highlight": true,
         "title": {
-          "en": "Turn off climatisation",
-          "nl": "Klimaatregeling uitzetten",
-          "de": "Klimatisierung ausschalten",
-          "fr": "Désactiver la climatisation",
-          "es": "Apagar climatización",
-          "it": "Spegni climatizzazione",
-          "da": "Sluk klimaanlæg",
-          "no": "Slå av klimaanlegg",
-          "sv": "Slå av klimatanläggning",
-          "pl": "Wyłącz klimatyzację",
-          "ru": "Выключить климатизацию",
-          "ko": "냉난방 끄기"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
-          }
-        ]
-      },
-      {
-        "id": "update_charge_settings",
-        "title": {
-          "en": "Update charging settings",
-          "nl": "Wijzig laadinstellingen",
-          "de": "Ladeeinstellungen aktualisieren",
-          "fr": "Mettre à jour les paramètres de charge",
-          "da": "Opdater opladningsindstillinger",
-          "es": "Actualizar configuración de carga",
-          "it": "Aggiorna impostazioni di ricarica",
-          "no": "Oppdater ladeinnstillinger",
-          "sv": "Uppdatera laddningsinställningar",
-          "pl": "Zaktualizuj ustawienia ładowania",
-          "ru": "Обновить настройки зарядки",
-          "ko": "충전 설정 업데이트"
-        },
-        "titleFormatted": {
-          "en": "Update charging settings: max current [[max_charge_current]], target charge level [[target_soc]]%, auto unlock [[auto_unlock]]",
-          "nl": "Wijzig laadinstellingen: max. stroom [[max_charge_current]], doel laadniveau [[target_soc]]%, automatisch ontgrendelen [[auto_unlock]]",
-          "de": "Ladeeinstellungen aktualisieren: max. Strom [[max_charge_current]], Ziel-Ladezustand [[target_soc]]%, Auto-Entsperren [[auto_unlock]]",
-          "fr": "Mettre à jour les paramètres de charge: courant max [[max_charge_current]], niveau de charge cible [[target_soc]]%, déverrouillage auto [[auto_unlock]]",
-          "da": "Opdater opladningsindstillinger: maks strøm [[max_charge_current]], målopladningsniveau [[target_soc]]%, auto lås op [[auto_unlock]]",
-          "es": "Actualizar configuración de carga: corriente máx [[max_charge_current]], nivel de carga objetivo [[target_soc]]%, desbloqueo auto [[auto_unlock]]",
-          "it": "Aggiorna impostazioni di ricarica: corrente max [[max_charge_current]], livello di carica obiettivo [[target_soc]]%, sblocco auto [[auto_unlock]]",
-          "no": "Oppdater ladeinnstillinger: maks strøm [[max_charge_current]], målnivå for lading [[target_soc]]%, auto lås opp [[auto_unlock]]",
-          "sv": "Uppdatera laddningsinställningar: max ström [[max_charge_current]], målnivå för laddning [[target_soc]]%, auto lås upp [[auto_unlock]]",
-          "pl": "Zaktualizuj ustawienia ładowania: maks. prąd [[max_charge_current]], docelowy poziom naładowania [[target_soc]]%, auto odblokowanie [[auto_unlock]]",
-          "ru": "Обновить настройки зарядки: макс. ток [[max_charge_current]], целевой уровень заряда [[target_soc]]%, авто разблокировка [[auto_unlock]]",
-          "ko": "충전 설정 업데이트: 최대 전류 [[max_charge_current]], 목표 충전 수준 [[target_soc]]%, 자동 잠금 해제 [[auto_unlock]]"
-        },
-        "hint": {
-          "en": "Leave fields empty to keep current settings",
-          "nl": "Laat velden leeg om huidige instellingen te behouden",
-          "de": "Felder leer lassen, um aktuelle Einstellungen zu behalten",
-          "fr": "Laissez les champs vides pour conserver les paramètres actuels",
-          "da": "Lad felter være tomme for at beholde nuværende indstillinger",
-          "es": "Deje los campos vacíos para mantener la configuración actual",
-          "it": "Lascia i campi vuoti per mantenere le impostazioni correnti",
-          "no": "La felt være tomme for å beholde gjeldende innstillinger",
-          "sv": "Lämna fält tomma för att behålla nuvarande inställningar",
-          "pl": "Zostaw pola puste, aby zachować bieżące ustawienia",
-          "ru": "Оставьте поля пустыми, чтобы сохранить текущие настройки",
-          "ko": "현재 설정을 유지하려면 필드를 비워 두세요"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=volkswagen&capabilities=target_soc"
-          },
-          {
-            "type": "autocomplete",
-            "name": "max_charge_current",
-            "title": {
-              "en": "Maximum charge current",
-              "nl": "Maximale laadstroom",
-              "de": "Maximaler Ladestrom",
-              "fr": "Courant de charge maximum",
-              "da": "Maksimal opladningsstrøm",
-              "es": "Corriente de carga máxima",
-              "it": "Corrente di carica massima",
-              "no": "Maksimal ladestrøm",
-              "sv": "Maximal laddström",
-              "pl": "Maksymalny prąd ładowania",
-              "ru": "Максимальный ток зарядки",
-              "ko": "최대 충전 전류"
-            }
-          },
-          {
-            "type": "number",
-            "name": "target_soc",
-            "required": false,
-            "title": {
-              "en": "Target charge level (%)",
-              "nl": "Doel laadniveau (%)",
-              "da": "Målopladningsniveau (%)",
-              "de": "Ziel-Ladezustand (%)",
-              "es": "Nivel de carga objetivo (%)",
-              "fr": "Niveau de charge cible (%)",
-              "it": "Livello di carica obiettivo (%)",
-              "no": "Målnivå for lading (%)",
-              "sv": "Målnivå för laddning (%)",
-              "pl": "Docelowy poziom naładowania (%)",
-              "ru": "Целевой уровень заряда (%)",
-              "ko": "목표 충전 수준 (%)"
-            },
-            "min": 0,
-            "max": 100,
-            "step": 1
-          },
-          {
-            "type": "dropdown",
-            "name": "auto_unlock",
-            "title": {
-              "en": "Auto unlock plug when charged",
-              "nl": "Stekker automatisch ontgrendelen na opladen",
-              "de": "Stecker automatisch entsperren wenn geladen",
-              "fr": "Déverrouiller automatiquement la prise une fois chargé",
-              "da": "Lås stik automatisk op når opladet",
-              "es": "Desbloquear automáticamente el enchufe cuando esté cargado",
-              "it": "Sblocca automaticamente la spina quando carica",
-              "no": "Lås opp pluggen automatisk når ladet",
-              "sv": "Lås upp kontakten automatiskt när laddad",
-              "pl": "Automatycznie odblokuj wtyczkę po naładowaniu",
-              "ru": "Автоматически разблокировать вилку после зарядки",
-              "ko": "충전 완료 시 플러그 자동 잠금 해제"
-            },
-            "values": [
-              {
-                "id": "unchanged",
-                "title": {
-                  "en": "Unchanged",
-                  "nl": "Ongewijzigd",
-                  "de": "Unverändert",
-                  "fr": "Inchangé",
-                  "da": "Uændret",
-                  "es": "Sin cambios",
-                  "it": "Invariato",
-                  "no": "Uendret",
-                  "sv": "Oförändrad",
-                  "pl": "Bez zmian",
-                  "ru": "Без изменений",
-                  "ko": "변경 없음"
-                }
-              },
-              {
-                "id": "true",
-                "title": {
-                  "en": "Yes",
-                  "nl": "Ja",
-                  "de": "Ja",
-                  "fr": "Oui",
-                  "da": "Ja",
-                  "es": "Sí",
-                  "it": "Sì",
-                  "no": "Ja",
-                  "sv": "Ja",
-                  "pl": "Tak",
-                  "ru": "Да",
-                  "ko": "예"
-                }
-              },
-              {
-                "id": "false",
-                "title": {
-                  "en": "No",
-                  "nl": "Nee",
-                  "de": "Nein",
-                  "fr": "Non",
-                  "da": "Nej",
-                  "es": "No",
-                  "it": "No",
-                  "no": "Nei",
-                  "sv": "Nej",
-                  "pl": "Nie",
-                  "ru": "Нет",
-                  "ko": "아니요"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "control_charging",
-        "title": {
-          "en": "Start or stop charging",
-          "nl": "Start of stop laden",
-          "de": "Laden starten oder stoppen",
-          "fr": "Démarrer ou arrêter la charge",
-          "da": "Start eller stop opladning",
-          "es": "Iniciar o detener la carga",
-          "it": "Avvia o interrompi la ricarica",
-          "no": "Start eller stopp lading",
-          "sv": "Starta eller stoppa laddning",
-          "pl": "Rozpocznij lub zatrzymaj ładowanie",
-          "ru": "Начать или остановить зарядку",
-          "ko": "충전 시작 또는 중지"
+          "en": "Control charging",
+          "nl": "Bedien opladen",
+          "de": "Ladevorgang steuern",
+          "fr": "Contrôler la charge",
+          "es": "Controlar la carga",
+          "it": "Controlla la ricarica",
+          "da": "Kontroller opladning",
+          "no": "Kontroller lading",
+          "sv": "Kontrollera laddning",
+          "pl": "Kontroluj ładowanie",
+          "ru": "Управление зарядкой",
+          "ko": "충전 제어"
         },
         "titleFormatted": {
           "en": "[[action]] charging",
-          "nl": "[[action]] laden",
-          "de": "Laden [[action]]",
+          "nl": "[[action]] opladen",
+          "de": "Ladevorgang [[action]]",
           "fr": "[[action]] la charge",
-          "da": "[[action]] opladning",
           "es": "[[action]] la carga",
           "it": "[[action]] la ricarica",
+          "da": "[[action]] opladning",
           "no": "[[action]] lading",
           "sv": "[[action]] laddning",
           "pl": "[[action]] ładowanie",
@@ -604,7 +197,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=volkswagen&capabilities=ev_charging_state"
+            "filter": "driver_id=volkswagen|cupra|seat|skoda"
           },
           {
             "type": "dropdown",
@@ -614,9 +207,9 @@
               "nl": "Actie",
               "de": "Aktion",
               "fr": "Action",
-              "da": "Handling",
               "es": "Acción",
               "it": "Azione",
+              "da": "Handling",
               "no": "Handling",
               "sv": "Åtgärd",
               "pl": "Akcja",
@@ -631,9 +224,9 @@
                   "nl": "Start",
                   "de": "Starten",
                   "fr": "Démarrer",
-                  "da": "Start",
                   "es": "Iniciar",
                   "it": "Avvia",
+                  "da": "Start",
                   "no": "Start",
                   "sv": "Starta",
                   "pl": "Rozpocznij",
@@ -648,23 +241,1360 @@
                   "nl": "Stop",
                   "de": "Stoppen",
                   "fr": "Arrêter",
-                  "da": "Stop",
                   "es": "Detener",
-                  "it": "Interrompi",
+                  "it": "Ferma",
+                  "da": "Stop",
                   "no": "Stopp",
                   "sv": "Stoppa",
                   "pl": "Zatrzymaj",
                   "ru": "Остановить",
-                  "ko": "중지"
+                  "ko": "정지"
                 }
               }
             ]
           }
-        ]
+        ],
+        "id": "control_charging"
+      },
+      {
+        "title": {
+          "en": "Update charging settings",
+          "nl": "Wijzig oplaadinstellingen",
+          "de": "Ladeeinstellungen aktualisieren",
+          "fr": "Mettre à jour les paramètres de charge",
+          "es": "Actualizar configuración de carga",
+          "it": "Aggiorna impostazioni di ricarica",
+          "da": "Opdater opladningsindstillinger",
+          "no": "Oppdater ladeinnstillinger",
+          "sv": "Uppdatera laddningsinställningar",
+          "pl": "Zaktualizuj ustawienia ładowania",
+          "ru": "Обновить настройки зарядки",
+          "ko": "충전 설정 업데이트"
+        },
+        "titleFormatted": {
+          "en": "Set charge current to [[max_charge_current]], target charge level to [[target_soc]]%, auto-unlock: [[auto_unlock]]",
+          "nl": "Zet laadstroom op [[max_charge_current]], doellaadniveau op [[target_soc]]%, automatisch ontgrendelen: [[auto_unlock]]",
+          "de": "Ladestrom auf [[max_charge_current]], Zielladeniveau auf [[target_soc]]%, automatisch entsperren: [[auto_unlock]]",
+          "fr": "Définir le courant de charge à [[max_charge_current]], niveau de charge cible à [[target_soc]]%, déverrouillage auto: [[auto_unlock]]",
+          "es": "Establecer corriente de carga a [[max_charge_current]], nivel de carga objetivo a [[target_soc]]%, desbloqueo automático: [[auto_unlock]]",
+          "it": "Imposta corrente di ricarica a [[max_charge_current]], livello di carica target a [[target_soc]]%, sblocco automatico: [[auto_unlock]]",
+          "da": "Indstil ladestrøm til [[max_charge_current]], målladeniveau til [[target_soc]]%, automatisk oplåsning: [[auto_unlock]]",
+          "no": "Sett ladestrøm til [[max_charge_current]], målladenivå til [[target_soc]]%, automatisk opplåsing: [[auto_unlock]]",
+          "sv": "Ställ in laddström till [[max_charge_current]], målladdningsnivå till [[target_soc]]%, automatisk upplåsning: [[auto_unlock]]",
+          "pl": "Ustaw prąd ładowania na [[max_charge_current]], docelowy poziom naładowania na [[target_soc]]%, automatyczne odblokowanie: [[auto_unlock]]",
+          "ru": "Установить ток зарядки на [[max_charge_current]], целевой уровень заряда на [[target_soc]]%, автоматическая разблокировка: [[auto_unlock]]",
+          "ko": "충전 전류를 [[max_charge_current]]로, 목표 충전 수준을 [[target_soc]]%로, 자동 잠금 해제: [[auto_unlock]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=volkswagen|cupra|seat|skoda"
+          },
+          {
+            "type": "autocomplete",
+            "name": "max_charge_current",
+            "title": {
+              "en": "Max charge current",
+              "nl": "Max laadstroom",
+              "de": "Max. Ladestrom",
+              "fr": "Courant de charge max.",
+              "es": "Corriente de carga máx.",
+              "it": "Corrente di ricarica max",
+              "da": "Maks. ladestrøm",
+              "no": "Maks. ladestrøm",
+              "sv": "Max laddström",
+              "pl": "Maks. prąd ładowania",
+              "ru": "Макс. ток зарядки",
+              "ko": "최대 충전 전류"
+            },
+            "placeholder": {
+              "en": "Select current",
+              "nl": "Selecteer stroom",
+              "de": "Strom auswählen",
+              "fr": "Sélectionner le courant",
+              "es": "Seleccionar corriente",
+              "it": "Seleziona corrente",
+              "da": "Vælg strøm",
+              "no": "Velg strøm",
+              "sv": "Välj ström",
+              "pl": "Wybierz prąd",
+              "ru": "Выберите ток",
+              "ko": "전류 선택"
+            }
+          },
+          {
+            "type": "number",
+            "name": "target_soc",
+            "title": {
+              "en": "Target charge level (%)",
+              "nl": "Doellaadniveau (%)",
+              "de": "Zielladeniveau (%)",
+              "fr": "Niveau de charge cible (%)",
+              "es": "Nivel de carga objetivo (%)",
+              "it": "Livello di carica target (%)",
+              "da": "Målladeniveau (%)",
+              "no": "Målladenivå (%)",
+              "sv": "Målladdningsnivå (%)",
+              "pl": "Docelowy poziom naładowania (%)",
+              "ru": "Целевой уровень заряда (%)",
+              "ko": "목표 충전 수준 (%)"
+            },
+            "min": 10,
+            "max": 100,
+            "step": 5,
+            "placeholder": {
+              "en": "Leave empty for no change",
+              "nl": "Laat leeg voor geen wijziging",
+              "de": "Leer lassen für keine Änderung",
+              "fr": "Laisser vide pour aucun changement",
+              "es": "Dejar vacío para no cambiar",
+              "it": "Lasciare vuoto per nessuna modifica",
+              "da": "Lad stå tom for ingen ændring",
+              "no": "La stå tomt for ingen endring",
+              "sv": "Lämna tomt för ingen ändring",
+              "pl": "Pozostaw puste dla braku zmiany",
+              "ru": "Оставьте пустым, чтобы не менять",
+              "ko": "변경하지 않으려면 비워두세요"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "auto_unlock",
+            "title": {
+              "en": "Auto-unlock plug when charged",
+              "nl": "Ontgrendel stekker automatisch wanneer opgeladen",
+              "de": "Stecker automatisch entsperren, wenn geladen",
+              "fr": "Déverrouiller automatiquement la prise lorsque chargé",
+              "es": "Desbloquear automáticamente el enchufe al cargar",
+              "it": "Sblocca automaticamente la spina quando carica",
+              "da": "Oplås automatisk stik når opladet",
+              "no": "Lås opp plugg automatisk når ladet",
+              "sv": "Lås upp kontakt automatiskt när laddad",
+              "pl": "Automatycznie odblokuj wtyczkę po naładowaniu",
+              "ru": "Автоматически разблокировать вилку при зарядке",
+              "ko": "충전 시 플러그 자동 잠금 해제"
+            },
+            "values": [
+              {
+                "id": "true",
+                "title": {
+                  "en": "Yes",
+                  "nl": "Ja",
+                  "de": "Ja",
+                  "fr": "Oui",
+                  "es": "Sí",
+                  "it": "Sì",
+                  "da": "Ja",
+                  "no": "Ja",
+                  "sv": "Ja",
+                  "pl": "Tak",
+                  "ru": "Да",
+                  "ko": "예"
+                }
+              },
+              {
+                "id": "false",
+                "title": {
+                  "en": "No",
+                  "nl": "Nee",
+                  "de": "Nein",
+                  "fr": "Non",
+                  "es": "No",
+                  "it": "No",
+                  "da": "Nej",
+                  "no": "Nei",
+                  "sv": "Nej",
+                  "pl": "Nie",
+                  "ru": "Нет",
+                  "ko": "아니요"
+                }
+              },
+              {
+                "id": "unchanged",
+                "title": {
+                  "en": "Unchanged",
+                  "nl": "Ongewijzigd",
+                  "de": "Unverändert",
+                  "fr": "Inchangé",
+                  "es": "Sin cambios",
+                  "it": "Invariato",
+                  "da": "Uændret",
+                  "no": "Uendret",
+                  "sv": "Oförändrad",
+                  "pl": "Bez zmian",
+                  "ru": "Без изменений",
+                  "ko": "변경 없음"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "update_charge_settings"
+      },
+      {
+        "title": {
+          "en": "Set reduced charging (hybrid)",
+          "nl": "Stel gereduceerd laden in (hybride)",
+          "de": "Reduziertes Laden einstellen (Hybrid)",
+          "fr": "Définir charge réduite (hybride)",
+          "es": "Establecer carga reducida (híbrido)",
+          "it": "Imposta ricarica ridotta (ibrida)",
+          "da": "Indstil reduceret opladning (hybrid)",
+          "no": "Sett redusert lading (hybrid)",
+          "sv": "Ställ in reducerad laddning (hybrid)",
+          "pl": "Ustaw zmniejszone ładowanie (hybryda)",
+          "ru": "Установить сниженную зарядку (гибрид)",
+          "ko": "감소된 충전 설정 (하이브리드)"
+        },
+        "titleFormatted": {
+          "en": "Set reduced charging to [[reduced_charging]]",
+          "nl": "Stel gereduceerd laden in op [[reduced_charging]]",
+          "de": "Reduziertes Laden auf [[reduced_charging]] einstellen",
+          "fr": "Définir charge réduite sur [[reduced_charging]]",
+          "es": "Establecer carga reducida en [[reduced_charging]]",
+          "it": "Imposta ricarica ridotta su [[reduced_charging]]",
+          "da": "Indstil reduceret opladning til [[reduced_charging]]",
+          "no": "Sett redusert lading til [[reduced_charging]]",
+          "sv": "Ställ in reducerad laddning till [[reduced_charging]]",
+          "pl": "Ustaw zmniejszone ładowanie na [[reduced_charging]]",
+          "ru": "Установить сниженную зарядку на [[reduced_charging]]",
+          "ko": "감소된 충전을 [[reduced_charging]](으)로 설정"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=volkswagen|cupra|seat|skoda"
+          },
+          {
+            "type": "dropdown",
+            "name": "reduced_charging",
+            "title": {
+              "en": "Reduced charging",
+              "nl": "Gereduceerd laden",
+              "de": "Reduziertes Laden",
+              "fr": "Charge réduite",
+              "es": "Carga reducida",
+              "it": "Ricarica ridotta",
+              "da": "Reduceret opladning",
+              "no": "Redusert lading",
+              "sv": "Reducerad laddning",
+              "pl": "Zmniejszone ładowanie",
+              "ru": "Сниженная зарядка",
+              "ko": "감소된 충전"
+            },
+            "values": [
+              {
+                "id": "yes",
+                "title": {
+                  "en": "Yes (6-8A)",
+                  "nl": "Ja (6-8A)",
+                  "de": "Ja (6-8A)",
+                  "fr": "Oui (6-8A)",
+                  "es": "Sí (6-8A)",
+                  "it": "Sì (6-8A)",
+                  "da": "Ja (6-8A)",
+                  "no": "Ja (6-8A)",
+                  "sv": "Ja (6-8A)",
+                  "pl": "Tak (6-8A)",
+                  "ru": "Да (6-8A)",
+                  "ko": "예 (6-8A)"
+                }
+              },
+              {
+                "id": "no",
+                "title": {
+                  "en": "No (normal charging)",
+                  "nl": "Nee (normaal laden)",
+                  "de": "Nein (normales Laden)",
+                  "fr": "Non (charge normale)",
+                  "es": "No (carga normal)",
+                  "it": "No (ricarica normale)",
+                  "da": "Nej (normal opladning)",
+                  "no": "Nei (normal lading)",
+                  "sv": "Nej (normal laddning)",
+                  "pl": "Nie (normalne ładowanie)",
+                  "ru": "Нет (обычная зарядка)",
+                  "ko": "아니요 (일반 충전)"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "update_charge_settings_hybrid"
       }
     ]
   },
   "drivers": [
+    {
+      "name": "Cupra",
+      "class": "car",
+      "capabilities": [],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "icon": "icon.svg",
+      "images": {
+        "small": "/drivers/cupra/assets/images/small.png",
+        "large": "/drivers/cupra/assets/images/large.png",
+        "xlarge": "/drivers/cupra/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "title": {
+              "en": "Cupra ID",
+              "nl": "Cupra ID",
+              "da": "Cupra ID",
+              "de": "Cupra ID",
+              "es": "Cupra ID",
+              "fr": "Cupra ID",
+              "it": "Cupra ID",
+              "no": "Cupra ID",
+              "sv": "Cupra ID",
+              "pl": "Cupra ID",
+              "ru": "Cupra ID",
+              "ko": "쿠프라 ID"
+            },
+            "usernameLabel": {
+              "en": "E-mail",
+              "nl": "E-mailadres",
+              "da": "E-mail",
+              "de": "E-Mail",
+              "es": "Email",
+              "fr": "E-mail",
+              "it": "E-mail",
+              "no": "E-post",
+              "sv": "E-post",
+              "pl": "E-mail",
+              "ru": "Эл. почта",
+              "ko": "이메일"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "jan@smit.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "juan@pérez.com",
+              "fr": "jean@dupont.com",
+              "it": "giovanni@rossi.com",
+              "no": "ole@hansen.com",
+              "sv": "nils@soderberg.com",
+              "pl": "jan@kowalski.com",
+              "ru": "иван@иванов.com",
+              "ko": "kim@hong.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter your S-PIN",
+              "nl": "Voer je S-PIN in",
+              "da": "Indtast din S-PIN",
+              "de": "Geben Sie Ihre S-PIN ein",
+              "es": "Introduce tu S-PIN",
+              "fr": "Entrez votre S-PIN",
+              "it": "Inserisci il tuo S-PIN",
+              "no": "Skriv inn din S-PIN",
+              "sv": "Ange din S-PIN",
+              "pl": "Wprowadź swój S-PIN",
+              "ru": "Введите ваш S-PIN",
+              "ko": "S-PIN을 입력하세요"
+            },
+            "hint": {
+              "en": "This is required to modify vehicle settings.",
+              "nl": "Dit is vereist om voertuiginstellingen te wijzigen.",
+              "da": "Dette er nødvendigt for at ændre køretøjsindstillinger.",
+              "de": "Dies ist erforderlich, um Fahrzeugeinstellungen zu ändern.",
+              "es": "Esto es necesario para modificar la configuración del vehículo.",
+              "fr": "Ceci est nécessaire pour modifier les paramètres du véhicule.",
+              "it": "Questo è necessario per modificare le impostazioni del veicolo.",
+              "no": "Dette er nødvendig for å endre kjøretøyinnstillinger.",
+              "sv": "Detta krävs för att ändra fordonsinställningar.",
+              "pl": "Jest to wymagane do modyfikacji ustawień pojazdu.",
+              "ru": "Это необходимо для изменения настроек автомобиля.",
+              "ko": "차량 설정을 수정하려면 필요합니다."
+            },
+            "type": "number",
+            "length": 4
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "cupra",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Login details",
+            "nl": "Inloggegevens",
+            "da": "Login-oplysninger",
+            "de": "Anmeldedaten",
+            "es": "Detalles de inicio de sesión",
+            "fr": "Détails de connexion",
+            "it": "Dettagli di accesso",
+            "no": "Innloggingsdetaljer",
+            "sv": "Inloggningsuppgifter",
+            "pl": "Dane logowania",
+            "ru": "Детали входа",
+            "ko": "로그인 정보"
+          },
+          "children": [
+            {
+              "id": "email",
+              "type": "text",
+              "label": {
+                "en": "E-mail",
+                "nl": "E-mailadres",
+                "da": "E-mail",
+                "de": "E-Mail",
+                "es": "Correo electrónico",
+                "fr": "E-mail",
+                "it": "E-mail",
+                "no": "E-post",
+                "sv": "E-post",
+                "pl": "E-mail",
+                "ru": "Эл. почта",
+                "ko": "이메일"
+              },
+              "value": "",
+              "hint": {
+                "en": "The e-mail that you use in the Skoda App.",
+                "nl": "Het e-mailadres dat je gebruikt in de Skoda App.",
+                "da": "E-mailen du bruger i Skoda App.",
+                "de": "Die E-Mail, die Sie in der Skoda App verwenden.",
+                "es": "El correo electrónico que utilizas en la aplicación de Skoda.",
+                "fr": "L'e-mail que vous utilisez dans l'application Skoda.",
+                "it": "L'e-mail che usi nell'app Skoda.",
+                "no": "E-posten du bruker i Skoda-appen.",
+                "sv": "E-posten du använder i Skoda-appen.",
+                "pl": "E-mail, którego używasz w aplikacji Skoda.",
+                "ru": "Электронная почта, которую вы используете в приложении Skoda.",
+                "ko": "폭스바겐 앱에서 사용하는 이메일입니다."
+              }
+            },
+            {
+              "id": "password",
+              "type": "password",
+              "label": {
+                "en": "Password",
+                "nl": "Wachtwoord",
+                "da": "Adgangskode",
+                "de": "Passwort",
+                "es": "Contraseña",
+                "fr": "Mot de passe",
+                "it": "Password",
+                "no": "Passord",
+                "sv": "Lösenord",
+                "pl": "Hasło",
+                "ru": "Пароль",
+                "ko": "비밀번호"
+              },
+              "value": "",
+              "hint": {
+                "en": "The password that you use in the Skoda App.",
+                "nl": "Het wachtwoord dat je gebruikt in de Skoda App.",
+                "da": "Adgangskoden du bruger i Skoda App.",
+                "de": "Das Passwort, das Sie in der Skoda App verwenden.",
+                "es": "La contraseña que utilizas en la aplicación de Skoda.",
+                "fr": "Le mot de passe que vous utilisez dans l'application Skoda.",
+                "it": "La password che usi nell'app Skoda.",
+                "no": "Passordet du bruker i Skoda-appen.",
+                "sv": "Lösenordet du använder i Skoda-appen.",
+                "pl": "Hasło, którego używasz w aplikacji Skoda.",
+                "ru": "Пароль, который вы используете в приложении Skoda.",
+                "ko": "폭스바겐 앱에서 사용하는 비밀번호입니다."
+              }
+            },
+            {
+              "id": "sPin",
+              "type": "password",
+              "label": {
+                "en": "S-PIN",
+                "nl": "S-PIN"
+              },
+              "value": "",
+              "pattern": "^[0-9]{4}$",
+              "hint": {
+                "en": "Required to modify vehicle settings.",
+                "nl": "Vereist om voertuiginstellingen te wijzigen.",
+                "da": "Påkrævet for at ændre køretøjsindstillinger.",
+                "de": "Erforderlich, um Fahrzeugeinstellungen zu ändern.",
+                "es": "Requerido para modificar la configuración del vehículo.",
+                "fr": "Nécessaire pour modifier les paramètres du véhicule.",
+                "it": "Richiesto per modificare le impostazioni del veicolo.",
+                "no": "Kreves for å endre kjøretøyinnstillinger.",
+                "sv": "Krävs för att ändra fordonsinställningar.",
+                "pl": "Wymagane do modyfikacji ustawień pojazdu.",
+                "ru": "Необходимо для изменения настроек автомобиля.",
+                "ko": "차량 설정을 수정하려면 필요합니다."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Behavior settings",
+            "nl": "Gedragsinstellingen",
+            "da": "Adfærdsindstillinger",
+            "de": "Verhaltenseinstellungen",
+            "es": "Ajustes de comportamiento",
+            "fr": "Paramètres de comportement",
+            "it": "Impostazioni di comportamento",
+            "no": "Adferdsinnstillinger",
+            "sv": "Beteendeinställningar",
+            "pl": "Ustawienia zachowania",
+            "ru": "Настройки поведения",
+            "ko": "동작 설정"
+          },
+          "children": [
+            {
+              "id": "pollingInterval",
+              "type": "number",
+              "label": {
+                "en": "Polling interval",
+                "nl": "Ververstijd",
+                "da": "Afstemningsinterval",
+                "de": "Abrufintervall",
+                "es": "Intervalo de sondeo",
+                "fr": "Intervalle d'interrogation",
+                "it": "Intervallo di polling",
+                "no": "Polling-intervall",
+                "sv": "Intervall för avstämning",
+                "pl": "Interwał odpytywania",
+                "ru": "Интервал опроса",
+                "ko": "폴링 간격"
+              },
+              "value": 10,
+              "min": 1,
+              "step": 1,
+              "units": {
+                "en": "minutes",
+                "nl": "minuten",
+                "da": "minutter",
+                "de": "Minuten",
+                "es": "minutos",
+                "fr": "minutes",
+                "it": "minuti",
+                "no": "minutter",
+                "sv": "minuter",
+                "pl": "minuty",
+                "ru": "минуты",
+                "ko": "분"
+              },
+              "hint": {
+                "en": "Interval in minutes to poll the vehicle for new data. Lowering this value may result in battery drain.",
+                "nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik.",
+                "da": "Interval i minutter for at afstemme køretøjet for nye data. At sænke denne værdi kan resultere i batteridræn.",
+                "de": "Intervall in Minuten, um das Fahrzeug auf neue Daten abzufragen. Eine Verringerung dieses Wertes kann zu einem Batterieverbrauch führen.",
+                "es": "Intervalo en minutos para sondear el vehículo por nuevos datos. Reducir este valor puede resultar en el agotamiento de la batería.",
+                "fr": "Intervalle en minutes pour interroger le véhicule pour de nouvelles données. Diminuer cette valeur peut entraîner une décharge de la batterie.",
+                "it": "Intervallo in minuti per sondare il veicolo per nuovi dati. Abbassare questo valore può causare lo scaricamento della batteria.",
+                "no": "Intervall i minutter for å avstemme kjøretøyet for nye data. Å senke denne verdien kan føre til batteritap.",
+                "sv": "Intervall i minuter för att stämma av fordonet för ny data. Att sänka detta värde kan leda till batteridränering.",
+                "pl": "Interwał w minutach do odpytywania pojazdu o nowe dane. Obniżenie tej wartości może prowadzić do rozładowania akumulatora.",
+                "ru": "Интервал в минутах для опроса автомобиля на наличие новых данных. Уменьшение этого значения может привести к разрядке аккумулятора.",
+                "ko": "새 데이터를 위해 차량을 폴링하는 간격(분). 이 값을 낮추면 배터리가 소모될 수 있습니다."
+              }
+            },
+            {
+              "id": "enableLogging",
+              "type": "checkbox",
+              "label": {
+                "en": "Enable logging",
+                "nl": "Loggen inschakelen",
+                "da": "Aktivér logning",
+                "de": "Protokollierung aktivieren",
+                "es": "Habilitar registro",
+                "fr": "Activer la journalisation",
+                "it": "Abilita registrazione",
+                "no": "Aktiver logging",
+                "sv": "Aktivera loggning",
+                "pl": "Włącz rejestrowanie",
+                "ru": "Включить ведение журнала",
+                "ko": "로깅 활성화"
+              },
+              "value": true,
+              "hint": {
+                "en": "When enabled, logs all vehicle data to Homey. This data is only included in diagnostics reports if you create one, making it easier to debug issues. Logging is optional and can only be read by the developer if a diagnostics report is sent. Errors are always logged and do not contain user data.",
+                "nl": "Wanneer ingeschakeld, worden alle voertuiggegevens gelogd naar Homey. Deze gegevens worden toegevoegd aan diagnostische rapporten als je die aanmaakt, waardoor eventuele problemen die je ervaart gemakkelijker op te lossen zijn. Loggen is optioneel en kan alleen door de ontwikkelaar worden gelezen als je diagnostisch rapport verzendt. Crashes worden altijd gelogd en bevatten geen persoonsgegevens.",
+                "da": "Når aktiveret, logger alle køretøjsdata til Homey. Disse data inkluderes kun i diagnostiske rapporter, hvis du opretter en, hvilket gør det lettere at fejlfinde problemer. Logning er valgfri og kan kun læses af udvikleren, hvis en diagnostisk rapport sendes. Fejl logges altid og indeholder ikke brugerdata.",
+                "de": "Wenn aktiviert, werden alle Fahrzeugdaten in Homey protokolliert. Diese Daten werden nur in Diagnoseberichte aufgenommen, wenn Sie einen erstellen, was die Fehlersuche erleichtert. Die Protokollierung ist optional und kann nur vom Entwickler gelesen werden, wenn ein Diagnosebericht gesendet wird. Fehler werden immer protokolliert und enthalten keine Benutzerdaten.",
+                "es": "Cuando está habilitado, registra todos los datos del vehículo en Homey. Estos datos solo se incluyen en informes de diagnóstico si creas uno, facilitando la depuración de problemas. El registro es opcional y solo puede ser leído por el desarrollador si se envía un informe de diagnóstico. Los errores siempre se registran y no contienen datos de usuario.",
+                "fr": "Lorsqu'elle est activée, enregistre toutes les données du véhicule dans Homey. Ces données ne sont incluses dans les rapports de diagnostic que si vous en créez un, ce qui facilite le débogage des problèmes. La journalisation est facultative et ne peut être lue par le développeur que si un rapport de diagnostic est envoyé. Les erreurs sont toujours enregistrées et ne contiennent pas de données utilisateur.",
+                "it": "Quando abilitato, registra tutti i dati del veicolo su Homey. Questi dati vengono inclusi solo nei rapporti diagnostici se ne crei uno, rendendo più facile il debug dei problemi. La registrazione è facoltativa e può essere letta solo dallo sviluppatore se viene inviato un rapporto diagnostico. Gli errori vengono sempre registrati e non contengono dati utente.",
+                "no": "Når aktivert, logger alle kjøretøydata til Homey. Disse dataene inkluderes kun i diagnostiske rapporter hvis du oppretter en, noe som gjør det enklere å feilsøke problemer. Logging er valgfritt og kan bare leses av utvikleren hvis en diagnostisk rapport sendes. Feil logges alltid og inneholder ikke brukerdata.",
+                "sv": "När den är aktiverad loggas alla fordonsdata till Homey. Dessa data inkluderas endast i diagnostiska rapporter om du skapar en, vilket gör det lättare att felsöka problem. Loggning är valfritt och kan endast läsas av utvecklaren om en diagnostisk rapport skickas. Fel loggas alltid och innehåller inte användardata.",
+                "pl": "Po włączeniu rejestruje wszystkie dane pojazdu w Homey. Te dane są uwzględniane tylko w raportach diagnostycznych, jeśli je utworzysz, co ułatwia debugowanie problemów. Rejestrowanie jest opcjonalne i może być odczytane tylko przez dewelopera, jeśli zostanie wysłany raport diagnostyczny. Błędy są zawsze rejestrowane i nie zawierają danych użytkownika.",
+                "ru": "При включении регистрирует все данные автомобиля в Homey. Эти данные включаются только в диагностические отчеты, если вы их создаете, что упрощает отладку проблем. Ведение журнала является необязательным и может быть прочитано разработчиком только в случае отправки диагностического отчета. Ошибки всегда регистрируются и не содержат пользовательских данных.",
+                "ko": "활성화하면 모든 차량 데이터를 Homey에 기록합니다. 이 데이터는 진단 보고서를 만들 때만 포함되어 문제를 더 쉽게 디버그할 수 있습니다. 로깅은 선택 사항이며 진단 보고서가 전송되는 경우에만 개발자가 읽을 수 있습니다. 오류는 항상 기록되며 사용자 데이터를 포함하지 않습니다."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Seat",
+      "class": "car",
+      "capabilities": [],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "icon": "icon.svg",
+      "images": {
+        "small": "/drivers/seat/assets/images/small.png",
+        "large": "/drivers/seat/assets/images/large.png",
+        "xlarge": "/drivers/seat/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "title": {
+              "en": "Seat ID",
+              "nl": "Seat ID",
+              "da": "Seat ID",
+              "de": "Seat ID",
+              "es": "Seat ID",
+              "fr": "Seat ID",
+              "it": "Seat ID",
+              "no": "Seat ID",
+              "sv": "Seat ID",
+              "pl": "Seat ID",
+              "ru": "Seat ID",
+              "ko": "시트 ID"
+            },
+            "usernameLabel": {
+              "en": "E-mail",
+              "nl": "E-mailadres",
+              "da": "E-mail",
+              "de": "E-Mail",
+              "es": "Email",
+              "fr": "E-mail",
+              "it": "E-mail",
+              "no": "E-post",
+              "sv": "E-post",
+              "pl": "E-mail",
+              "ru": "Эл. почта",
+              "ko": "이메일"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "jan@smit.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "juan@pérez.com",
+              "fr": "jean@dupont.com",
+              "it": "giovanni@rossi.com",
+              "no": "ole@hansen.com",
+              "sv": "nils@soderberg.com",
+              "pl": "jan@kowalski.com",
+              "ru": "иван@иванов.com",
+              "ko": "kim@hong.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter your S-PIN",
+              "nl": "Voer je S-PIN in",
+              "da": "Indtast din S-PIN",
+              "de": "Geben Sie Ihre S-PIN ein",
+              "es": "Introduce tu S-PIN",
+              "fr": "Entrez votre S-PIN",
+              "it": "Inserisci il tuo S-PIN",
+              "no": "Skriv inn din S-PIN",
+              "sv": "Ange din S-PIN",
+              "pl": "Wprowadź swój S-PIN",
+              "ru": "Введите ваш S-PIN",
+              "ko": "S-PIN을 입력하세요"
+            },
+            "hint": {
+              "en": "This is required to modify vehicle settings.",
+              "nl": "Dit is vereist om voertuiginstellingen te wijzigen.",
+              "da": "Dette er nødvendigt for at ændre køretøjsindstillinger.",
+              "de": "Dies ist erforderlich, um Fahrzeugeinstellungen zu ändern.",
+              "es": "Esto es necesario para modificar la configuración del vehículo.",
+              "fr": "Ceci est nécessaire pour modifier les paramètres du véhicule.",
+              "it": "Questo è necessario per modificare le impostazioni del veicolo.",
+              "no": "Dette er nødvendig for å endre kjøretøyinnstillinger.",
+              "sv": "Detta krävs för att ändra fordonsinställningar.",
+              "pl": "Jest to wymagane do modyfikacji ustawień pojazdu.",
+              "ru": "Это необходимо для изменения настроек автомобиля.",
+              "ko": "차량 설정을 수정하려면 필요합니다."
+            },
+            "type": "number",
+            "length": 4
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "seat",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Login details",
+            "nl": "Inloggegevens",
+            "da": "Login-oplysninger",
+            "de": "Anmeldedaten",
+            "es": "Detalles de inicio de sesión",
+            "fr": "Détails de connexion",
+            "it": "Dettagli di accesso",
+            "no": "Innloggingsdetaljer",
+            "sv": "Inloggningsuppgifter",
+            "pl": "Dane logowania",
+            "ru": "Детали входа",
+            "ko": "로그인 정보"
+          },
+          "children": [
+            {
+              "id": "email",
+              "type": "text",
+              "label": {
+                "en": "E-mail",
+                "nl": "E-mailadres",
+                "da": "E-mail",
+                "de": "E-Mail",
+                "es": "Correo electrónico",
+                "fr": "E-mail",
+                "it": "E-mail",
+                "no": "E-post",
+                "sv": "E-post",
+                "pl": "E-mail",
+                "ru": "Эл. почта",
+                "ko": "이메일"
+              },
+              "value": "",
+              "hint": {
+                "en": "The e-mail that you use in the Skoda App.",
+                "nl": "Het e-mailadres dat je gebruikt in de Skoda App.",
+                "da": "E-mailen du bruger i Skoda App.",
+                "de": "Die E-Mail, die Sie in der Skoda App verwenden.",
+                "es": "El correo electrónico que utilizas en la aplicación de Skoda.",
+                "fr": "L'e-mail que vous utilisez dans l'application Skoda.",
+                "it": "L'e-mail che usi nell'app Skoda.",
+                "no": "E-posten du bruker i Skoda-appen.",
+                "sv": "E-posten du använder i Skoda-appen.",
+                "pl": "E-mail, którego używasz w aplikacji Skoda.",
+                "ru": "Электронная почта, которую вы используете в приложении Skoda.",
+                "ko": "폭스바겐 앱에서 사용하는 이메일입니다."
+              }
+            },
+            {
+              "id": "password",
+              "type": "password",
+              "label": {
+                "en": "Password",
+                "nl": "Wachtwoord",
+                "da": "Adgangskode",
+                "de": "Passwort",
+                "es": "Contraseña",
+                "fr": "Mot de passe",
+                "it": "Password",
+                "no": "Passord",
+                "sv": "Lösenord",
+                "pl": "Hasło",
+                "ru": "Пароль",
+                "ko": "비밀번호"
+              },
+              "value": "",
+              "hint": {
+                "en": "The password that you use in the Skoda App.",
+                "nl": "Het wachtwoord dat je gebruikt in de Skoda App.",
+                "da": "Adgangskoden du bruger i Skoda App.",
+                "de": "Das Passwort, das Sie in der Skoda App verwenden.",
+                "es": "La contraseña que utilizas en la aplicación de Skoda.",
+                "fr": "Le mot de passe que vous utilisez dans l'application Skoda.",
+                "it": "La password che usi nell'app Skoda.",
+                "no": "Passordet du bruker i Skoda-appen.",
+                "sv": "Lösenordet du använder i Skoda-appen.",
+                "pl": "Hasło, którego używasz w aplikacji Skoda.",
+                "ru": "Пароль, который вы используете в приложении Skoda.",
+                "ko": "폭스바겐 앱에서 사용하는 비밀번호입니다."
+              }
+            },
+            {
+              "id": "sPin",
+              "type": "password",
+              "label": {
+                "en": "S-PIN",
+                "nl": "S-PIN"
+              },
+              "value": "",
+              "pattern": "^[0-9]{4}$",
+              "hint": {
+                "en": "Required to modify vehicle settings.",
+                "nl": "Vereist om voertuiginstellingen te wijzigen.",
+                "da": "Påkrævet for at ændre køretøjsindstillinger.",
+                "de": "Erforderlich, um Fahrzeugeinstellungen zu ändern.",
+                "es": "Requerido para modificar la configuración del vehículo.",
+                "fr": "Nécessaire pour modifier les paramètres du véhicule.",
+                "it": "Richiesto per modificare le impostazioni del veicolo.",
+                "no": "Kreves for å endre kjøretøyinnstillinger.",
+                "sv": "Krävs för att ändra fordonsinställningar.",
+                "pl": "Wymagane do modyfikacji ustawień pojazdu.",
+                "ru": "Необходимо для изменения настроек автомобиля.",
+                "ko": "차량 설정을 수정하려면 필요합니다."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Behavior settings",
+            "nl": "Gedragsinstellingen",
+            "da": "Adfærdsindstillinger",
+            "de": "Verhaltenseinstellungen",
+            "es": "Ajustes de comportamiento",
+            "fr": "Paramètres de comportement",
+            "it": "Impostazioni di comportamento",
+            "no": "Adferdsinnstillinger",
+            "sv": "Beteendeinställningar",
+            "pl": "Ustawienia zachowania",
+            "ru": "Настройки поведения",
+            "ko": "동작 설정"
+          },
+          "children": [
+            {
+              "id": "pollingInterval",
+              "type": "number",
+              "label": {
+                "en": "Polling interval",
+                "nl": "Ververstijd",
+                "da": "Afstemningsinterval",
+                "de": "Abrufintervall",
+                "es": "Intervalo de sondeo",
+                "fr": "Intervalle d'interrogation",
+                "it": "Intervallo di polling",
+                "no": "Polling-intervall",
+                "sv": "Intervall för avstämning",
+                "pl": "Interwał odpytywania",
+                "ru": "Интервал опроса",
+                "ko": "폴링 간격"
+              },
+              "value": 10,
+              "min": 1,
+              "step": 1,
+              "units": {
+                "en": "minutes",
+                "nl": "minuten",
+                "da": "minutter",
+                "de": "Minuten",
+                "es": "minutos",
+                "fr": "minutes",
+                "it": "minuti",
+                "no": "minutter",
+                "sv": "minuter",
+                "pl": "minuty",
+                "ru": "минуты",
+                "ko": "분"
+              },
+              "hint": {
+                "en": "Interval in minutes to poll the vehicle for new data. Lowering this value may result in battery drain.",
+                "nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik.",
+                "da": "Interval i minutter for at afstemme køretøjet for nye data. At sænke denne værdi kan resultere i batteridræn.",
+                "de": "Intervall in Minuten, um das Fahrzeug auf neue Daten abzufragen. Eine Verringerung dieses Wertes kann zu einem Batterieverbrauch führen.",
+                "es": "Intervalo en minutos para sondear el vehículo por nuevos datos. Reducir este valor puede resultar en el agotamiento de la batería.",
+                "fr": "Intervalle en minutes pour interroger le véhicule pour de nouvelles données. Diminuer cette valeur peut entraîner une décharge de la batterie.",
+                "it": "Intervallo in minuti per sondare il veicolo per nuovi dati. Abbassare questo valore può causare lo scaricamento della batteria.",
+                "no": "Intervall i minutter for å avstemme kjøretøyet for nye data. Å senke denne verdien kan føre til batteritap.",
+                "sv": "Intervall i minuter för att stämma av fordonet för ny data. Att sänka detta värde kan leda till batteridränering.",
+                "pl": "Interwał w minutach do odpytywania pojazdu o nowe dane. Obniżenie tej wartości może prowadzić do rozładowania akumulatora.",
+                "ru": "Интервал в минутах для опроса автомобиля на наличие новых данных. Уменьшение этого значения может привести к разрядке аккумулятора.",
+                "ko": "새 데이터를 위해 차량을 폴링하는 간격(분). 이 값을 낮추면 배터리가 소모될 수 있습니다."
+              }
+            },
+            {
+              "id": "enableLogging",
+              "type": "checkbox",
+              "label": {
+                "en": "Enable logging",
+                "nl": "Loggen inschakelen",
+                "da": "Aktivér logning",
+                "de": "Protokollierung aktivieren",
+                "es": "Habilitar registro",
+                "fr": "Activer la journalisation",
+                "it": "Abilita registrazione",
+                "no": "Aktiver logging",
+                "sv": "Aktivera loggning",
+                "pl": "Włącz rejestrowanie",
+                "ru": "Включить ведение журнала",
+                "ko": "로깅 활성화"
+              },
+              "value": false,
+              "hint": {
+                "en": "When enabled, logs all vehicle data to Homey. This data is only included in diagnostics reports if you create one, making it easier to debug issues. Logging is optional and can only be read by the developer if a diagnostics report is sent. Errors are always logged and do not contain user data.",
+                "nl": "Wanneer ingeschakeld, worden alle voertuiggegevens gelogd naar Homey. Deze gegevens worden toegevoegd aan diagnostische rapporten als je die aanmaakt, waardoor eventuele problemen die je ervaart gemakkelijker op te lossen zijn. Loggen is optioneel en kan alleen door de ontwikkelaar worden gelezen als je diagnostisch rapport verzendt. Crashes worden altijd gelogd en bevatten geen persoonsgegevens.",
+                "da": "Når aktiveret, logger alle køretøjsdata til Homey. Disse data inkluderes kun i diagnostiske rapporter, hvis du opretter en, hvilket gør det lettere at fejlfinde problemer. Logning er valgfri og kan kun læses af udvikleren, hvis en diagnostisk rapport sendes. Fejl logges altid og indeholder ikke brugerdata.",
+                "de": "Wenn aktiviert, werden alle Fahrzeugdaten in Homey protokolliert. Diese Daten werden nur in Diagnoseberichte aufgenommen, wenn Sie einen erstellen, was die Fehlersuche erleichtert. Die Protokollierung ist optional und kann nur vom Entwickler gelesen werden, wenn ein Diagnosebericht gesendet wird. Fehler werden immer protokolliert und enthalten keine Benutzerdaten.",
+                "es": "Cuando está habilitado, registra todos los datos del vehículo en Homey. Estos datos solo se incluyen en informes de diagnóstico si creas uno, facilitando la depuración de problemas. El registro es opcional y solo puede ser leído por el desarrollador si se envía un informe de diagnóstico. Los errores siempre se registran y no contienen datos de usuario.",
+                "fr": "Lorsqu'elle est activée, enregistre toutes les données du véhicule dans Homey. Ces données ne sont incluses dans les rapports de diagnostic que si vous en créez un, ce qui facilite le débogage des problèmes. La journalisation est facultative et ne peut être lue par le développeur que si un rapport de diagnostic est envoyé. Les erreurs sont toujours enregistrées et ne contiennent pas de données utilisateur.",
+                "it": "Quando abilitato, registra tutti i dati del veicolo su Homey. Questi dati vengono inclusi solo nei rapporti diagnostici se ne crei uno, rendendo più facile il debug dei problemi. La registrazione è facoltativa e può essere letta solo dallo sviluppatore se viene inviato un rapporto diagnostico. Gli errori vengono sempre registrati e non contengono dati utente.",
+                "no": "Når aktivert, logger alle kjøretøydata til Homey. Disse dataene inkluderes kun i diagnostiske rapporter hvis du oppretter en, noe som gjør det enklere å feilsøke problemer. Logging er valgfritt og kan bare leses av utvikleren hvis en diagnostisk rapport sendes. Feil logges alltid og inneholder ikke brukerdata.",
+                "sv": "När den är aktiverad loggas alla fordonsdata till Homey. Dessa data inkluderas endast i diagnostiska rapporter om du skapar en, vilket gör det lättare att felsöka problem. Loggning är valfritt och kan endast läsas av utvecklaren om en diagnostisk rapport skickas. Fel loggas alltid och innehåller inte användardata.",
+                "pl": "Po włączeniu rejestruje wszystkie dane pojazdu w Homey. Te dane są uwzględniane tylko w raportach diagnostycznych, jeśli je utworzysz, co ułatwia debugowanie problemów. Rejestrowanie jest opcjonalne i może być odczytane tylko przez dewelopera, jeśli zostanie wysłany raport diagnostyczny. Błędy są zawsze rejestrowane i nie zawierają danych użytkownika.",
+                "ru": "При включении регистрирует все данные автомобиля в Homey. Эти данные включаются только в диагностические отчеты, если вы их создаете, что упрощает отладку проблем. Ведение журнала является необязательным и может быть прочитано разработчиком только в случае отправки диагностического отчета. Ошибки всегда регистрируются и не содержат пользовательских данных.",
+                "ko": "활성화하면 모든 차량 데이터를 Homey에 기록합니다. 이 데이터는 진단 보고서를 만들 때만 포함되어 문제를 더 쉽게 디버그할 수 있습니다. 로깅은 선택 사항이며 진단 보고서가 전송되는 경우에만 개발자가 읽을 수 있습니다. 오류는 항상 기록되며 사용자 데이터를 포함하지 않습니다."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Skoda",
+      "class": "car",
+      "capabilities": [],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "icon": "icon.svg",
+      "images": {
+        "small": "/drivers/skoda/assets/images/small.png",
+        "large": "/drivers/skoda/assets/images/large.png",
+        "xlarge": "/drivers/skoda/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "logo.png",
+            "title": {
+              "en": "Skoda ID",
+              "nl": "Skoda ID",
+              "da": "Skoda ID",
+              "de": "Skoda ID",
+              "es": "Skoda ID",
+              "fr": "Skoda ID",
+              "it": "Skoda ID",
+              "no": "Skoda ID",
+              "sv": "Skoda ID",
+              "pl": "Skoda ID",
+              "ru": "Skoda ID",
+              "ko": "폭스바겐 ID"
+            },
+            "usernameLabel": {
+              "en": "E-mail",
+              "nl": "E-mailadres",
+              "da": "E-mail",
+              "de": "E-Mail",
+              "es": "Email",
+              "fr": "E-mail",
+              "it": "E-mail",
+              "no": "E-post",
+              "sv": "E-post",
+              "pl": "E-mail",
+              "ru": "Эл. почта",
+              "ko": "이메일"
+            },
+            "usernamePlaceholder": {
+              "en": "john@doe.com",
+              "nl": "jan@smit.com",
+              "da": "john@doe.com",
+              "de": "john@doe.com",
+              "es": "juan@pérez.com",
+              "fr": "jean@dupont.com",
+              "it": "giovanni@rossi.com",
+              "no": "ole@hansen.com",
+              "sv": "nils@soderberg.com",
+              "pl": "jan@kowalski.com",
+              "ru": "иван@иванов.com",
+              "ko": "kim@hong.com"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord",
+              "da": "Adgangskode",
+              "de": "Passwort",
+              "es": "Contraseña",
+              "fr": "Mot de passe",
+              "it": "Password",
+              "no": "Passord",
+              "sv": "Lösenord",
+              "pl": "Hasło",
+              "ru": "Пароль",
+              "ko": "비밀번호"
+            }
+          }
+        },
+        {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter your S-PIN",
+              "nl": "Voer je S-PIN in",
+              "da": "Indtast din S-PIN",
+              "de": "Geben Sie Ihre S-PIN ein",
+              "es": "Introduce tu S-PIN",
+              "fr": "Entrez votre S-PIN",
+              "it": "Inserisci il tuo S-PIN",
+              "no": "Skriv inn din S-PIN",
+              "sv": "Ange din S-PIN",
+              "pl": "Wprowadź swój S-PIN",
+              "ru": "Введите ваш S-PIN",
+              "ko": "S-PIN을 입력하세요"
+            },
+            "hint": {
+              "en": "This is required to modify vehicle settings.",
+              "nl": "Dit is vereist om voertuiginstellingen te wijzigen.",
+              "da": "Dette er nødvendigt for at ændre køretøjsindstillinger.",
+              "de": "Dies ist erforderlich, um Fahrzeugeinstellungen zu ändern.",
+              "es": "Esto es necesario para modificar la configuración del vehículo.",
+              "fr": "Ceci est nécessaire pour modifier les paramètres du véhicule.",
+              "it": "Questo è necessario per modificare le impostazioni del veicolo.",
+              "no": "Dette er nødvendig for å endre kjøretøyinnstillinger.",
+              "sv": "Detta krävs för att ändra fordonsinställningar.",
+              "pl": "Jest to wymagane do modyfikacji ustawień pojazdu.",
+              "ru": "Это необходимо для изменения настроек автомобиля.",
+              "ko": "차량 설정을 수정하려면 필요합니다."
+            },
+            "type": "number",
+            "length": 4
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "skoda",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Login details",
+            "nl": "Inloggegevens",
+            "da": "Login-oplysninger",
+            "de": "Anmeldedaten",
+            "es": "Detalles de inicio de sesión",
+            "fr": "Détails de connexion",
+            "it": "Dettagli di accesso",
+            "no": "Innloggingsdetaljer",
+            "sv": "Inloggningsuppgifter",
+            "pl": "Dane logowania",
+            "ru": "Детали входа",
+            "ko": "로그인 정보"
+          },
+          "children": [
+            {
+              "id": "email",
+              "type": "text",
+              "label": {
+                "en": "E-mail",
+                "nl": "E-mailadres",
+                "da": "E-mail",
+                "de": "E-Mail",
+                "es": "Correo electrónico",
+                "fr": "E-mail",
+                "it": "E-mail",
+                "no": "E-post",
+                "sv": "E-post",
+                "pl": "E-mail",
+                "ru": "Эл. почта",
+                "ko": "이메일"
+              },
+              "value": "",
+              "hint": {
+                "en": "The e-mail that you use in the Skoda App.",
+                "nl": "Het e-mailadres dat je gebruikt in de Skoda App.",
+                "da": "E-mailen du bruger i Skoda App.",
+                "de": "Die E-Mail, die Sie in der Skoda App verwenden.",
+                "es": "El correo electrónico que utilizas en la aplicación de Skoda.",
+                "fr": "L'e-mail que vous utilisez dans l'application Skoda.",
+                "it": "L'e-mail che usi nell'app Skoda.",
+                "no": "E-posten du bruker i Skoda-appen.",
+                "sv": "E-posten du använder i Skoda-appen.",
+                "pl": "E-mail, którego używasz w aplikacji Skoda.",
+                "ru": "Электронная почта, которую вы используете в приложении Skoda.",
+                "ko": "폭스바겐 앱에서 사용하는 이메일입니다."
+              }
+            },
+            {
+              "id": "password",
+              "type": "password",
+              "label": {
+                "en": "Password",
+                "nl": "Wachtwoord",
+                "da": "Adgangskode",
+                "de": "Passwort",
+                "es": "Contraseña",
+                "fr": "Mot de passe",
+                "it": "Password",
+                "no": "Passord",
+                "sv": "Lösenord",
+                "pl": "Hasło",
+                "ru": "Пароль",
+                "ko": "비밀번호"
+              },
+              "value": "",
+              "hint": {
+                "en": "The password that you use in the Skoda App.",
+                "nl": "Het wachtwoord dat je gebruikt in de Skoda App.",
+                "da": "Adgangskoden du bruger i Skoda App.",
+                "de": "Das Passwort, das Sie in der Skoda App verwenden.",
+                "es": "La contraseña que utilizas en la aplicación de Skoda.",
+                "fr": "Le mot de passe que vous utilisez dans l'application Skoda.",
+                "it": "La password che usi nell'app Skoda.",
+                "no": "Passordet du bruker i Skoda-appen.",
+                "sv": "Lösenordet du använder i Skoda-appen.",
+                "pl": "Hasło, którego używasz w aplikacji Skoda.",
+                "ru": "Пароль, который вы используете в приложении Skoda.",
+                "ko": "폭스바겐 앱에서 사용하는 비밀번호입니다."
+              }
+            },
+            {
+              "id": "sPin",
+              "type": "password",
+              "label": {
+                "en": "S-PIN",
+                "nl": "S-PIN"
+              },
+              "value": "",
+              "pattern": "^[0-9]{4}$",
+              "hint": {
+                "en": "Required to modify vehicle settings.",
+                "nl": "Vereist om voertuiginstellingen te wijzigen.",
+                "da": "Påkrævet for at ændre køretøjsindstillinger.",
+                "de": "Erforderlich, um Fahrzeugeinstellungen zu ändern.",
+                "es": "Requerido para modificar la configuración del vehículo.",
+                "fr": "Nécessaire pour modifier les paramètres du véhicule.",
+                "it": "Richiesto per modificare le impostazioni del veicolo.",
+                "no": "Kreves for å endre kjøretøyinnstillinger.",
+                "sv": "Krävs för att ändra fordonsinställningar.",
+                "pl": "Wymagane do modyfikacji ustawień pojazdu.",
+                "ru": "Необходимо для изменения настроек автомобиля.",
+                "ko": "차량 설정을 수정하려면 필요합니다."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Behavior settings",
+            "nl": "Gedragsinstellingen",
+            "da": "Adfærdsindstillinger",
+            "de": "Verhaltenseinstellungen",
+            "es": "Ajustes de comportamiento",
+            "fr": "Paramètres de comportement",
+            "it": "Impostazioni di comportamento",
+            "no": "Adferdsinnstillinger",
+            "sv": "Beteendeinställningar",
+            "pl": "Ustawienia zachowania",
+            "ru": "Настройки поведения",
+            "ko": "동작 설정"
+          },
+          "children": [
+            {
+              "id": "pollingInterval",
+              "type": "number",
+              "label": {
+                "en": "Polling interval",
+                "nl": "Ververstijd",
+                "da": "Afstemningsinterval",
+                "de": "Abrufintervall",
+                "es": "Intervalo de sondeo",
+                "fr": "Intervalle d'interrogation",
+                "it": "Intervallo di polling",
+                "no": "Polling-intervall",
+                "sv": "Intervall för avstämning",
+                "pl": "Interwał odpytywania",
+                "ru": "Интервал опроса",
+                "ko": "폴링 간격"
+              },
+              "value": 10,
+              "min": 1,
+              "step": 1,
+              "units": {
+                "en": "minutes",
+                "nl": "minuten",
+                "da": "minutter",
+                "de": "Minuten",
+                "es": "minutos",
+                "fr": "minutes",
+                "it": "minuti",
+                "no": "minutter",
+                "sv": "minuter",
+                "pl": "minuty",
+                "ru": "минуты",
+                "ko": "분"
+              },
+              "hint": {
+                "en": "Interval in minutes to poll the vehicle for new data. Lowering this value may result in battery drain.",
+                "nl": "Interval in minuten om bijgewerkte gegevens op te halen. Het verlagen van deze waarde kan resulteren in hoger batterijgebruik.",
+                "da": "Interval i minutter for at afstemme køretøjet for nye data. At sænke denne værdi kan resultere i batteridræn.",
+                "de": "Intervall in Minuten, um das Fahrzeug auf neue Daten abzufragen. Eine Verringerung dieses Wertes kann zu einem Batterieverbrauch führen.",
+                "es": "Intervalo en minutos para sondear el vehículo por nuevos datos. Reducir este valor puede resultar en el agotamiento de la batería.",
+                "fr": "Intervalle en minutes pour interroger le véhicule pour de nouvelles données. Diminuer cette valeur peut entraîner une décharge de la batterie.",
+                "it": "Intervallo in minuti per sondare il veicolo per nuovi dati. Abbassare questo valore può causare lo scaricamento della batteria.",
+                "no": "Intervall i minutter for å avstemme kjøretøyet for nye data. Å senke denne verdien kan føre til batteritap.",
+                "sv": "Intervall i minuter för att stämma av fordonet för ny data. Att sänka detta värde kan leda till batteridränering.",
+                "pl": "Interwał w minutach do odpytywania pojazdu o nowe dane. Obniżenie tej wartości może prowadzić do rozładowania akumulatora.",
+                "ru": "Интервал в минутах для опроса автомобиля на наличие новых данных. Уменьшение этого значения может привести к разрядке аккумулятора.",
+                "ko": "새 데이터를 위해 차량을 폴링하는 간격(분). 이 값을 낮추면 배터리가 소모될 수 있습니다."
+              }
+            },
+            {
+              "id": "enableLogging",
+              "type": "checkbox",
+              "label": {
+                "en": "Enable logging",
+                "nl": "Loggen inschakelen",
+                "da": "Aktivér logning",
+                "de": "Protokollierung aktivieren",
+                "es": "Habilitar registro",
+                "fr": "Activer la journalisation",
+                "it": "Abilita registrazione",
+                "no": "Aktiver logging",
+                "sv": "Aktivera loggning",
+                "pl": "Włącz rejestrowanie",
+                "ru": "Включить ведение журнала",
+                "ko": "로깅 활성화"
+              },
+              "value": false,
+              "hint": {
+                "en": "When enabled, logs all vehicle data to Homey. This data is only included in diagnostics reports if you create one, making it easier to debug issues. Logging is optional and can only be read by the developer if a diagnostics report is sent. Errors are always logged and do not contain user data.",
+                "nl": "Wanneer ingeschakeld, worden alle voertuiggegevens gelogd naar Homey. Deze gegevens worden toegevoegd aan diagnostische rapporten als je die aanmaakt, waardoor eventuele problemen die je ervaart gemakkelijker op te lossen zijn. Loggen is optioneel en kan alleen door de ontwikkelaar worden gelezen als je diagnostisch rapport verzendt. Crashes worden altijd gelogd en bevatten geen persoonsgegevens.",
+                "da": "Når aktiveret, logger alle køretøjsdata til Homey. Disse data inkluderes kun i diagnostiske rapporter, hvis du opretter en, hvilket gør det lettere at fejlfinde problemer. Logning er valgfri og kan kun læses af udvikleren, hvis en diagnostisk rapport sendes. Fejl logges altid og indeholder ikke brugerdata.",
+                "de": "Wenn aktiviert, werden alle Fahrzeugdaten in Homey protokolliert. Diese Daten werden nur in Diagnoseberichte aufgenommen, wenn Sie einen erstellen, was die Fehlersuche erleichtert. Die Protokollierung ist optional und kann nur vom Entwickler gelesen werden, wenn ein Diagnosebericht gesendet wird. Fehler werden immer protokolliert und enthalten keine Benutzerdaten.",
+                "es": "Cuando está habilitado, registra todos los datos del vehículo en Homey. Estos datos solo se incluyen en informes de diagnóstico si creas uno, facilitando la depuración de problemas. El registro es opcional y solo puede ser leído por el desarrollador si se envía un informe de diagnóstico. Los errores siempre se registran y no contienen datos de usuario.",
+                "fr": "Lorsqu'elle est activée, enregistre toutes les données du véhicule dans Homey. Ces données ne sont incluses dans les rapports de diagnostic que si vous en créez un, ce qui facilite le débogage des problèmes. La journalisation est facultative et ne peut être lue par le développeur que si un rapport de diagnostic est envoyé. Les erreurs sont toujours enregistrées et ne contiennent pas de données utilisateur.",
+                "it": "Quando abilitato, registra tutti i dati del veicolo su Homey. Questi dati vengono inclusi solo nei rapporti diagnostici se ne crei uno, rendendo più facile il debug dei problemi. La registrazione è facoltativa e può essere letta solo dallo sviluppatore se viene inviato un rapporto diagnostico. Gli errori vengono sempre registrati e non contengono dati utente.",
+                "no": "Når aktivert, logger alle kjøretøydata til Homey. Disse dataene inkluderes kun i diagnostiske rapporter hvis du oppretter en, noe som gjør det enklere å feilsøke problemer. Logging er valgfritt og kan bare leses av utvikleren hvis en diagnostisk rapport sendes. Feil logges alltid og inneholder ikke brukerdata.",
+                "sv": "När den är aktiverad loggas alla fordonsdata till Homey. Dessa data inkluderas endast i diagnostiska rapporter om du skapar en, vilket gör det lättare att felsöka problem. Loggning är valfritt och kan endast läsas av utvecklaren om en diagnostisk rapport skickas. Fel loggas alltid och innehåller inte användardata.",
+                "pl": "Po włączeniu rejestruje wszystkie dane pojazdu w Homey. Te dane są uwzględniane tylko w raportach diagnostycznych, jeśli je utworzysz, co ułatwia debugowanie problemów. Rejestrowanie jest opcjonalne i może być odczytane tylko przez dewelopera, jeśli zostanie wysłany raport diagnostyczny. Błędy są zawsze rejestrowane i nie zawierają danych użytkownika.",
+                "ru": "При включении регистрирует все данные автомобиля в Homey. Эти данные включаются только в диагностические отчеты, если вы их создаете, что упрощает отладку проблем. Ведение журнала является необязательным и может быть прочитано разработчиком только в случае отправки диагностического отчета. Ошибки всегда регистрируются и не содержат пользовательских данных.",
+                "ko": "활성화하면 모든 차량 데이터를 Homey에 기록합니다. 이 데이터는 진단 보고서를 만들 때만 포함되어 문제를 더 쉽게 디버그할 수 있습니다. 로깅은 선택 사항이며 진단 보고서가 전송되는 경우에만 개발자가 읽을 수 있습니다. 오류는 항상 기록되며 사용자 데이터를 포함하지 않습니다."
+              }
+            }
+          ]
+        }
+      ]
+    },
     {
       "name": "Volkswagen",
       "class": "car",
@@ -1026,13 +1956,13 @@
     "alarm_door": {
       "type": "boolean",
       "title": {
+        "en": "Door open",
+        "nl": "Deur open",
         "da": "Dør åben",
         "de": "Tür offen",
-        "en": "Door open",
         "es": "Puerta abierta",
         "fr": "Porte ouverte",
         "it": "Porta aperta",
-        "nl": "Deur open",
         "no": "Dør åpen",
         "sv": "Dörr öppen",
         "pl": "Drzwi otwarte",
@@ -1126,13 +2056,13 @@
     "alarm_window": {
       "type": "boolean",
       "title": {
+        "en": "Window open",
+        "nl": "Raam open",
         "da": "Vindue åbent",
         "de": "Fenster offen",
-        "en": "Window open",
         "es": "Ventana abierta",
         "fr": "Fenêtre ouverte",
         "it": "Finestra aperta",
-        "nl": "Raam open",
         "no": "Vindu åpent",
         "sv": "Fönster öppet",
         "pl": "Okno otwarte",
@@ -1402,56 +2332,6 @@
         "sv": "Laddning stoppad"
       }
     },
-    "is_parked": {
-      "type": "boolean",
-      "title": {
-        "en": "Parked",
-        "nl": "Geparkeerd",
-        "de": "Geparkt",
-        "fr": "Garé",
-        "es": "Aparcado",
-        "da": "Parkeret",
-        "it": "Parcheggiato",
-        "ko": "주차됨",
-        "no": "Parkert",
-        "pl": "Zaparkowany",
-        "ru": "Припаркован",
-        "sv": "Parkerad"
-      },
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "assets/capabilities/is_parked.svg",
-      "insights": false,
-      "insightsTitleTrue": {
-        "en": "Parked",
-        "nl": "Geparkeerd",
-        "de": "Geparkt",
-        "fr": "Garé",
-        "es": "Aparcado",
-        "da": "Parkeret",
-        "it": "Parcheggiato",
-        "ko": "주차됨",
-        "no": "Parkert",
-        "pl": "Zaparkowany",
-        "ru": "Припаркован",
-        "sv": "Parkerad"
-      },
-      "insightsTitleFalse": {
-        "en": "On the move",
-        "nl": "Onderweg",
-        "de": "Unterwegs",
-        "fr": "En déplacement",
-        "es": "En movimiento",
-        "da": "På farten",
-        "it": "In movimento",
-        "ko": "이동 중",
-        "no": "På farten",
-        "pl": "W ruchu",
-        "ru": "В движении",
-        "sv": "På väg"
-      }
-    },
     "is_plug_connected": {
       "type": "boolean",
       "title": {
@@ -1531,43 +2411,6 @@
         "pl": "dni",
         "ru": "дней",
         "ko": "일"
-      },
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "/assets/capabilities/maintenance_due_days.svg",
-      "insights": false,
-      "decimals": 0
-    },
-    "maintenance_due_km": {
-      "type": "number",
-      "title": {
-        "en": "Maintenance due",
-        "nl": "Onderhoud over",
-        "da": "Vedligeholdelse skyldes",
-        "de": "Wartung fällig",
-        "es": "Mantenimiento debido",
-        "fr": "Entretien dû",
-        "it": "Manutenzione dovuta",
-        "no": "Vedlikehold skyldes",
-        "sv": "Underhåll förfaller",
-        "pl": "Konserwacja należna",
-        "ru": "Обслуживание требуется",
-        "ko": "유지 보수 예정"
-      },
-      "units": {
-        "en": "km",
-        "nl": "km",
-        "da": "km",
-        "de": "km",
-        "es": "km",
-        "fr": "km",
-        "it": "km",
-        "no": "km",
-        "sv": "km",
-        "pl": "km",
-        "ru": "км",
-        "ko": "km"
       },
       "getable": true,
       "setable": false,
@@ -1750,32 +2593,6 @@
       "insights": true,
       "decimals": 0
     },
-    "measure_fuel_level": {
-      "type": "number",
-      "title": {
-        "en": "Fuel level",
-        "nl": "Brandstofniveau",
-        "da": "Brændstofniveau",
-        "de": "Kraftstoffstand",
-        "es": "Nivel de combustible",
-        "fr": "Niveau de carburant",
-        "it": "Livello carburante",
-        "no": "Drivstoffnivå",
-        "sv": "Bränslenivå",
-        "pl": "Poziom paliwa",
-        "ru": "Уровень топлива",
-        "ko": "연료 수준"
-      },
-      "units": "%",
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "./assets/capabilities/measure_fuel_level.svg",
-      "insights": true,
-      "decimals": 0,
-      "min": 0,
-      "max": 100
-    },
     "measure_range": {
       "type": "number",
       "title": {
@@ -1913,80 +2730,6 @@
       "insights": true,
       "decimals": 0
     },
-    "oil_service_due_days": {
-      "type": "number",
-      "title": {
-        "en": "Oil service due",
-        "nl": "Olieservice over",
-        "da": "Olieservice skyldes",
-        "de": "Ölservice fällig",
-        "es": "Servicio de aceite debido",
-        "fr": "Service d'huile dû",
-        "it": "Servizio olio dovuto",
-        "no": "Oljeservice skyldes",
-        "sv": "Oljeservice förfaller",
-        "pl": "Serwis olejowy należny",
-        "ru": "Замена масла требуется",
-        "ko": "오일 서비스 예정"
-      },
-      "units": {
-        "en": "days",
-        "nl": "dagen",
-        "da": "dage",
-        "de": "Tage",
-        "es": "días",
-        "fr": "jours",
-        "it": "giorni",
-        "no": "dager",
-        "sv": "dagar",
-        "pl": "dni",
-        "ru": "дней",
-        "ko": "일"
-      },
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "/assets/capabilities/maintenance_due_days.svg",
-      "insights": false,
-      "decimals": 0
-    },
-    "oil_service_due_km": {
-      "type": "number",
-      "title": {
-        "en": "Oil service due",
-        "nl": "Olieservice over",
-        "da": "Olieservice skyldes",
-        "de": "Ölservice fällig",
-        "es": "Servicio de aceite debido",
-        "fr": "Service d'huile dû",
-        "it": "Servizio olio dovuto",
-        "no": "Oljeservice skyldes",
-        "sv": "Oljeservice förfaller",
-        "pl": "Serwis olejowy należny",
-        "ru": "Замена масла требуется",
-        "ko": "오일 서비스 예정"
-      },
-      "units": {
-        "en": "km",
-        "nl": "km",
-        "da": "km",
-        "de": "km",
-        "es": "km",
-        "fr": "km",
-        "it": "km",
-        "no": "km",
-        "sv": "km",
-        "pl": "km",
-        "ru": "км",
-        "ko": "km"
-      },
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "/assets/capabilities/maintenance_due_days.svg",
-      "insights": false,
-      "decimals": 0
-    },
     "target_soc": {
       "type": "number",
       "title": {
@@ -2094,56 +2837,6 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/capabilities/online.svg"
-    },
-    "window_heating_enabled": {
-      "type": "boolean",
-      "title": {
-        "en": "Window heating",
-        "nl": "Raamverwarming",
-        "de": "Scheibenheizung",
-        "fr": "Chauffage des vitres",
-        "es": "Calefacción de ventanas",
-        "it": "Riscaldamento finestrini",
-        "da": "Rudevarme",
-        "no": "Vindusvarme",
-        "sv": "Rutvärme",
-        "pl": "Ogrzewanie szyb",
-        "ru": "Обогрев окон",
-        "ko": "창문 히팅"
-      },
-      "getable": true,
-      "setable": false,
-      "insights": true,
-      "insightsTitleTrue": {
-        "en": "Window heating turned on",
-        "nl": "Raamverwarming ingeschakeld",
-        "de": "Scheibenheizung eingeschaltet",
-        "fr": "Chauffage des vitres activé",
-        "es": "Calefacción de ventanas activada",
-        "it": "Riscaldamento finestrini attivato",
-        "da": "Rudevarme tændt",
-        "no": "Vindusvarme slått på",
-        "sv": "Rutvärme påslagen",
-        "pl": "Ogrzewanie szyb włączone",
-        "ru": "Обогрев окон включен",
-        "ko": "창문 히팅 켜짐"
-      },
-      "insightsTitleFalse": {
-        "en": "Window heating turned off",
-        "nl": "Raamverwarming uitgeschakeld",
-        "de": "Scheibenheizung ausgeschaltet",
-        "fr": "Chauffage des vitres désactivé",
-        "es": "Calefacción de ventanas desactivada",
-        "it": "Riscaldamento finestrini disattivato",
-        "da": "Rudevarme slukket",
-        "no": "Vindusvarme slått av",
-        "sv": "Rutvärme avstängd",
-        "pl": "Ogrzewanie szyb wyłączone",
-        "ru": "Обогрев окон выключен",
-        "ko": "창문 히팅 꺼짐"
-      },
-      "uiComponent": "sensor",
-      "icon": "/assets/capabilities/window_heating.svg"
     }
   }
 }

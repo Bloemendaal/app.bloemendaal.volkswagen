@@ -2,16 +2,16 @@
 	"errors": {
 		"authentication": {
 			"authorization_url_failed": "Nie udało się pobrać adresu URL autoryzacji z WeConnect. Sprawdź połączenie internetowe i spróbuj ponownie.",
-			"login_failed": "Logowanie nie powiodło się. Sprawdź swój adres e-mail i hasło. Jeśli niedawno zmieniłeś hasło, upewnij się, że używasz prawidłowego. Może być również konieczne zaakceptowanie warunków w aplikacji Volkswagen.",
-			"authorization_parameters_failed": "Uwierzytelnianie zakończone, ale nie udało się pobrać parametrów zabezpieczeń. Spróbuj ponownie.",
+			"identity_provider_failed": "Nie udało się połączyć z dostawcą tożsamości. Spróbuj ponownie później.",
+			"email_submission_failed": "Nie udało się wysłać adresu e‑mail. Sprawdź adres i spróbuj ponownie.",
+			"password_form_parse_failed": "Nie udało się przetworzyć formularza hasła. Spróbuj ponownie.",
+			"password_submission_failed": "Nie udało się wysłać hasła. Możliwe przyczyny: nieprawidłowe hasło, zbyt wiele prób logowania w krótkim czasie lub brak akceptacji warunków w aplikacji Volkswagen. Aby je zaakceptować, wyloguj się z aplikacji Volkswagen i zaloguj ponownie.",
 			"token_exchange_failed": "Nie udało się uzyskać tokenów dostępu. Spróbuj ponownie lub sprawdź forum społeczności."
 		}
 	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ otwarte",
-			"insightsTitleTrue": "__name__ otwarte",
-			"insightsTitleFalse": "__name__ zamknięte",
 			"variables": {
 				"bonnet": "Maska",
 				"trunk": "Bagażnik",
@@ -23,8 +23,6 @@
 		},
 		"alarm_window": {
 			"title": "__name__ otwarte",
-			"insightsTitleTrue": "__name__ otwarte",
-			"insightsTitleFalse": "__name__ zamknięte",
 			"variables": {
 				"sunRoof": "Szyberdach",
 				"roofCover": "Pokrywa dachowa",
@@ -56,21 +54,6 @@
 				"until_full": "Do pełna"
 			}
 		},
-		"measure_range": {
-			"title": "Zasięg __name__",
-			"variables": {
-				"electric": "Elektryczny",
-				"diesel": "Diesel",
-				"adblue": "AdBlue",
-				"gasoline": "Benzyna"
-			}
-		},
-		"window_heating": {
-			"positions": {
-				"front": "Ogrzewanie przedniej szyby",
-				"rear": "Ogrzewanie tylnej szyby"
-			}
-		},
 		"timestamp": {
 			"title": "__name__ ostatnia aktualizacja o",
 			"variables": {
@@ -78,15 +61,12 @@
 				"battery_status": "Stan baterii",
 				"charging_settings": "Ustawienia ładowania",
 				"charging_status": "Stan ładowania",
-				"climatisation_settings": "Ustawienia klimatyzacji",
 				"climatisation_status": "Stan klimatyzacji",
 				"distance_home": "Odległość od domu",
-				"fuel_level_status": "Stan poziomu paliwa",
 				"hook_and_flash": "Klakson i błysk",
 				"maintenance_status": "Stan konserwacji",
 				"odometer_status": "Stan licznika",
 				"plug_status": "Stan wtyczki",
-				"range_status": "Stan zasięgu",
 				"readiness_status": "Stan gotowości",
 				"temperature_battery_status": "Stan temperatury baterii",
 				"wake_up_trigger": "Wyzwalacz budzenia"

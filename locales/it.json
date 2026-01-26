@@ -2,16 +2,16 @@
 	"errors": {
 		"authentication": {
 			"authorization_url_failed": "Impossibile recuperare l'URL di autorizzazione da WeConnect. Controlla la connessione Internet e riprova.",
-			"login_failed": "Accesso fallito. Controlla il tuo indirizzo email e la password. Se hai recentemente cambiato la password, assicurati di usare quella corretta. Potrebbe anche essere necessario accettare i termini e condizioni nell'app Volkswagen.",
-			"authorization_parameters_failed": "Autenticazione completata ma impossibile recuperare i parametri di sicurezza. Riprova.",
+			"identity_provider_failed": "Impossibile connettersi all'identity provider. Riprova più tardi.",
+			"email_submission_failed": "Impossibile inviare il tuo indirizzo email. Verifica l'indirizzo e riprova.",
+			"password_form_parse_failed": "Impossibile elaborare il modulo della password. Riprova.",
+			"password_submission_failed": "Impossibile inviare la password. Possibili cause: password errata, troppi tentativi di accesso in poco tempo oppure non hai ancora accettato i termini e condizioni nell'app Volkswagen. Per accettarli, disconnettiti dall'app Volkswagen e poi accedi di nuovo.",
 			"token_exchange_failed": "Impossibile ottenere i token di accesso. Riprova o consulta il forum della community."
 		}
 	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ aperto",
-			"insightsTitleTrue": "__name__ aperta",
-			"insightsTitleFalse": "__name__ chiusa",
 			"variables": {
 				"bonnet": "Cofano",
 				"trunk": "Bagagliaio",
@@ -23,8 +23,6 @@
 		},
 		"alarm_window": {
 			"title": "__name__ aperto",
-			"insightsTitleTrue": "__name__ aperta",
-			"insightsTitleFalse": "__name__ chiusa",
 			"variables": {
 				"sunRoof": "Tettuccio apribile",
 				"roofCover": "Copertura del tetto",
@@ -56,21 +54,6 @@
 				"until_full": "Fino a piena"
 			}
 		},
-		"measure_range": {
-			"title": "Autonomia di __name__",
-			"variables": {
-				"electric": "Elettrico",
-				"diesel": "Diesel",
-				"adblue": "AdBlue",
-				"gasoline": "Benzina"
-			}
-		},
-		"window_heating": {
-			"positions": {
-				"front": "Riscaldamento parabrezza anteriore",
-				"rear": "Riscaldamento lunotto posteriore"
-			}
-		},
 		"timestamp": {
 			"title": "__name__ ultimo aggiornamento alle",
 			"variables": {
@@ -78,15 +61,12 @@
 				"battery_status": "Stato della batteria",
 				"charging_settings": "Impostazioni di ricarica",
 				"charging_status": "Stato di ricarica",
-				"climatisation_settings": "Impostazioni della climatizzazione",
 				"climatisation_status": "Stato della climatizzazione",
 				"distance_home": "Distanza da casa",
-				"fuel_level_status": "Stato del livello carburante",
 				"hook_and_flash": "Clacson e lampeggio",
 				"maintenance_status": "Stato della manutenzione",
 				"odometer_status": "Stato odometro",
 				"plug_status": "Stato della presa",
-				"range_status": "Stato dell'autonomia",
 				"readiness_status": "Stato di prontezza",
 				"temperature_battery_status": "Stato della temperatura della batteria",
 				"wake_up_trigger": "Attivazione sveglia"

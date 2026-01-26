@@ -1,62 +1,72 @@
 import Homey from "homey";
 import type { PairSession } from "homey/lib/Driver.js";
-import User from "./api/user.mjs";
+import VolkswagenAuthenticator from "./authenticator.mjs";
+import VolkswagenUser from "../../lib/api/users/volkswagen-user.mjs";
 
 export default class VolkswagenDriver extends Homey.Driver {
-	public async onPair(session: PairSession): Promise<void> {
-		let sPin = "";
-		let email = "";
-		let password = "";
+  public async onPair(session: PairSession): Promise<void> {
+    let sPin = "";
+    let email = "";
+    let password = "";
 
-		let user: User | null = null;
+    let user: VolkswagenUser | null = null;
 
-		session.setHandler(
-			"login",
-			async (data: {
-				username: string;
-				password: string;
-			}): Promise<boolean> => {
-				email = data.username;
-				password = data.password;
+    session.setHandler(
+      "login",
+      async (data: {
+        username: string;
+        password: string;
+      }): Promise<boolean> => {
+        email = data.username;
+        password = data.password;
 
-				user = new User({ credentials: { email, password } });
+        const authenticator = new VolkswagenAuthenticator({
+          credentials: { email, password },
+        });
+        user = new VolkswagenUser(authenticator);
 
-				return await user.canLogin(this.homey);
-			},
-		);
+        return await user.canLogin(this.homey);
+      }
+    );
 
-		session.setHandler(
-			"pincode",
-			async (pincode: string[]): Promise<boolean> => {
-				sPin = pincode.join("");
+    session.setHandler(
+      "pincode",
+      async (pincode: string[]): Promise<boolean> => {
+        sPin = pincode.join("");
 
-				const userInstance =
-					user ?? new User({ sPin, credentials: { email, password } });
+        const authenticator = new VolkswagenAuthenticator({
+          sPin,
+          credentials: { email, password },
+        });
+        const userInstance = user ?? new VolkswagenUser(authenticator);
 
-				userInstance.setSPin(sPin);
+        userInstance.getAuthenticator().setSPin(sPin);
 
-				return await userInstance.verifySPin();
-			},
-		);
+        return await userInstance.verifySPin();
+      }
+    );
 
-		session.setHandler("list_devices", async () => {
-			const userInstance =
-				user ?? new User({ sPin, credentials: { email, password } });
+    session.setHandler("list_devices", async () => {
+      const authenticator = new VolkswagenAuthenticator({
+        sPin,
+        credentials: { email, password },
+      });
+      const userInstance = user ?? new VolkswagenUser(authenticator);
 
-			userInstance.setSPin(sPin);
+      userInstance.getAuthenticator().setSPin(sPin);
 
-			const vehicles = await userInstance.getVehicles();
-			const settings = await userInstance.getSettings();
+      const vehicles = await userInstance.getVehicles();
+      const settings = await userInstance.getSettings();
 
-			const devices = vehicles.map((vehicle) => ({
-				settings,
-				name: vehicle.nickname,
-				data: {
-					id: vehicle.vin,
-				},
-			}));
+      const devices = vehicles.map((vehicle) => ({
+        settings,
+        name: vehicle.nickname,
+        data: {
+          id: vehicle.vin,
+        },
+      }));
 
-			return devices;
-		});
-	}
+      return devices;
+    });
+  }
 }

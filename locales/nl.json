@@ -2,16 +2,16 @@
 	"errors": {
 		"authentication": {
 			"authorization_url_failed": "Kon de autorisatie-URL van WeConnect niet ophalen. Controleer je internetverbinding en probeer het opnieuw.",
-			"login_failed": "Inloggen mislukt. Controleer je e-mailadres en wachtwoord. Als je onlangs je wachtwoord hebt gewijzigd, zorg er dan voor dat je het juiste gebruikt. Mogelijk moet je ook de algemene voorwaarden in de Volkswagen-app accepteren.",
-			"authorization_parameters_failed": "Authenticatie voltooid maar beveiligingsparameters konden niet worden opgehaald. Probeer het opnieuw.",
+			"identity_provider_failed": "Kon geen verbinding maken met de identity provider. Probeer het later opnieuw.",
+			"email_submission_failed": "Je e-mailadres kon niet worden verzonden. Controleer het adres en probeer opnieuw.",
+			"password_form_parse_failed": "Het wachtwoordformulier kon niet worden verwerkt. Probeer het opnieuw.",
+			"password_submission_failed": "Je wachtwoord kon niet worden verzonden. Mogelijke oorzaken: onjuist wachtwoord, te veel inlogpogingen in korte tijd, of je moet de algemene voorwaarden in de Volkswagen-app nog accepteren. Log uit de Volkswagen-app en log daarna opnieuw in om ze te accepteren.",
 			"token_exchange_failed": "Toegangstokens konden niet worden opgehaald. Probeer het opnieuw of raadpleeg het communityforum."
 		}
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ open",
-			"insightsTitleTrue": "__name__ geopend",
-			"insightsTitleFalse": "__name__ gesloten",
+			"title": "__name__ geopend",
 			"variables": {
 				"bonnet": "Motorkap",
 				"trunk": "Kofferbak",
@@ -22,9 +22,7 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ open",
-			"insightsTitleTrue": "__name__ geopend",
-			"insightsTitleFalse": "__name__ gesloten",
+			"title": "__name__ geopend",
 			"variables": {
 				"sunRoof": "Zonnedak",
 				"roofCover": "Dakafdekking",
@@ -56,21 +54,6 @@
 				"until_full": "Tot vol"
 			}
 		},
-		"measure_range": {
-			"title": "__name__ bereik",
-			"variables": {
-				"electric": "Elektrisch",
-				"diesel": "Diesel",
-				"adblue": "AdBlue",
-				"gasoline": "Benzine"
-			}
-		},
-		"window_heating": {
-			"positions": {
-				"front": "Voorruit verwarming",
-				"rear": "Achterruit verwarming"
-			}
-		},
 		"timestamp": {
 			"title": "__name__ laatst bijgewerkt om",
 			"variables": {
@@ -78,15 +61,12 @@
 				"battery_status": "Batterijstatus",
 				"charging_settings": "Laadinstellingen",
 				"charging_status": "Laadstatus",
-				"climatisation_settings": "Klimaatinstellingen",
 				"climatisation_status": "Klimaatstatus",
 				"distance_home": "Afstand van huis",
-				"fuel_level_status": "Brandstofniveaustatus",
 				"hook_and_flash": "Toeter en knipperlicht",
 				"maintenance_status": "Onderhoudsstatus",
 				"odometer_status": "Kilometerteller status",
 				"plug_status": "Stekkerstatus",
-				"range_status": "Bereikstatus",
 				"readiness_status": "Gereedheidsstatus",
 				"temperature_battery_status": "Batterijtemperatuur status",
 				"wake_up_trigger": "Activeer trigger"

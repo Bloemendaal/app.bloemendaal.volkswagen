@@ -91,29 +91,5 @@
 	},
 	"1.1.13": {
 		"en": "Fix updating charging settings flow with unchanged values"
-	},
-	"1.1.14": {
-		"en": "Always pick the closest max charging capacity when the vehicle expects a string-based parameter"
-	},
-	"1.1.15": {
-		"en": "Add is_parked capability"
-	},
-	"1.1.16": {
-		"en": "Base control_charging on ev_charging_state capability"
-	},
-	"1.1.17": {
-		"en": "Add timestamp updated trigger card"
-	},
-	"1.1.18": {
-		"en": "Improve ranges per engine type, add support for oil percentage and add more vehicle inspection capabilities"
-	},
-	"1.1.19": {
-		"en": "Fix fuel level UI component"
-	},
-	"1.1.20": {
-		"en": "Fix timestamp registrer awaiting issue"
-	},
-	"1.1.21": {
-		"en": "Add window heating flows"
 	}
 }

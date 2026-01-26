@@ -1,0 +1,175 @@
+{
+	"title": {
+		"en": "Update charging settings",
+		"nl": "Wijzig oplaadinstellingen",
+		"de": "Ladeeinstellungen aktualisieren",
+		"fr": "Mettre à jour les paramètres de charge",
+		"es": "Actualizar configuración de carga",
+		"it": "Aggiorna impostazioni di ricarica",
+		"da": "Opdater opladningsindstillinger",
+		"no": "Oppdater ladeinnstillinger",
+		"sv": "Uppdatera laddningsinställningar",
+		"pl": "Zaktualizuj ustawienia ładowania",
+		"ru": "Обновить настройки зарядки",
+		"ko": "충전 설정 업데이트"
+	},
+	"titleFormatted": {
+		"en": "Set charge current to [[max_charge_current]], target charge level to [[target_soc]]%, auto-unlock: [[auto_unlock]]",
+		"nl": "Zet laadstroom op [[max_charge_current]], doellaadniveau op [[target_soc]]%, automatisch ontgrendelen: [[auto_unlock]]",
+		"de": "Ladestrom auf [[max_charge_current]], Zielladeniveau auf [[target_soc]]%, automatisch entsperren: [[auto_unlock]]",
+		"fr": "Définir le courant de charge à [[max_charge_current]], niveau de charge cible à [[target_soc]]%, déverrouillage auto: [[auto_unlock]]",
+		"es": "Establecer corriente de carga a [[max_charge_current]], nivel de carga objetivo a [[target_soc]]%, desbloqueo automático: [[auto_unlock]]",
+		"it": "Imposta corrente di ricarica a [[max_charge_current]], livello di carica target a [[target_soc]]%, sblocco automatico: [[auto_unlock]]",
+		"da": "Indstil ladestrøm til [[max_charge_current]], målladeniveau til [[target_soc]]%, automatisk oplåsning: [[auto_unlock]]",
+		"no": "Sett ladestrøm til [[max_charge_current]], målladenivå til [[target_soc]]%, automatisk opplåsing: [[auto_unlock]]",
+		"sv": "Ställ in laddström till [[max_charge_current]], målladdningsnivå till [[target_soc]]%, automatisk upplåsning: [[auto_unlock]]",
+		"pl": "Ustaw prąd ładowania na [[max_charge_current]], docelowy poziom naładowania na [[target_soc]]%, automatyczne odblokowanie: [[auto_unlock]]",
+		"ru": "Установить ток зарядки на [[max_charge_current]], целевой уровень заряда на [[target_soc]]%, автоматическая разблокировка: [[auto_unlock]]",
+		"ko": "충전 전류를 [[max_charge_current]]로, 목표 충전 수준을 [[target_soc]]%로, 자동 잠금 해제: [[auto_unlock]]"
+	},
+	"args": [
+		{
+			"type": "device",
+			"name": "device",
+			"filter": "driver_id=volkswagen|cupra|seat|skoda"
+		},
+		{
+			"type": "autocomplete",
+			"name": "max_charge_current",
+			"title": {
+				"en": "Max charge current",
+				"nl": "Max laadstroom",
+				"de": "Max. Ladestrom",
+				"fr": "Courant de charge max.",
+				"es": "Corriente de carga máx.",
+				"it": "Corrente di ricarica max",
+				"da": "Maks. ladestrøm",
+				"no": "Maks. ladestrøm",
+				"sv": "Max laddström",
+				"pl": "Maks. prąd ładowania",
+				"ru": "Макс. ток зарядки",
+				"ko": "최대 충전 전류"
+			},
+			"placeholder": {
+				"en": "Select current",
+				"nl": "Selecteer stroom",
+				"de": "Strom auswählen",
+				"fr": "Sélectionner le courant",
+				"es": "Seleccionar corriente",
+				"it": "Seleziona corrente",
+				"da": "Vælg strøm",
+				"no": "Velg strøm",
+				"sv": "Välj ström",
+				"pl": "Wybierz prąd",
+				"ru": "Выберите ток",
+				"ko": "전류 선택"
+			}
+		},
+		{
+			"type": "number",
+			"name": "target_soc",
+			"title": {
+				"en": "Target charge level (%)",
+				"nl": "Doellaadniveau (%)",
+				"de": "Zielladeniveau (%)",
+				"fr": "Niveau de charge cible (%)",
+				"es": "Nivel de carga objetivo (%)",
+				"it": "Livello di carica target (%)",
+				"da": "Målladeniveau (%)",
+				"no": "Målladenivå (%)",
+				"sv": "Målladdningsnivå (%)",
+				"pl": "Docelowy poziom naładowania (%)",
+				"ru": "Целевой уровень заряда (%)",
+				"ko": "목표 충전 수준 (%)"
+			},
+			"min": 10,
+			"max": 100,
+			"step": 5,
+			"placeholder": {
+				"en": "Leave empty for no change",
+				"nl": "Laat leeg voor geen wijziging",
+				"de": "Leer lassen für keine Änderung",
+				"fr": "Laisser vide pour aucun changement",
+				"es": "Dejar vacío para no cambiar",
+				"it": "Lasciare vuoto per nessuna modifica",
+				"da": "Lad stå tom for ingen ændring",
+				"no": "La stå tomt for ingen endring",
+				"sv": "Lämna tomt för ingen ändring",
+				"pl": "Pozostaw puste dla braku zmiany",
+				"ru": "Оставьте пустым, чтобы не менять",
+				"ko": "변경하지 않으려면 비워두세요"
+			}
+		},
+		{
+			"type": "dropdown",
+			"name": "auto_unlock",
+			"title": {
+				"en": "Auto-unlock plug when charged",
+				"nl": "Ontgrendel stekker automatisch wanneer opgeladen",
+				"de": "Stecker automatisch entsperren, wenn geladen",
+				"fr": "Déverrouiller automatiquement la prise lorsque chargé",
+				"es": "Desbloquear automáticamente el enchufe al cargar",
+				"it": "Sblocca automaticamente la spina quando carica",
+				"da": "Oplås automatisk stik når opladet",
+				"no": "Lås opp plugg automatisk når ladet",
+				"sv": "Lås upp kontakt automatiskt när laddad",
+				"pl": "Automatycznie odblokuj wtyczkę po naładowaniu",
+				"ru": "Автоматически разблокировать вилку при зарядке",
+				"ko": "충전 시 플러그 자동 잠금 해제"
+			},
+			"values": [
+				{
+					"id": "true",
+					"title": {
+						"en": "Yes",
+						"nl": "Ja",
+						"de": "Ja",
+						"fr": "Oui",
+						"es": "Sí",
+						"it": "Sì",
+						"da": "Ja",
+						"no": "Ja",
+						"sv": "Ja",
+						"pl": "Tak",
+						"ru": "Да",
+						"ko": "예"
+					}
+				},
+				{
+					"id": "false",
+					"title": {
+						"en": "No",
+						"nl": "Nee",
+						"de": "Nein",
+						"fr": "Non",
+						"es": "No",
+						"it": "No",
+						"da": "Nej",
+						"no": "Nei",
+						"sv": "Nej",
+						"pl": "Nie",
+						"ru": "Нет",
+						"ko": "아니요"
+					}
+				},
+				{
+					"id": "unchanged",
+					"title": {
+						"en": "Unchanged",
+						"nl": "Ongewijzigd",
+						"de": "Unverändert",
+						"fr": "Inchangé",
+						"es": "Sin cambios",
+						"it": "Invariato",
+						"da": "Uændret",
+						"no": "Uendret",
+						"sv": "Oförändrad",
+						"pl": "Bez zmian",
+						"ru": "Без изменений",
+						"ko": "변경 없음"
+					}
+				}
+			]
+		}
+	]
+}

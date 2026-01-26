@@ -1,0 +1,91 @@
+{
+	"title": {
+		"en": "Control charging",
+		"nl": "Bedien opladen",
+		"de": "Ladevorgang steuern",
+		"fr": "Contrôler la charge",
+		"es": "Controlar la carga",
+		"it": "Controlla la ricarica",
+		"da": "Kontroller opladning",
+		"no": "Kontroller lading",
+		"sv": "Kontrollera laddning",
+		"pl": "Kontroluj ładowanie",
+		"ru": "Управление зарядкой",
+		"ko": "충전 제어"
+	},
+	"titleFormatted": {
+		"en": "[[action]] charging",
+		"nl": "[[action]] opladen",
+		"de": "Ladevorgang [[action]]",
+		"fr": "[[action]] la charge",
+		"es": "[[action]] la carga",
+		"it": "[[action]] la ricarica",
+		"da": "[[action]] opladning",
+		"no": "[[action]] lading",
+		"sv": "[[action]] laddning",
+		"pl": "[[action]] ładowanie",
+		"ru": "[[action]] зарядку",
+		"ko": "충전 [[action]]"
+	},
+	"args": [
+		{
+			"type": "device",
+			"name": "device",
+			"filter": "driver_id=volkswagen|cupra|seat|skoda"
+		},
+		{
+			"type": "dropdown",
+			"name": "action",
+			"title": {
+				"en": "Action",
+				"nl": "Actie",
+				"de": "Aktion",
+				"fr": "Action",
+				"es": "Acción",
+				"it": "Azione",
+				"da": "Handling",
+				"no": "Handling",
+				"sv": "Åtgärd",
+				"pl": "Akcja",
+				"ru": "Действие",
+				"ko": "작업"
+			},
+			"values": [
+				{
+					"id": "start",
+					"title": {
+						"en": "Start",
+						"nl": "Start",
+						"de": "Starten",
+						"fr": "Démarrer",
+						"es": "Iniciar",
+						"it": "Avvia",
+						"da": "Start",
+						"no": "Start",
+						"sv": "Starta",
+						"pl": "Rozpocznij",
+						"ru": "Начать",
+						"ko": "시작"
+					}
+				},
+				{
+					"id": "stop",
+					"title": {
+						"en": "Stop",
+						"nl": "Stop",
+						"de": "Stoppen",
+						"fr": "Arrêter",
+						"es": "Detener",
+						"it": "Ferma",
+						"da": "Stop",
+						"no": "Stopp",
+						"sv": "Stoppa",
+						"pl": "Zatrzymaj",
+						"ru": "Остановить",
+						"ko": "정지"
+					}
+				}
+			]
+		}
+	]
+}

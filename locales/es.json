@@ -2,16 +2,16 @@
 	"errors": {
 		"authentication": {
 			"authorization_url_failed": "No se pudo recuperar la URL de autorización de WeConnect. Verifica tu conexión a Internet e inténtalo de nuevo.",
-			"login_failed": "Error de inicio de sesión. Por favor, verifica tu correo electrónico y contraseña. Si has cambiado recientemente tu contraseña, asegúrate de usar la correcta. También es posible que necesites aceptar los términos y condiciones en la app de Volkswagen.",
-			"authorization_parameters_failed": "Autenticación completada pero no se pudieron recuperar los parámetros de seguridad. Por favor, inténtalo de nuevo.",
+			"identity_provider_failed": "No se pudo conectar con el proveedor de identidad. Inténtalo más tarde.",
+			"email_submission_failed": "No se pudo enviar tu dirección de correo electrónico. Verifica la dirección e inténtalo de nuevo.",
+			"password_form_parse_failed": "No se pudo procesar el formulario de contraseña. Inténtalo de nuevo.",
+			"password_submission_failed": "No se pudo enviar tu contraseña. Posibles causas: contraseña incorrecta, demasiados intentos de inicio de sesión en poco tiempo o aún debes aceptar los términos y condiciones en la app de Volkswagen. Para aceptarlos, cierra sesión en la app de Volkswagen y vuelve a iniciarla.",
 			"token_exchange_failed": "No se pudieron obtener los tokens de acceso. Inténtalo de nuevo o consulta el foro de la comunidad."
 		}
 	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ abierto",
-			"insightsTitleTrue": "__name__ abierta",
-			"insightsTitleFalse": "__name__ cerrada",
 			"variables": {
 				"bonnet": "Capó",
 				"trunk": "Maletero",
@@ -23,8 +23,6 @@
 		},
 		"alarm_window": {
 			"title": "__name__ abierto",
-			"insightsTitleTrue": "__name__ abierta",
-			"insightsTitleFalse": "__name__ cerrada",
 			"variables": {
 				"sunRoof": "Techo solar",
 				"roofCover": "Cubierta del techo",
@@ -56,21 +54,6 @@
 				"until_full": "Hasta llena"
 			}
 		},
-		"measure_range": {
-			"title": "Alcance de __name__",
-			"variables": {
-				"electric": "Eléctrico",
-				"diesel": "Diésel",
-				"adblue": "AdBlue",
-				"gasoline": "Gasolina"
-			}
-		},
-		"window_heating": {
-			"positions": {
-				"front": "Calefacción parabrisas delantero",
-				"rear": "Calefacción ventana trasera"
-			}
-		},
 		"timestamp": {
 			"title": "__name__ última actualización a las",
 			"variables": {
@@ -78,15 +61,12 @@
 				"battery_status": "Estado de la batería",
 				"charging_settings": "Configuración de carga",
 				"charging_status": "Estado de la carga",
-				"climatisation_settings": "Configuración de climatización",
 				"climatisation_status": "Estado de climatización",
 				"distance_home": "Distancia desde casa",
-				"fuel_level_status": "Estado del nivel de combustible",
 				"hook_and_flash": "Tocar bocina y destellos",
 				"maintenance_status": "Estado del mantenimiento",
 				"odometer_status": "Estado del odómetro",
 				"plug_status": "Estado del enchufe",
-				"range_status": "Estado del alcance",
 				"readiness_status": "Estado de preparación",
 				"temperature_battery_status": "Estado de la temperatura de la batería",
 				"wake_up_trigger": "Activador de despertador"
