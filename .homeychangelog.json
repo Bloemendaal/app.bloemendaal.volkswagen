@@ -115,5 +115,8 @@
 	},
 	"1.1.21": {
 		"en": "Add window heating flows"
+	},
+	"1.1.22": {
+		"en": "Add action card to change polling interval setting"
 	}
 }
