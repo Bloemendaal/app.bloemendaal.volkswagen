@@ -98,6 +98,9 @@
 		"charge_current": {
 			"reduced": "Zmniejszony",
 			"maximum": "Maksymalny"
+		},
+		"polling_interval": {
+			"invalid": "Interwał odpytywania musi wynosić co najmniej 1 minutę"
 		}
 	}
 }

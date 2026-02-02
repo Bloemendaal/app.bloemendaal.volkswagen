@@ -23,6 +23,7 @@ import ControlChargingFlow from "./processors/flows/control-charging.mjs";
 import ControlClimatisationFlow from "./processors/flows/control-climatisation.mjs";
 import TimestampUpdatedFlow from "./processors/flows/timestamp-updated.mjs";
 import UpdateChargingSettingsFlow from "./processors/flows/update-charge-settings.mjs";
+import UpdatePollingIntervalFlow from "./processors/flows/update-polling-interval.mjs";
 import Processor from "./processors/processable.mjs";
 import EnergySetting from "./processors/settings/energy.mjs";
 
@@ -61,6 +62,7 @@ export default class VolkswagenDevice extends Homey.Device {
 		new ControlChargingFlow(this),
 		new ControlClimatisationFlow(this),
 		new TimestampUpdatedFlow(this),
+		new UpdatePollingIntervalFlow(this),
 		new UpdateChargingSettingsFlow(this),
 	]);
 

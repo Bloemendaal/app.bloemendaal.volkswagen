@@ -525,6 +525,73 @@
 					]
 				}
 			]
+		},
+		{
+			"id": "update_polling_interval",
+			"title": {
+				"en": "Update polling interval",
+				"nl": "Wijzig ververstijd",
+				"de": "Abrufintervall aktualisieren",
+				"fr": "Mettre à jour l'intervalle d'interrogation",
+				"da": "Opdater afstemningsinterval",
+				"es": "Actualizar intervalo de sondeo",
+				"it": "Aggiorna intervallo di polling",
+				"no": "Oppdater polling-intervall",
+				"sv": "Uppdatera intervall för avstämning",
+				"pl": "Zaktualizuj interwał odpytywania",
+				"ru": "Обновить интервал опроса",
+				"ko": "폴링 간격 업데이트"
+			},
+			"titleFormatted": {
+				"en": "Update polling interval to [[interval]] minutes",
+				"nl": "Wijzig ververstijd naar [[interval]] minuten",
+				"de": "Abrufintervall auf [[interval]] Minuten aktualisieren",
+				"fr": "Mettre à jour l'intervalle d'interrogation à [[interval]] minutes",
+				"da": "Opdater afstemningsinterval til [[interval]] minutter",
+				"es": "Actualizar intervalo de sondeo a [[interval]] minutos",
+				"it": "Aggiorna intervallo di polling a [[interval]] minuti",
+				"no": "Oppdater polling-intervall til [[interval]] minutter",
+				"sv": "Uppdatera intervall för avstämning till [[interval]] minuter",
+				"pl": "Zaktualizuj interwał odpytywania na [[interval]] minut",
+				"ru": "Обновить интервал опроса на [[interval]] минут",
+				"ko": "폴링 간격을 [[interval]]분으로 업데이트"
+			},
+			"hint": {
+				"en": "Change how often the app polls the vehicle for new data. Lower values may result in battery drain.",
+				"nl": "Wijzig hoe vaak de app bijgewerkte gegevens ophaalt. Lagere waarden kunnen resulteren in hoger batterijgebruik.",
+				"da": "Skift hvor ofte appen afstemmer køretøjet for nye data. Lavere værdier kan resultere i batteridræn.",
+				"de": "Ändern Sie, wie oft die App das Fahrzeug auf neue Daten abfragt. Niedrigere Werte können zu einem Batterieverbrauch führen.",
+				"es": "Cambie la frecuencia con la que la aplicación sondea el vehículo por nuevos datos. Valores más bajos pueden resultar en el agotamiento de la batería.",
+				"fr": "Modifiez la fréquence à laquelle l'application interroge le véhicule pour de nouvelles données. Des valeurs plus faibles peuvent entraîner une décharge de la batterie.",
+				"it": "Cambia la frequenza con cui l'app sonda il veicolo per nuovi dati. Valori più bassi possono causare lo scaricamento della batteria.",
+				"no": "Endre hvor ofte appen avstemmer kjøretøyet for nye data. Lavere verdier kan føre til batteritap.",
+				"sv": "Ändra hur ofta appen stämmer av fordonet för ny data. Lägre värden kan leda till batteridränering.",
+				"pl": "Zmień częstotliwość, z jaką aplikacja odpytuje pojazd o nowe dane. Niższe wartości mogą prowadzić do rozładowania akumulatora.",
+				"ru": "Измените частоту опроса автомобиля приложением на наличие новых данных. Более низкие значения могут привести к разрядке аккумулятора.",
+				"ko": "앱이 새 데이터를 위해 차량을 폴링하는 빈도를 변경합니다. 낮은 값은 배터리를 소모시킬 수 있습니다."
+			},
+			"args": [
+				{
+					"type": "number",
+					"name": "interval",
+					"title": {
+						"en": "Interval (minutes)",
+						"nl": "Interval (minuten)",
+						"de": "Intervall (Minuten)",
+						"fr": "Intervalle (minutes)",
+						"da": "Interval (minutter)",
+						"es": "Intervalo (minutos)",
+						"it": "Intervallo (minuti)",
+						"no": "Intervall (minutter)",
+						"sv": "Intervall (minuter)",
+						"pl": "Interwał (minuty)",
+						"ru": "Интервал (минуты)",
+						"ko": "간격 (분)"
+					},
+					"min": 1,
+					"step": 1
+				}
+			]
 		}
 	],
 	"triggers": [

@@ -98,6 +98,9 @@
 		"charge_current": {
 			"reduced": "Réduit",
 			"maximum": "Maximum"
+		},
+		"polling_interval": {
+			"invalid": "L'intervalle d'interrogation doit être d'au moins 1 minute"
 		}
 	}
 }

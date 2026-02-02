@@ -9,16 +9,17 @@ export interface ClimatisationSettingsData {
 	carCapturedTimestamp: DateTimeString;
 	targetTemperature_C: Integer;
 	targetTemperature_F: Integer;
-	unitInCar: "celsius" | "fahrenheit";
-	climatizationAtUnlock: boolean;
-	windowHeatingEnabled: boolean;
-	zoneFrontLeftEnabled: boolean;
-	zoneFrontRightEnabled: boolean;
+	unitInCar?: "celsius" | "fahrenheit";
+	climatizationAtUnlock?: boolean;
+	climatisationWithoutExternalPower?: boolean;
+	windowHeatingEnabled?: boolean;
+	zoneFrontLeftEnabled?: boolean;
+	zoneFrontRightEnabled?: boolean;
 }
 
 export interface ClimatisationStatusData {
 	carCapturedTimestamp: DateTimeString;
-	remainingClimatisationTime_min: Integer;
+	remainingClimatisationTime_min?: Integer;
 	climatisationState: "off" | PossiblyUnknownString;
 }
 
