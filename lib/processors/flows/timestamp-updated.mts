@@ -3,7 +3,7 @@ import Flow from "./flow.mjs";
 export default class TimestampUpdatedFlow extends Flow {
 	public override async register(): Promise<void> {
 		if (!this.device.hasCapability("timestamp")) {
-			this.device.addCapability("timestamp");
+			await this.device.addCapability("timestamp");
 		}
 	}
 

@@ -65,6 +65,12 @@
 				"gasoline": "Bensin"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "Frontruta värme",
+				"rear": "Bakruta värme"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ senast uppdaterad kl.",
 			"variables": {
@@ -72,6 +78,7 @@
 				"battery_status": "Batteristatus",
 				"charging_settings": "Laddningsinställningar",
 				"charging_status": "Laddningsstatus",
+				"climatisation_settings": "Klimatinställningar",
 				"climatisation_status": "Klimatstatus",
 				"distance_home": "Avstånd från hemmet",
 				"fuel_level_status": "Bränslenivåstatus",
@@ -91,6 +98,9 @@
 		"charge_current": {
 			"reduced": "Reducerad",
 			"maximum": "Maximum"
+		},
+		"polling_interval": {
+			"invalid": "Intervall för avstämning måste vara minst 1 minut"
 		}
 	}
 }

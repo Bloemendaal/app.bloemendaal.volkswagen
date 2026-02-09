@@ -65,6 +65,12 @@
 				"gasoline": "Бензин"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "Обогрев переднего стекла",
+				"rear": "Обогрев заднего стекла"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ последнее обновление в",
 			"variables": {
@@ -72,6 +78,7 @@
 				"battery_status": "Состояние батареи",
 				"charging_settings": "Настройки зарядки",
 				"charging_status": "Состояние зарядки",
+				"climatisation_settings": "Настройки климатизации",
 				"climatisation_status": "Состояние климатизации",
 				"distance_home": "Расстояние от дома",
 				"fuel_level_status": "Состояние уровня топлива",
@@ -91,6 +98,9 @@
 		"charge_current": {
 			"reduced": "Уменьшенный",
 			"maximum": "Максимальный"
+		},
+		"polling_interval": {
+			"invalid": "Интервал опроса должен составлять не менее 1 минуты"
 		}
 	}
 }

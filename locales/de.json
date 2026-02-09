@@ -65,6 +65,12 @@
 				"gasoline": "Benzin"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "Frontscheibenheizung",
+				"rear": "Heckscheibenheizung"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ zuletzt aktualisiert um",
 			"variables": {
@@ -72,6 +78,7 @@
 				"battery_status": "Batteriestatus",
 				"charging_settings": "Ladeeinstellungen",
 				"charging_status": "Ladestatus",
+				"climatisation_settings": "Klimatisierungseinstellungen",
 				"climatisation_status": "Klimatisierungsstatus",
 				"distance_home": "Entfernung von zu Hause",
 				"fuel_level_status": "Kraftstoffstandstatus",
@@ -91,6 +98,9 @@
 		"charge_current": {
 			"reduced": "Reduziert",
 			"maximum": "Maximum"
+		},
+		"polling_interval": {
+			"invalid": "Abrufintervall muss mindestens 1 Minute betragen"
 		}
 	}
 }

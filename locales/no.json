@@ -65,6 +65,12 @@
 				"gasoline": "Bensin"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "Frontrute varme",
+				"rear": "Bakrute varme"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ sist oppdatert kl",
 			"variables": {
@@ -72,6 +78,7 @@
 				"battery_status": "Batteristatus",
 				"charging_settings": "Ladeinnstillinger",
 				"charging_status": "Ladestatus",
+				"climatisation_settings": "Klimainnstillinger",
 				"climatisation_status": "Klimastatus",
 				"distance_home": "Avstand fra hjemmet",
 				"fuel_level_status": "Drivstoffnivåstatus",
@@ -91,6 +98,9 @@
 		"charge_current": {
 			"reduced": "Redusert",
 			"maximum": "Maksimum"
+		},
+		"polling_interval": {
+			"invalid": "Polling-intervall må være minst 1 minutt"
 		}
 	}
 }

@@ -1,0 +1,50 @@
+{
+	"type": "boolean",
+	"title": {
+		"en": "Window heating",
+		"nl": "Raamverwarming",
+		"de": "Scheibenheizung",
+		"fr": "Chauffage des vitres",
+		"es": "Calefacción de ventanas",
+		"it": "Riscaldamento finestrini",
+		"da": "Rudevarme",
+		"no": "Vindusvarme",
+		"sv": "Rutvärme",
+		"pl": "Ogrzewanie szyb",
+		"ru": "Обогрев окон",
+		"ko": "창문 히팅"
+	},
+	"getable": true,
+	"setable": false,
+	"insights": true,
+	"insightsTitleTrue": {
+		"en": "Window heating turned on",
+		"nl": "Raamverwarming ingeschakeld",
+		"de": "Scheibenheizung eingeschaltet",
+		"fr": "Chauffage des vitres activé",
+		"es": "Calefacción de ventanas activada",
+		"it": "Riscaldamento finestrini attivato",
+		"da": "Rudevarme tændt",
+		"no": "Vindusvarme slått på",
+		"sv": "Rutvärme påslagen",
+		"pl": "Ogrzewanie szyb włączone",
+		"ru": "Обогрев окон включен",
+		"ko": "창문 히팅 켜짐"
+	},
+	"insightsTitleFalse": {
+		"en": "Window heating turned off",
+		"nl": "Raamverwarming uitgeschakeld",
+		"de": "Scheibenheizung ausgeschaltet",
+		"fr": "Chauffage des vitres désactivé",
+		"es": "Calefacción de ventanas desactivada",
+		"it": "Riscaldamento finestrini disattivato",
+		"da": "Rudevarme slukket",
+		"no": "Vindusvarme slått av",
+		"sv": "Rutvärme avstängd",
+		"pl": "Ogrzewanie szyb wyłączone",
+		"ru": "Обогрев окон выключен",
+		"ko": "창문 히팅 꺼짐"
+	},
+	"uiComponent": "sensor",
+	"icon": "/assets/capabilities/window_heating.svg"
+}
