@@ -1,0 +1,20 @@
+import type { FetchData } from "#lib/api/fetch.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
+
+export default class MeasureChargingRateCapability extends Capability<number> {
+	protected getCapabilityName(): string {
+		return "measure_charging_rate";
+	}
+
+	public override async getter({ capabilities }: FetchData): Promise<number> {
+		const chargeRate =
+			capabilities.charging?.chargingStatus?.value?.chargeRate_kmph;
+
+		if (!this.isNumber(chargeRate)) {
+			throw new InvalidValueError(chargeRate);
+		}
+
+		return chargeRate;
+	}
+}

@@ -1,0 +1,31 @@
+import type { FetchData } from "#lib/api/fetch.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
+
+export default class ButtonWakeCapability extends Capability<never> {
+	protected getCapabilityName(): string {
+		return "button_wake";
+	}
+
+	public override async guard({ capabilities }: FetchData): Promise<boolean> {
+		return await this.can(
+			"vehicleWakeUpTrigger",
+			capabilities.userCapabilities?.capabilitiesStatus?.value,
+		);
+	}
+
+	public override async setter(fetchData: FetchData): Promise<void> {
+		const canWakeUp = await this.guard(fetchData);
+
+		if (!canWakeUp) {
+			return;
+		}
+
+		this.device.registerCapabilityListener(
+			this.getCapabilityName(),
+			async () => {
+				const vehicle = await this.device.getVehicle();
+				await vehicle.wake();
+			},
+		);
+	}
+}
