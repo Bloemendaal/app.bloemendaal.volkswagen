@@ -67,6 +67,12 @@
 				"gasoline": "Essence"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "Chauffage pare-brise avant",
+				"rear": "Chauffage vitre arrière"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ mis à jour pour la dernière fois à",
 			"variables": {
@@ -74,6 +80,7 @@
 				"battery_status": "État de la batterie",
 				"charging_settings": "Paramètres de charge",
 				"charging_status": "État de charge",
+				"climatisation_settings": "Paramètres de climatisation",
 				"climatisation_status": "État de climatisation",
 				"distance_home": "Distance de la maison",
 				"fuel_level_status": "État du niveau de carburant",
@@ -93,6 +100,9 @@
 		"charge_current": {
 			"reduced": "Réduit",
 			"maximum": "Maximum"
+		},
+		"polling_interval": {
+			"invalid": "L'intervalle d'interrogation doit être d'au moins 1 minute"
 		}
 	}
 }

@@ -67,6 +67,12 @@
 				"gasoline": "Gasoline"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "Front window heating",
+				"rear": "Rear window heating"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ last updated at",
 			"variables": {
@@ -74,6 +80,7 @@
 				"battery_status": "Battery status",
 				"charging_settings": "Charging settings",
 				"charging_status": "Charging status",
+				"climatisation_settings": "Climatisation settings",
 				"climatisation_status": "Climatisation status",
 				"distance_home": "Distance from home",
 				"fuel_level_status": "Fuel level status",
@@ -93,6 +100,9 @@
 		"charge_current": {
 			"reduced": "Reduced",
 			"maximum": "Maximum"
+		},
+		"polling_interval": {
+			"invalid": "Polling interval must be at least 1 minute"
 		}
 	}
 }

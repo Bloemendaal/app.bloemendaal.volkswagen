@@ -67,6 +67,12 @@
 				"gasoline": "Benzine"
 			}
 		},
+		"window_heating": {
+			"positions": {
+				"front": "Voorruit verwarming",
+				"rear": "Achterruit verwarming"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ laatst bijgewerkt om",
 			"variables": {
@@ -74,6 +80,7 @@
 				"battery_status": "Batterijstatus",
 				"charging_settings": "Laadinstellingen",
 				"charging_status": "Laadstatus",
+				"climatisation_settings": "Klimaatinstellingen",
 				"climatisation_status": "Klimaatstatus",
 				"distance_home": "Afstand van huis",
 				"fuel_level_status": "Brandstofniveaustatus",
@@ -93,6 +100,9 @@
 		"charge_current": {
 			"reduced": "Verlaagd",
 			"maximum": "Maximum"
+		},
+		"polling_interval": {
+			"invalid": "Ververstijd moet minimaal 1 minuut zijn"
 		}
 	}
 }

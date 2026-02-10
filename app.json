@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "app.bloemendaal.volkswagen",
-  "version": "1.1.19",
+  "version": "1.1.22",
   "compatibility": ">=12.9.0",
   "sdk": 3,
   "platforms": [
@@ -154,6 +154,215 @@
         "id": "climatisation_onoff_on"
       },
       {
+        "id": "climatisation_onoff_on_advanced",
+        "title": {
+          "en": "Turn on climatisation (advanced)",
+          "nl": "Klimaatregeling aanzetten (geavanceerd)",
+          "de": "Klimatisierung einschalten (erweitert)",
+          "fr": "Activer la climatisation (avancé)",
+          "es": "Encender climatización (avanzado)",
+          "it": "Accendi climatizzazione (avanzato)",
+          "da": "Tænd klimaanlæg (avanceret)",
+          "no": "Slå på klimaanlegg (avansert)",
+          "sv": "Slå på klimatanläggning (avancerat)",
+          "pl": "Włącz klimatyzację (zaawansowane)",
+          "ru": "Включить климатизацию (расширенный)",
+          "ko": "냉난방 켜기 (고급)"
+        },
+        "titleFormatted": {
+          "en": "Turn on climatisation at [[temperature]]°C, without ext. power: [[climatisationWithoutExternalPower]], at unlock: [[climatizationAtUnlock]], window heating: [[windowHeatingEnabled]], zones: FL [[zoneFrontLeftEnabled]] FR [[zoneFrontRightEnabled]] RL [[zoneRearLeftEnabled]] RR [[zoneRearRightEnabled]]",
+          "nl": "Klimaatregeling aanzetten op [[temperature]]°C, zonder ext. stroom: [[climatisationWithoutExternalPower]], bij ontgrendelen: [[climatizationAtUnlock]], ruitverwarming: [[windowHeatingEnabled]], zones: LV [[zoneFrontLeftEnabled]] RV [[zoneFrontRightEnabled]] LA [[zoneRearLeftEnabled]] RA [[zoneRearRightEnabled]]",
+          "de": "Klimatisierung bei [[temperature]]°C einschalten, ohne ext. Strom: [[climatisationWithoutExternalPower]], beim Entsperren: [[climatizationAtUnlock]], Scheibenheizung: [[windowHeatingEnabled]], Zonen: VL [[zoneFrontLeftEnabled]] VR [[zoneFrontRightEnabled]] HL [[zoneRearLeftEnabled]] HR [[zoneRearRightEnabled]]",
+          "fr": "Activer la climatisation à [[temperature]]°C, sans alim. ext.: [[climatisationWithoutExternalPower]], au déverrouillage: [[climatizationAtUnlock]], chauffage vitres: [[windowHeatingEnabled]], zones: AG [[zoneFrontLeftEnabled]] AD [[zoneFrontRightEnabled]] AG [[zoneRearLeftEnabled]] AD [[zoneRearRightEnabled]]",
+          "es": "Encender climatización a [[temperature]]°C, sin alim. ext.: [[climatisationWithoutExternalPower]], al desbloquear: [[climatizationAtUnlock]], calefacción ventanas: [[windowHeatingEnabled]], zonas: DI [[zoneFrontLeftEnabled]] DD [[zoneFrontRightEnabled]] TI [[zoneRearLeftEnabled]] TD [[zoneRearRightEnabled]]",
+          "it": "Accendi climatizzazione a [[temperature]]°C, senza alim. est.: [[climatisationWithoutExternalPower]], allo sblocco: [[climatizationAtUnlock]], riscaldamento finestrini: [[windowHeatingEnabled]], zone: AS [[zoneFrontLeftEnabled]] AD [[zoneFrontRightEnabled]] PS [[zoneRearLeftEnabled]] PD [[zoneRearRightEnabled]]",
+          "da": "Tænd klimaanlæg ved [[temperature]]°C, uden eks. strøm: [[climatisationWithoutExternalPower]], ved oplåsning: [[climatizationAtUnlock]], rudevarme: [[windowHeatingEnabled]], zoner: VF [[zoneFrontLeftEnabled]] HF [[zoneFrontRightEnabled]] VB [[zoneRearLeftEnabled]] HB [[zoneRearRightEnabled]]",
+          "no": "Slå på klimaanlegg ved [[temperature]]°C, uten eks. strøm: [[climatisationWithoutExternalPower]], ved opplåsing: [[climatizationAtUnlock]], vindusvarming: [[windowHeatingEnabled]], soner: VF [[zoneFrontLeftEnabled]] HF [[zoneFrontRightEnabled]] VB [[zoneRearLeftEnabled]] HB [[zoneRearRightEnabled]]",
+          "sv": "Slå på klimatanläggning vid [[temperature]]°C, utan ext. ström: [[climatisationWithoutExternalPower]], vid upplåsning: [[climatizationAtUnlock]], fönstervärme: [[windowHeatingEnabled]], zoner: VF [[zoneFrontLeftEnabled]] HF [[zoneFrontRightEnabled]] VB [[zoneRearLeftEnabled]] HB [[zoneRearRightEnabled]]",
+          "pl": "Włącz klimatyzację na [[temperature]]°C, bez zew. zasilania: [[climatisationWithoutExternalPower]], przy odblokowaniu: [[climatizationAtUnlock]], ogrzewanie szyb: [[windowHeatingEnabled]], strefy: LP [[zoneFrontLeftEnabled]] PP [[zoneFrontRightEnabled]] LT [[zoneRearLeftEnabled]] PT [[zoneRearRightEnabled]]",
+          "ru": "Включить климатизацию при [[temperature]]°C, без внеш. питания: [[climatisationWithoutExternalPower]], при разблокировке: [[climatizationAtUnlock]], обогрев окон: [[windowHeatingEnabled]], зоны: ПЛ [[zoneFrontLeftEnabled]] ПП [[zoneFrontRightEnabled]] ЗЛ [[zoneRearLeftEnabled]] ЗП [[zoneRearRightEnabled]]",
+          "ko": "[[temperature]]°C에서 냉난방 켜기, 외부 전원 없이: [[climatisationWithoutExternalPower]], 잠금 해제 시: [[climatizationAtUnlock]], 창문 히팅: [[windowHeatingEnabled]], 구역: 좌전 [[zoneFrontLeftEnabled]] 우전 [[zoneFrontRightEnabled]] 좌후 [[zoneRearLeftEnabled]] 우후 [[zoneRearRightEnabled]]"
+        },
+        "hint": {
+          "en": "Configure all climatisation settings including zones and additional options. Leave optional fields empty to use default settings.",
+          "nl": "Configureer alle klimaatinstellingen inclusief zones en extra opties. Laat optionele velden leeg om standaardinstellingen te gebruiken.",
+          "de": "Konfigurieren Sie alle Klimatisierungseinstellungen einschließlich Zonen und zusätzlicher Optionen. Lassen Sie optionale Felder leer, um Standardeinstellungen zu verwenden.",
+          "fr": "Configurez tous les paramètres de climatisation, y compris les zones et les options supplémentaires. Laissez les champs facultatifs vides pour utiliser les paramètres par défaut.",
+          "es": "Configure todos los ajustes de climatización, incluidas las zonas y opciones adicionales. Deje los campos opcionales vacíos para usar la configuración predeterminada.",
+          "it": "Configura tutte le impostazioni di climatizzazione, incluse le zone e le opzioni aggiuntive. Lascia i campi opzionali vuoti per utilizzare le impostazioni predefinite.",
+          "da": "Konfigurer alle klimaindstillinger, inklusive zoner og yderligere muligheder. Lad valgfrie felter være tomme for at bruge standardindstillinger.",
+          "no": "Konfigurer alle klimainnstillinger, inkludert soner og ekstra alternativer. La valgfrie felt være tomme for å bruke standardinnstillinger.",
+          "sv": "Konfigurera alla klimatinställningar, inklusive zoner och ytterligare alternativ. Lämna valfria fält tomma för att använda standardinställningar.",
+          "pl": "Skonfiguruj wszystkie ustawienia klimatyzacji, w tym strefy i dodatkowe opcje. Pozostaw pola opcjonalne puste, aby użyć ustawień domyślnych.",
+          "ru": "Настройте все параметры климатизации, включая зоны и дополнительные опции. Оставьте необязательные поля пустыми, чтобы использовать настройки по умолчанию.",
+          "ko": "구역 및 추가 옵션을 포함한 모든 냉난방 설정을 구성합니다. 기본 설정을 사용하려면 선택적 필드를 비워 두세요."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
+          },
+          {
+            "type": "number",
+            "name": "temperature",
+            "required": false,
+            "title": {
+              "en": "Target temperature (°C)",
+              "nl": "Doeltemperatuur (°C)",
+              "de": "Zieltemperatur (°C)",
+              "fr": "Température cible (°C)",
+              "es": "Temperatura objetivo (°C)",
+              "it": "Temperatura obiettivo (°C)",
+              "da": "Måltemperatur (°C)",
+              "no": "Måltemperatur (°C)",
+              "sv": "Måltemperatur (°C)",
+              "pl": "Temperatura docelowa (°C)",
+              "ru": "Целевая температура (°C)",
+              "ko": "목표 온도 (°C)"
+            },
+            "min": 15,
+            "max": 30,
+            "step": 0.5
+          },
+          {
+            "type": "checkbox",
+            "name": "climatisationWithoutExternalPower",
+            "required": false,
+            "title": {
+              "en": "Climatisation without external power",
+              "nl": "Klimaatregeling zonder externe stroom",
+              "de": "Klimatisierung ohne externe Stromversorgung",
+              "fr": "Climatisation sans alimentation externe",
+              "es": "Climatización sin alimentación externa",
+              "it": "Climatizzazione senza alimentazione esterna",
+              "da": "Klimaanlæg uden ekstern strøm",
+              "no": "Klimaanlegg uten ekstern strøm",
+              "sv": "Klimatanläggning utan extern ström",
+              "pl": "Klimatyzacja bez zewnętrznego zasilania",
+              "ru": "Климатизация без внешнего питания",
+              "ko": "외부 전원 없이 냉난방"
+            }
+          },
+          {
+            "type": "checkbox",
+            "name": "climatizationAtUnlock",
+            "required": false,
+            "title": {
+              "en": "Climatisation at unlock",
+              "nl": "Klimaatregeling bij ontgrendelen",
+              "de": "Klimatisierung beim Entsperren",
+              "fr": "Climatisation au déverrouillage",
+              "es": "Climatización al desbloquear",
+              "it": "Climatizzazione allo sblocco",
+              "da": "Klimaanlæg ved oplåsning",
+              "no": "Klimaanlegg ved opplåsing",
+              "sv": "Klimatanläggning vid upplåsning",
+              "pl": "Klimatyzacja przy odblokowaniu",
+              "ru": "Климатизация при разблокировке",
+              "ko": "잠금 해제 시 냉난방"
+            }
+          },
+          {
+            "type": "checkbox",
+            "name": "windowHeatingEnabled",
+            "required": false,
+            "title": {
+              "en": "Window heating enabled",
+              "nl": "Ruitverwarming ingeschakeld",
+              "de": "Scheibenheizung aktiviert",
+              "fr": "Chauffage des vitres activé",
+              "es": "Calefacción de ventanas activada",
+              "it": "Riscaldamento finestrini abilitato",
+              "da": "Rudevarme aktiveret",
+              "no": "Vindusvarming aktivert",
+              "sv": "Fönstervärme aktiverad",
+              "pl": "Ogrzewanie szyb włączone",
+              "ru": "Обогрев окон включен",
+              "ko": "창문 히팅 활성화"
+            }
+          },
+          {
+            "type": "checkbox",
+            "name": "zoneFrontLeftEnabled",
+            "required": false,
+            "title": {
+              "en": "Front left zone enabled",
+              "nl": "Linksvoorzone ingeschakeld",
+              "de": "Vorne links Zone aktiviert",
+              "fr": "Zone avant gauche activée",
+              "es": "Zona delantera izquierda activada",
+              "it": "Zona anteriore sinistra abilitata",
+              "da": "Venstre forzone aktiveret",
+              "no": "Venstre frontsone aktivert",
+              "sv": "Vänster framzon aktiverad",
+              "pl": "Lewa przednia strefa włączona",
+              "ru": "Передняя левая зона включена",
+              "ko": "좌측 전방 구역 활성화"
+            }
+          },
+          {
+            "type": "checkbox",
+            "name": "zoneFrontRightEnabled",
+            "required": false,
+            "title": {
+              "en": "Front right zone enabled",
+              "nl": "Rechtsvoorzone ingeschakeld",
+              "de": "Vorne rechts Zone aktiviert",
+              "fr": "Zone avant droite activée",
+              "es": "Zona delantera derecha activada",
+              "it": "Zona anteriore destra abilitata",
+              "da": "Højre forzone aktiveret",
+              "no": "Høyre frontsone aktivert",
+              "sv": "Höger framzon aktiverad",
+              "pl": "Prawa przednia strefa włączona",
+              "ru": "Передняя правая зона включена",
+              "ko": "우측 전방 구역 활성화"
+            }
+          },
+          {
+            "type": "checkbox",
+            "name": "zoneRearLeftEnabled",
+            "required": false,
+            "title": {
+              "en": "Rear left zone enabled",
+              "nl": "Linksachterzone ingeschakeld",
+              "de": "Hinten links Zone aktiviert",
+              "fr": "Zone arrière gauche activée",
+              "es": "Zona trasera izquierda activada",
+              "it": "Zona posteriore sinistra abilitata",
+              "da": "Venstre bagzone aktiveret",
+              "no": "Venstre baksone aktivert",
+              "sv": "Vänster bakzon aktiverad",
+              "pl": "Lewa tylna strefa włączona",
+              "ru": "Задняя левая зона включена",
+              "ko": "좌측 후방 구역 활성화"
+            }
+          },
+          {
+            "type": "checkbox",
+            "name": "zoneRearRightEnabled",
+            "required": false,
+            "title": {
+              "en": "Rear right zone enabled",
+              "nl": "Rechtsachterzone ingeschakeld",
+              "de": "Hinten rechts Zone aktiviert",
+              "fr": "Zone arrière droite activée",
+              "es": "Zona trasera derecha activada",
+              "it": "Zona posteriore destra abilitata",
+              "da": "Højre bagzone aktiveret",
+              "no": "Høyre baksone aktivert",
+              "sv": "Höger bakzon aktiverad",
+              "pl": "Prawa tylna strefa włączona",
+              "ru": "Задняя правая зона включена",
+              "ko": "우측 후방 구역 활성화"
+            }
+          }
+        ]
+      },
+      {
+        "id": "climatisation_onoff_off",
+        "highlight": true,
         "title": {
           "en": "Start or stop charging",
           "nl": "Start of stop laden",
@@ -405,8 +614,171 @@
               }
             ]
           }
-        ],
-        "id": "update_charge_settings"
+        ]
+      },
+      {
+        "id": "control_charging",
+        "title": {
+          "en": "Start or stop charging",
+          "nl": "Start of stop laden",
+          "de": "Laden starten oder stoppen",
+          "fr": "Démarrer ou arrêter la charge",
+          "da": "Start eller stop opladning",
+          "es": "Iniciar o detener la carga",
+          "it": "Avvia o interrompi la ricarica",
+          "no": "Start eller stopp lading",
+          "sv": "Starta eller stoppa laddning",
+          "pl": "Rozpocznij lub zatrzymaj ładowanie",
+          "ru": "Начать или остановить зарядку",
+          "ko": "충전 시작 또는 중지"
+        },
+        "titleFormatted": {
+          "en": "[[action]] charging",
+          "nl": "[[action]] laden",
+          "de": "Laden [[action]]",
+          "fr": "[[action]] la charge",
+          "da": "[[action]] opladning",
+          "es": "[[action]] la carga",
+          "it": "[[action]] la ricarica",
+          "no": "[[action]] lading",
+          "sv": "[[action]] laddning",
+          "pl": "[[action]] ładowanie",
+          "ru": "[[action]] зарядку",
+          "ko": "충전 [[action]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=volkswagen&capabilities=ev_charging_state"
+          },
+          {
+            "type": "dropdown",
+            "name": "action",
+            "title": {
+              "en": "Action",
+              "nl": "Actie",
+              "de": "Aktion",
+              "fr": "Action",
+              "da": "Handling",
+              "es": "Acción",
+              "it": "Azione",
+              "no": "Handling",
+              "sv": "Åtgärd",
+              "pl": "Akcja",
+              "ru": "Действие",
+              "ko": "작업"
+            },
+            "values": [
+              {
+                "id": "start",
+                "title": {
+                  "en": "Start",
+                  "nl": "Start",
+                  "de": "Starten",
+                  "fr": "Démarrer",
+                  "da": "Start",
+                  "es": "Iniciar",
+                  "it": "Avvia",
+                  "no": "Start",
+                  "sv": "Starta",
+                  "pl": "Rozpocznij",
+                  "ru": "Начать",
+                  "ko": "시작"
+                }
+              },
+              {
+                "id": "stop",
+                "title": {
+                  "en": "Stop",
+                  "nl": "Stop",
+                  "de": "Stoppen",
+                  "fr": "Arrêter",
+                  "da": "Stop",
+                  "es": "Detener",
+                  "it": "Interrompi",
+                  "no": "Stopp",
+                  "sv": "Stoppa",
+                  "pl": "Zatrzymaj",
+                  "ru": "Остановить",
+                  "ko": "중지"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "update_polling_interval",
+        "title": {
+          "en": "Update polling interval",
+          "nl": "Wijzig ververstijd",
+          "de": "Abrufintervall aktualisieren",
+          "fr": "Mettre à jour l'intervalle d'interrogation",
+          "da": "Opdater afstemningsinterval",
+          "es": "Actualizar intervalo de sondeo",
+          "it": "Aggiorna intervallo di polling",
+          "no": "Oppdater polling-intervall",
+          "sv": "Uppdatera intervall för avstämning",
+          "pl": "Zaktualizuj interwał odpytywania",
+          "ru": "Обновить интервал опроса",
+          "ko": "폴링 간격 업데이트"
+        },
+        "titleFormatted": {
+          "en": "Update polling interval to [[interval]] minutes",
+          "nl": "Wijzig ververstijd naar [[interval]] minuten",
+          "de": "Abrufintervall auf [[interval]] Minuten aktualisieren",
+          "fr": "Mettre à jour l'intervalle d'interrogation à [[interval]] minutes",
+          "da": "Opdater afstemningsinterval til [[interval]] minutter",
+          "es": "Actualizar intervalo de sondeo a [[interval]] minutos",
+          "it": "Aggiorna intervallo di polling a [[interval]] minuti",
+          "no": "Oppdater polling-intervall til [[interval]] minutter",
+          "sv": "Uppdatera intervall för avstämning till [[interval]] minuter",
+          "pl": "Zaktualizuj interwał odpytywania na [[interval]] minut",
+          "ru": "Обновить интервал опроса на [[interval]] минут",
+          "ko": "폴링 간격을 [[interval]]분으로 업데이트"
+        },
+        "hint": {
+          "en": "Change how often the app polls the vehicle for new data. Lower values may result in battery drain.",
+          "nl": "Wijzig hoe vaak de app bijgewerkte gegevens ophaalt. Lagere waarden kunnen resulteren in hoger batterijgebruik.",
+          "da": "Skift hvor ofte appen afstemmer køretøjet for nye data. Lavere værdier kan resultere i batteridræn.",
+          "de": "Ändern Sie, wie oft die App das Fahrzeug auf neue Daten abfragt. Niedrigere Werte können zu einem Batterieverbrauch führen.",
+          "es": "Cambie la frecuencia con la que la aplicación sondea el vehículo por nuevos datos. Valores más bajos pueden resultar en el agotamiento de la batería.",
+          "fr": "Modifiez la fréquence à laquelle l'application interroge le véhicule pour de nouvelles données. Des valeurs plus faibles peuvent entraîner une décharge de la batterie.",
+          "it": "Cambia la frequenza con cui l'app sonda il veicolo per nuovi dati. Valori più bassi possono causare lo scaricamento della batteria.",
+          "no": "Endre hvor ofte appen avstemmer kjøretøyet for nye data. Lavere verdier kan føre til batteritap.",
+          "sv": "Ändra hur ofta appen stämmer av fordonet för ny data. Lägre värden kan leda till batteridränering.",
+          "pl": "Zmień częstotliwość, z jaką aplikacja odpytuje pojazd o nowe dane. Niższe wartości mogą prowadzić do rozładowania akumulatora.",
+          "ru": "Измените частоту опроса автомобиля приложением на наличие новых данных. Более низкие значения могут привести к разрядке аккумулятора.",
+          "ko": "앱이 새 데이터를 위해 차량을 폴링하는 빈도를 변경합니다. 낮은 값은 배터리를 소모시킬 수 있습니다."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=volkswagen"
+          },
+          {
+            "type": "number",
+            "name": "interval",
+            "title": {
+              "en": "Interval (minutes)",
+              "nl": "Interval (minuten)",
+              "de": "Intervall (Minuten)",
+              "fr": "Intervalle (minutes)",
+              "da": "Interval (minutter)",
+              "es": "Intervalo (minutos)",
+              "it": "Intervallo (minuti)",
+              "no": "Intervall (minutter)",
+              "sv": "Intervall (minuter)",
+              "pl": "Interwał (minuty)",
+              "ru": "Интервал (минуты)",
+              "ko": "간격 (분)"
+            },
+            "min": 1,
+            "step": 1
+          }
+        ]
       }
     ]
   },
@@ -2196,6 +2568,56 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/capabilities/online.svg"
+    },
+    "window_heating_enabled": {
+      "type": "boolean",
+      "title": {
+        "en": "Window heating",
+        "nl": "Raamverwarming",
+        "de": "Scheibenheizung",
+        "fr": "Chauffage des vitres",
+        "es": "Calefacción de ventanas",
+        "it": "Riscaldamento finestrini",
+        "da": "Rudevarme",
+        "no": "Vindusvarme",
+        "sv": "Rutvärme",
+        "pl": "Ogrzewanie szyb",
+        "ru": "Обогрев окон",
+        "ko": "창문 히팅"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Window heating turned on",
+        "nl": "Raamverwarming ingeschakeld",
+        "de": "Scheibenheizung eingeschaltet",
+        "fr": "Chauffage des vitres activé",
+        "es": "Calefacción de ventanas activada",
+        "it": "Riscaldamento finestrini attivato",
+        "da": "Rudevarme tændt",
+        "no": "Vindusvarme slått på",
+        "sv": "Rutvärme påslagen",
+        "pl": "Ogrzewanie szyb włączone",
+        "ru": "Обогрев окон включен",
+        "ko": "창문 히팅 켜짐"
+      },
+      "insightsTitleFalse": {
+        "en": "Window heating turned off",
+        "nl": "Raamverwarming uitgeschakeld",
+        "de": "Scheibenheizung ausgeschaltet",
+        "fr": "Chauffage des vitres désactivé",
+        "es": "Calefacción de ventanas desactivada",
+        "it": "Riscaldamento finestrini disattivato",
+        "da": "Rudevarme slukket",
+        "no": "Vindusvarme slått av",
+        "sv": "Rutvärme avstängd",
+        "pl": "Ogrzewanie szyb wyłączone",
+        "ru": "Обогрев окон выключен",
+        "ko": "창문 히팅 꺼짐"
+      },
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/window_heating.svg"
     }
   }
 }
