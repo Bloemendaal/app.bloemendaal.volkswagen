@@ -2,8 +2,10 @@
 	"errors": {
 		"authentication": {
 			"authorization_url_failed": "Nie udało się pobrać adresu URL autoryzacji z WeConnect. Sprawdź połączenie internetowe i spróbuj ponownie.",
-			"login_failed": "Logowanie nie powiodło się. Sprawdź swój adres e-mail i hasło. Jeśli niedawno zmieniłeś hasło, upewnij się, że używasz prawidłowego. Może być również konieczne zaakceptowanie warunków w aplikacji Volkswagen.",
-			"authorization_parameters_failed": "Uwierzytelnianie zakończone, ale nie udało się pobrać parametrów zabezpieczeń. Spróbuj ponownie.",
+			"identity_provider_failed": "Nie udało się połączyć z dostawcą tożsamości. Spróbuj ponownie później.",
+			"email_submission_failed": "Nie udało się wysłać adresu e‑mail. Sprawdź adres i spróbuj ponownie.",
+			"password_form_parse_failed": "Nie udało się przetworzyć formularza hasła. Spróbuj ponownie.",
+			"password_submission_failed": "Nie udało się wysłać hasła. Możliwe przyczyny: nieprawidłowe hasło, zbyt wiele prób logowania w krótkim czasie lub brak akceptacji warunków w aplikacji Volkswagen. Aby je zaakceptować, wyloguj się z aplikacji Volkswagen i zaloguj ponownie.",
 			"token_exchange_failed": "Nie udało się uzyskać tokenów dostępu. Spróbuj ponownie lub sprawdź forum społeczności."
 		}
 	},
