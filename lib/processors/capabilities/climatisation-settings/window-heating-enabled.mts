@@ -27,7 +27,7 @@ export default class WindowHeatingEnabledCapability extends Capability<boolean> 
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
-		this.baseDevice.setCapabilityOptions(
+		this.device.setCapabilityOptions(
 			name,
 			isSetable
 				? { setable: true, uiComponent: "toggle" }
@@ -38,8 +38,8 @@ export default class WindowHeatingEnabledCapability extends Capability<boolean> 
 			return;
 		}
 
-		this.baseDevice.registerCapabilityListener(name, async (value: boolean) => {
-			const vehicle = await this.baseDevice.getVehicle();
+		this.device.registerCapabilityListener(name, async (value: boolean) => {
+			const vehicle = await this.device.getVehicle();
 
 			if (value) {
 				await vehicle.startWindowHeating();
@@ -47,7 +47,7 @@ export default class WindowHeatingEnabledCapability extends Capability<boolean> 
 				await vehicle.stopWindowHeating();
 			}
 
-			await this.baseDevice.requestRefresh();
+			await this.device.requestRefresh();
 		});
 	}
 }

@@ -2,24 +2,24 @@ import Flow from "./flow.mjs";
 
 export default class TimestampUpdatedFlow extends Flow {
 	public override async register(): Promise<void> {
-		if (!this.baseDevice.hasCapability("timestamp")) {
-			await this.baseDevice.addCapability("timestamp");
+		if (!this.device.hasCapability("timestamp")) {
+			await this.device.addCapability("timestamp");
 		}
 	}
 
 	public override async run(): Promise<void> {
 		const card =
-			this.baseDevice.homey.flow.getDeviceTriggerCard("timestamp_updated");
+			this.device.homey.flow.getDeviceTriggerCard("timestamp_updated");
 
 		let shouldTrigger = false;
-		let latestTimestamp = +this.baseDevice.getCapabilityValue("timestamp");
+		let latestTimestamp = +this.device.getCapabilityValue("timestamp");
 
-		for (const capability of this.baseDevice.getCapabilities()) {
+		for (const capability of this.device.getCapabilities()) {
 			if (!capability.startsWith("timestamp.")) {
 				continue;
 			}
 
-			const currentValue = +this.baseDevice.getCapabilityValue(capability);
+			const currentValue = +this.device.getCapabilityValue(capability);
 
 			if (!currentValue) {
 				continue;
@@ -35,8 +35,8 @@ export default class TimestampUpdatedFlow extends Flow {
 			return;
 		}
 
-		await this.baseDevice.setCapabilityValue("timestamp", latestTimestamp);
+		await this.device.setCapabilityValue("timestamp", latestTimestamp);
 
-		await card.trigger(this.baseDevice, { timestamp: latestTimestamp });
+		await card.trigger(this.device, { timestamp: latestTimestamp });
 	}
 }

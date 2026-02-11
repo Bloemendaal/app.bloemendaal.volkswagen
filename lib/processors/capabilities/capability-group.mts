@@ -4,7 +4,7 @@ import Processor, { type Processable } from "#lib/processors/processable.mjs";
 import type { DateTimeString } from "#lib/types.mjs";
 
 export default abstract class CapabilityGroup implements Processable {
-	constructor(protected readonly baseDevice: BaseDevice) {}
+	constructor(protected readonly device: BaseDevice) {}
 
 	public async register(fetchData: FetchData): Promise<void> {
 		const capabilities = await this.getProcessables(fetchData);
@@ -45,19 +45,19 @@ export default abstract class CapabilityGroup implements Processable {
 
 		const capabilityId = `timestamp.${this.getCapabilityGroupName()}`;
 
-		if (!this.baseDevice.hasCapability(capabilityId)) {
+		if (!this.device.hasCapability(capabilityId)) {
 			await this.registerTimestampCapability(capabilityId);
 		}
 
 		const carCapturedTimestamp = new Date(timestamp ?? 0).getTime();
 
-		const latestTimestamp = +this.baseDevice.getCapabilityValue(capabilityId);
+		const latestTimestamp = +this.device.getCapabilityValue(capabilityId);
 
 		if (carCapturedTimestamp <= latestTimestamp) {
 			return false;
 		}
 
-		await this.baseDevice.setCapabilityValue(
+		await this.device.setCapabilityValue(
 			capabilityId,
 			carCapturedTimestamp,
 		);
@@ -68,11 +68,11 @@ export default abstract class CapabilityGroup implements Processable {
 	private async registerTimestampCapability(
 		capabilityId: string,
 	): Promise<void> {
-		await this.baseDevice.addCapability(capabilityId);
+		await this.device.addCapability(capabilityId);
 
-		await this.baseDevice.setCapabilityOptions(capabilityId, {
-			title: this.baseDevice.homey.__("capabilities.timestamp.title", {
-				name: this.baseDevice.homey.__(
+		await this.device.setCapabilityOptions(capabilityId, {
+			title: this.device.homey.__("capabilities.timestamp.title", {
+				name: this.device.homey.__(
 					`capabilities.timestamp.variables.${this.getCapabilityGroupName()}`,
 				),
 			}),

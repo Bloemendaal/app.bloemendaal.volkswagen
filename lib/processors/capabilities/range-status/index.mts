@@ -25,10 +25,10 @@ export default class RangeStatusCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-			new MeasureRangeCapability(this.baseDevice),
-			new MeasureRangeAdBlueCapability(this.baseDevice),
-			new MeasureRangeDieselCapability(this.baseDevice),
-			new MeasureRangeElectricCapability(this.baseDevice),
+			new MeasureRangeCapability(this.device),
+			new MeasureRangeAdBlueCapability(this.device),
+			new MeasureRangeDieselCapability(this.device),
+			new MeasureRangeElectricCapability(this.device),
 		];
 	}
 }

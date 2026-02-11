@@ -3,7 +3,7 @@ import type { FetchData } from "#lib/api/fetch.mjs";
 import type { Processable, RunOptions } from "#lib/processors/processable.mjs";
 
 export default abstract class Flow implements Processable {
-	constructor(protected readonly baseDevice: BaseDevice) {}
+	constructor(protected readonly device: BaseDevice) {}
 
 	public abstract register(fetchData: FetchData): Promise<void>;
 
@@ -13,6 +13,6 @@ export default abstract class Flow implements Processable {
 	): Promise<void> {}
 
 	protected __(key: string | object, tags?: object): string {
-		return this.baseDevice.homey.__(key, tags);
+		return this.device.homey.__(key, tags);
 	}
 }

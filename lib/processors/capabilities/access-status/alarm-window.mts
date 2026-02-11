@@ -5,10 +5,10 @@ import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class AlarmWindowCapability extends Capability<boolean> {
 	constructor(
-		baseDevice: BaseDevice,
+		device: BaseDevice,
 		private readonly subCapabilityName: string,
 	) {
-		super(baseDevice);
+		super(device);
 	}
 
 	protected getCapabilityName(): string {
@@ -28,24 +28,24 @@ export default class AlarmWindowCapability extends Capability<boolean> {
 	}
 
 	public override async setter(_fetchData: FetchData): Promise<void> {
-		this.baseDevice.setCapabilityOptions(this.getCapabilityName(), {
-			title: this.baseDevice.homey.__("capabilities.alarm_window.title", {
-				name: this.baseDevice.homey.__(
+		this.device.setCapabilityOptions(this.getCapabilityName(), {
+			title: this.device.homey.__("capabilities.alarm_window.title", {
+				name: this.device.homey.__(
 					`capabilities.alarm_window.variables.${this.subCapabilityName}`,
 				),
 			}),
-			insightsTitleTrue: this.baseDevice.homey.__(
+			insightsTitleTrue: this.device.homey.__(
 				"capabilities.alarm_window.insightsTitleTrue",
 				{
-					name: this.baseDevice.homey.__(
+					name: this.device.homey.__(
 						`capabilities.alarm_window.variables.${this.subCapabilityName}`,
 					),
 				},
 			),
-			insightsTitleFalse: this.baseDevice.homey.__(
+			insightsTitleFalse: this.device.homey.__(
 				"capabilities.alarm_window.insightsTitleFalse",
 				{
-					name: this.baseDevice.homey.__(
+					name: this.device.homey.__(
 						`capabilities.alarm_window.variables.${this.subCapabilityName}`,
 					),
 				},

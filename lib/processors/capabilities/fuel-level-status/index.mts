@@ -21,6 +21,6 @@ export default class FuelLevelStatusCapabilityGroup extends CapabilityGroup {
 	protected async getProcessables(
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
-		return [new MeasureFuelLevelCapability(this.baseDevice)];
+		return [new MeasureFuelLevelCapability(this.device)];
 	}
 }

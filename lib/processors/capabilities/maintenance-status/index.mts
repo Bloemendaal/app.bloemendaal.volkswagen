@@ -25,10 +25,10 @@ export default class MaintenanceStatusCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-			new MaintenanceDueDaysCapability(this.baseDevice),
-			new MaintenanceDueKmCapability(this.baseDevice),
-			new OilServiceDueDaysCapability(this.baseDevice),
-			new OilServiceDueKmCapability(this.baseDevice),
+			new MaintenanceDueDaysCapability(this.device),
+			new MaintenanceDueKmCapability(this.device),
+			new OilServiceDueDaysCapability(this.device),
+			new OilServiceDueKmCapability(this.device),
 		];
 	}
 }

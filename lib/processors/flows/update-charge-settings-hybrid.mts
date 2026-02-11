@@ -7,7 +7,7 @@ interface UpdateChargingSettingsHybridArgs {
 
 export default class UpdateChargingSettingsHybridFlow extends Flow {
 	public override async register(): Promise<void> {
-		const card = this.baseDevice.homey.flow.getActionCard(
+		const card = this.device.homey.flow.getActionCard(
 			"update_charge_settings_hybrid",
 		);
 
@@ -17,9 +17,9 @@ export default class UpdateChargingSettingsHybridFlow extends Flow {
 	private async handleAction(
 		args: UpdateChargingSettingsHybridArgs,
 	): Promise<void> {
-		const vehicle = await this.baseDevice
+		const vehicle = await this.device
 			.getVehicle()
-			.catch((e: Error) => this.baseDevice.errorAndThrow(e));
+			.catch((e: Error) => this.device.errorAndThrow(e));
 
 		const settings: Partial<ChargingSettings> = {
 			chargingSettingsAC: {
@@ -30,8 +30,8 @@ export default class UpdateChargingSettingsHybridFlow extends Flow {
 
 		await vehicle
 			.updateChargingSettings(settings)
-			.catch((e) => this.baseDevice.errorAndThrow(e));
+			.catch((e) => this.device.errorAndThrow(e));
 
-		await this.baseDevice.requestRefresh(500, 1000);
+		await this.device.requestRefresh(500, 1000);
 	}
 }

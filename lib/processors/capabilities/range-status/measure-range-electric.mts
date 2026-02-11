@@ -19,9 +19,9 @@ export default class MeasureRangeElectricCapability extends Capability<number> {
 	}
 
 	public override async setter(_fetchData: FetchData): Promise<void> {
-		this.baseDevice.setCapabilityOptions(this.getCapabilityName(), {
-			title: this.baseDevice.homey.__("capabilities.measure_range.title", {
-				name: this.baseDevice.homey.__(
+		this.device.setCapabilityOptions(this.getCapabilityName(), {
+			title: this.device.homey.__("capabilities.measure_range.title", {
+				name: this.device.homey.__(
 					"capabilities.measure_range.variables.electric",
 				),
 			}),

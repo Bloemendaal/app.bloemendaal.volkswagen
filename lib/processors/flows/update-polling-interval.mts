@@ -7,7 +7,7 @@ interface UpdatePollingIntervalArgs {
 
 export default class UpdatePollingIntervalFlow extends Flow {
 	public override async register(_fetchData: FetchData): Promise<void> {
-		const card = this.baseDevice.homey.flow.getActionCard(
+		const card = this.device.homey.flow.getActionCard(
 			"update_polling_interval",
 		);
 
@@ -19,7 +19,7 @@ export default class UpdatePollingIntervalFlow extends Flow {
 			throw new Error(this.__("flows.polling_interval.invalid"));
 		}
 
-		await this.baseDevice.setSettings({
+		await this.device.setSettings({
 			pollingInterval: +args.interval,
 		});
 	}

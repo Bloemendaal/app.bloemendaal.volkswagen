@@ -26,10 +26,10 @@ export default class ParkingPositionCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-			new IsParkedCapability(this.baseDevice),
-			new CoordinateLatitudeCapability(this.baseDevice),
-			new CoordinateLongitudeCapability(this.baseDevice),
-			new MeasureDistanceHomeCapability(this.baseDevice),
+			new IsParkedCapability(this.device),
+			new CoordinateLatitudeCapability(this.device),
+			new CoordinateLongitudeCapability(this.device),
+			new MeasureDistanceHomeCapability(this.device),
 		];
 	}
 }

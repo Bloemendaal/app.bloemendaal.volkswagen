@@ -27,7 +27,7 @@ export default class TargetTemperatureCapability extends Capability<number> {
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
-		await this.baseDevice.setCapabilityOptions(
+		await this.device.setCapabilityOptions(
 			name,
 			isSetable
 				? { setable: true, uiComponent: "thermostat" }
@@ -38,15 +38,15 @@ export default class TargetTemperatureCapability extends Capability<number> {
 			return;
 		}
 
-		this.baseDevice.registerCapabilityListener(name, async (value: number) => {
-			const vehicle = await this.baseDevice.getVehicle();
+		this.device.registerCapabilityListener(name, async (value: number) => {
+			const vehicle = await this.device.getVehicle();
 
 			await vehicle.updateClimatisation({
 				targetTemperature: value,
 				targetTemperatureUnit: "celsius",
 			});
 
-			await this.baseDevice.requestRefresh();
+			await this.device.requestRefresh();
 		});
 	}
 }

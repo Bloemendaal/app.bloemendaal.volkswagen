@@ -27,7 +27,7 @@ export default class ClimatisationOnOffCapability extends Capability<boolean> {
 			capabilities.userCapabilities?.capabilitiesStatus?.value,
 		);
 
-		this.baseDevice.setCapabilityOptions(
+		this.device.setCapabilityOptions(
 			name,
 			isSetable
 				? { setable: true, uiComponent: "toggle" }
@@ -38,12 +38,12 @@ export default class ClimatisationOnOffCapability extends Capability<boolean> {
 			return;
 		}
 
-		this.baseDevice.registerCapabilityListener(name, async (value: boolean) => {
-			const vehicle = await this.baseDevice.getVehicle();
+		this.device.registerCapabilityListener(name, async (value: boolean) => {
+			const vehicle = await this.device.getVehicle();
 
 			if (value) {
 				const currentTargetTemp =
-					this.baseDevice.getCapabilityValue("target_temperature");
+					this.device.getCapabilityValue("target_temperature");
 
 				const settings: StartClimatisationSettings = {
 					targetTemperatureUnit: "celsius",
@@ -58,7 +58,7 @@ export default class ClimatisationOnOffCapability extends Capability<boolean> {
 				await vehicle.stopClimatisation();
 			}
 
-			await this.baseDevice.requestRefresh();
+			await this.device.requestRefresh();
 		});
 	}
 }

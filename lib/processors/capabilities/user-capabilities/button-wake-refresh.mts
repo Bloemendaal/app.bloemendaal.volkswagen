@@ -20,12 +20,12 @@ export default class ButtonWakeRefreshCapability extends Capability<never> {
 			return;
 		}
 
-		this.baseDevice.registerCapabilityListener(
+		this.device.registerCapabilityListener(
 			this.getCapabilityName(),
 			async () => {
-				const vehicle = await this.baseDevice.getVehicle();
+				const vehicle = await this.device.getVehicle();
 				await vehicle.wake();
-				await this.baseDevice.requestRefresh();
+				await this.device.requestRefresh();
 			},
 		);
 	}

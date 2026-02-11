@@ -6,26 +6,26 @@ interface ControlChargingArgs {
 
 export default class ControlChargingFlow extends Flow {
 	public override async register(): Promise<void> {
-		const card = this.baseDevice.homey.flow.getActionCard("control_charging");
+		const card = this.device.homey.flow.getActionCard("control_charging");
 
 		card.registerRunListener(this.handleAction.bind(this));
 	}
 
 	private async handleAction(args: ControlChargingArgs): Promise<void> {
-		const vehicle = await this.baseDevice
+		const vehicle = await this.device
 			.getVehicle()
-			.catch((e: Error) => this.baseDevice.errorAndThrow(e));
+			.catch((e: Error) => this.device.errorAndThrow(e));
 
 		if (args.action === "start") {
 			await vehicle
 				.startCharging()
-				.catch((e: Error) => this.baseDevice.errorAndThrow(e));
+				.catch((e: Error) => this.device.errorAndThrow(e));
 		} else {
 			await vehicle
 				.stopCharging()
-				.catch((e: Error) => this.baseDevice.errorAndThrow(e));
+				.catch((e: Error) => this.device.errorAndThrow(e));
 		}
 
-		await this.baseDevice.requestRefresh(500, 1000);
+		await this.device.requestRefresh(500, 1000);
 	}
 }

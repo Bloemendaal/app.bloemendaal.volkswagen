@@ -21,11 +21,11 @@ export default class MeasureBatteryTemperatureMinCapability extends Capability<n
 	}
 
 	public override async setter(_fetchData: FetchData): Promise<void> {
-		this.baseDevice.setCapabilityOptions(this.getCapabilityName(), {
-			title: this.baseDevice.homey.__(
+		this.device.setCapabilityOptions(this.getCapabilityName(), {
+			title: this.device.homey.__(
 				"capabilities.measure_battery_temperature.title",
 				{
-					name: this.baseDevice.homey.__(
+					name: this.device.homey.__(
 						"capabilities.measure_battery_temperature.variables.min",
 					),
 				},

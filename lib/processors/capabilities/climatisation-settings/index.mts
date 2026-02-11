@@ -19,6 +19,6 @@ export default class ClimatisationSettingsCapabilityGroup extends CapabilityGrou
 	}
 
 	protected async getProcessables(): Promise<Processable[]> {
-		return [new WindowHeatingEnabledCapability(this.baseDevice)];
+		return [new WindowHeatingEnabledCapability(this.device)];
 	}
 }

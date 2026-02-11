@@ -19,7 +19,7 @@ interface UpdateChargingSettingsArgs {
 
 export default class UpdateChargingSettingsFlow extends Flow {
 	public override async register(): Promise<void> {
-		const card = this.baseDevice.homey.flow.getActionCard(
+		const card = this.device.homey.flow.getActionCard(
 			"update_charge_settings",
 		);
 
@@ -33,10 +33,10 @@ export default class UpdateChargingSettingsFlow extends Flow {
 	private async getMaxChargeCurrentOptions(): Promise<
 		{ name: string; id: string }[]
 	> {
-		const expectsMaxCurrentInAmpere = this.baseDevice.hasCapability(
+		const expectsMaxCurrentInAmpere = this.device.hasCapability(
 			"expects_max_charging_current_in_ampere",
 		)
-			? this.baseDevice.getCapabilityValue(
+			? this.device.getCapabilityValue(
 					"expects_max_charging_current_in_ampere",
 				)
 			: false;
@@ -61,9 +61,9 @@ export default class UpdateChargingSettingsFlow extends Flow {
 	}
 
 	private async handleAction(args: UpdateChargingSettingsArgs): Promise<void> {
-		const vehicle = await this.baseDevice
+		const vehicle = await this.device
 			.getVehicle()
-			.catch((e: Error) => this.baseDevice.errorAndThrow(e));
+			.catch((e: Error) => this.device.errorAndThrow(e));
 
 		const settings: Partial<ChargingSettings> = {};
 
@@ -83,9 +83,9 @@ export default class UpdateChargingSettingsFlow extends Flow {
 
 		await vehicle
 			.updateChargingSettings(settings)
-			.catch((e: Error) => this.baseDevice.errorAndThrow(e));
+			.catch((e: Error) => this.device.errorAndThrow(e));
 
-		await this.baseDevice.requestRefresh(500, 1000);
+		await this.device.requestRefresh(500, 1000);
 	}
 
 	private resolveChargingSettingsAC(
@@ -125,7 +125,7 @@ export default class UpdateChargingSettingsFlow extends Flow {
 	}: UpdateChargingSettingsArgs): ChargingSettingsAC["maxChargeCurrentAC"] {
 		if (
 			max_charge_current === "unchanged" &&
-			this.baseDevice.hasCapability("max_charging_current")
+			this.device.hasCapability("max_charging_current")
 		) {
 		}
 
@@ -140,8 +140,8 @@ export default class UpdateChargingSettingsFlow extends Flow {
 		auto_unlock,
 	}: UpdateChargingSettingsArgs): boolean | undefined {
 		if (auto_unlock === "unchanged") {
-			return this.baseDevice.hasCapability("auto_unlock_plug_when_charged")
-				? this.baseDevice.getCapabilityValue("auto_unlock_plug_when_charged")
+			return this.device.hasCapability("auto_unlock_plug_when_charged")
+				? this.device.getCapabilityValue("auto_unlock_plug_when_charged")
 				: false;
 		}
 

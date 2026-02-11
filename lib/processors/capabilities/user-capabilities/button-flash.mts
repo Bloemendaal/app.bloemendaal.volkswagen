@@ -20,10 +20,10 @@ export default class ButtonFlashCapability extends Capability<never> {
 			return;
 		}
 
-		this.baseDevice.registerCapabilityListener(
+		this.device.registerCapabilityListener(
 			this.getCapabilityName(),
 			async () => {
-				const vehicle = await this.baseDevice.getVehicle();
+				const vehicle = await this.device.getVehicle();
 				const position = await vehicle.getParkingPosition();
 
 				await vehicle.honkAndFlash({
@@ -33,11 +33,11 @@ export default class ButtonFlashCapability extends Capability<never> {
 						latitude:
 							"lat" in position
 								? position.lat
-								: this.baseDevice.homey.geolocation.getLatitude(),
+								: this.device.homey.geolocation.getLatitude(),
 						longitude:
 							"lon" in position
 								? position.lon
-								: this.baseDevice.homey.geolocation.getLongitude(),
+								: this.device.homey.geolocation.getLongitude(),
 					},
 				});
 			},

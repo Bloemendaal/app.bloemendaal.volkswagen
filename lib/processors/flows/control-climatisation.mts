@@ -3,13 +3,13 @@ import Flow from "./flow.mjs";
 
 export default class ControlClimatisationFlow extends Flow {
 	public override async register(): Promise<void> {
-		const onCard = this.baseDevice.homey.flow.getActionCard(
+		const onCard = this.device.homey.flow.getActionCard(
 			"climatisation_onoff_on",
 		);
-		const onAdvancedCard = this.baseDevice.homey.flow.getActionCard(
+		const onAdvancedCard = this.device.homey.flow.getActionCard(
 			"climatisation_onoff_on_advanced",
 		);
-		const offCard = this.baseDevice.homey.flow.getActionCard(
+		const offCard = this.device.homey.flow.getActionCard(
 			"climatisation_onoff_off",
 		);
 
@@ -19,16 +19,16 @@ export default class ControlClimatisationFlow extends Flow {
 	}
 
 	private async handleOn(args: { temperature?: number }): Promise<void> {
-		const vehicle = await this.baseDevice.getVehicle();
+		const vehicle = await this.device.getVehicle();
 
 		await vehicle
 			.startClimatisation({
 				targetTemperature: args.temperature,
 				targetTemperatureUnit: "celsius",
 			})
-			.catch((e: Error) => this.baseDevice.errorAndThrow(e));
+			.catch((e: Error) => this.device.errorAndThrow(e));
 
-		await this.baseDevice.requestRefresh(500, 1000);
+		await this.device.requestRefresh(500, 1000);
 	}
 
 	private async handleOnAdvanced(args: {
@@ -41,7 +41,7 @@ export default class ControlClimatisationFlow extends Flow {
 		zoneRearLeftEnabled?: boolean;
 		zoneRearRightEnabled?: boolean;
 	}): Promise<void> {
-		const vehicle = await this.baseDevice.getVehicle();
+		const vehicle = await this.device.getVehicle();
 
 		const settings: ClimatisationSettings = {
 			targetTemperature: args.temperature,
@@ -74,20 +74,20 @@ export default class ControlClimatisationFlow extends Flow {
 
 		await vehicle
 			.startClimatisation(settings)
-			.catch((e) => this.baseDevice.errorAndThrow(e));
+			.catch((e) => this.device.errorAndThrow(e));
 
-		await this.baseDevice.requestRefresh(500, 1000);
+		await this.device.requestRefresh(500, 1000);
 	}
 
 	private async handleOff(): Promise<void> {
-		const vehicle = await this.baseDevice
+		const vehicle = await this.device
 			.getVehicle()
-			.catch((e: Error) => this.baseDevice.errorAndThrow(e));
+			.catch((e: Error) => this.device.errorAndThrow(e));
 
 		await vehicle
 			.stopClimatisation()
-			.catch((e: Error) => this.baseDevice.errorAndThrow(e));
+			.catch((e: Error) => this.device.errorAndThrow(e));
 
-		await this.baseDevice.requestRefresh(500, 1000);
+		await this.device.requestRefresh(500, 1000);
 	}
 }
