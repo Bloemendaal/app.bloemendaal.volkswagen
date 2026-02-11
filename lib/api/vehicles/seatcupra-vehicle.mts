@@ -1,12 +1,8 @@
-import type { Authenticatable } from "../authenticatable.mjs";
 import type { SelectiveStatusCapabilitiesData } from "../capabilities.mjs";
-import BaseVehicle, { type VehicleData } from "./base-vehicle.mjs";
+import type { ParkingPositionData } from "../parking-position.mjs";
+import BaseVehicle from "./base-vehicle.mjs";
 
 export default class SeatCupraVehicle extends BaseVehicle {
-	constructor(data: VehicleData, authenticator: Authenticatable) {
-		super(data, authenticator);
-	}
-
 	public override async getVehicleCapabilities(): Promise<
 		Partial<SelectiveStatusCapabilitiesData>
 	> {
@@ -18,27 +14,19 @@ export default class SeatCupraVehicle extends BaseVehicle {
 				client
 					.get(`/v2/vehicles/${this.vin}/status`)
 					.then((r) => r.data)
-					.catch((e) => {
-						return null;
-					}),
+					.catch(() => null),
 				client
 					.get(`/v5/users/${userId}/vehicles/${this.vin}/mycar`)
 					.then((r) => r.data)
-					.catch((e) => {
-						return null;
-					}),
+					.catch(() => null),
 				client
 					.get(`/v1/vehicles/${this.vin}/charging/status`)
 					.then((r) => r.data)
-					.catch((e) => {
-						return null;
-					}),
+					.catch(() => null),
 				client
 					.get(`/v1/vehicles/${this.vin}/climatisation/status`)
 					.then((r) => r.data)
-					.catch((e) => {
-						return null;
-					}),
+					.catch(() => null),
 			]);
 
 		const timestamp = new Date().toISOString();
@@ -274,7 +262,7 @@ export default class SeatCupraVehicle extends BaseVehicle {
 		return result;
 	}
 
-	public override async getParkingPosition(): Promise<any> {
+	public override async getParkingPosition(): Promise<ParkingPositionData> {
 		const client = await this.authenticator.getClient();
 
 		try {
@@ -292,7 +280,7 @@ export default class SeatCupraVehicle extends BaseVehicle {
 				carCapturedTimestamp:
 					data.carCapturedTimestamp || new Date().toISOString(),
 			};
-		} catch (error) {
+		} catch {
 			return { parked: false };
 		}
 	}

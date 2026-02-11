@@ -34,12 +34,6 @@ const SCOPE = "openid profile nickname birthdate phone";
 const MAXIMUM_REDIRECTS = 10;
 const TOKEN_EXPIRY_BUFFER_MS = 60 * 1000; // 1 minute
 
-interface SeatTokenResponse {
-	accessToken: string;
-	idToken: string;
-	refreshToken: string;
-}
-
 interface AuthorizationParameters {
 	code: string;
 	verifier: string;
@@ -163,7 +157,7 @@ export default class SeatAuthenticator implements Authenticatable {
 			);
 
 			return payload.sub || null;
-		} catch (error) {
+		} catch {
 			return null;
 		}
 	}
@@ -343,7 +337,7 @@ export default class SeatAuthenticator implements Authenticatable {
 				accessToken: tokenResponse.data.access_token,
 				refreshToken: tokenResponse.data.refresh_token,
 			};
-		} catch (error) {
+		} catch {
 			return null;
 		}
 	}
@@ -524,8 +518,8 @@ export default class SeatAuthenticator implements Authenticatable {
 						});
 
 						// Set consent checkboxes to false (opt-out)
-						if (consentFormData["marketingConsent"] !== undefined) {
-							consentFormData["marketingConsent"] = "false";
+						if (consentFormData.marketingConsent !== undefined) {
+							consentFormData.marketingConsent = "false";
 						}
 
 						const consentAction = consentForm.attr("action");

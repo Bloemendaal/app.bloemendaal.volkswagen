@@ -1,18 +1,10 @@
-import type { Authenticatable } from "../authenticatable.mjs";
-import BaseVehicle, {
-	selectiveStatusCapabilities,
-	type VehicleData,
-} from "./base-vehicle.mjs";
+import BaseVehicle, { selectiveStatusCapabilities } from "./base-vehicle.mjs";
 
 /**
  * Vehicle class for Volkswagen and Skoda
  * Uses the standard VAG API endpoints (/vehicle/v1/*)
  */
 export default class VolkswagenVehicle extends BaseVehicle {
-	constructor(data: VehicleData, authenticator: Authenticatable) {
-		super(data, authenticator);
-	}
-
 	protected getSelectiveStatusUrl(): string {
 		return `/vehicle/v1/vehicles/${
 			this.vin

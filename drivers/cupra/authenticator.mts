@@ -155,7 +155,7 @@ export default class CupraAuthenticator implements Authenticatable {
 			);
 
 			return payload.sub || null;
-		} catch (error) {
+		} catch {
 			return null;
 		}
 	}
@@ -334,7 +334,7 @@ export default class CupraAuthenticator implements Authenticatable {
 				accessToken: tokenResponse.data.access_token,
 				refreshToken: tokenResponse.data.refresh_token,
 			};
-		} catch (error) {
+		} catch {
 			return null;
 		}
 	}
@@ -518,8 +518,8 @@ export default class CupraAuthenticator implements Authenticatable {
 						});
 
 						// Set consent checkboxes to false (opt-out)
-						if (consentFormData["marketingConsent"] !== undefined) {
-							consentFormData["marketingConsent"] = "false";
+						if (consentFormData.marketingConsent !== undefined) {
+							consentFormData.marketingConsent = "false";
 						}
 
 						const consentAction = consentForm.attr("action");
