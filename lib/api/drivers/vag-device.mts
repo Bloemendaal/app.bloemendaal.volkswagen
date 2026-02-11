@@ -1,11 +1,10 @@
 import Homey from "homey";
-import type { Authenticatable } from "#lib/api/authenticatable.mjs";
-import DebounceScheduler from "#lib/api/debounce-scheduler.mjs";
-import type { FetchData } from "#lib/api/fetch.mjs";
-import User from "#lib/api/user.mjs";
-import type Vehicle from "#lib/api/vehicle.mjs";
-import TranslatableError from "#lib/errors/translatable-error.mjs";
-import type Processor from "#lib/processors/processable.mjs";
+import TranslatableError from "../../errors/translatable-error.mjs";
+import type Processor from "../../processors/processable.mjs";
+import DebounceScheduler from "../debounce-scheduler.mjs";
+import type { FetchData } from "../fetch.mjs";
+import type BaseUser from "../users/base-user.mjs";
+import type BaseVehicle from "../vehicles/base-vehicle.mjs";
 
 const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
@@ -16,15 +15,54 @@ interface OnSettingsParams {
 	changedKeys: string[];
 }
 
-export default abstract class VagDevice extends Homey.Device {
-	private vehicle: Vehicle | null = null;
+/**
+ * Base device class for all VAG Group vehicles
+ * Provides common functionality for Volkswagen, SEAT, Cupra, and Skoda
+ *
+ * @template TUser - The specific User class for the brand (extends BaseUser)
+ * @template TVehicle - The specific Vehicle class for the brand (extends BaseVehicle)
+ */
+export default abstract class VagDevice<
+	TVehicle extends BaseVehicle = BaseVehicle,
+> extends Homey.Device {
+	private vehicle: TVehicle | null = null;
 
 	private readonly debounceScheduler: DebounceScheduler<void> =
 		new DebounceScheduler<void>(this.setCapabilities.bind(this));
 
 	protected abstract readonly processor: Processor;
 
-	protected abstract getAuthenticator(): Authenticatable;
+	/**
+	 * Abstract method to create User instance - must be implemented by subclasses
+	 * This allows different User implementations for different brands
+	 */
+	protected abstract createUser(): BaseUser;
+
+	/**
+	 * Get vehicle from API using the brand-specific User class
+	 */
+	protected async getVehicleFromApi(): Promise<TVehicle> {
+		try {
+			const user = this.createUser();
+			const vehicles = await user.getVehicles();
+
+			const vehicle = vehicles.find(
+				(vehicle) => vehicle.vin === this.getData().id,
+			) as TVehicle | undefined;
+
+			if (!vehicle) {
+				throw new Error("Vehicle not found");
+			}
+
+			return vehicle;
+		} catch (error) {
+			if (error instanceof TranslatableError) {
+				throw new Error(this.homey.__(error.translationKey));
+			}
+
+			throw error;
+		}
+	}
 
 	public async onInit(): Promise<void> {
 		const vehicle = await this.getVehicle();
@@ -84,31 +122,13 @@ export default abstract class VagDevice extends Homey.Device {
 		throw error;
 	}
 
-	public async getVehicle(): Promise<Vehicle> {
+	public async getVehicle(): Promise<TVehicle> {
 		if (this.vehicle) {
 			return this.vehicle;
 		}
 
-		try {
-			const vehicles = await new User(this.getAuthenticator()).getVehicles();
-
-			const vehicle = vehicles.find(
-				(vehicle) => vehicle.vin === this.getData().id,
-			);
-
-			if (!vehicle) {
-				throw new Error("Vehicle not found");
-			}
-
-			this.vehicle = vehicle;
-			return vehicle;
-		} catch (error) {
-			if (error instanceof TranslatableError) {
-				throw new Error(this.homey.__(error.translationKey));
-			}
-
-			throw error;
-		}
+		this.vehicle = await this.getVehicleFromApi();
+		return this.vehicle;
 	}
 
 	public async requestRefresh(
@@ -119,7 +139,7 @@ export default abstract class VagDevice extends Homey.Device {
 	}
 
 	private async fetchVehicleData(
-		vehicle: Vehicle | null = null,
+		vehicle: TVehicle | null = null,
 	): Promise<FetchData> {
 		if (!vehicle) {
 			vehicle = await this.getVehicle();

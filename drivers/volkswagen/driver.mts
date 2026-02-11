@@ -1,6 +1,6 @@
 import Homey from "homey";
 import type { PairSession } from "homey/lib/Driver.js";
-import User from "#lib/api/user.mjs";
+import VolkswagenUser from "../../lib/api/users/volkswagen-user.mjs";
 import VolkswagenAuthenticator from "./authenticator.mjs";
 
 export default class VolkswagenDriver extends Homey.Driver {
@@ -9,7 +9,7 @@ export default class VolkswagenDriver extends Homey.Driver {
 		let email = "";
 		let password = "";
 
-		let user: User | null = null;
+		let user: VolkswagenUser | null = null;
 
 		session.setHandler(
 			"login",
@@ -23,7 +23,7 @@ export default class VolkswagenDriver extends Homey.Driver {
 				const authenticator = new VolkswagenAuthenticator({
 					credentials: { email, password },
 				});
-				user = new User(authenticator);
+				user = new VolkswagenUser(authenticator);
 
 				return await user.canLogin(this.homey);
 			},
@@ -38,7 +38,7 @@ export default class VolkswagenDriver extends Homey.Driver {
 					sPin,
 					credentials: { email, password },
 				});
-				const userInstance = user ?? new User(authenticator);
+				const userInstance = user ?? new VolkswagenUser(authenticator);
 
 				userInstance.getAuthenticator().setSPin(sPin);
 
@@ -51,7 +51,7 @@ export default class VolkswagenDriver extends Homey.Driver {
 				sPin,
 				credentials: { email, password },
 			});
-			const userInstance = user ?? new User(authenticator);
+			const userInstance = user ?? new VolkswagenUser(authenticator);
 
 			userInstance.getAuthenticator().setSPin(sPin);
 

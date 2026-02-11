@@ -1,4 +1,4 @@
-import type { ClimatisationSettings } from "../../api/climatisation.mjs";
+import type { ClimatisationSettings } from "#lib/api/climatisation.mjs";
 import Flow from "./flow.mjs";
 
 export default class ControlClimatisationFlow extends Flow {

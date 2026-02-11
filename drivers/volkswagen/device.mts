@@ -1,5 +1,6 @@
-import type { Authenticatable } from "#lib/api/authenticatable.mjs";
-import VagDevice from "#lib/drivers/vag-device.mjs";
+import VagDevice from "#lib/api/drivers/vag-device.mjs";
+import VolkswagenUser from "#lib/api/users/volkswagen-user.mjs";
+import type VolkswagenVehicle from "#lib/api/vehicles/volkswagen-vehicle.mjs";
 import AccessStatusCapabilityGroup from "#lib/processors/capabilities/access-status/index.mjs";
 import BatteryStatusCapabilityGroup from "#lib/processors/capabilities/battery-status/index.mjs";
 import ChargingSettingsCapabilityGroup from "#lib/processors/capabilities/charging-settings/index.mjs";
@@ -19,12 +20,13 @@ import ControlChargingFlow from "#lib/processors/flows/control-charging.mjs";
 import ControlClimatisationFlow from "#lib/processors/flows/control-climatisation.mjs";
 import TimestampUpdatedFlow from "#lib/processors/flows/timestamp-updated.mjs";
 import UpdateChargingSettingsFlow from "#lib/processors/flows/update-charge-settings.mjs";
+import UpdateChargingSettingsHybridFlow from "#lib/processors/flows/update-charge-settings-hybrid.mjs";
 import UpdatePollingIntervalFlow from "#lib/processors/flows/update-polling-interval.mjs";
 import Processor from "#lib/processors/processable.mjs";
 import EnergySetting from "#lib/processors/settings/energy.mjs";
 import VolkswagenAuthenticator from "./authenticator.mjs";
 
-export default class VolkswagenDevice extends VagDevice {
+export default class VolkswagenDevice extends VagDevice<VolkswagenVehicle> {
 	protected readonly processor: Processor = new Processor([
 		new EnergySetting(this),
 		new AccessStatusCapabilityGroup(this),
@@ -47,9 +49,12 @@ export default class VolkswagenDevice extends VagDevice {
 		new TimestampUpdatedFlow(this),
 		new UpdatePollingIntervalFlow(this),
 		new UpdateChargingSettingsFlow(this),
+		new UpdateChargingSettingsHybridFlow(this),
 	]);
 
-	protected getAuthenticator(): Authenticatable {
-		return VolkswagenAuthenticator.fromSettings(this.getSettings());
+	protected createUser(): VolkswagenUser {
+		return new VolkswagenUser(
+			VolkswagenAuthenticator.fromSettings(this.getSettings()),
+		);
 	}
 }

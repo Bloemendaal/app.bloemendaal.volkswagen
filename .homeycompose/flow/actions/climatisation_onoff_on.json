@@ -1,0 +1,72 @@
+{
+	"title": {
+		"en": "Turn on climatisation",
+		"nl": "Zet klimaatregeling aan",
+		"de": "Klimatisierung einschalten",
+		"fr": "Activer la climatisation",
+		"es": "Activar climatización",
+		"it": "Attiva climatizzazione",
+		"da": "Tænd for klimatisering",
+		"no": "Slå på klimatisering",
+		"sv": "Aktivera klimatisering",
+		"pl": "Włącz klimatyzację",
+		"ru": "Включить климатизацию",
+		"ko": "냉난방 켜기"
+	},
+	"titleFormatted": {
+		"en": "Turn on climatisation [[temperature]]",
+		"nl": "Zet klimaatregeling aan [[temperature]]",
+		"de": "Klimatisierung einschalten [[temperature]]",
+		"fr": "Activer la climatisation [[temperature]]",
+		"es": "Activar climatización [[temperature]]",
+		"it": "Attiva climatizzazione [[temperature]]",
+		"da": "Tænd for klimatisering [[temperature]]",
+		"no": "Slå på klimatisering [[temperature]]",
+		"sv": "Aktivera klimatisering [[temperature]]",
+		"pl": "Włącz klimatyzację [[temperature]]",
+		"ru": "Включить климатизацию [[temperature]]",
+		"ko": "냉난방 켜기 [[temperature]]"
+	},
+	"args": [
+		{
+			"type": "device",
+			"name": "device",
+			"filter": "driver_id=volkswagen|cupra|seat|skoda"
+		},
+		{
+			"type": "number",
+			"name": "temperature",
+			"title": {
+				"en": "Target temperature (°C)",
+				"nl": "Doeltemperatuur (°C)",
+				"de": "Zieltemperatur (°C)",
+				"fr": "Température cible (°C)",
+				"es": "Temperatura objetivo (°C)",
+				"it": "Temperatura target (°C)",
+				"da": "Måltemperatur (°C)",
+				"no": "Måltemperatur (°C)",
+				"sv": "Måltemperatur (°C)",
+				"pl": "Temperatura docelowa (°C)",
+				"ru": "Целевая температура (°C)",
+				"ko": "목표 온도 (°C)"
+			},
+			"min": 16,
+			"max": 30,
+			"step": 0.5,
+			"placeholder": {
+				"en": "Optional",
+				"nl": "Optioneel",
+				"de": "Optional",
+				"fr": "Optionnel",
+				"es": "Opcional",
+				"it": "Opzionale",
+				"da": "Valgfri",
+				"no": "Valgfritt",
+				"sv": "Valfritt",
+				"pl": "Opcjonalne",
+				"ru": "Необязательно",
+				"ko": "선택 사항"
+			}
+		}
+	]
+}

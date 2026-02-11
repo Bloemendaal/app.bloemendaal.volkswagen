@@ -1,17 +1,19 @@
-import type { Authenticatable } from "./authenticatable.mjs";
-import type { CapabilitiesStatusData } from "./capabilities/user-capabilities.mjs";
+import type { Authenticatable } from "../authenticatable.mjs";
+import type { CapabilitiesStatusData } from "../capabilities/user-capabilities.mjs";
 import {
 	type SelectiveStatusCapabilitiesData,
 	selectiveStatusCapabilities,
-} from "./capabilities.mjs";
+} from "../capabilities.mjs";
+
+// Re-export commonly used types and constants
+export { selectiveStatusCapabilities };
+export type { SelectiveStatusCapabilitiesData };
+
 import type {
 	ClimatisationSettings,
 	StartClimatisationSettings,
-} from "./climatisation.mjs";
-import type {
-	ParkingPositionData,
-	ParkingPositionResponse,
-} from "./parking-position.mjs";
+} from "../climatisation.mjs";
+import type { ParkingPositionData } from "../parking-position.mjs";
 
 export interface VehicleData {
 	vin: string;
@@ -35,7 +37,7 @@ export type TagData = unknown;
 
 export interface ChargingSettingsAC {
 	maxChargeCurrentAC: number | "reduced" | "maximum";
-	autoUnlockPlugWhenChargedAC: boolean;
+	autoUnlockPlugWhenChargedAC?: boolean | undefined;
 }
 
 export interface ChargingSettings {
@@ -43,8 +45,12 @@ export interface ChargingSettings {
 	chargingSettingsAC?: ChargingSettingsAC;
 }
 
-export default class Vehicle implements VehicleData {
-	private readonly authenticator: Authenticatable;
+/**
+ * Base class for all VAG Group vehicles
+ * Provides common functionality with brand-specific endpoint implementations
+ */
+export default abstract class BaseVehicle implements VehicleData {
+	protected readonly authenticator: Authenticatable;
 
 	public readonly vin: string;
 	public readonly role: string;
@@ -76,8 +82,36 @@ export default class Vehicle implements VehicleData {
 		this.tags = data.tags;
 	}
 
+	// Abstract methods for brand-specific endpoint URLs
+	protected abstract getSelectiveStatusUrl(): string;
+	protected abstract getParkingPositionUrl(): string;
+	protected abstract getLockUrl(): string;
+	protected abstract getUnlockUrl(): string;
+	protected abstract getStartClimatisationUrl(): string;
+	protected abstract getUpdateClimatisationUrl(): string;
+	protected abstract getStopClimatisationUrl(): string;
+	protected abstract getWakeUrl(): string;
+	protected abstract getHonkAndFlashUrl(): string;
+	protected abstract getStartChargingUrl(): string;
+	protected abstract getStopChargingUrl(): string;
+	protected abstract getUpdateChargingSettingsUrl(): string;
+	protected abstract getStartWindowHeatingUrl(): string;
+	protected abstract getStopWindowHeatingUrl(): string;
+
 	public getAuthenticator(): Authenticatable {
 		return this.authenticator;
+	}
+
+	/**
+	 * Check if this vehicle is a hybrid (has both primary and secondary engine)
+	 * This requires checking the last fetched capabilities data
+	 */
+	public isHybrid(
+		capabilities?: Partial<SelectiveStatusCapabilitiesData>,
+	): boolean {
+		if (!capabilities) return false;
+		const rangeStatus = capabilities.fuelStatus?.rangeStatus?.value;
+		return !!(rangeStatus?.primaryEngine && rangeStatus?.secondaryEngine);
 	}
 
 	public async getVehicleCapabilities(): Promise<
@@ -86,7 +120,7 @@ export default class Vehicle implements VehicleData {
 		const client = await this.authenticator.getClient();
 
 		const response = await client.get<Partial<SelectiveStatusCapabilitiesData>>(
-			`/vehicle/v1/vehicles/${this.vin}/selectivestatus?jobs=${selectiveStatusCapabilities.join(",")}`,
+			this.getSelectiveStatusUrl(),
 		);
 
 		return response.data;
@@ -95,18 +129,11 @@ export default class Vehicle implements VehicleData {
 	public async getParkingPosition(): Promise<ParkingPositionData> {
 		const client = await this.authenticator.getClient();
 
-		const response = await client.get<{ data: ParkingPositionResponse }>(
-			`/vehicle/v1/vehicles/${this.vin}/parkingposition`,
+		const response = await client.get<{ data: ParkingPositionData }>(
+			this.getParkingPositionUrl(),
 		);
 
-		if (response.status === 204) {
-			return { parked: false };
-		}
-
-		return {
-			...response.data.data,
-			parked: true,
-		};
+		return response.data.data;
 	}
 
 	public async lock(): Promise<void> {
@@ -118,9 +145,7 @@ export default class Vehicle implements VehicleData {
 
 		const client = await this.authenticator.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/access/lock`, {
-			spin: configuration.sPin,
-		});
+		await this.performLock(client, configuration.sPin);
 	}
 
 	public async unlock(): Promise<void> {
@@ -132,10 +157,12 @@ export default class Vehicle implements VehicleData {
 
 		const client = await this.authenticator.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/access/unlock`, {
-			spin: configuration.sPin,
-		});
+		await this.performUnlock(client, configuration.sPin);
 	}
+
+	// Abstract methods for lock/unlock implementation (different for SEAT/Cupra)
+	protected abstract performLock(client: any, sPin: string): Promise<void>;
+	protected abstract performUnlock(client: any, sPin: string): Promise<void>;
 
 	public lockOrUnlock(lock: boolean): Promise<void> {
 		return lock ? this.lock() : this.unlock();
@@ -151,10 +178,7 @@ export default class Vehicle implements VehicleData {
 
 		const client = await this.authenticator.getClient();
 
-		await client.post(
-			`/vehicle/v1/vehicles/${this.vin}/climatisation/start`,
-			settings,
-		);
+		await client.post(this.getStartClimatisationUrl(), settings);
 	}
 
 	public async updateClimatisation(
@@ -167,22 +191,19 @@ export default class Vehicle implements VehicleData {
 
 		const client = await this.authenticator.getClient();
 
-		await client.put(
-			`/vehicle/v1/vehicles/${this.vin}/climatisation/settings`,
-			settings,
-		);
+		await client.put(this.getUpdateClimatisationUrl(), settings);
 	}
 
 	public async stopClimatisation(): Promise<void> {
 		const client = await this.authenticator.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/climatisation/stop`);
+		await client.post(this.getStopClimatisationUrl());
 	}
 
 	public async wake(): Promise<void> {
 		const client = await this.authenticator.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/vehiclewakeuptrigger`);
+		await client.post(this.getWakeUrl());
 	}
 
 	public async honkAndFlash(options: {
@@ -195,7 +216,7 @@ export default class Vehicle implements VehicleData {
 	}): Promise<void> {
 		const client = await this.authenticator.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/honkandflash`, {
+		await client.post(this.getHonkAndFlashUrl(), {
 			mode: options.mode,
 			duration_s: options.duration,
 			userPosition: options.userPosition,
@@ -205,13 +226,13 @@ export default class Vehicle implements VehicleData {
 	public async startCharging(): Promise<void> {
 		const client = await this.authenticator.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/charging/start`);
+		await client.post(this.getStartChargingUrl());
 	}
 
 	public async stopCharging(): Promise<void> {
 		const client = await this.authenticator.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/charging/stop`);
+		await client.post(this.getStopChargingUrl());
 	}
 
 	public async updateChargingSettings(
@@ -247,21 +268,18 @@ export default class Vehicle implements VehicleData {
 			);
 		}
 
-		await client.put(
-			`/vehicle/v1/vehicles/${this.vin}/charging/settings`,
-			payload,
-		);
+		await client.put(this.getUpdateChargingSettingsUrl(), payload);
 	}
 
 	public async startWindowHeating(): Promise<void> {
 		const client = await this.authenticator.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/windowheating/start`);
+		await client.post(this.getStartWindowHeatingUrl());
 	}
 
 	public async stopWindowHeating(): Promise<void> {
 		const client = await this.authenticator.getClient();
 
-		await client.post(`/vehicle/v1/vehicles/${this.vin}/windowheating/stop`);
+		await client.post(this.getStopWindowHeatingUrl());
 	}
 }
