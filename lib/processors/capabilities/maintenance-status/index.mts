@@ -8,27 +8,27 @@ import OilServiceDueDaysCapability from "./oil-service-due-days.mjs";
 import OilServiceDueKmCapability from "./oil-service-due-km.mjs";
 
 export default class MaintenanceStatusCapabilityGroup extends CapabilityGroup {
-  protected getCapabilityGroupName(): string {
-    return "maintenance_status";
-  }
+	protected getCapabilityGroupName(): string {
+		return "maintenance_status";
+	}
 
-  protected getCapabilityTimestamp({
-    capabilities,
-  }: FetchData): DateTimeString | null {
-    return (
-      capabilities.vehicleHealthInspection?.maintenanceStatus?.value
-        ?.carCapturedTimestamp ?? null
-    );
-  }
+	protected getCapabilityTimestamp({
+		capabilities,
+	}: FetchData): DateTimeString | null {
+		return (
+			capabilities.vehicleHealthInspection?.maintenanceStatus?.value
+				?.carCapturedTimestamp ?? null
+		);
+	}
 
-  protected async getProcessables(
-    _fetchData: FetchData,
-  ): Promise<Processable[]> {
-    return [
-      new MaintenanceDueDaysCapability(this.baseDevice),
-      new MaintenanceDueKmCapability(this.baseDevice),
-      new OilServiceDueDaysCapability(this.baseDevice),
-      new OilServiceDueKmCapability(this.baseDevice),
-    ];
-  }
+	protected async getProcessables(
+		_fetchData: FetchData,
+	): Promise<Processable[]> {
+		return [
+			new MaintenanceDueDaysCapability(this.baseDevice),
+			new MaintenanceDueKmCapability(this.baseDevice),
+			new OilServiceDueDaysCapability(this.baseDevice),
+			new OilServiceDueKmCapability(this.baseDevice),
+		];
+	}
 }

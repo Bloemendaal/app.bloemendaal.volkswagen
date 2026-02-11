@@ -1,4 +1,4 @@
-import { Authenticatable } from "../../lib/api/authenticatable.mjs";
+import type { Authenticatable } from "../../lib/api/authenticatable.mjs";
 import VolkswagenDevice from "../../lib/api/drivers/volkswagen-device.mjs";
 import VolkswagenUser from "../../lib/api/users/volkswagen-user.mjs";
 import AccessStatusCapabilityGroup from "../../lib/processors/capabilities/access-status/index.mjs";
@@ -22,31 +22,31 @@ import EnergySetting from "../../lib/processors/settings/energy.mjs";
 import SkodaAuthenticator from "./authenticator.mjs";
 
 export default class SkodaDevice extends VolkswagenDevice {
-  protected readonly processor: Processor = new Processor([
-    new EnergySetting(this),
-    new AccessStatusCapabilityGroup(this),
-    new BatteryStatusCapabilityGroup(this),
-    new ChargingSettingsCapabilityGroup(this),
-    new ChargingStatusCapabilityGroup(this),
-    new ClimatisationStatusCapabilityGroup(this),
-    new MaintenanceStatusCapabilityGroup(this),
-    new OdometerStatusCapabilityGroup(this),
-    new ParkingPositionCapabilityGroup(this),
-    new PlugStatusCapabilityGroup(this),
-    new ReadinessStatusCapabilityGroup(this),
-    new TemperatureBatteryStatusCapabilityGroup(this),
-    new UserCapabilitiesCapabilityGroup(this),
-    new ControlChargingFlow(this),
-    new ControlClimatisationFlow(this),
-    new UpdateChargingSettingsFlow(this),
-    new UpdateChargingSettingsHybridFlow(this),
-  ]);
+	protected readonly processor: Processor = new Processor([
+		new EnergySetting(this),
+		new AccessStatusCapabilityGroup(this),
+		new BatteryStatusCapabilityGroup(this),
+		new ChargingSettingsCapabilityGroup(this),
+		new ChargingStatusCapabilityGroup(this),
+		new ClimatisationStatusCapabilityGroup(this),
+		new MaintenanceStatusCapabilityGroup(this),
+		new OdometerStatusCapabilityGroup(this),
+		new ParkingPositionCapabilityGroup(this),
+		new PlugStatusCapabilityGroup(this),
+		new ReadinessStatusCapabilityGroup(this),
+		new TemperatureBatteryStatusCapabilityGroup(this),
+		new UserCapabilitiesCapabilityGroup(this),
+		new ControlChargingFlow(this),
+		new ControlClimatisationFlow(this),
+		new UpdateChargingSettingsFlow(this),
+		new UpdateChargingSettingsHybridFlow(this),
+	]);
 
-  protected getAuthenticator(): Authenticatable {
-    return SkodaAuthenticator.fromSettings(this.getSettings());
-  }
+	protected getAuthenticator(): Authenticatable {
+		return SkodaAuthenticator.fromSettings(this.getSettings());
+	}
 
-  protected createUser(authenticator: Authenticatable): VolkswagenUser {
-    return new VolkswagenUser(authenticator);
-  }
+	protected createUser(authenticator: Authenticatable): VolkswagenUser {
+		return new VolkswagenUser(authenticator);
+	}
 }

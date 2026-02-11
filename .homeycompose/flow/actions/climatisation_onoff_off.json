@@ -1,19 +1,19 @@
 {
-  "id": "climatisation_onoff_off",
-  "highlight": true,
-  "$filter": "capabilities=climatisation_onoff",
-  "title": {
-    "en": "Turn off climatisation",
-    "nl": "Klimaatregeling uitzetten",
-    "de": "Klimatisierung ausschalten",
-    "fr": "Désactiver la climatisation",
-    "es": "Apagar climatización",
-    "it": "Spegni climatizzazione",
-    "da": "Sluk klimaanlæg",
-    "no": "Slå av klimaanlegg",
-    "sv": "Slå av klimatanläggning",
-    "pl": "Wyłącz klimatyzację",
-    "ru": "Выключить климатизацию",
-    "ko": "냉난방 끄기"
-  }
+	"id": "climatisation_onoff_off",
+	"highlight": true,
+	"$filter": "capabilities=climatisation_onoff",
+	"title": {
+		"en": "Turn off climatisation",
+		"nl": "Klimaatregeling uitzetten",
+		"de": "Klimatisierung ausschalten",
+		"fr": "Désactiver la climatisation",
+		"es": "Apagar climatización",
+		"it": "Spegni climatizzazione",
+		"da": "Sluk klimaanlæg",
+		"no": "Slå av klimaanlegg",
+		"sv": "Slå av klimatanläggning",
+		"pl": "Wyłącz klimatyzację",
+		"ru": "Выключить климатизацию",
+		"ko": "냉난방 끄기"
+	}
 }

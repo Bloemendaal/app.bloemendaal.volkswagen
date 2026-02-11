@@ -23,8 +23,8 @@ export default class TemperatureBatteryStatusCapabilityGroup extends CapabilityG
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-      new MeasureBatteryTemperatureMinCapability(this.baseDevice),
-      new MeasureBatteryTemperatureMaxCapability(this.baseDevice),
+			new MeasureBatteryTemperatureMinCapability(this.baseDevice),
+			new MeasureBatteryTemperatureMaxCapability(this.baseDevice),
 		];
 	}
 }

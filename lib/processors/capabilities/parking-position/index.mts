@@ -8,28 +8,28 @@ import IsParkedCapability from "./is-parked.mjs";
 import MeasureDistanceHomeCapability from "./measure-distance-home.mjs";
 
 export default class ParkingPositionCapabilityGroup extends CapabilityGroup {
-  protected getCapabilityGroupName(): string {
-    return "parking_position";
-  }
+	protected getCapabilityGroupName(): string {
+		return "parking_position";
+	}
 
-  protected getCapabilityTimestamp({
-    parkingPosition,
-  }: FetchData): DateTimeString | null {
-    if (!parkingPosition?.parked) {
-      return null;
-    }
+	protected getCapabilityTimestamp({
+		parkingPosition,
+	}: FetchData): DateTimeString | null {
+		if (!parkingPosition?.parked) {
+			return null;
+		}
 
-    return parkingPosition?.carCapturedTimestamp ?? null;
-  }
+		return parkingPosition?.carCapturedTimestamp ?? null;
+	}
 
-  protected async getProcessables(
-    _fetchData: FetchData,
-  ): Promise<Processable[]> {
-    return [
-      new IsParkedCapability(this.baseDevice),
-      new CoordinateLatitudeCapability(this.baseDevice),
-      new CoordinateLongitudeCapability(this.baseDevice),
-      new MeasureDistanceHomeCapability(this.baseDevice),
-    ];
-  }
+	protected async getProcessables(
+		_fetchData: FetchData,
+	): Promise<Processable[]> {
+		return [
+			new IsParkedCapability(this.baseDevice),
+			new CoordinateLatitudeCapability(this.baseDevice),
+			new CoordinateLongitudeCapability(this.baseDevice),
+			new MeasureDistanceHomeCapability(this.baseDevice),
+		];
+	}
 }

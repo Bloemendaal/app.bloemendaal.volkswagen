@@ -20,8 +20,8 @@ export default class ReadinessStatusCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-      new VehicleOnlineCapability(this.baseDevice),
-      new VehicleActiveCapability(this.baseDevice),
+			new VehicleOnlineCapability(this.baseDevice),
+			new VehicleActiveCapability(this.baseDevice),
 		];
 	}
 }

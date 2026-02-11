@@ -20,6 +20,6 @@ export default class PlugStatusCapabilityGroup extends CapabilityGroup {
 	protected async getProcessables(
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
-    return [new IsPlugConnectedCapability(this.baseDevice)];
+		return [new IsPlugConnectedCapability(this.baseDevice)];
 	}
 }

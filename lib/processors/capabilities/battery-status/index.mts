@@ -24,10 +24,10 @@ export default class BatteryStatusCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-      new MeasureBatteryCapability(this.baseDevice),
-      new MeasureBatteryUntilFullCapability(this.baseDevice),
-      new MeasureBatteryUntilTargetSocCapability(this.baseDevice),
-      new MeasureBatteryPercentageCapability(this.baseDevice),
+			new MeasureBatteryCapability(this.baseDevice),
+			new MeasureBatteryUntilFullCapability(this.baseDevice),
+			new MeasureBatteryUntilTargetSocCapability(this.baseDevice),
+			new MeasureBatteryPercentageCapability(this.baseDevice),
 		];
 	}
 }

@@ -8,27 +8,27 @@ import MeasureRangeDieselCapability from "./measure-range-diesel.mjs";
 import MeasureRangeElectricCapability from "./measure-range-electric.mjs";
 
 export default class RangeStatusCapabilityGroup extends CapabilityGroup {
-  protected getCapabilityGroupName(): string {
-    return "range_status";
-  }
+	protected getCapabilityGroupName(): string {
+		return "range_status";
+	}
 
-  protected getCapabilityTimestamp({
-    capabilities,
-  }: FetchData): DateTimeString | null {
-    return (
-      capabilities.measurements?.rangeStatus?.value?.carCapturedTimestamp ??
-      null
-    );
-  }
+	protected getCapabilityTimestamp({
+		capabilities,
+	}: FetchData): DateTimeString | null {
+		return (
+			capabilities.measurements?.rangeStatus?.value?.carCapturedTimestamp ??
+			null
+		);
+	}
 
-  protected async getProcessables(
-    _fetchData: FetchData,
-  ): Promise<Processable[]> {
-    return [
-      new MeasureRangeCapability(this.baseDevice),
-      new MeasureRangeAdBlueCapability(this.baseDevice),
-      new MeasureRangeDieselCapability(this.baseDevice),
-      new MeasureRangeElectricCapability(this.baseDevice),
-    ];
-  }
+	protected async getProcessables(
+		_fetchData: FetchData,
+	): Promise<Processable[]> {
+		return [
+			new MeasureRangeCapability(this.baseDevice),
+			new MeasureRangeAdBlueCapability(this.baseDevice),
+			new MeasureRangeDieselCapability(this.baseDevice),
+			new MeasureRangeElectricCapability(this.baseDevice),
+		];
+	}
 }

@@ -1,7 +1,7 @@
 import type { Authenticatable } from "../authenticatable.mjs";
 import BaseVehicle, {
-  type VehicleData,
-  selectiveStatusCapabilities,
+	selectiveStatusCapabilities,
+	type VehicleData,
 } from "./base-vehicle.mjs";
 
 /**
@@ -9,77 +9,77 @@ import BaseVehicle, {
  * Uses the standard VAG API endpoints (/vehicle/v1/*)
  */
 export default class VolkswagenVehicle extends BaseVehicle {
-  constructor(data: VehicleData, authenticator: Authenticatable) {
-    super(data, authenticator);
-  }
+	constructor(data: VehicleData, authenticator: Authenticatable) {
+		super(data, authenticator);
+	}
 
-  protected getSelectiveStatusUrl(): string {
-    return `/vehicle/v1/vehicles/${
-      this.vin
-    }/selectivestatus?jobs=${selectiveStatusCapabilities.join(",")}`;
-  }
+	protected getSelectiveStatusUrl(): string {
+		return `/vehicle/v1/vehicles/${
+			this.vin
+		}/selectivestatus?jobs=${selectiveStatusCapabilities.join(",")}`;
+	}
 
-  protected getParkingPositionUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/parkingposition`;
-  }
+	protected getParkingPositionUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/parkingposition`;
+	}
 
-  protected getLockUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/access/lock`;
-  }
+	protected getLockUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/access/lock`;
+	}
 
-  protected getUnlockUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/access/unlock`;
-  }
+	protected getUnlockUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/access/unlock`;
+	}
 
-  protected getStartClimatisationUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/climatisation/start`;
-  }
+	protected getStartClimatisationUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/climatisation/start`;
+	}
 
-  protected getUpdateClimatisationUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/climatisation/settings`;
-  }
+	protected getUpdateClimatisationUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/climatisation/settings`;
+	}
 
-  protected getStopClimatisationUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/climatisation/stop`;
-  }
+	protected getStopClimatisationUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/climatisation/stop`;
+	}
 
-  protected getWakeUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/vehiclewakeuptrigger`;
-  }
+	protected getWakeUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/vehiclewakeuptrigger`;
+	}
 
-  protected getHonkAndFlashUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/honkandflash`;
-  }
+	protected getHonkAndFlashUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/honkandflash`;
+	}
 
-  protected getStartChargingUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/charging/start`;
-  }
+	protected getStartChargingUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/charging/start`;
+	}
 
-  protected getStopChargingUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/charging/stop`;
-  }
+	protected getStopChargingUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/charging/stop`;
+	}
 
-  protected getUpdateChargingSettingsUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/charging/settings`;
-  }
+	protected getUpdateChargingSettingsUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/charging/settings`;
+	}
 
-  protected getStartWindowHeatingUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/windowheating/start`;
-  }
+	protected getStartWindowHeatingUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/windowheating/start`;
+	}
 
-  protected getStopWindowHeatingUrl(): string {
-    return `/vehicle/v1/vehicles/${this.vin}/windowheating/stop`;
-  }
+	protected getStopWindowHeatingUrl(): string {
+		return `/vehicle/v1/vehicles/${this.vin}/windowheating/stop`;
+	}
 
-  protected async performLock(client: any, sPin: string): Promise<void> {
-    await client.post(this.getLockUrl(), {
-      spin: sPin,
-    });
-  }
+	protected async performLock(client: any, sPin: string): Promise<void> {
+		await client.post(this.getLockUrl(), {
+			spin: sPin,
+		});
+	}
 
-  protected async performUnlock(client: any, sPin: string): Promise<void> {
-    await client.post(this.getUnlockUrl(), {
-      spin: sPin,
-    });
-  }
+	protected async performUnlock(client: any, sPin: string): Promise<void> {
+		await client.post(this.getUnlockUrl(), {
+			spin: sPin,
+		});
+	}
 }

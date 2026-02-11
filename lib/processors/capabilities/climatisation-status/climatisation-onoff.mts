@@ -4,61 +4,61 @@ import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
 import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class ClimatisationOnOffCapability extends Capability<boolean> {
-  protected getCapabilityName(): string {
-    return "climatisation_onoff";
-  }
+	protected getCapabilityName(): string {
+		return "climatisation_onoff";
+	}
 
-  public override async getter({ capabilities }: FetchData): Promise<boolean> {
-    const climatisationState =
-      capabilities.climatisation?.climatisationStatus?.value
-        ?.climatisationState;
+	public override async getter({ capabilities }: FetchData): Promise<boolean> {
+		const climatisationState =
+			capabilities.climatisation?.climatisationStatus?.value
+				?.climatisationState;
 
-    if (!climatisationState || climatisationState === "unsupported") {
-      throw new InvalidValueError(climatisationState);
-    }
+		if (!climatisationState || climatisationState === "unsupported") {
+			throw new InvalidValueError(climatisationState);
+		}
 
-    return climatisationState !== "off";
-  }
+		return climatisationState !== "off";
+	}
 
-  public override async setter({ capabilities }: FetchData): Promise<void> {
-    const name = this.getCapabilityName();
-    const isSetable = await this.can(
-      "climatisation",
-      capabilities.userCapabilities?.capabilitiesStatus?.value,
-    );
+	public override async setter({ capabilities }: FetchData): Promise<void> {
+		const name = this.getCapabilityName();
+		const isSetable = await this.can(
+			"climatisation",
+			capabilities.userCapabilities?.capabilitiesStatus?.value,
+		);
 
-    this.baseDevice.setCapabilityOptions(
-      name,
-      isSetable
-        ? { setable: true, uiComponent: "toggle" }
-        : { setable: false, uiComponent: "sensor" },
-    );
+		this.baseDevice.setCapabilityOptions(
+			name,
+			isSetable
+				? { setable: true, uiComponent: "toggle" }
+				: { setable: false, uiComponent: "sensor" },
+		);
 
-    if (!isSetable) {
-      return;
-    }
+		if (!isSetable) {
+			return;
+		}
 
-    this.baseDevice.registerCapabilityListener(name, async (value: boolean) => {
-      const vehicle = await this.baseDevice.getVehicle();
+		this.baseDevice.registerCapabilityListener(name, async (value: boolean) => {
+			const vehicle = await this.baseDevice.getVehicle();
 
-      if (value) {
-        const currentTargetTemp =
-          this.baseDevice.getCapabilityValue("target_temperature");
+			if (value) {
+				const currentTargetTemp =
+					this.baseDevice.getCapabilityValue("target_temperature");
 
-        const settings: StartClimatisationSettings = {
-          targetTemperatureUnit: "celsius",
-        };
+				const settings: StartClimatisationSettings = {
+					targetTemperatureUnit: "celsius",
+				};
 
-        if (typeof currentTargetTemp === "number") {
-          settings.targetTemperature = currentTargetTemp;
-        }
+				if (typeof currentTargetTemp === "number") {
+					settings.targetTemperature = currentTargetTemp;
+				}
 
-        await vehicle.startClimatisation(settings);
-      } else {
-        await vehicle.stopClimatisation();
-      }
+				await vehicle.startClimatisation(settings);
+			} else {
+				await vehicle.stopClimatisation();
+			}
 
-      await this.baseDevice.requestRefresh();
-    });
-  }
+			await this.baseDevice.requestRefresh();
+		});
+	}
 }

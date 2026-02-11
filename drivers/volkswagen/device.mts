@@ -1,4 +1,4 @@
-import { Authenticatable } from "#lib/api/authenticatable.mjs";
+import type { Authenticatable } from "#lib/api/authenticatable.mjs";
 import VolkswagenDevice from "#lib/api/drivers/volkswagen-device.mjs";
 import VolkswagenUser from "#lib/api/users/volkswagen-user.mjs";
 import AccessStatusCapabilityGroup from "#lib/processors/capabilities/access-status/index.mjs";
@@ -19,44 +19,44 @@ import UserCapabilitiesCapabilityGroup from "#lib/processors/capabilities/user-c
 import ControlChargingFlow from "#lib/processors/flows/control-charging.mjs";
 import ControlClimatisationFlow from "#lib/processors/flows/control-climatisation.mjs";
 import TimestampUpdatedFlow from "#lib/processors/flows/timestamp-updated.mjs";
-import UpdateChargingSettingsHybridFlow from "#lib/processors/flows/update-charge-settings-hybrid.mjs";
 import UpdateChargingSettingsFlow from "#lib/processors/flows/update-charge-settings.mjs";
+import UpdateChargingSettingsHybridFlow from "#lib/processors/flows/update-charge-settings-hybrid.mjs";
 import UpdatePollingIntervalFlow from "#lib/processors/flows/update-polling-interval.mjs";
 import Processor from "#lib/processors/processable.mjs";
 import EnergySetting from "#lib/processors/settings/energy.mjs";
 import VolkswagenAuthenticator from "./authenticator.mjs";
 
 export default class VWDevice extends VolkswagenDevice {
-  protected readonly processor: Processor = new Processor([
-    new EnergySetting(this),
-    new AccessStatusCapabilityGroup(this),
-    new BatteryStatusCapabilityGroup(this),
-    new ChargingSettingsCapabilityGroup(this),
-    new ChargingStatusCapabilityGroup(this),
-    new ClimatisationSettingsCapabilityGroup(this),
-    new ClimatisationStatusCapabilityGroup(this),
-    new FuelLevelStatusCapabilityGroup(this),
-    new MaintenanceStatusCapabilityGroup(this),
-    new OdometerStatusCapabilityGroup(this),
-    new ParkingPositionCapabilityGroup(this),
-    new PlugStatusCapabilityGroup(this),
-    new RangeStatusCapabilityGroup(this),
-    new ReadinessStatusCapabilityGroup(this),
-    new TemperatureBatteryStatusCapabilityGroup(this),
-    new UserCapabilitiesCapabilityGroup(this),
-    new ControlChargingFlow(this),
-    new ControlClimatisationFlow(this),
-    new TimestampUpdatedFlow(this),
-    new UpdatePollingIntervalFlow(this),
-    new UpdateChargingSettingsFlow(this),
-    new UpdateChargingSettingsHybridFlow(this),
-  ]);
+	protected readonly processor: Processor = new Processor([
+		new EnergySetting(this),
+		new AccessStatusCapabilityGroup(this),
+		new BatteryStatusCapabilityGroup(this),
+		new ChargingSettingsCapabilityGroup(this),
+		new ChargingStatusCapabilityGroup(this),
+		new ClimatisationSettingsCapabilityGroup(this),
+		new ClimatisationStatusCapabilityGroup(this),
+		new FuelLevelStatusCapabilityGroup(this),
+		new MaintenanceStatusCapabilityGroup(this),
+		new OdometerStatusCapabilityGroup(this),
+		new ParkingPositionCapabilityGroup(this),
+		new PlugStatusCapabilityGroup(this),
+		new RangeStatusCapabilityGroup(this),
+		new ReadinessStatusCapabilityGroup(this),
+		new TemperatureBatteryStatusCapabilityGroup(this),
+		new UserCapabilitiesCapabilityGroup(this),
+		new ControlChargingFlow(this),
+		new ControlClimatisationFlow(this),
+		new TimestampUpdatedFlow(this),
+		new UpdatePollingIntervalFlow(this),
+		new UpdateChargingSettingsFlow(this),
+		new UpdateChargingSettingsHybridFlow(this),
+	]);
 
-  protected getAuthenticator(): Authenticatable {
-    return VolkswagenAuthenticator.fromSettings(this.getSettings());
-  }
+	protected getAuthenticator(): Authenticatable {
+		return VolkswagenAuthenticator.fromSettings(this.getSettings());
+	}
 
-  protected createUser(authenticator: Authenticatable): VolkswagenUser {
-    return new VolkswagenUser(authenticator);
-  }
+	protected createUser(authenticator: Authenticatable): VolkswagenUser {
+		return new VolkswagenUser(authenticator);
+	}
 }

@@ -3,32 +3,32 @@ import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
 import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class MeasureBatteryUntilTargetSocCapability extends Capability<number> {
-  protected getCapabilityName(): string {
-    return "measure_battery.until_target_soc";
-  }
+	protected getCapabilityName(): string {
+		return "measure_battery.until_target_soc";
+	}
 
-  public override async getter({ capabilities }: FetchData): Promise<number> {
-    const currentSoC =
-      capabilities.charging?.batteryStatus?.value?.currentSOC_pct;
+	public override async getter({ capabilities }: FetchData): Promise<number> {
+		const currentSoC =
+			capabilities.charging?.batteryStatus?.value?.currentSOC_pct;
 
-    const targetSoC =
-      capabilities.charging?.chargingSettings?.value?.targetSOC_pct;
+		const targetSoC =
+			capabilities.charging?.chargingSettings?.value?.targetSOC_pct;
 
-    if (!this.isNumber(currentSoC) || !this.isNumber(targetSoC)) {
-      throw new InvalidValueError({ currentSoC, targetSoC });
-    }
+		if (!this.isNumber(currentSoC) || !this.isNumber(targetSoC)) {
+			throw new InvalidValueError({ currentSoC, targetSoC });
+		}
 
-    return Math.max(0, targetSoC - currentSoC);
-  }
+		return Math.max(0, targetSoC - currentSoC);
+	}
 
-  public override async setter(_fetchData: FetchData): Promise<void> {
-    this.baseDevice.setCapabilityOptions(this.getCapabilityName(), {
-      uiComponent: "sensor",
-      title: this.baseDevice.homey.__("capabilities.measure_battery.title", {
-        name: this.baseDevice.homey.__(
-          "capabilities.measure_battery.variables.until_target_soc",
-        ),
-      }),
-    });
-  }
+	public override async setter(_fetchData: FetchData): Promise<void> {
+		this.baseDevice.setCapabilityOptions(this.getCapabilityName(), {
+			uiComponent: "sensor",
+			title: this.baseDevice.homey.__("capabilities.measure_battery.title", {
+				name: this.baseDevice.homey.__(
+					"capabilities.measure_battery.variables.until_target_soc",
+				),
+			}),
+		});
+	}
 }

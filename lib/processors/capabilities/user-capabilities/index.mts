@@ -22,10 +22,10 @@ export default class UserCapabilitiesCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-      new ButtonFlashCapability(this.baseDevice),
-      new ButtonHonkFlashCapability(this.baseDevice),
-      new ButtonWakeCapability(this.baseDevice),
-      new ButtonWakeRefreshCapability(this.baseDevice),
+			new ButtonFlashCapability(this.baseDevice),
+			new ButtonHonkFlashCapability(this.baseDevice),
+			new ButtonWakeCapability(this.baseDevice),
+			new ButtonWakeRefreshCapability(this.baseDevice),
 		];
 	}
 }

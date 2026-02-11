@@ -25,11 +25,11 @@ export default class ChargingStatusCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-      new EvChargingStateCapability(this.baseDevice),
-      new IsChargingCapability(this.baseDevice),
-      new MeasureChargingPowerCapability(this.baseDevice),
-      new MeasureChargingRateCapability(this.baseDevice),
-      new MeasureRemainingChargingTimeCapability(this.baseDevice),
+			new EvChargingStateCapability(this.baseDevice),
+			new IsChargingCapability(this.baseDevice),
+			new MeasureChargingPowerCapability(this.baseDevice),
+			new MeasureChargingRateCapability(this.baseDevice),
+			new MeasureRemainingChargingTimeCapability(this.baseDevice),
 		];
 	}
 }

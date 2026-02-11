@@ -1,6 +1,6 @@
-import { Authenticatable } from "../authenticatable.mjs";
+import type { Authenticatable } from "../authenticatable.mjs";
 import SeatCupraUser from "../users/seatcupra-user.mjs";
-import SeatCupraVehicle from "../vehicles/seatcupra-vehicle.mjs";
+import type SeatCupraVehicle from "../vehicles/seatcupra-vehicle.mjs";
 import BaseDevice from "./base-device.mjs";
 
 /**
@@ -8,10 +8,10 @@ import BaseDevice from "./base-device.mjs";
  * Uses the SEAT/Cupra specific API endpoints (/v2/users/{userId}/*)
  */
 export default abstract class SeatCupraDevice extends BaseDevice<
-  SeatCupraUser,
-  SeatCupraVehicle
+	SeatCupraUser,
+	SeatCupraVehicle
 > {
-  protected createUser(authenticator: Authenticatable): SeatCupraUser {
-    return new SeatCupraUser(authenticator);
-  }
+	protected createUser(authenticator: Authenticatable): SeatCupraUser {
+		return new SeatCupraUser(authenticator);
+	}
 }

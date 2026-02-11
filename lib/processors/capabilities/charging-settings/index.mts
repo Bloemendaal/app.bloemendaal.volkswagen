@@ -24,9 +24,9 @@ export default class ChargingSettingsCapabilityGroup extends CapabilityGroup {
 		_fetchData: FetchData,
 	): Promise<Processable[]> {
 		return [
-      new TargetSocCapability(this.baseDevice),
-      new MaxChargingCurrentCapability(this.baseDevice),
-      new ExpectsMaxChargingCurrentInAmpereCapability(this.baseDevice),
+			new TargetSocCapability(this.baseDevice),
+			new MaxChargingCurrentCapability(this.baseDevice),
+			new ExpectsMaxChargingCurrentInAmpereCapability(this.baseDevice),
 		];
 	}
 }

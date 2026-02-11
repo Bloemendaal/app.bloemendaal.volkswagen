@@ -5,20 +5,20 @@ import CapabilityGroup from "../capability-group.mjs";
 import WindowHeatingEnabledCapability from "./window-heating-enabled.mjs";
 
 export default class ClimatisationSettingsCapabilityGroup extends CapabilityGroup {
-  protected getCapabilityGroupName(): string {
-    return "climatisation_settings";
-  }
+	protected getCapabilityGroupName(): string {
+		return "climatisation_settings";
+	}
 
-  protected getCapabilityTimestamp({
-    capabilities,
-  }: FetchData): DateTimeString | null {
-    return (
-      capabilities.climatisation?.climatisationSettings?.value
-        ?.carCapturedTimestamp ?? null
-    );
-  }
+	protected getCapabilityTimestamp({
+		capabilities,
+	}: FetchData): DateTimeString | null {
+		return (
+			capabilities.climatisation?.climatisationSettings?.value
+				?.carCapturedTimestamp ?? null
+		);
+	}
 
-  protected async getProcessables(): Promise<Processable[]> {
-    return [new WindowHeatingEnabledCapability(this.baseDevice)];
-  }
+	protected async getProcessables(): Promise<Processable[]> {
+		return [new WindowHeatingEnabledCapability(this.baseDevice)];
+	}
 }

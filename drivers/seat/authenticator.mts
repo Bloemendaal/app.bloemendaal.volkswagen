@@ -80,7 +80,7 @@ export default class SeatAuthenticator implements Authenticatable {
         withCredentials: true,
         validateStatus: (status) => status < 600,
         timeout: 30000,
-      })
+      }),
     );
   }
 
@@ -89,7 +89,7 @@ export default class SeatAuthenticator implements Authenticatable {
   }
 
   public static fromSettings(
-    settings: Partial<AuthSettings> & { brand?: "cupra" | "seat" }
+    settings: Partial<AuthSettings> & { brand?: "cupra" | "seat" },
   ): SeatAuthenticator {
     const {
       sPin = "",
@@ -159,12 +159,11 @@ export default class SeatAuthenticator implements Authenticatable {
       }
 
       const payload = JSON.parse(
-        Buffer.from(parts[1], "base64url").toString("utf-8")
+        Buffer.from(parts[1], "base64url").toString("utf-8"),
       );
 
       return payload.sub || null;
     } catch (error) {
-      console.error("[Seat Auth] Failed to extract userId from token:", error);
       return null;
     }
   }
@@ -227,7 +226,7 @@ export default class SeatAuthenticator implements Authenticatable {
     }
 
     const payload = JSON.parse(
-      Buffer.from(parts[1], "base64url").toString("utf-8")
+      Buffer.from(parts[1], "base64url").toString("utf-8"),
     );
 
     if (!payload.exp) {
@@ -256,7 +255,7 @@ export default class SeatAuthenticator implements Authenticatable {
   }
 
   private async followRedirects(
-    response: AxiosResponse
+    response: AxiosResponse,
   ): Promise<AxiosResponse> {
     for (
       let redirectCount = 0;
@@ -268,10 +267,6 @@ export default class SeatAuthenticator implements Authenticatable {
       if (!redirectUrl?.startsWith("http")) {
         redirectUrl = `${AUTH_BASE}${redirectUrl}`;
       }
-
-      console.log(
-        `[Seat Auth] Following redirect ${redirectCount + 1}: ${redirectUrl}`
-      );
 
       response = await this.authenticationClient.get(redirectUrl, {
         headers: {
@@ -287,48 +282,26 @@ export default class SeatAuthenticator implements Authenticatable {
   }
 
   private async authenticateWithCredentials(): Promise<TokenStore> {
-    console.log("[Seat Auth] Starting authentication flow");
-
-    // Step 0: Check the refresh token
     const refreshedToken = await this.tryRefreshToken();
 
     if (refreshedToken) {
-      console.log("[Seat Auth] Successfully refreshed token");
       return refreshedToken;
     }
 
-    // Step 1: Generate PKCE verifier and challenge
-    console.log("[Seat Auth] Generating PKCE parameters");
     const verifier = this.generateCodeVerifier();
     const codeChallenge = this.generateCodeChallenge(verifier);
-
-    // Step 2: Get authorization URL from identity provider
-    console.log("[Seat Auth] Getting authorization URL");
     const identityAuthUrl = await this.getAuthorizationUrl(codeChallenge);
-
-    // Step 3: Follow to identity provider
-    console.log("[Seat Auth] Following to identity provider");
-    const identityResponse = await this.followToIdentityProvider(
-      identityAuthUrl
-    );
-
-    // Step 4: Parse email form
-    console.log("[Seat Auth] Submitting email form");
+    const identityResponse =
+      await this.followToIdentityProvider(identityAuthUrl);
     const emailResponse = await this.submitEmailForm(identityResponse);
 
-    // Step 5: Parse password form (from JavaScript in page)
-    console.log("[Seat Auth] Parsing password form");
     const { passwordUrl, formData } = this.parsePasswordFormData(emailResponse);
 
-    // Step 6: Submit password and extract authorization parameters
-    console.log("[Seat Auth] Submitting password and following redirects");
     const code = await this.submitPasswordAndFollowRedirects(
       passwordUrl,
-      formData
+      formData,
     );
 
-    // Step 7: Exchange for final tokens via Cupra API (like Skoda does)
-    console.log("[Seat Auth] Exchanging code for tokens");
     return await this.exchangeForFinalTokens({
       code,
       verifier,
@@ -337,12 +310,10 @@ export default class SeatAuthenticator implements Authenticatable {
 
   private async tryRefreshToken(): Promise<TokenStore | null> {
     if (!this.tokenStore?.refreshToken) {
-      console.log("[Seat Auth] No refresh token available");
       return null;
     }
 
     try {
-      console.log("[Seat Auth] Attempting token refresh");
       const params = new URLSearchParams({
         brand: this.brand,
         grant_type: "refresh_token",
@@ -363,7 +334,7 @@ export default class SeatAuthenticator implements Authenticatable {
       });
 
       const expiresAt = this.decodeJwtExpiration(
-        tokenResponse.data.access_token
+        tokenResponse.data.access_token,
       );
 
       return {
@@ -373,7 +344,6 @@ export default class SeatAuthenticator implements Authenticatable {
         refreshToken: tokenResponse.data.refresh_token,
       };
     } catch (error) {
-      console.error("[Seat Auth] Token refresh failed:", error);
       return null;
     }
   }
@@ -392,10 +362,6 @@ export default class SeatAuthenticator implements Authenticatable {
       });
 
       const authorizationUrl = `${AUTH_BASE}/oidc/v1/authorize?${searchParams.toString()}`;
-      console.log(
-        "[Seat Auth] Authorization URL generated: " + authorizationUrl
-      );
-
       return authorizationUrl;
     } catch (error) {
       throw new AuthorizationUrlError({ cause: error });
@@ -403,10 +369,9 @@ export default class SeatAuthenticator implements Authenticatable {
   }
 
   private async followToIdentityProvider(
-    identityAuthUrl: string
+    identityAuthUrl: string,
   ): Promise<AxiosResponse> {
     try {
-      console.log("[Seat Auth] Requesting identity provider page");
       const identityResponse = await this.authenticationClient
         .get(identityAuthUrl, {
           headers: {
@@ -419,29 +384,16 @@ export default class SeatAuthenticator implements Authenticatable {
           validateStatus: (status) => status < 400,
         })
         .then(this.followRedirects.bind(this));
-
-      console.log(
-        `[Seat Auth] Identity provider response received, status: ${identityResponse.status}`
-      );
       return identityResponse;
     } catch (cause) {
-      console.error("[Seat Auth] Error following to identity provider:", cause);
-      if (axios.isAxiosError(cause)) {
-        console.error("[Seat Auth] Response status:", cause.response?.status);
-        console.error(
-          "[Seat Auth] Response data:",
-          JSON.stringify(cause.response?.data)
-        );
-      }
       throw new IdentityProviderError({ cause });
     }
   }
 
   private async submitEmailForm(
-    identityResponse: AxiosResponse
+    identityResponse: AxiosResponse,
   ): Promise<AxiosResponse> {
     try {
-      console.log("[Seat Auth] Parsing email form");
       const $ = cheerio.load(identityResponse.data);
       let form = $("#emailPasswordForm");
 
@@ -492,7 +444,7 @@ export default class SeatAuthenticator implements Authenticatable {
   }
 
   private parsePasswordFormData(
-    emailResponse: AxiosResponse
+    emailResponse: AxiosResponse,
   ): PasswordFormData {
     try {
       const scriptContent = emailResponse.data;
@@ -525,10 +477,9 @@ export default class SeatAuthenticator implements Authenticatable {
 
   private async submitPasswordAndFollowRedirects(
     passwordUrl: string,
-    passwordFormData: Record<string, string>
+    passwordFormData: Record<string, string>,
   ): Promise<string> {
     try {
-      console.log("[Seat Auth] Submitting password");
       const passwordResponse = await this.authenticationClient.post(
         passwordUrl,
         new URLSearchParams(passwordFormData).toString(),
@@ -538,33 +489,23 @@ export default class SeatAuthenticator implements Authenticatable {
             Accept:
               "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
           },
-        }
+        },
       );
 
       let redirectUrl: string | undefined = passwordResponse.headers.location;
       let redirectCount = 0;
 
-      // Follow all redirects until we reach the app redirect
       while (
         redirectUrl &&
         !redirectUrl.startsWith(REDIRECT_URI) &&
         redirectCount < MAXIMUM_REDIRECTS
       ) {
-        redirectCount++;
-        console.log(
-          `[Seat Auth] Redirect ${redirectCount}: ${redirectUrl.substring(
-            0,
-            100
-          )}...`
-        );
-
+        redirectCount++;   
         if (!redirectUrl.startsWith("http")) {
           redirectUrl = `${AUTH_BASE}${redirectUrl}`;
         }
 
-        // Handle marketing consent page (specific to Cupra/Seat)
         if (redirectUrl.includes("/consent/marketing/")) {
-          console.log("[Seat Auth] Handling marketing consent page");
           const response = await this.authenticationClient.get(redirectUrl);
 
           const $ = cheerio.load(response.data);
@@ -599,7 +540,7 @@ export default class SeatAuthenticator implements Authenticatable {
                 headers: {
                   "Content-Type": "application/x-www-form-urlencoded",
                 },
-              }
+              },
             );
 
             redirectUrl = consentResponse.headers.location;
@@ -609,7 +550,6 @@ export default class SeatAuthenticator implements Authenticatable {
 
         // Handle terms and conditions page
         if (redirectUrl.includes("terms-and-conditions")) {
-          console.log("[Seat Auth] Handling terms and conditions page");
           const response = await this.authenticationClient.get(redirectUrl);
 
           const $ = cheerio.load(response.data);
@@ -639,7 +579,7 @@ export default class SeatAuthenticator implements Authenticatable {
                 headers: {
                   "Content-Type": "application/x-www-form-urlencoded",
                 },
-              }
+              },
             );
 
             redirectUrl = response.headers.location;
@@ -651,11 +591,7 @@ export default class SeatAuthenticator implements Authenticatable {
         redirectUrl = response.headers.location;
       }
 
-      if (!redirectUrl || !redirectUrl.startsWith(REDIRECT_URI)) {
-        console.error(
-          "[Seat Auth] Failed to get authorization code. Last URL:",
-          redirectUrl
-        );
+      if (!redirectUrl || !redirectUrl.startsWith(REDIRECT_URI)) {   
         throw new Error("Failed to get authorization code from redirects");
       }
 
@@ -675,10 +611,8 @@ export default class SeatAuthenticator implements Authenticatable {
         throw new Error("Missing code in redirect URL");
       }
 
-      console.log("[Seat Auth] Authorization code obtained");
       return code;
     } catch (cause) {
-      console.error("[Seat Auth] Error in password submission:", cause);
       throw new PasswordSubmissionError({ cause });
     }
   }
@@ -692,9 +626,6 @@ export default class SeatAuthenticator implements Authenticatable {
         throw new Error("PKCE verifier is required for token exchange");
       }
 
-      console.log("[Seat Auth] Exchanging tokens via Seat API");
-
-      // Use Seat backend token endpoint without client_secret (like Python code)
       const tokenBody = {
         state: code.substring(0, 10), // Use part of code as state
         id_token: code, // Python uses id_token from authorization response
@@ -717,29 +648,19 @@ export default class SeatAuthenticator implements Authenticatable {
             "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
             Accept: "application/json",
           },
-        }
+        },
       );
 
       const expiresAt = this.decodeJwtExpiration(
-        tokenResponse.data.access_token
+        tokenResponse.data.access_token,
       );
-
-      console.log("[Seat Auth] Token exchange successful");
-
       return {
         expiresAt,
         idToken: tokenResponse.data.id_token,
         accessToken: tokenResponse.data.access_token,
         refreshToken: tokenResponse.data.refresh_token,
       };
-    } catch (cause) {
-      console.error("[Seat Auth] Token exchange failed:", cause);
-      if (axios.isAxiosError(cause)) {
-        console.error(
-          "[Seat Auth] Token exchange response:",
-          cause.response?.data
-        );
-      }
+    } catch (cause) {   
       throw new TokenExchangeError({ cause });
     }
   }

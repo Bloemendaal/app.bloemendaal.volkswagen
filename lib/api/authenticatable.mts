@@ -35,5 +35,5 @@ export interface Authenticatable {
 
 	onSettingsUpdate(callback: SettingsUpdateCallback): void;
 
-  getUserId(): string | null;
+	getUserId(): string | null;
 }
