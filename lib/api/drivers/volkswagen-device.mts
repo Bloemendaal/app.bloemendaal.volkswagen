@@ -1,7 +1,7 @@
 import type { Authenticatable } from "../authenticatable.mjs";
 import VolkswagenUser from "../users/volkswagen-user.mjs";
 import type VolkswagenVehicle from "../vehicles/volkswagen-vehicle.mjs";
-import VagDevice from "./base-device.mjs";
+import VagDevice from "./vag-device.mjs";
 
 /**
  * Device class for Volkswagen and Skoda vehicles

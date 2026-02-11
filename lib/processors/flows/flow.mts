@@ -1,4 +1,4 @@
-import type VagDevice from "#lib/api/drivers/base-device.mjs";
+import type VagDevice from "#lib/api/drivers/vag-device.mjs";
 import type { FetchData } from "#lib/api/fetch.mjs";
 import type { Processable, RunOptions } from "#lib/processors/processable.mjs";
 

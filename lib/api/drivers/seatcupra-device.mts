@@ -1,7 +1,7 @@
 import type { Authenticatable } from "../authenticatable.mjs";
 import SeatCupraUser from "../users/seatcupra-user.mjs";
 import type SeatCupraVehicle from "../vehicles/seatcupra-vehicle.mjs";
-import VagDevice from "./base-device.mjs";
+import VagDevice from "./vag-device.mjs";
 
 /**
  * Device class for SEAT and Cupra vehicles
