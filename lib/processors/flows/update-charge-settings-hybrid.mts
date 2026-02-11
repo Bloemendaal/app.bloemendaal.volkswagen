@@ -19,7 +19,7 @@ export default class UpdateChargingSettingsHybridFlow extends Flow {
 	): Promise<void> {
 		const vehicle = await this.device
 			.getVehicle()
-			.catch((e: Error) => this.device.errorAndThrow(e));
+			.catch((e) => this.device.errorAndThrow(e));
 
 		const settings: Partial<ChargingSettings> = {
 			chargingSettingsAC: {

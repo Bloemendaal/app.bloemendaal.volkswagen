@@ -26,7 +26,7 @@ export default class ControlClimatisationFlow extends Flow {
 				targetTemperature: args.temperature,
 				targetTemperatureUnit: "celsius",
 			})
-			.catch((e: Error) => this.device.errorAndThrow(e));
+			.catch((e) => this.device.errorAndThrow(e));
 
 		await this.device.requestRefresh(500, 1000);
 	}
@@ -82,11 +82,11 @@ export default class ControlClimatisationFlow extends Flow {
 	private async handleOff(): Promise<void> {
 		const vehicle = await this.device
 			.getVehicle()
-			.catch((e: Error) => this.device.errorAndThrow(e));
+			.catch((e) => this.device.errorAndThrow(e));
 
 		await vehicle
 			.stopClimatisation()
-			.catch((e: Error) => this.device.errorAndThrow(e));
+			.catch((e) => this.device.errorAndThrow(e));
 
 		await this.device.requestRefresh(500, 1000);
 	}
