@@ -6,12 +6,16 @@
 			"email_submission_failed": "E-Mail-Adresse konnte nicht gesendet werden. Bitte prüfen Sie die Adresse und versuchen Sie es erneut.",
 			"password_form_parse_failed": "Passwortformular konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.",
 			"password_submission_failed": "Passwort konnte nicht gesendet werden. Mögliche Ursachen: falsches Passwort, zu viele Anmeldeversuche in kurzer Zeit oder die AGB der Volkswagen-App wurden noch nicht akzeptiert. Melden Sie sich in der Volkswagen-App ab und dann wieder an, um sie zu akzeptieren.",
+			"login_failed": "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail-Adresse und Ihr Passwort. Falls Sie kürzlich Ihr Passwort geändert haben, stellen Sie sicher, dass Sie das richtige verwenden. Möglicherweise müssen Sie auch die AGB in der Volkswagen-App akzeptieren.",
+			"authorization_parameters_failed": "Authentifizierung abgeschlossen, aber Sicherheitsparameter konnten nicht abgerufen werden. Bitte versuchen Sie es erneut.",
 			"token_exchange_failed": "Zugriffstoken konnten nicht abgerufen werden. Bitte versuchen Sie es erneut oder sehen Sie im Community-Forum nach."
 		}
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ geöffnet",
+			"title": "__name__ offen",
+			"insightsTitleTrue": "__name__ geöffnet",
+			"insightsTitleFalse": "__name__ geschlossen",
 			"variables": {
 				"bonnet": "Motorhaube",
 				"trunk": "Kofferraum",
@@ -22,7 +26,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ geöffnet",
+			"title": "__name__ offen",
+			"insightsTitleTrue": "__name__ geöffnet",
+			"insightsTitleFalse": "__name__ geschlossen",
 			"variables": {
 				"sunRoof": "Schiebedach",
 				"roofCover": "Dachabdeckung",
@@ -54,6 +60,21 @@
 				"until_full": "Bis voll"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ Reichweite",
+			"variables": {
+				"electric": "Elektrisch",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Benzin"
+			}
+		},
+		"window_heating": {
+			"positions": {
+				"front": "Frontscheibenheizung",
+				"rear": "Heckscheibenheizung"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ zuletzt aktualisiert um",
 			"variables": {
@@ -61,12 +82,15 @@
 				"battery_status": "Batteriestatus",
 				"charging_settings": "Ladeeinstellungen",
 				"charging_status": "Ladestatus",
+				"climatisation_settings": "Klimatisierungseinstellungen",
 				"climatisation_status": "Klimatisierungsstatus",
 				"distance_home": "Entfernung von zu Hause",
+				"fuel_level_status": "Kraftstoffstandstatus",
 				"hook_and_flash": "Hupe und Blinker",
 				"maintenance_status": "Wartungsstatus",
 				"odometer_status": "Kilometerzählerstatus",
 				"plug_status": "Steckerstatus",
+				"range_status": "Reichweitenstatus",
 				"readiness_status": "Bereitschaftsstatus",
 				"temperature_battery_status": "Batterietemperaturstatus",
 				"wake_up_trigger": "Weck-Auslöser"

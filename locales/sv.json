@@ -6,12 +6,16 @@
 			"email_submission_failed": "Kunde inte skicka din e-postadress. Kontrollera adressen och försök igen.",
 			"password_form_parse_failed": "Lösenordsformuläret kunde inte bearbetas. Försök igen.",
 			"password_submission_failed": "Lösenordet kunde inte skickas. Möjliga orsaker: felaktigt lösenord, för många inloggningsförsök på kort tid eller villkoren i Volkswagen‑appen har ännu inte accepterats. Logga ut ur Volkswagen‑appen och logga sedan in igen för att acceptera dem.",
+			"login_failed": "Inloggning misslyckades. Kontrollera din e-postadress och ditt lösenord. Om du nyligen har ändrat ditt lösenord, se till att du använder det korrekta. Du kan också behöva acceptera villkoren i Volkswagen-appen.",
+			"authorization_parameters_failed": "Autentisering slutförd men kunde inte hämta säkerhetsparametrarna. Försök igen.",
 			"token_exchange_failed": "Åtkomsttoken kunde inte hämtas. Försök igen eller kontrollera communityforumet."
 		}
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ öppnad",
+			"title": "__name__ öppen",
+			"insightsTitleTrue": "__name__ öppnad",
+			"insightsTitleFalse": "__name__ stängd",
 			"variables": {
 				"bonnet": "Motorhuv",
 				"trunk": "Bagageutrymme",
@@ -22,7 +26,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ öppnad",
+			"title": "__name__ öppet",
+			"insightsTitleTrue": "__name__ öppnat",
+			"insightsTitleFalse": "__name__ stängd",
 			"variables": {
 				"sunRoof": "Soltak",
 				"roofCover": "Taksäte",
@@ -54,6 +60,21 @@
 				"until_full": "Till full"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ räckvidd",
+			"variables": {
+				"electric": "Elektrisk",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Bensin"
+			}
+		},
+		"window_heating": {
+			"positions": {
+				"front": "Frontruta värme",
+				"rear": "Bakruta värme"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ senast uppdaterad kl.",
 			"variables": {
@@ -61,12 +82,15 @@
 				"battery_status": "Batteristatus",
 				"charging_settings": "Laddningsinställningar",
 				"charging_status": "Laddningsstatus",
+				"climatisation_settings": "Klimatinställningar",
 				"climatisation_status": "Klimatstatus",
 				"distance_home": "Avstånd från hemmet",
+				"fuel_level_status": "Bränslenivåstatus",
 				"hook_and_flash": "Tuta och blinka",
 				"maintenance_status": "Underhållsstatus",
 				"odometer_status": "Odometerstatus",
 				"plug_status": "Kontaktstatus",
+				"range_status": "Räckviddsstatus",
 				"readiness_status": "Beredskapsstatus",
 				"temperature_battery_status": "Batteritemperaturstatus",
 				"wake_up_trigger": "Väckningsutlösare"

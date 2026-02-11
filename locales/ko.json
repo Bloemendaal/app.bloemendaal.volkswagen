@@ -6,15 +6,19 @@
 			"email_submission_failed": "이메일 주소를 제출하지 못했습니다. 주소를 확인한 뒤 다시 시도하세요.",
 			"password_form_parse_failed": "비밀번호 양식을 처리하지 못했습니다. 다시 시도하세요.",
 			"password_submission_failed": "비밀번호를 제출하지 못했습니다. 가능한 원인: 잘못된 비밀번호, 짧은 시간 내 과도한 로그인 시도, 또는 Volkswagen 앱에서 약관 동의가 필요합니다. Volkswagen 앱에서 로그아웃한 뒤 다시 로그인하면 약관에 동의할 수 있습니다.",
+			"login_failed": "로그인에 실패했습니다. 이메일과 비밀번호를 확인하세요. 최근에 비밀번호를 변경한 경우 올바른 비밀번호를 사용하고 있는지 확인하세요. Volkswagen 앱에서 약관에 동의해야 할 수도 있습니다.",
+			"authorization_parameters_failed": "인증이 완료되었지만 보안 매개변수를 가져올 수 없습니다. 다시 시도하세요.",
 			"token_exchange_failed": "액세스 토큰을 가져오지 못했습니다. 다시 시도하거나 커뮤니티 포럼을 확인하세요."
 		}
 	},
 	"capabilities": {
 		"alarm_door": {
 			"title": "__name__ 열림",
+			"insightsTitleTrue": "__name__ 열림",
+			"insightsTitleFalse": "__name__ 닫힘",
 			"variables": {
 				"bonnet": "보닛",
-				"trunk": "트렁크",
+				"trunk": "트럭크",
 				"frontLeft": "앞왼쪽 문",
 				"frontRight": "앞오른쪽 문",
 				"rearLeft": "뒤왼쪽 문",
@@ -23,6 +27,8 @@
 		},
 		"alarm_window": {
 			"title": "__name__ 열림",
+			"insightsTitleTrue": "__name__ 열림",
+			"insightsTitleFalse": "__name__ 닫힘",
 			"variables": {
 				"sunRoof": "선루프",
 				"roofCover": "루프 커버",
@@ -54,6 +60,21 @@
 				"until_full": "완충까지"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ 주행 거리",
+			"variables": {
+				"electric": "전기",
+				"diesel": "디젤",
+				"adblue": "AdBlue",
+				"gasoline": "가솔린"
+			}
+		},
+		"window_heating": {
+			"positions": {
+				"front": "앞 유리 히팅",
+				"rear": "뒷 유리 히팅"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ 마지막 업데이트 시각",
 			"variables": {
@@ -61,12 +82,15 @@
 				"battery_status": "배터리 상태",
 				"charging_settings": "충전 설정",
 				"charging_status": "충전 상태",
+				"climatisation_settings": "냉난방 설정",
 				"climatisation_status": "냉난방 상태",
 				"distance_home": "집에서의 거리",
+				"fuel_level_status": "연료 수준 상태",
 				"hook_and_flash": "경적 및 깜박이",
 				"maintenance_status": "정비 상태",
 				"odometer_status": "주행 거리계 상태",
 				"plug_status": "플러그 상태",
+				"range_status": "주행 거리 상태",
 				"readiness_status": "준비 상태",
 				"temperature_battery_status": "배터리 온도 상태",
 				"wake_up_trigger": "기상 트리거"

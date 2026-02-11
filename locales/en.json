@@ -6,12 +6,16 @@
 			"email_submission_failed": "Couldn't submit your email address. Please verify the address and try again.",
 			"password_form_parse_failed": "Couldn't process the password form. Please try again.",
 			"password_submission_failed": "Password submission failed. Possible reasons: incorrect password, too many attempts in a short time, or you still need to accept the terms and conditions in the Volkswagen app. To accept them, log out of the Volkswagen app and then log back in.",
+			"login_failed": "Login failed. Please check your email and password. If you have recently changed your password, make sure you're using the correct one. You may also need to accept terms and conditions in the Volkswagen app.",
+			"authorization_parameters_failed": "Authentication completed but couldn't retrieve security parameters. Please try again.",
 			"token_exchange_failed": "Couldn't obtain access tokens. Please try again or consult the community forum."
 		}
 	},
 	"capabilities": {
 		"alarm_door": {
-			"title": "__name__ opened",
+			"title": "__name__ open",
+			"insightsTitleTrue": "__name__ opened",
+			"insightsTitleFalse": "__name__ closed",
 			"variables": {
 				"bonnet": "Bonnet",
 				"trunk": "Trunk",
@@ -22,7 +26,9 @@
 			}
 		},
 		"alarm_window": {
-			"title": "__name__ opened",
+			"title": "__name__ open",
+			"insightsTitleTrue": "__name__ opened",
+			"insightsTitleFalse": "__name__ closed",
 			"variables": {
 				"sunRoof": "Sun roof",
 				"roofCover": "Roof cover",
@@ -54,6 +60,21 @@
 				"until_full": "Until full"
 			}
 		},
+		"measure_range": {
+			"title": "__name__ range",
+			"variables": {
+				"electric": "Electric",
+				"diesel": "Diesel",
+				"adblue": "AdBlue",
+				"gasoline": "Gasoline"
+			}
+		},
+		"window_heating": {
+			"positions": {
+				"front": "Front window heating",
+				"rear": "Rear window heating"
+			}
+		},
 		"timestamp": {
 			"title": "__name__ last updated at",
 			"variables": {
@@ -61,12 +82,15 @@
 				"battery_status": "Battery status",
 				"charging_settings": "Charging settings",
 				"charging_status": "Charging status",
+				"climatisation_settings": "Climatisation settings",
 				"climatisation_status": "Climatisation status",
 				"distance_home": "Distance from home",
+				"fuel_level_status": "Fuel level status",
 				"hook_and_flash": "Honk and flash",
 				"maintenance_status": "Maintenance status",
 				"odometer_status": "Odometer status",
 				"plug_status": "Plug status",
+				"range_status": "Range status",
 				"readiness_status": "Readiness status",
 				"temperature_battery_status": "Battery temperature status",
 				"wake_up_trigger": "Wake up trigger"
