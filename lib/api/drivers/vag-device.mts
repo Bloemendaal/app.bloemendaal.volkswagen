@@ -1,7 +1,6 @@
 import Homey from "homey";
 import TranslatableError from "../../errors/translatable-error.mjs";
 import type Processor from "../../processors/processable.mjs";
-import type { Authenticatable } from "../authenticatable.mjs";
 import DebounceScheduler from "../debounce-scheduler.mjs";
 import type { FetchData } from "../fetch.mjs";
 import type BaseUser from "../users/base-user.mjs";
@@ -24,7 +23,6 @@ interface OnSettingsParams {
  * @template TVehicle - The specific Vehicle class for the brand (extends BaseVehicle)
  */
 export default abstract class VagDevice<
-	TUser extends BaseUser = BaseUser,
 	TVehicle extends BaseVehicle = BaseVehicle,
 > extends Homey.Device {
 	private vehicle: TVehicle | null = null;
@@ -34,20 +32,18 @@ export default abstract class VagDevice<
 
 	protected abstract readonly processor: Processor;
 
-	protected abstract getAuthenticator(): Authenticatable;
-
 	/**
 	 * Abstract method to create User instance - must be implemented by subclasses
 	 * This allows different User implementations for different brands
 	 */
-	protected abstract createUser(authenticator: Authenticatable): TUser;
+	protected abstract createUser(): BaseUser;
 
 	/**
 	 * Get vehicle from API using the brand-specific User class
 	 */
 	protected async getVehicleFromApi(): Promise<TVehicle> {
 		try {
-			const user = this.createUser(this.getAuthenticator());
+			const user = this.createUser();
 			const vehicles = await user.getVehicles();
 
 			const vehicle = vehicles.find(

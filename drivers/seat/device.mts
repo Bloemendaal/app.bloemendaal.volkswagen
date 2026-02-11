@@ -1,5 +1,5 @@
-import type { Authenticatable } from "../../lib/api/authenticatable.mjs";
-import SeatCupraDevice from "../../lib/api/drivers/seatcupra-device.mjs";
+import VagDevice from "#lib/api/drivers/vag-device.mjs";
+import type SeatCupraVehicle from "#lib/api/vehicles/seatcupra-vehicle.mjs";
 import SeatCupraUser from "../../lib/api/users/seatcupra-user.mjs";
 import AccessStatusCapabilityGroup from "../../lib/processors/capabilities/access-status/index.mjs";
 import BatteryStatusCapabilityGroup from "../../lib/processors/capabilities/battery-status/index.mjs";
@@ -21,7 +21,7 @@ import Processor from "../../lib/processors/processable.mjs";
 import EnergySetting from "../../lib/processors/settings/energy.mjs";
 import SeatAuthenticator from "./authenticator.mjs";
 
-export default class SeatDevice extends SeatCupraDevice {
+export default class SeatDevice extends VagDevice<SeatCupraVehicle> {
 	protected readonly processor: Processor = new Processor([
 		new EnergySetting(this),
 		new AccessStatusCapabilityGroup(this),
@@ -42,11 +42,9 @@ export default class SeatDevice extends SeatCupraDevice {
 		new UpdateChargingSettingsHybridFlow(this),
 	]);
 
-	protected getAuthenticator(): Authenticatable {
-		return SeatAuthenticator.fromSettings(this.getSettings());
-	}
-
-	protected createUser(authenticator: Authenticatable): SeatCupraUser {
-		return new SeatCupraUser(authenticator);
+	protected createUser(): SeatCupraUser {
+		return new SeatCupraUser(
+			SeatAuthenticator.fromSettings(this.getSettings()),
+		);
 	}
 }

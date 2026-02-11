@@ -1,6 +1,6 @@
-import type { Authenticatable } from "#lib/api/authenticatable.mjs";
-import VolkswagenDevice from "#lib/api/drivers/volkswagen-device.mjs";
+import VagDevice from "#lib/api/drivers/vag-device.mjs";
 import VolkswagenUser from "#lib/api/users/volkswagen-user.mjs";
+import type VolkswagenVehicle from "#lib/api/vehicles/volkswagen-vehicle.mjs";
 import AccessStatusCapabilityGroup from "#lib/processors/capabilities/access-status/index.mjs";
 import BatteryStatusCapabilityGroup from "#lib/processors/capabilities/battery-status/index.mjs";
 import ChargingSettingsCapabilityGroup from "#lib/processors/capabilities/charging-settings/index.mjs";
@@ -26,7 +26,7 @@ import Processor from "#lib/processors/processable.mjs";
 import EnergySetting from "#lib/processors/settings/energy.mjs";
 import VolkswagenAuthenticator from "./authenticator.mjs";
 
-export default class VWDevice extends VolkswagenDevice {
+export default class VolkswagenDevice extends VagDevice<VolkswagenVehicle> {
 	protected readonly processor: Processor = new Processor([
 		new EnergySetting(this),
 		new AccessStatusCapabilityGroup(this),
@@ -52,11 +52,9 @@ export default class VWDevice extends VolkswagenDevice {
 		new UpdateChargingSettingsHybridFlow(this),
 	]);
 
-	protected getAuthenticator(): Authenticatable {
-		return VolkswagenAuthenticator.fromSettings(this.getSettings());
-	}
-
-	protected createUser(authenticator: Authenticatable): VolkswagenUser {
-		return new VolkswagenUser(authenticator);
+	protected createUser(): VolkswagenUser {
+		return new VolkswagenUser(
+			VolkswagenAuthenticator.fromSettings(this.getSettings()),
+		);
 	}
 }
