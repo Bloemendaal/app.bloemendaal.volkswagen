@@ -78,6 +78,9 @@
 		"charge_current": {
 			"reduced": "Redusert",
 			"maximum": "Maksimum"
+		},
+		"polling_interval": {
+			"invalid": "Polling-intervall må være minst 1 minutt"
 		}
 	}
 }

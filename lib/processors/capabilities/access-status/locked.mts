@@ -1,6 +1,6 @@
-import { FetchData } from "../../../api/fetch.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class LockedCapability extends Capability<boolean> {
   protected getCapabilityName(): string {
@@ -23,14 +23,14 @@ export default class LockedCapability extends Capability<boolean> {
 
     const isSetable = await this.can(
       "access",
-      capabilities.userCapabilities?.capabilitiesStatus?.value
+      capabilities.userCapabilities?.capabilitiesStatus?.value,
     );
 
     await this.baseDevice.setCapabilityOptions(
       name,
       isSetable
         ? { setable: true, uiComponent: "toggle" }
-        : { setable: false, uiComponent: "sensor" }
+        : { setable: false, uiComponent: "sensor" },
     );
 
     if (!isSetable) {

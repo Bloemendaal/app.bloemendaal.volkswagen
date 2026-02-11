@@ -1,10 +1,10 @@
-import { CapabilitiesStatusData } from "../../api/capabilities/user-capabilities.mjs";
-import BaseDevice from "../../api/drivers/base-device.mjs";
-import { FetchData } from "../../api/fetch.mjs";
-import InvalidValueError from "../../errors/invalid-value-error.mjs";
-import NotImplementedError from "../../errors/not-implemented-error.mjs";
-import { FloatString } from "../../types.mjs";
-import type { Processable } from "../processable.mjs";
+import type { CapabilitiesStatusData } from "#lib/api/capabilities/user-capabilities.mjs";
+import BaseDevice from "#lib/api/drivers/base-device.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import NotImplementedError from "#lib/errors/not-implemented-error.mjs";
+import type { Processable } from "#lib/processors/processable.mjs";
+import type { FloatString } from "#lib/types.mjs";
 
 export interface RunOptions {
   isOutdated: boolean;
@@ -27,13 +27,11 @@ export default abstract class Capability<TValue> implements Processable {
     }
 
     const name = this.getCapabilityName();
-
     try {
       const value = await this.getter(fetchData);
-
       await this.addCapability(name, fetchData);
 
-      if (this.shouldSetCapabilityValue(name, value, options)) {
+      if (this.shouldSetCapabilityValue(value, options)) {
         await this.baseDevice.setCapabilityValue(name, value);
       }
     } catch (error) {
@@ -78,9 +76,8 @@ export default abstract class Capability<TValue> implements Processable {
   protected abstract getCapabilityName(): string;
 
   protected shouldSetCapabilityValue(
-    name: string,
     value: TValue,
-    options?: RunOptions
+    options?: RunOptions,
   ): boolean {
     if (value === undefined) {
       return false;
@@ -90,6 +87,7 @@ export default abstract class Capability<TValue> implements Processable {
       return true;
     }
 
+    const name = this.getCapabilityName();
     const currentValue = this.baseDevice.getCapabilityValue(name);
 
     return currentValue === null;
@@ -97,7 +95,7 @@ export default abstract class Capability<TValue> implements Processable {
 
   protected async addCapability(
     name: string,
-    fetchData: FetchData
+    fetchData: FetchData,
   ): Promise<void> {
     if (!this.baseDevice.hasCapability(name)) {
       await this.baseDevice.addCapability(name);
@@ -107,7 +105,7 @@ export default abstract class Capability<TValue> implements Processable {
 
   protected async can(
     capacityId: string,
-    capabilities: CapabilitiesStatusData[] = []
+    capabilities: CapabilitiesStatusData[] = [],
   ): Promise<boolean> {
     const callback = ({ id }: CapabilitiesStatusData) => id === capacityId;
 

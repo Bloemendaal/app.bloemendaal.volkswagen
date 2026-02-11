@@ -2,7 +2,7 @@ import type {
 	ApiResponse,
 	DateTimeString,
 	PossiblyUnknownString,
-} from "../../types.mjs";
+} from "#lib/types.mjs";
 
 export interface LightData {
 	name: "right" | "left";

@@ -1,8 +1,7 @@
-import BaseDevice from "../../api/drivers/base-device.mjs";
-import { FetchData } from "../../api/fetch.mjs";
-import { DateTimeString } from "../../types.mjs";
-import type { Processable } from "../processable.mjs";
-import Processor from "../processable.mjs";
+import BaseDevice from "#lib/api/drivers/base-device.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import Processor, { type Processable } from "#lib/processors/processable.mjs";
+import type { DateTimeString } from "#lib/types.mjs";
 
 export default abstract class CapabilityGroup implements Processable {
   constructor(protected readonly baseDevice: BaseDevice) {}
@@ -15,7 +14,7 @@ export default abstract class CapabilityGroup implements Processable {
 
   public async run(fetchData: FetchData): Promise<void> {
     const hasNewerTimestamp = await this.addTimestampCapability(
-      this.getCapabilityTimestamp(fetchData)
+      this.getCapabilityTimestamp(fetchData),
     );
 
     const capabilities = await this.getProcessables(fetchData);
@@ -28,15 +27,15 @@ export default abstract class CapabilityGroup implements Processable {
   protected abstract getCapabilityGroupName(): string;
 
   protected abstract getCapabilityTimestamp(
-    fetchData: FetchData
+    fetchData: FetchData,
   ): DateTimeString | null;
 
   protected abstract getProcessables(
-    fetchData: FetchData
+    fetchData: FetchData,
   ): Promise<Processable[]>;
 
   protected async addTimestampCapability(
-    timestamp: DateTimeString | null
+    timestamp: DateTimeString | null,
   ): Promise<boolean> {
     const date = new Date(timestamp ?? 0);
 
@@ -60,21 +59,21 @@ export default abstract class CapabilityGroup implements Processable {
 
     await this.baseDevice.setCapabilityValue(
       capabilityId,
-      carCapturedTimestamp
+      carCapturedTimestamp,
     );
 
     return true;
   }
 
   private async registerTimestampCapability(
-    capabilityId: string
+    capabilityId: string,
   ): Promise<void> {
     await this.baseDevice.addCapability(capabilityId);
 
     await this.baseDevice.setCapabilityOptions(capabilityId, {
       title: this.baseDevice.homey.__("capabilities.timestamp.title", {
         name: this.baseDevice.homey.__(
-          `capabilities.timestamp.variables.${this.getCapabilityGroupName()}`
+          `capabilities.timestamp.variables.${this.getCapabilityGroupName()}`,
         ),
       }),
     });

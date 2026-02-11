@@ -1,4 +1,4 @@
-import type { ApiResponse, PossiblyUnknownString } from "../../types.mjs";
+import type { ApiResponse, PossiblyUnknownString } from "#lib/types.mjs";
 
 export interface BatterySupportCapabilitiesData {
 	batterySupportStatus?: ApiResponse<{

@@ -1,6 +1,6 @@
-import BaseDevice from "../../api/drivers/base-device.mjs";
-import { FetchData } from "../../api/fetch.mjs";
-import type { Processable, RunOptions } from "../processable.mjs";
+import BaseDevice from "#lib/api/drivers/base-device.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type { Processable, RunOptions } from "#lib/processors/processable.mjs";
 
 export default abstract class Flow implements Processable {
   constructor(protected readonly baseDevice: BaseDevice) {}
@@ -9,7 +9,7 @@ export default abstract class Flow implements Processable {
 
   public async run(
     _fetchData: FetchData,
-    _options?: RunOptions
+    _options?: RunOptions,
   ): Promise<void> {}
 
   protected __(key: string | object, tags?: object): string {

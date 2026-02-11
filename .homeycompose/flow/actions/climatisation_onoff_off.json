@@ -1,23 +1,19 @@
 {
-	"args": [
-		{
-			"type": "device",
-			"name": "device",
-			"filter": "driver_id=volkswagen|cupra|seat|skoda"
-		}
-	],
-	"title": {
-		"en": "Turn off climatisation",
-		"nl": "Zet klimaatregeling uit",
-		"de": "Klimatisierung ausschalten",
-		"fr": "Désactiver la climatisation",
-		"es": "Desactivar climatización",
-		"it": "Disattiva climatizzazione",
-		"da": "Sluk for klimatisering",
-		"no": "Slå av klimatisering",
-		"sv": "Inaktivera klimatisering",
-		"pl": "Wyłącz klimatyzację",
-		"ru": "Выключить климатизацию",
-		"ko": "냉난방 끄기"
-	}
+  "id": "climatisation_onoff_off",
+  "highlight": true,
+  "$filter": "capabilities=climatisation_onoff",
+  "title": {
+    "en": "Turn off climatisation",
+    "nl": "Klimaatregeling uitzetten",
+    "de": "Klimatisierung ausschalten",
+    "fr": "Désactiver la climatisation",
+    "es": "Apagar climatización",
+    "it": "Spegni climatizzazione",
+    "da": "Sluk klimaanlæg",
+    "no": "Slå av klimaanlegg",
+    "sv": "Slå av klimatanläggning",
+    "pl": "Wyłącz klimatyzację",
+    "ru": "Выключить климатизацию",
+    "ko": "냉난방 끄기"
+  }
 }

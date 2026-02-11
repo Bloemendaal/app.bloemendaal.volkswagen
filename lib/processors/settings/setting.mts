@@ -1,6 +1,6 @@
-import BaseDevice from "../../api/drivers/base-device.mjs";
-import { FetchData } from "../../api/fetch.mjs";
-import type { Processable } from "../processable.mjs";
+import BaseDevice from "#lib/api/drivers/base-device.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type { Processable } from "#lib/processors/processable.mjs";
 
 export default abstract class Setting implements Processable {
   constructor(protected readonly baseDevice: BaseDevice) {}

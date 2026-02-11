@@ -78,6 +78,9 @@
 		"charge_current": {
 			"reduced": "Reducido",
 			"maximum": "Máximo"
+		},
+		"polling_interval": {
+			"invalid": "El intervalo de sondeo debe ser de al menos 1 minuto"
 		}
 	}
 }

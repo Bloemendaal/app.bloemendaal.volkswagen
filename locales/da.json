@@ -78,6 +78,9 @@
 		"charge_current": {
 			"reduced": "Reduceret",
 			"maximum": "Maksimum"
+		},
+		"polling_interval": {
+			"invalid": "Afstemningsinterval skal være mindst 1 minut"
 		}
 	}
 }

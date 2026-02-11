@@ -1,7 +1,7 @@
-import type {
+import {
   ChargingSettings,
   ChargingSettingsAC,
-} from "../../api/vehicles/base-vehicle.mjs";
+} from "#lib/api/vehicles/base-vehicle.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdateChargingSettingsArgs {
@@ -86,7 +86,7 @@ export default class UpdateChargingSettingsFlow extends Flow {
 
     await vehicle
       .updateChargingSettings(settings, capabilities)
-      .catch((e) => this.baseDevice.errorAndThrow(e));
+      .catch((e: Error) => this.baseDevice.errorAndThrow(e));
 
     await this.baseDevice.requestRefresh(500, 1000);
   }

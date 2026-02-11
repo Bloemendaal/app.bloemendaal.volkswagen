@@ -1,4 +1,4 @@
-import type { ApiResponse, DateTimeString, Integer } from "../../types.mjs";
+import type { ApiResponse, DateTimeString, Integer } from "#lib/types.mjs";
 
 export interface CapabilitiesStatusData {
 	id: string;

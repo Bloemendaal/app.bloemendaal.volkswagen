@@ -1,6 +1,6 @@
-import { FetchData } from "../../../api/fetch.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class MeasureBatteryUntilTargetSocCapability extends Capability<number> {
   protected getCapabilityName(): string {
@@ -26,7 +26,7 @@ export default class MeasureBatteryUntilTargetSocCapability extends Capability<n
       uiComponent: "sensor",
       title: this.baseDevice.homey.__("capabilities.measure_battery.title", {
         name: this.baseDevice.homey.__(
-          "capabilities.measure_battery.variables.until_target_soc"
+          "capabilities.measure_battery.variables.until_target_soc",
         ),
       }),
     });

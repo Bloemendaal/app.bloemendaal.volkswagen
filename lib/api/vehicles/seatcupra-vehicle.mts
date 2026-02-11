@@ -280,14 +280,20 @@ export default class SeatCupraVehicle extends BaseVehicle {
     try {
       const response = await client.get(this.getParkingPositionUrl());
       const data = response.data;
-      
+
+      const lat = data.lat || data.latitude || 0;
+      const lon = data.lon || data.lng || data.longitude || 0;
+      const hasValidCoordinates = lat !== 0 && lon !== 0;
+
       return {
-        lat: data.lat || data.latitude || 0,
-        lon: data.lon || data.lng || data.longitude || 0,
-        carCapturedTimestamp: data.carCapturedTimestamp || new Date().toISOString()
+        parked: hasValidCoordinates,
+        lat,
+        lon,
+        carCapturedTimestamp:
+          data.carCapturedTimestamp || new Date().toISOString(),
       };
     } catch (error) {
-      return { lat: 0, lon: 0 };
+      return { parked: false };
     }
   }
 

@@ -1,6 +1,6 @@
-import { FetchData } from "../../../api/fetch.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class CoordinateLatitudeCapability extends Capability<number> {
   protected getCapabilityName(): string {
@@ -10,7 +10,7 @@ export default class CoordinateLatitudeCapability extends Capability<number> {
   public override async getter({
     parkingPosition,
   }: FetchData): Promise<number> {
-    if (!parkingPosition) {
+    if (!parkingPosition?.parked) {
       throw new InvalidValueError(parkingPosition);
     }
 
@@ -21,7 +21,7 @@ export default class CoordinateLatitudeCapability extends Capability<number> {
     this.baseDevice.setCapabilityOptions(this.getCapabilityName(), {
       title: this.baseDevice.homey.__("capabilities.coordinate.title", {
         name: this.baseDevice.homey.__(
-          "capabilities.coordinate.variables.latitude"
+          "capabilities.coordinate.variables.latitude",
         ),
       }),
     });

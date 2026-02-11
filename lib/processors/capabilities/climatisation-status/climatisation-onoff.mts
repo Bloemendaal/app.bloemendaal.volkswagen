@@ -1,7 +1,7 @@
-import type { StartClimatisationSettings } from "../../../api/climatisation.mjs";
-import { FetchData } from "../../../api/fetch.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import type { StartClimatisationSettings } from "#lib/api/climatisation.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class ClimatisationOnOffCapability extends Capability<boolean> {
   protected getCapabilityName(): string {
@@ -24,14 +24,14 @@ export default class ClimatisationOnOffCapability extends Capability<boolean> {
     const name = this.getCapabilityName();
     const isSetable = await this.can(
       "climatisation",
-      capabilities.userCapabilities?.capabilitiesStatus?.value
+      capabilities.userCapabilities?.capabilitiesStatus?.value,
     );
 
     this.baseDevice.setCapabilityOptions(
       name,
       isSetable
         ? { setable: true, uiComponent: "toggle" }
-        : { setable: false, uiComponent: "sensor" }
+        : { setable: false, uiComponent: "sensor" },
     );
 
     if (!isSetable) {

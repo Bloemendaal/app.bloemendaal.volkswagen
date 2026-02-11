@@ -1,0 +1,38 @@
+{
+  "id": "timestamp_updated",
+  "title": {
+    "en": "A timestamp was updated",
+    "nl": "Een tijdstempel is bijgewerkt",
+    "de": "Ein Zeitstempel wurde aktualisiert",
+    "fr": "Un horodatage a été mis à jour",
+    "es": "Se actualizó una marca de tiempo",
+    "it": "Un timestamp è stato aggiornato",
+    "da": "Et tidsstempel blev opdateret",
+    "no": "Et tidsstempel ble oppdatert",
+    "sv": "En tidsstämpel uppdaterades",
+    "pl": "Znacznik czasu został zaktualizowany",
+    "ru": "Временная метка была обновлена",
+    "ko": "타임스탬프가 업데이트되었습니다"
+  },
+  "tokens": [
+    {
+      "name": "timestamp",
+      "type": "number",
+      "title": {
+        "en": "Timestamp",
+        "nl": "Tijdstempel",
+        "de": "Zeitstempel",
+        "fr": "Horodatage",
+        "es": "Marca de tiempo",
+        "it": "Timestamp",
+        "da": "Tidsstempel",
+        "no": "Tidsstempel",
+        "sv": "Tidsstämpel",
+        "pl": "Znacznik czasu",
+        "ru": "Временная метка",
+        "ko": "타임스탬프"
+      },
+      "example": 1769900400000
+    }
+  ]
+}

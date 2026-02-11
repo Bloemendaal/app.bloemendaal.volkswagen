@@ -78,6 +78,9 @@
 		"charge_current": {
 			"reduced": "감소",
 			"maximum": "최대"
+		},
+		"polling_interval": {
+			"invalid": "폴링 간격은 최소 1분이어야 합니다"
 		}
 	}
 }

@@ -1,7 +1,7 @@
 import Homey from "homey";
 import type { PairSession } from "homey/lib/Driver.js";
 import CupraAuthenticator from "./authenticator.mjs";
-import SeatCupraUser from "../../lib/api/users/seatcupra-user.mjs";
+import SeatCupraUser from "#lib/api/users/seatcupra-user.mjs";
 
 export default class CupraDriver extends Homey.Driver {
   public async onPair(session: PairSession): Promise<void> {
@@ -26,7 +26,7 @@ export default class CupraDriver extends Homey.Driver {
         user = new SeatCupraUser(authenticator);
 
         return await user.canLogin(this.homey);
-      }
+      },
     );
 
     session.setHandler(
@@ -50,7 +50,7 @@ export default class CupraDriver extends Homey.Driver {
         }
 
         return await userInstance.verifySPin(userId);
-      }
+      },
     );
 
     session.setHandler("list_devices", async () => {

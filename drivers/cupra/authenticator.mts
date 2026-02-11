@@ -1,10 +1,3 @@
-import * as crypto from "node:crypto";
-import * as http from "node:http";
-import * as https from "node:https";
-import axios, { type AxiosInstance, type AxiosResponse } from "axios";
-import { wrapper } from "axios-cookiejar-support";
-import * as cheerio from "cheerio";
-import { CookieJar } from "tough-cookie";
 import {
   Authenticatable,
   AuthSettings,
@@ -12,7 +5,7 @@ import {
   Credentials,
   SettingsUpdateCallback,
   TokenStore,
-} from "../../lib/api/authenticatable.mjs";
+} from "#lib/api/authenticatable.mjs";
 import {
   AuthorizationUrlError,
   EmailSubmissionError,
@@ -20,7 +13,14 @@ import {
   PasswordFormParseError,
   PasswordSubmissionError,
   TokenExchangeError,
-} from "../../lib/errors/authentication-errors.mjs";
+} from "#lib/errors/authentication-errors.mjs";
+import axios, { type AxiosInstance, type AxiosResponse } from "axios";
+import { wrapper } from "axios-cookiejar-support";
+import * as cheerio from "cheerio";
+import * as crypto from "node:crypto";
+import * as http from "node:http";
+import * as https from "node:https";
+import { CookieJar } from "tough-cookie";
 
 const BASE_URL = "https://ola.prod.code.seat.cloud.vwgroup.com";
 const AUTH_BASE = "https://identity.vwgroup.io";
@@ -72,7 +72,7 @@ export default class CupraAuthenticator implements Authenticatable {
         withCredentials: true,
         validateStatus: (status) => status < 600,
         timeout: 30000,
-      })
+      }),
     );
   }
 
@@ -81,7 +81,7 @@ export default class CupraAuthenticator implements Authenticatable {
   }
 
   public static fromSettings(
-    settings: Partial<AuthSettings> & { brand?: "cupra" }
+    settings: Partial<AuthSettings> & { brand?: "cupra" },
   ): CupraAuthenticator {
     const {
       sPin = "",
@@ -151,7 +151,7 @@ export default class CupraAuthenticator implements Authenticatable {
       }
 
       const payload = JSON.parse(
-        Buffer.from(parts[1], "base64url").toString("utf-8")
+        Buffer.from(parts[1], "base64url").toString("utf-8"),
       );
 
       return payload.sub || null;
@@ -219,7 +219,7 @@ export default class CupraAuthenticator implements Authenticatable {
     }
 
     const payload = JSON.parse(
-      Buffer.from(parts[1], "base64url").toString("utf-8")
+      Buffer.from(parts[1], "base64url").toString("utf-8"),
     );
 
     if (!payload.exp) {
@@ -248,7 +248,7 @@ export default class CupraAuthenticator implements Authenticatable {
   }
 
   private async followRedirects(
-    response: AxiosResponse
+    response: AxiosResponse,
   ): Promise<AxiosResponse> {
     for (
       let redirectCount = 0;
@@ -262,7 +262,7 @@ export default class CupraAuthenticator implements Authenticatable {
       }
 
       console.log(
-        `[Cupra Auth] Following redirect ${redirectCount + 1}: ${redirectUrl}`
+        `[Cupra Auth] Following redirect ${redirectCount + 1}: ${redirectUrl}`,
       );
 
       response = await this.authenticationClient.get(redirectUrl, {
@@ -300,9 +300,8 @@ export default class CupraAuthenticator implements Authenticatable {
 
     // Step 3: Follow to identity provider
     console.log("[Cupra Auth] Following to identity provider");
-    const identityResponse = await this.followToIdentityProvider(
-      identityAuthUrl
-    );
+    const identityResponse =
+      await this.followToIdentityProvider(identityAuthUrl);
 
     // Step 4: Parse email form
     console.log("[Cupra Auth] Submitting email form");
@@ -316,7 +315,7 @@ export default class CupraAuthenticator implements Authenticatable {
     console.log("[Cupra Auth] Submitting password and following redirects");
     const code = await this.submitPasswordAndFollowRedirects(
       passwordUrl,
-      formData
+      formData,
     );
 
     // Step 7: Exchange for final tokens via Cupra API (like Skoda does)
@@ -355,7 +354,7 @@ export default class CupraAuthenticator implements Authenticatable {
       });
 
       const expiresAt = this.decodeJwtExpiration(
-        tokenResponse.data.access_token
+        tokenResponse.data.access_token,
       );
 
       return {
@@ -385,7 +384,7 @@ export default class CupraAuthenticator implements Authenticatable {
 
       const authorizationUrl = `${AUTH_BASE}/oidc/v1/authorize?${searchParams.toString()}`;
       console.log(
-        "[Cupra Auth] Authorization URL generated: " + authorizationUrl
+        "[Cupra Auth] Authorization URL generated: " + authorizationUrl,
       );
 
       return authorizationUrl;
@@ -395,7 +394,7 @@ export default class CupraAuthenticator implements Authenticatable {
   }
 
   private async followToIdentityProvider(
-    identityAuthUrl: string
+    identityAuthUrl: string,
   ): Promise<AxiosResponse> {
     try {
       console.log("[Cupra Auth] Requesting identity provider page");
@@ -413,19 +412,19 @@ export default class CupraAuthenticator implements Authenticatable {
         .then(this.followRedirects.bind(this));
 
       console.log(
-        `[Cupra Auth] Identity provider response received, status: ${identityResponse.status}`
+        `[Cupra Auth] Identity provider response received, status: ${identityResponse.status}`,
       );
       return identityResponse;
     } catch (cause) {
       console.error(
         "[Cupra Auth] Error following to identity provider:",
-        cause
+        cause,
       );
       if (axios.isAxiosError(cause)) {
         console.error("[Cupra Auth] Response status:", cause.response?.status);
         console.error(
           "[Cupra Auth] Response data:",
-          JSON.stringify(cause.response?.data)
+          JSON.stringify(cause.response?.data),
         );
       }
       throw new IdentityProviderError({ cause });
@@ -433,7 +432,7 @@ export default class CupraAuthenticator implements Authenticatable {
   }
 
   private async submitEmailForm(
-    identityResponse: AxiosResponse
+    identityResponse: AxiosResponse,
   ): Promise<AxiosResponse> {
     try {
       console.log("[Cupra Auth] Parsing email form");
@@ -487,7 +486,7 @@ export default class CupraAuthenticator implements Authenticatable {
   }
 
   private parsePasswordFormData(
-    emailResponse: AxiosResponse
+    emailResponse: AxiosResponse,
   ): PasswordFormData {
     try {
       const scriptContent = emailResponse.data;
@@ -520,7 +519,7 @@ export default class CupraAuthenticator implements Authenticatable {
 
   private async submitPasswordAndFollowRedirects(
     passwordUrl: string,
-    passwordFormData: Record<string, string>
+    passwordFormData: Record<string, string>,
   ): Promise<string> {
     try {
       console.log("[Cupra Auth] Submitting password");
@@ -533,7 +532,7 @@ export default class CupraAuthenticator implements Authenticatable {
             Accept:
               "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
           },
-        }
+        },
       );
 
       let redirectUrl: string | undefined = passwordResponse.headers.location;
@@ -549,8 +548,8 @@ export default class CupraAuthenticator implements Authenticatable {
         console.log(
           `[Cupra Auth] Redirect ${redirectCount}: ${redirectUrl.substring(
             0,
-            100
-          )}...`
+            100,
+          )}...`,
         );
 
         if (!redirectUrl.startsWith("http")) {
@@ -594,7 +593,7 @@ export default class CupraAuthenticator implements Authenticatable {
                 headers: {
                   "Content-Type": "application/x-www-form-urlencoded",
                 },
-              }
+              },
             );
 
             redirectUrl = consentResponse.headers.location;
@@ -634,7 +633,7 @@ export default class CupraAuthenticator implements Authenticatable {
                 headers: {
                   "Content-Type": "application/x-www-form-urlencoded",
                 },
-              }
+              },
             );
 
             redirectUrl = response.headers.location;
@@ -649,7 +648,7 @@ export default class CupraAuthenticator implements Authenticatable {
       if (!redirectUrl || !redirectUrl.startsWith(REDIRECT_URI)) {
         console.error(
           "[Cupra Auth] Failed to get authorization code. Last URL:",
-          redirectUrl
+          redirectUrl,
         );
         throw new Error("Failed to get authorization code from redirects");
       }
@@ -714,11 +713,11 @@ export default class CupraAuthenticator implements Authenticatable {
             "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
             Accept: "application/json",
           },
-        }
+        },
       );
 
       const expiresAt = this.decodeJwtExpiration(
-        tokenResponse.data.access_token
+        tokenResponse.data.access_token,
       );
 
       console.log("[Cupra Auth] Token exchange successful");
@@ -734,7 +733,7 @@ export default class CupraAuthenticator implements Authenticatable {
       if (axios.isAxiosError(cause)) {
         console.error(
           "[Cupra Auth] Token exchange response:",
-          cause.response?.data
+          cause.response?.data,
         );
       }
       throw new TokenExchangeError({ cause });

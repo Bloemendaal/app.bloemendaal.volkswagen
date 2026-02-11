@@ -78,6 +78,9 @@
 		"charge_current": {
 			"reduced": "Reduziert",
 			"maximum": "Maximum"
+		},
+		"polling_interval": {
+			"invalid": "Abrufintervall muss mindestens 1 Minute betragen"
 		}
 	}
 }

@@ -1,7 +1,7 @@
-import { FetchData } from "../../../api/fetch.mjs";
-import type { ParkingPositionData } from "../../../api/parking-position.mjs";
-import InvalidValueError from "../../../errors/invalid-value-error.mjs";
-import Capability from "../capability.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type { ParkedPosition } from "#lib/api/parking-position.mjs";
+import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
+import Capability from "#lib/processors/capabilities/capability.mjs";
 
 const EARTH_RADIUS_M = 6371000;
 
@@ -13,7 +13,7 @@ export default class MeasureDistanceHomeCapability extends Capability<number> {
   public override async getter({
     parkingPosition,
   }: FetchData): Promise<number> {
-    if (!parkingPosition) {
+    if (!parkingPosition?.parked) {
       throw new InvalidValueError(parkingPosition);
     }
 
@@ -27,7 +27,7 @@ export default class MeasureDistanceHomeCapability extends Capability<number> {
   }
 
   private calculateDistanceFromHome(
-    parkingPosition: ParkingPositionData
+    parkingPosition: ParkedPosition,
   ): number | null {
     const homey = this.baseDevice.homey;
 
@@ -52,7 +52,7 @@ export default class MeasureDistanceHomeCapability extends Capability<number> {
     lat1: number,
     lon1: number,
     lat2: number,
-    lon2: number
+    lon2: number,
   ): number {
     const toRadians = (degrees: number) => degrees * (Math.PI / 180);
 
