@@ -31,9 +31,7 @@ export default class AccessStatusCapabilityGroup extends CapabilityGroup {
 		const doors = capabilities.access?.accessStatus?.value?.doors ?? [];
 
 		for (const door of doors) {
-			capabilitiesList.push(
-				new AlarmDoorCapability(this.device, door.name),
-			);
+			capabilitiesList.push(new AlarmDoorCapability(this.device, door.name));
 		}
 
 		const windows = capabilities.access?.accessStatus?.value?.windows ?? [];

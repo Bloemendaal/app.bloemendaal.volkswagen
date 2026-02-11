@@ -19,9 +19,7 @@ interface UpdateChargingSettingsArgs {
 
 export default class UpdateChargingSettingsFlow extends Flow {
 	public override async register(): Promise<void> {
-		const card = this.device.homey.flow.getActionCard(
-			"update_charge_settings",
-		);
+		const card = this.device.homey.flow.getActionCard("update_charge_settings");
 
 		card.registerRunListener(this.handleAction.bind(this));
 		card.registerArgumentAutocompleteListener(
@@ -36,9 +34,7 @@ export default class UpdateChargingSettingsFlow extends Flow {
 		const expectsMaxCurrentInAmpere = this.device.hasCapability(
 			"expects_max_charging_current_in_ampere",
 		)
-			? this.device.getCapabilityValue(
-					"expects_max_charging_current_in_ampere",
-				)
+			? this.device.getCapabilityValue("expects_max_charging_current_in_ampere")
 			: false;
 
 		if (expectsMaxCurrentInAmpere) {

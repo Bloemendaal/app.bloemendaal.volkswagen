@@ -57,10 +57,7 @@ export default abstract class CapabilityGroup implements Processable {
 			return false;
 		}
 
-		await this.device.setCapabilityValue(
-			capabilityId,
-			carCapturedTimestamp,
-		);
+		await this.device.setCapabilityValue(capabilityId, carCapturedTimestamp);
 
 		return true;
 	}
