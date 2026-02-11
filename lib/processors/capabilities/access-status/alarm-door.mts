@@ -1,11 +1,11 @@
-import type BaseDevice from "#lib/api/drivers/base-device.mjs";
+import type VagDevice from "#lib/api/drivers/base-device.mjs";
 import type { FetchData } from "#lib/api/fetch.mjs";
 import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
 import Capability from "#lib/processors/capabilities/capability.mjs";
 
 export default class AlarmDoorCapability extends Capability<boolean> {
 	constructor(
-		device: BaseDevice,
+		device: VagDevice,
 		private readonly subCapabilityName: string,
 	) {
 		super(device);

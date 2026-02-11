@@ -1,13 +1,13 @@
 import type { Authenticatable } from "../authenticatable.mjs";
 import VolkswagenUser from "../users/volkswagen-user.mjs";
 import type VolkswagenVehicle from "../vehicles/volkswagen-vehicle.mjs";
-import BaseDevice from "./base-device.mjs";
+import VagDevice from "./base-device.mjs";
 
 /**
  * Device class for Volkswagen and Skoda vehicles
  * Uses the standard VAG API endpoints (/vehicle/v1/*)
  */
-export default abstract class VolkswagenDevice extends BaseDevice<
+export default abstract class VolkswagenDevice extends VagDevice<
 	VolkswagenUser,
 	VolkswagenVehicle
 > {

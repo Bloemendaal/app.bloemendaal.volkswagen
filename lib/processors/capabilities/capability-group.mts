@@ -1,10 +1,10 @@
-import type BaseDevice from "#lib/api/drivers/base-device.mjs";
+import type VagDevice from "#lib/api/drivers/base-device.mjs";
 import type { FetchData } from "#lib/api/fetch.mjs";
 import Processor, { type Processable } from "#lib/processors/processable.mjs";
 import type { DateTimeString } from "#lib/types.mjs";
 
 export default abstract class CapabilityGroup implements Processable {
-	constructor(protected readonly device: BaseDevice) {}
+	constructor(protected readonly device: VagDevice) {}
 
 	public async register(fetchData: FetchData): Promise<void> {
 		const capabilities = await this.getProcessables(fetchData);

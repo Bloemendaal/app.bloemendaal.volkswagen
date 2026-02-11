@@ -1,5 +1,5 @@
 import type { CapabilitiesStatusData } from "#lib/api/capabilities/user-capabilities.mjs";
-import type BaseDevice from "#lib/api/drivers/base-device.mjs";
+import type VagDevice from "#lib/api/drivers/base-device.mjs";
 import type { FetchData } from "#lib/api/fetch.mjs";
 import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
 import NotImplementedError from "#lib/errors/not-implemented-error.mjs";
@@ -11,7 +11,7 @@ export interface RunOptions {
 }
 
 export default abstract class Capability<TValue> implements Processable {
-	constructor(protected readonly device: BaseDevice) {}
+	constructor(protected readonly device: VagDevice) {}
 
 	public async register(fetchData: FetchData): Promise<void> {
 		if (this.device.hasCapability(this.getCapabilityName())) {

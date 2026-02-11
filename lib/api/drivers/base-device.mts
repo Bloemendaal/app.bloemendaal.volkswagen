@@ -23,7 +23,7 @@ interface OnSettingsParams {
  * @template TUser - The specific User class for the brand (extends BaseUser)
  * @template TVehicle - The specific Vehicle class for the brand (extends BaseVehicle)
  */
-export default abstract class BaseDevice<
+export default abstract class VagDevice<
 	TUser extends BaseUser = BaseUser,
 	TVehicle extends BaseVehicle = BaseVehicle,
 > extends Homey.Device {

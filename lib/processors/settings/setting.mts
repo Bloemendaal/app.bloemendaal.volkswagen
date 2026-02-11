@@ -1,9 +1,9 @@
-import type BaseDevice from "#lib/api/drivers/base-device.mjs";
+import type VagDevice from "#lib/api/drivers/base-device.mjs";
 import type { FetchData } from "#lib/api/fetch.mjs";
 import type { Processable } from "#lib/processors/processable.mjs";
 
 export default abstract class Setting implements Processable {
-	constructor(protected readonly device: BaseDevice) {}
+	constructor(protected readonly device: VagDevice) {}
 
 	public abstract register(fetchData: FetchData): Promise<void>;
 
