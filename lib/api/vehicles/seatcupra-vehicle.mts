@@ -1,9 +1,13 @@
 import type { SelectiveStatusCapabilitiesData } from "../capabilities.mjs";
+import type {
+	ClimatisationSettings,
+	StartClimatisationSettings,
+} from "../climatisation.mjs";
 import type { ParkingPositionData } from "../parking-position.mjs";
-import BaseVehicle from "./base-vehicle.mjs";
+import VagVehicle, { type ChargingSettings } from "./vag-vehicle.mjs";
 
-export default class SeatCupraVehicle extends BaseVehicle {
-	public override async getVehicleCapabilities(): Promise<
+export default class SeatCupraVehicle extends VagVehicle {
+	public async getVehicleCapabilities(): Promise<
 		Partial<SelectiveStatusCapabilitiesData>
 	> {
 		const client = await this.authenticator.getClient();
@@ -262,12 +266,14 @@ export default class SeatCupraVehicle extends BaseVehicle {
 		return result;
 	}
 
-	public override async getParkingPosition(): Promise<ParkingPositionData> {
+	public async getParkingPosition(): Promise<ParkingPositionData> {
 		const client = await this.authenticator.getClient();
 
 		try {
-			const response = await client.get(this.getParkingPositionUrl());
-			const data = response.data;
+			// TODO: Make this a typed response and check what's inside instead of guessing
+			const { data } = await client.get(
+				`/v1/vehicles/${this.vin}/parkingposition`,
+			);
 
 			const lat = data.lat || data.latitude || 0;
 			const lon = data.lon || data.lng || data.longitude || 0;
@@ -285,65 +291,151 @@ export default class SeatCupraVehicle extends BaseVehicle {
 		}
 	}
 
-	protected getSelectiveStatusUrl(): string {
-		return "";
+	public async lock(): Promise<void> {
+		const userId = this.authenticator.getUserId();
+		const configuration = this.authenticator.getConfiguration();
+
+		if (!userId) {
+			throw new Error("Failed to get user ID from authentication token");
+		}
+
+		if (!configuration.sPin) {
+			throw new Error("S-PIN is required to lock the vehicle");
+		}
+
+		const client = await this.authenticator.getClient();
+
+		// TODO: type this or isolate to SeatCupraUser
+		const verifyResponse = await client.post(
+			`/v2/users/${userId}/spin/verify`,
+			{ spin: configuration.sPin },
+		);
+
+		const secToken = verifyResponse.data.securityToken;
+
+		// Use security token in header for lock request
+		await client.post(
+			`/v1/vehicles/${this.vin}/access/lock`,
+			{},
+			{
+				headers: {
+					SecToken: secToken,
+				},
+			},
+		);
 	}
 
-	protected getParkingPositionUrl(): string {
-		return `/v1/vehicles/${this.vin}/parkingposition`;
+	public async unlock(): Promise<void> {
+		const userId = this.authenticator.getUserId();
+		const configuration = this.authenticator.getConfiguration();
+
+		if (!configuration.sPin) {
+			throw new Error("S-PIN is required to unlock the vehicle");
+		}
+
+		if (!userId) {
+			throw new Error("Failed to get user ID from authentication token");
+		}
+
+		const client = await this.authenticator.getClient();
+
+		// TODO: type this or isolate to SeatCupraUser
+		const verifyResponse = await client.post(
+			`/v2/users/${userId}/spin/verify`,
+			{ spin: configuration.sPin },
+		);
+
+		const secToken = verifyResponse.data.securityToken;
+
+		await client.post(
+			`/v1/vehicles/${this.vin}/access/unlock`,
+			{},
+			{
+				headers: {
+					SecToken: secToken,
+				},
+			},
+		);
 	}
 
-	protected getLockUrl(): string {
-		return `/v1/vehicles/${this.vin}/access/lock`;
-	}
-
-	protected getUnlockUrl(): string {
-		return `/v1/vehicles/${this.vin}/access/unlock`;
-	}
-
-	protected getStartClimatisationUrl(): string {
-		return `/v2/vehicles/${this.vin}/climatisation/start`;
-	}
-
-	protected getUpdateClimatisationUrl(): string {
-		return `/v2/vehicles/${this.vin}/climatisation/settings`;
-	}
-
-	protected getStopClimatisationUrl(): string {
-		return `/vehicles/${this.vin}/climatisation/requests/stop`;
-	}
-
-	protected getWakeUrl(): string {
-		return `/v1/vehicles/${this.vin}/vehicle-wakeup/request`;
-	}
-
-	protected getHonkAndFlashUrl(): string {
-		return `/v1/vehicles/${this.vin}/honk-and-flash`;
-	}
-
-	protected getStartChargingUrl(): string {
-		return `/vehicles/${this.vin}/charging/requests/start`;
-	}
-
-	protected getStopChargingUrl(): string {
-		return `/vehicles/${this.vin}/charging/requests/stop`;
-	}
-
-	protected getUpdateChargingSettingsUrl(): string {
-		return `/v1/vehicles/${this.vin}/charging/settings`;
-	}
-
-	/**
-	 * SEAT/Cupra uses POST instead of PUT for updating charging settings
-	 */
-	public override async updateChargingSettings(
-		settings: any,
-		capabilities?: Partial<SelectiveStatusCapabilitiesData>,
+	public async startClimatisation(
+		settings: StartClimatisationSettings = {},
 	): Promise<void> {
+		if (typeof settings.targetTemperature === "number") {
+			settings.targetTemperature =
+				Math.round(settings.targetTemperature / 0.5) * 0.5;
+		}
+
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/v2/vehicles/${this.vin}/climatisation/start`, settings);
+	}
+
+	public async updateClimatisation(
+		settings: ClimatisationSettings = {},
+	): Promise<void> {
+		if (typeof settings.targetTemperature === "number") {
+			settings.targetTemperature =
+				Math.round(settings.targetTemperature / 0.5) * 0.5;
+		}
+
+		const client = await this.authenticator.getClient();
+
+		await client.put(
+			`/v2/vehicles/${this.vin}/climatisation/settings`,
+			settings,
+		);
+	}
+
+	public async stopClimatisation(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicles/${this.vin}/climatisation/requests/stop`);
+	}
+
+	public async wake(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/v1/vehicles/${this.vin}/vehicle-wakeup/request`);
+	}
+
+	public async honkAndFlash(options: {
+		mode: "flash" | "honk-and-flash";
+		duration: number;
+		userPosition: {
+			latitude: number;
+			longitude: number;
+		};
+	}): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/v1/vehicles/${this.vin}/honk-and-flash`, {
+			mode: options.mode,
+			duration_s: options.duration,
+			userPosition: options.userPosition,
+		});
+	}
+
+	public async startCharging(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicles/${this.vin}/charging/requests/start`);
+	}
+
+	public async stopCharging(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicles/${this.vin}/charging/requests/stop`);
+	}
+
+	public async updateChargingSettings(
+		settings: ChargingSettings,
+	): Promise<void> {
+		// TODO: do we really need this? Or can we solve this another way? E.g. by passing the other charging settings and using already registered Homey capabilities
+		const isHybrid = await this.isHybrid();
 		const client = await this.authenticator.getClient();
 
 		const payload: Record<string, unknown> = {};
-		const isHybrid = this.isHybrid(capabilities);
 
 		if (settings.chargingSettingsAC) {
 			const { maxChargeCurrentAC, autoUnlockPlugWhenChargedAC } =
@@ -379,62 +471,30 @@ export default class SeatCupraVehicle extends BaseVehicle {
 			throw new Error("No charging settings to update");
 		}
 
-		await client.post(this.getUpdateChargingSettingsUrl(), payload);
+		await client.post(`/v1/vehicles/${this.vin}/charging/settings`, payload);
 	}
 
-	protected getStartWindowHeatingUrl(): string {
-		return `/vehicles/${this.vin}/windowheating/requests/start`;
+	public async startWindowHeating(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicles/${this.vin}/windowheating/requests/start`);
 	}
 
-	protected getStopWindowHeatingUrl(): string {
-		return `/vehicles/${this.vin}/windowheating/requests/stop`;
+	public async stopWindowHeating(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicles/${this.vin}/windowheating/requests/stop`);
 	}
 
-	/**
-	 * SEAT/Cupra lock implementation uses SecToken header instead of spin in body
-	 */
-	protected async performLock(client: any, sPin: string): Promise<void> {
-		// First verify S-PIN to get security token
-		const userId = this.authenticator.getUserId();
-		const verifyResponse = await client.post(
-			`/v2/users/${userId}/spin/verify`,
-			{ spin: sPin },
-		);
+	protected async isHybrid(
+		capabilities?: Partial<SelectiveStatusCapabilitiesData>,
+	): Promise<boolean> {
+		if (!capabilities) {
+			capabilities = await this.getVehicleCapabilities();
+		}
 
-		const secToken = verifyResponse.data.securityToken;
+		const rangeStatus = capabilities.fuelStatus?.rangeStatus?.value;
 
-		// Use security token in header for lock request
-		await client.post(
-			this.getLockUrl(),
-			{},
-			{
-				headers: {
-					SecToken: secToken,
-				},
-			},
-		);
-	}
-
-	/**
-	 * SEAT/Cupra unlock implementation uses SecToken header instead of spin in body
-	 */
-	protected async performUnlock(client: any, sPin: string): Promise<void> {
-		// First verify S-PIN to get security token
-		const userId = this.authenticator.getUserId();
-		const verifyResponse = await client.post(
-			`/v2/users/${userId}/spin/verify`,
-			{ spin: sPin },
-		);
-
-		const secToken = verifyResponse.data.securityToken;
-		await client.post(
-			this.getUnlockUrl(),
-			{},
-			{
-				headers: {
-					SecToken: secToken,
-				},
-			},
-		);
+		return !!(rangeStatus?.primaryEngine && rangeStatus?.secondaryEngine);
 	}
 }

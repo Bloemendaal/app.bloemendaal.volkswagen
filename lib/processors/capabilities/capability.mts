@@ -27,8 +27,10 @@ export default abstract class Capability<TValue> implements Processable {
 		}
 
 		const name = this.getCapabilityName();
+
 		try {
 			const value = await this.getter(fetchData);
+
 			await this.addCapability(name, fetchData);
 
 			if (this.shouldSetCapabilityValue(value, options)) {

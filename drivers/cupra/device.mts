@@ -1,5 +1,4 @@
 import SeatCupraUser from "#lib/api/users/seatcupra-user.mjs";
-import type SeatCupraVehicle from "#lib/api/vehicles/seatcupra-vehicle.mjs";
 import VagDevice from "#lib/drivers/vag-device.mjs";
 import AccessStatusCapabilityGroup from "#lib/processors/capabilities/access-status/index.mjs";
 import BatteryStatusCapabilityGroup from "#lib/processors/capabilities/battery-status/index.mjs";
@@ -25,7 +24,7 @@ import Processor from "#lib/processors/processable.mjs";
 import EnergySetting from "#lib/processors/settings/energy.mjs";
 import CupraAuthenticator from "./authenticator.mjs";
 
-export default class CupraDevice extends VagDevice<SeatCupraVehicle> {
+export default class CupraDevice extends VagDevice {
 	protected readonly processor: Processor = new Processor([
 		new EnergySetting(this),
 		new AccessStatusCapabilityGroup(this),

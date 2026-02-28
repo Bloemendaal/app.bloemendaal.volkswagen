@@ -40,7 +40,7 @@ export default class VolkswagenDriver extends Homey.Driver {
 				});
 				const userInstance = user ?? new VolkswagenUser(authenticator);
 
-				userInstance.getAuthenticator().setSPin(sPin);
+				userInstance.authenticator.setSPin(sPin);
 
 				return await userInstance.verifySPin();
 			},
@@ -53,7 +53,7 @@ export default class VolkswagenDriver extends Homey.Driver {
 			});
 			const userInstance = user ?? new VolkswagenUser(authenticator);
 
-			userInstance.getAuthenticator().setSPin(sPin);
+			userInstance.authenticator.setSPin(sPin);
 
 			const vehicles = await userInstance.getVehicles();
 			const settings = await userInstance.getSettings();

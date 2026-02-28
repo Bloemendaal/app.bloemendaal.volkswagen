@@ -1,8 +1,8 @@
 import Homey from "homey";
 import DebounceScheduler from "#lib/api/debounce-scheduler.mjs";
 import type { FetchData } from "#lib/api/fetch.mjs";
-import type BaseUser from "#lib/api/users/base-user.mjs";
-import type BaseVehicle from "#lib/api/vehicles/base-vehicle.mjs";
+import type VagUser from "#lib/api/users/vag-user.mjs";
+import type VagVehicle from "#lib/api/vehicles/vag-vehicle.mjs";
 import TranslatableError from "#lib/errors/translatable-error.mjs";
 import type Processor from "#lib/processors/processable.mjs";
 
@@ -22,33 +22,27 @@ interface OnSettingsParams {
  * @template TUser - The specific User class for the brand (extends BaseUser)
  * @template TVehicle - The specific Vehicle class for the brand (extends BaseVehicle)
  */
-export default abstract class VagDevice<
-	TVehicle extends BaseVehicle = BaseVehicle,
-> extends Homey.Device {
-	private vehicle: TVehicle | null = null;
+export default abstract class VagDevice extends Homey.Device {
+	private vehicle: VagVehicle | null = null;
 
 	private readonly debounceScheduler: DebounceScheduler<void> =
 		new DebounceScheduler<void>(this.setCapabilities.bind(this));
 
 	protected abstract readonly processor: Processor;
 
-	/**
-	 * Abstract method to create User instance - must be implemented by subclasses
-	 * This allows different User implementations for different brands
-	 */
-	protected abstract createUser(): BaseUser;
+	protected abstract createUser(): VagUser;
 
 	/**
 	 * Get vehicle from API using the brand-specific User class
 	 */
-	protected async getVehicleFromApi(): Promise<TVehicle> {
+	protected async getVehicleFromApi(): Promise<VagVehicle> {
 		try {
 			const user = this.createUser();
 			const vehicles = await user.getVehicles();
 
 			const vehicle = vehicles.find(
 				(vehicle) => vehicle.vin === this.getData().id,
-			) as TVehicle | undefined;
+			);
 
 			if (!vehicle) {
 				throw new Error("Vehicle not found");
@@ -66,7 +60,7 @@ export default abstract class VagDevice<
 
 	public async onInit(): Promise<void> {
 		const vehicle = await this.getVehicle();
-		vehicle.getAuthenticator().onSettingsUpdate(this.setSettings.bind(this));
+		vehicle.authenticator.onSettingsUpdate(this.setSettings.bind(this));
 
 		const fetchData = await this.fetchVehicleData(vehicle);
 
@@ -85,9 +79,7 @@ export default abstract class VagDevice<
 		changedKeys,
 	}: OnSettingsParams): Promise<void> {
 		if (changedKeys.includes("sPin")) {
-			this.vehicle
-				?.getAuthenticator()
-				.setSPin(newSettings.sPin?.toString() ?? null);
+			this.vehicle?.authenticator.setSPin(newSettings.sPin?.toString() ?? null);
 		}
 
 		if (changedKeys.includes("email") || changedKeys.includes("password")) {
@@ -122,7 +114,7 @@ export default abstract class VagDevice<
 		throw error;
 	}
 
-	public async getVehicle(): Promise<TVehicle> {
+	public async getVehicle(): Promise<VagVehicle> {
 		if (this.vehicle) {
 			return this.vehicle;
 		}
@@ -139,11 +131,11 @@ export default abstract class VagDevice<
 	}
 
 	private async fetchVehicleData(
-		vehicle: TVehicle | null = null,
+		vehicle: VagVehicle | null = null,
 	): Promise<FetchData> {
 		if (!vehicle) {
 			vehicle = await this.getVehicle();
-			vehicle.getAuthenticator().onSettingsUpdate(this.setSettings.bind(this));
+			vehicle.authenticator.onSettingsUpdate(this.setSettings.bind(this));
 		}
 
 		const capabilities = await vehicle.getVehicleCapabilities();

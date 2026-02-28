@@ -1,16 +1,17 @@
-import type { VehicleData } from "../vehicles/base-vehicle.mjs";
 import SeatCupraVehicle from "../vehicles/seatcupra-vehicle.mjs";
-import BaseUser from "./base-user.mjs";
+import type { VehicleData } from "../vehicles/vag-vehicle.mjs";
+import VagUser from "./vag-user.mjs";
 
 /**
  * SEAT/Cupra specific User class that uses the correct API endpoints
  * Based on SEAT/Cupra API documentation
  */
-export default class SeatCupraUser extends BaseUser {
-	public async verifySPin(userId: string): Promise<boolean> {
+export default class SeatCupraUser extends VagUser {
+	public async verifySPin(): Promise<boolean> {
+		const userId = this.authenticator.getUserId();
 		const configuration = this.authenticator.getConfiguration();
 
-		if (!configuration.sPin) {
+		if (!configuration.sPin || !userId) {
 			return false;
 		}
 
@@ -31,8 +32,11 @@ export default class SeatCupraUser extends BaseUser {
 		if (!userId) {
 			throw new Error("Failed to get user ID from authentication token");
 		}
-		const url = `/v2/users/${userId}/garage/vehicles`;
-		const response = await client.get<{ vehicles: VehicleData[] }>(url);
+
+		const response = await client.get<{ vehicles: VehicleData[] }>(
+			`/v2/users/${userId}/garage/vehicles`,
+		);
+
 		return response.data.vehicles.map(
 			(data) => new SeatCupraVehicle(data, this.authenticator),
 		);

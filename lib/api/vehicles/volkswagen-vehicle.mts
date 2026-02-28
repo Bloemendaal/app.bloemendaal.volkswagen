@@ -1,77 +1,196 @@
-import BaseVehicle, { selectiveStatusCapabilities } from "./base-vehicle.mjs";
+import type {
+	ClimatisationSettings,
+	StartClimatisationSettings,
+} from "../climatisation.mjs";
+import type {
+	ParkingPositionData,
+	ParkingPositionResponse,
+} from "../parking-position.mjs";
+import VagVehicle, {
+	type ChargingSettings,
+	type SelectiveStatusCapabilitiesData,
+	selectiveStatusCapabilities,
+} from "./vag-vehicle.mjs";
 
-/**
- * Vehicle class for Volkswagen and Skoda
- * Uses the standard VAG API endpoints (/vehicle/v1/*)
- */
-export default class VolkswagenVehicle extends BaseVehicle {
-	protected getSelectiveStatusUrl(): string {
-		return `/vehicle/v1/vehicles/${
-			this.vin
-		}/selectivestatus?jobs=${selectiveStatusCapabilities.join(",")}`;
+export default class VolkswagenVehicle extends VagVehicle {
+	public async getVehicleCapabilities(): Promise<
+		Partial<SelectiveStatusCapabilitiesData>
+	> {
+		const client = await this.authenticator.getClient();
+
+		const response = await client.get<Partial<SelectiveStatusCapabilitiesData>>(
+			`/vehicle/v1/vehicles/${this.vin}/selectivestatus?jobs=${selectiveStatusCapabilities.join(",")}`,
+		);
+
+		return response.data;
 	}
 
-	protected getParkingPositionUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/parkingposition`;
+	public async getParkingPosition(): Promise<ParkingPositionData> {
+		const client = await this.authenticator.getClient();
+
+		const response = await client.get<{ data: ParkingPositionResponse }>(
+			`/vehicle/v1/vehicles/${this.vin}/parkingposition`,
+		);
+
+		if (response.status === 204) {
+			return { parked: false };
+		}
+
+		return {
+			...response.data.data,
+			parked: true,
+		};
 	}
 
-	protected getLockUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/access/lock`;
-	}
+	public async lock(): Promise<void> {
+		const configuration = this.authenticator.getConfiguration();
 
-	protected getUnlockUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/access/unlock`;
-	}
+		if (!configuration.sPin) {
+			throw new Error("S-PIN is required to lock the vehicle");
+		}
 
-	protected getStartClimatisationUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/climatisation/start`;
-	}
+		const client = await this.authenticator.getClient();
 
-	protected getUpdateClimatisationUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/climatisation/settings`;
-	}
-
-	protected getStopClimatisationUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/climatisation/stop`;
-	}
-
-	protected getWakeUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/vehiclewakeuptrigger`;
-	}
-
-	protected getHonkAndFlashUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/honkandflash`;
-	}
-
-	protected getStartChargingUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/charging/start`;
-	}
-
-	protected getStopChargingUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/charging/stop`;
-	}
-
-	protected getUpdateChargingSettingsUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/charging/settings`;
-	}
-
-	protected getStartWindowHeatingUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/windowheating/start`;
-	}
-
-	protected getStopWindowHeatingUrl(): string {
-		return `/vehicle/v1/vehicles/${this.vin}/windowheating/stop`;
-	}
-
-	protected async performLock(client: any, sPin: string): Promise<void> {
-		await client.post(this.getLockUrl(), {
-			spin: sPin,
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/access/lock`, {
+			spin: configuration.sPin,
 		});
 	}
 
-	protected async performUnlock(client: any, sPin: string): Promise<void> {
-		await client.post(this.getUnlockUrl(), {
-			spin: sPin,
+	public async unlock(): Promise<void> {
+		const configuration = this.authenticator.getConfiguration();
+
+		if (!configuration.sPin) {
+			throw new Error("S-PIN is required to unlock the vehicle");
+		}
+
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/access/unlock`, {
+			spin: configuration.sPin,
 		});
+	}
+
+	public async startClimatisation(
+		settings: StartClimatisationSettings = {},
+	): Promise<void> {
+		if (typeof settings.targetTemperature === "number") {
+			settings.targetTemperature =
+				Math.round(settings.targetTemperature / 0.5) * 0.5;
+		}
+
+		const client = await this.authenticator.getClient();
+
+		await client.post(
+			`/vehicle/v1/vehicles/${this.vin}/climatisation/start`,
+			settings,
+		);
+	}
+
+	public async updateClimatisation(
+		settings: ClimatisationSettings = {},
+	): Promise<void> {
+		if (typeof settings.targetTemperature === "number") {
+			settings.targetTemperature =
+				Math.round(settings.targetTemperature / 0.5) * 0.5;
+		}
+
+		const client = await this.authenticator.getClient();
+
+		await client.put(
+			`/vehicle/v1/vehicles/${this.vin}/climatisation/settings`,
+			settings,
+		);
+	}
+
+	public async stopClimatisation(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/climatisation/stop`);
+	}
+
+	public async wake(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/vehiclewakeuptrigger`);
+	}
+
+	public async honkAndFlash(options: {
+		mode: "flash" | "honk-and-flash";
+		duration: number;
+		userPosition: {
+			latitude: number;
+			longitude: number;
+		};
+	}): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/honkandflash`, {
+			mode: options.mode,
+			duration_s: options.duration,
+			userPosition: options.userPosition,
+		});
+	}
+
+	public async startCharging(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/charging/start`);
+	}
+
+	public async stopCharging(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/charging/stop`);
+	}
+
+	public async updateChargingSettings(
+		settings: ChargingSettings,
+	): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		const payload: Record<string, unknown> = {};
+
+		if (settings.chargingSettingsAC) {
+			const { maxChargeCurrentAC, autoUnlockPlugWhenChargedAC } =
+				settings.chargingSettingsAC;
+
+			if (typeof maxChargeCurrentAC === "number") {
+				const [amperage] = [5, 10, 13, 32].sort(
+					(a, b) =>
+						Math.abs(a - maxChargeCurrentAC) - Math.abs(b - maxChargeCurrentAC),
+				);
+
+				payload.maxChargeCurrentAC_A = amperage;
+			} else {
+				payload.maxChargeCurrentAC = maxChargeCurrentAC;
+			}
+
+			payload.autoUnlockPlugWhenChargedAC = autoUnlockPlugWhenChargedAC
+				? "on"
+				: "off";
+		}
+
+		if (typeof settings.targetSOC_pct === "number") {
+			payload.targetSOC_pct = Math.round(
+				Math.min(Math.max(settings.targetSOC_pct, 50), 100),
+			);
+		}
+
+		await client.put(
+			`/vehicle/v1/vehicles/${this.vin}/charging/settings`,
+			payload,
+		);
+	}
+
+	public async startWindowHeating(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/windowheating/start`);
+	}
+
+	public async stopWindowHeating(): Promise<void> {
+		const client = await this.authenticator.getClient();
+
+		await client.post(`/vehicle/v1/vehicles/${this.vin}/windowheating/stop`);
 	}
 }

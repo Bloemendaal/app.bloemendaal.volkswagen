@@ -1,7 +1,7 @@
 import type {
 	ChargingSettings,
 	ChargingSettingsAC,
-} from "#lib/api/vehicles/base-vehicle.mjs";
+} from "#lib/api/vehicles/vag-vehicle.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdateChargingSettingsArgs {

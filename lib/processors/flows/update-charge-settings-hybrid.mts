@@ -1,4 +1,4 @@
-import type { ChargingSettings } from "../../api/vehicles/base-vehicle.mjs";
+import type { ChargingSettings } from "../../api/vehicles/vag-vehicle.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdateChargingSettingsHybridArgs {

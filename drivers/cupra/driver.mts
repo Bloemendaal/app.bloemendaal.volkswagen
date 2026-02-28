@@ -40,16 +40,9 @@ export default class CupraDriver extends Homey.Driver {
 				});
 				const userInstance = user ?? new SeatCupraUser(authenticator);
 
-				userInstance.getAuthenticator().setSPin(sPin);
+				userInstance.authenticator.setSPin(sPin);
 
-				// Authenticate to get the token, then extract userId
-				await authenticator.getClient();
-				const userId = authenticator.getUserId();
-				if (!userId) {
-					throw new Error("Failed to get user ID from authentication token");
-				}
-
-				return await userInstance.verifySPin(userId);
+				return await userInstance.verifySPin();
 			},
 		);
 
@@ -60,7 +53,7 @@ export default class CupraDriver extends Homey.Driver {
 			});
 			const userInstance = user ?? new SeatCupraUser(authenticator);
 
-			userInstance.getAuthenticator().setSPin(sPin);
+			userInstance.authenticator.setSPin(sPin);
 
 			const vehicles = await userInstance.getVehicles();
 			const settings = await userInstance.getSettings();
