@@ -115,6 +115,31 @@
     ],
     "actions": [
       {
+        "id": "climatisation_onoff_off",
+        "highlight": true,
+        "title": {
+          "en": "Turn off climatisation",
+          "nl": "Klimaatregeling uitzetten",
+          "de": "Klimatisierung ausschalten",
+          "fr": "Désactiver la climatisation",
+          "es": "Apagar climatización",
+          "it": "Spegni climatizzazione",
+          "da": "Sluk klimaanlæg",
+          "no": "Slå av klimaanlegg",
+          "sv": "Slå av klimatanläggning",
+          "pl": "Wyłącz klimatyzację",
+          "ru": "Выключить климатизацию",
+          "ko": "냉난방 끄기"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
+          }
+        ]
+      },
+      {
         "id": "climatisation_onoff_on",
         "highlight": true,
         "title": {
@@ -383,27 +408,94 @@
         ]
       },
       {
-        "id": "climatisation_onoff_off",
-        "highlight": true,
+        "id": "control_charging",
         "title": {
-          "en": "Turn off climatisation",
-          "nl": "Klimaatregeling uitzetten",
-          "de": "Klimatisierung ausschalten",
-          "fr": "Désactiver la climatisation",
-          "es": "Apagar climatización",
-          "it": "Spegni climatizzazione",
-          "da": "Sluk klimaanlæg",
-          "no": "Slå av klimaanlegg",
-          "sv": "Slå av klimatanläggning",
-          "pl": "Wyłącz klimatyzację",
-          "ru": "Выключить климатизацию",
-          "ko": "냉난방 끄기"
+          "en": "Start or stop charging",
+          "nl": "Start of stop laden",
+          "de": "Laden starten oder stoppen",
+          "fr": "Démarrer ou arrêter la charge",
+          "da": "Start eller stop opladning",
+          "es": "Iniciar o detener la carga",
+          "it": "Avvia o interrompi la ricarica",
+          "no": "Start eller stopp lading",
+          "sv": "Starta eller stoppa laddning",
+          "pl": "Rozpocznij lub zatrzymaj ładowanie",
+          "ru": "Начать или остановить зарядку",
+          "ko": "충전 시작 또는 중지"
+        },
+        "titleFormatted": {
+          "en": "[[action]] charging",
+          "nl": "[[action]] laden",
+          "de": "Laden [[action]]",
+          "fr": "[[action]] la charge",
+          "da": "[[action]] opladning",
+          "es": "[[action]] la carga",
+          "it": "[[action]] la ricarica",
+          "no": "[[action]] lading",
+          "sv": "[[action]] laddning",
+          "pl": "[[action]] ładowanie",
+          "ru": "[[action]] зарядку",
+          "ko": "충전 [[action]]"
         },
         "args": [
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
+            "filter": "driver_id=volkswagen&capabilities=ev_charging_state"
+          },
+          {
+            "type": "dropdown",
+            "name": "action",
+            "title": {
+              "en": "Action",
+              "nl": "Actie",
+              "de": "Aktion",
+              "fr": "Action",
+              "da": "Handling",
+              "es": "Acción",
+              "it": "Azione",
+              "no": "Handling",
+              "sv": "Åtgärd",
+              "pl": "Akcja",
+              "ru": "Действие",
+              "ko": "작업"
+            },
+            "values": [
+              {
+                "id": "start",
+                "title": {
+                  "en": "Start",
+                  "nl": "Start",
+                  "de": "Starten",
+                  "fr": "Démarrer",
+                  "da": "Start",
+                  "es": "Iniciar",
+                  "it": "Avvia",
+                  "no": "Start",
+                  "sv": "Starta",
+                  "pl": "Rozpocznij",
+                  "ru": "Начать",
+                  "ko": "시작"
+                }
+              },
+              {
+                "id": "stop",
+                "title": {
+                  "en": "Stop",
+                  "nl": "Stop",
+                  "de": "Stoppen",
+                  "fr": "Arrêter",
+                  "da": "Stop",
+                  "es": "Detener",
+                  "it": "Interrompi",
+                  "no": "Stopp",
+                  "sv": "Stoppa",
+                  "pl": "Zatrzymaj",
+                  "ru": "Остановить",
+                  "ko": "중지"
+                }
+              }
+            ]
           }
         ]
       },
@@ -564,98 +656,6 @@
                   "pl": "Nie",
                   "ru": "Нет",
                   "ko": "아니요"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "control_charging",
-        "title": {
-          "en": "Start or stop charging",
-          "nl": "Start of stop laden",
-          "de": "Laden starten oder stoppen",
-          "fr": "Démarrer ou arrêter la charge",
-          "da": "Start eller stop opladning",
-          "es": "Iniciar o detener la carga",
-          "it": "Avvia o interrompi la ricarica",
-          "no": "Start eller stopp lading",
-          "sv": "Starta eller stoppa laddning",
-          "pl": "Rozpocznij lub zatrzymaj ładowanie",
-          "ru": "Начать или остановить зарядку",
-          "ko": "충전 시작 또는 중지"
-        },
-        "titleFormatted": {
-          "en": "[[action]] charging",
-          "nl": "[[action]] laden",
-          "de": "Laden [[action]]",
-          "fr": "[[action]] la charge",
-          "da": "[[action]] opladning",
-          "es": "[[action]] la carga",
-          "it": "[[action]] la ricarica",
-          "no": "[[action]] lading",
-          "sv": "[[action]] laddning",
-          "pl": "[[action]] ładowanie",
-          "ru": "[[action]] зарядку",
-          "ko": "충전 [[action]]"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=volkswagen&capabilities=ev_charging_state"
-          },
-          {
-            "type": "dropdown",
-            "name": "action",
-            "title": {
-              "en": "Action",
-              "nl": "Actie",
-              "de": "Aktion",
-              "fr": "Action",
-              "da": "Handling",
-              "es": "Acción",
-              "it": "Azione",
-              "no": "Handling",
-              "sv": "Åtgärd",
-              "pl": "Akcja",
-              "ru": "Действие",
-              "ko": "작업"
-            },
-            "values": [
-              {
-                "id": "start",
-                "title": {
-                  "en": "Start",
-                  "nl": "Start",
-                  "de": "Starten",
-                  "fr": "Démarrer",
-                  "da": "Start",
-                  "es": "Iniciar",
-                  "it": "Avvia",
-                  "no": "Start",
-                  "sv": "Starta",
-                  "pl": "Rozpocznij",
-                  "ru": "Начать",
-                  "ko": "시작"
-                }
-              },
-              {
-                "id": "stop",
-                "title": {
-                  "en": "Stop",
-                  "nl": "Stop",
-                  "de": "Stoppen",
-                  "fr": "Arrêter",
-                  "da": "Stop",
-                  "es": "Detener",
-                  "it": "Interrompi",
-                  "no": "Stopp",
-                  "sv": "Stoppa",
-                  "pl": "Zatrzymaj",
-                  "ru": "Остановить",
-                  "ko": "중지"
                 }
               }
             ]
