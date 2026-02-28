@@ -15,13 +15,6 @@ interface OnSettingsParams {
 	changedKeys: string[];
 }
 
-/**
- * Base device class for all VAG Group vehicles
- * Provides common functionality for Volkswagen, SEAT, Cupra, and Skoda
- *
- * @template TUser - The specific User class for the brand (extends BaseUser)
- * @template TVehicle - The specific Vehicle class for the brand (extends BaseVehicle)
- */
 export default abstract class VagDevice extends Homey.Device {
 	private vehicle: VagVehicle | null = null;
 
