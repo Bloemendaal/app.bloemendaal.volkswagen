@@ -1,4 +1,4 @@
-import type { Authenticatable } from "../authenticatable.mjs";
+import type { Authenticatable } from "../authenticators/authenticatable.mjs";
 import type { CapabilitiesStatusData } from "../capabilities/user-capabilities.mjs";
 import {
 	type SelectiveStatusCapabilitiesData,

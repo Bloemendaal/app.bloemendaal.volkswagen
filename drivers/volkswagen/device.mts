@@ -1,3 +1,4 @@
+import VolkswagenAuthenticator from "#lib/api/authenticators/volkswagen-authenticator.mjs";
 import VolkswagenUser from "#lib/api/users/volkswagen-user.mjs";
 import VagDevice from "#lib/drivers/vag-device.mjs";
 import AccessStatusCapabilityGroup from "#lib/processors/capabilities/access-status/index.mjs";
@@ -23,7 +24,6 @@ import UpdateChargingSettingsHybridFlow from "#lib/processors/flows/update-charg
 import UpdatePollingIntervalFlow from "#lib/processors/flows/update-polling-interval.mjs";
 import Processor from "#lib/processors/processable.mjs";
 import EnergySetting from "#lib/processors/settings/energy.mjs";
-import VolkswagenAuthenticator from "./authenticator.mjs";
 
 export default class VolkswagenDevice extends VagDevice {
 	protected readonly processor: Processor = new Processor([

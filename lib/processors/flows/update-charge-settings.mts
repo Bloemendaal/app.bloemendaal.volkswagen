@@ -61,7 +61,7 @@ export default class UpdateChargingSettingsFlow extends Flow {
 			.getVehicle()
 			.catch((e) => this.device.errorAndThrow(e));
 
-		const settings: Partial<ChargingSettings> = {};
+		const settings: ChargingSettings = {};
 
 		// Only include targetSOC_pct if explicitly set
 		if (args.target_soc !== undefined && args.target_soc !== null) {
@@ -69,6 +69,7 @@ export default class UpdateChargingSettingsFlow extends Flow {
 		}
 
 		const chargingSettingsAC = this.resolveChargingSettingsAC(args);
+
 		if (chargingSettingsAC) {
 			settings.chargingSettingsAC = chargingSettingsAC;
 		}
@@ -86,23 +87,21 @@ export default class UpdateChargingSettingsFlow extends Flow {
 
 	private resolveChargingSettingsAC(
 		settings: UpdateChargingSettingsArgs,
-	): ChargingSettingsAC | undefined {
+	): ChargingSettingsAC | null {
 		if (
 			settings.auto_unlock === "unchanged" &&
 			settings.max_charge_current === "unchanged"
 		) {
-			return;
+			return null;
 		}
 
 		const maxCurrent = this.resolveChargeCurrent(settings);
 		const autoUnlock = this.resolveAutoUnlock(settings);
 
 		// Only include settings that are defined
-		const chargingSettingsAC: Partial<ChargingSettingsAC> = {};
-
-		if (maxCurrent !== undefined) {
-			chargingSettingsAC.maxChargeCurrentAC = maxCurrent;
-		}
+		const chargingSettingsAC: ChargingSettingsAC = {
+			maxChargeCurrentAC: maxCurrent,
+		};
 
 		if (autoUnlock !== undefined) {
 			chargingSettingsAC.autoUnlockPlugWhenChargedAC = autoUnlock;
@@ -110,10 +109,10 @@ export default class UpdateChargingSettingsFlow extends Flow {
 
 		// If no settings were resolved, return undefined
 		if (Object.keys(chargingSettingsAC).length === 0) {
-			return undefined;
+			return null;
 		}
 
-		return chargingSettingsAC as ChargingSettingsAC;
+		return chargingSettingsAC;
 	}
 
 	private resolveChargeCurrent({

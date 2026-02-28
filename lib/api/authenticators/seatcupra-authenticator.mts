@@ -12,7 +12,7 @@ import type {
 	Credentials,
 	SettingsUpdateCallback,
 	TokenStore,
-} from "#lib/api/authenticatable.mjs";
+} from "#lib/api/authenticators/authenticatable.mjs";
 import {
 	AuthorizationUrlError,
 	EmailSubmissionError,
@@ -22,20 +22,9 @@ import {
 	TokenExchangeError,
 } from "#lib/errors/authentication-errors.mjs";
 
-const BASE_URL = "https://ola.prod.code.seat.cloud.vwgroup.com";
-const AUTH_BASE = "https://identity.vwgroup.io";
-const TOKEN_REFRESH_URL = "https://tokenrefreshservice.apps.emea.vwapps.io";
-
-const CLIENT_ID = "3c756d46-f1ba-4d78-9f9a-cff0d5292d51@apps_vw-dilab_com";
-const REDIRECT_URI = "cupra://oauth-callback";
 const SCOPE = "openid profile nickname birthdate phone";
 const MAXIMUM_REDIRECTS = 10;
 const TOKEN_EXPIRY_BUFFER_MS = 60 * 1000; // 1 minute
-
-interface AuthorizationParameters {
-	code: string;
-	verifier: string;
-}
 
 interface PasswordFormData {
 	passwordUrl: string;
@@ -48,9 +37,15 @@ interface PasswordFormData {
 	};
 }
 
-export default class CupraAuthenticator implements Authenticatable {
+interface AuthParameters {
+	code: string;
+	verifier: string;
+}
+
+export default abstract class SeatCupraAuthenticator
+	implements Authenticatable
+{
 	private readonly credentials: Credentials;
-	private readonly brand: "cupra";
 
 	private sPin: string | null = null;
 	private tokenStore: TokenStore | null = null;
@@ -58,9 +53,8 @@ export default class CupraAuthenticator implements Authenticatable {
 	private readonly authenticationClient: AxiosInstance;
 	private readonly settingsUpdateCallbacks: SettingsUpdateCallback[] = [];
 
-	constructor(configuration: Configuration & { brand?: "cupra" }) {
+	constructor(configuration: Configuration) {
 		this.credentials = configuration.credentials;
-		this.brand = "cupra";
 
 		this.sPin = configuration.sPin ?? null;
 		this.tokenStore = configuration.tokenStore ?? null;
@@ -80,47 +74,11 @@ export default class CupraAuthenticator implements Authenticatable {
 		this.sPin = sPin || null;
 	}
 
-	public static fromSettings(
-		settings: Partial<AuthSettings> & { brand?: "cupra" },
-	): CupraAuthenticator {
-		const {
-			sPin = "",
-			email = "",
-			password = "",
-			idToken,
-			accessToken,
-			expiresAt,
-			refreshToken,
-			brand = "cupra",
-		} = settings;
-
-		const tokenStore =
-			accessToken && expiresAt && idToken
-				? {
-						idToken,
-						accessToken,
-						refreshToken,
-						expiresAt,
-					}
-				: null;
-
-		return new CupraAuthenticator({
-			sPin,
-			tokenStore,
-			brand,
-			credentials: {
-				email,
-				password,
-			},
-		});
-	}
-
-	public async getSettings(): Promise<AuthSettings & { brand: string }> {
+	public async getSettings(): Promise<AuthSettings> {
 		const tokenStore = await this.authenticate();
 
 		return {
 			sPin: this.sPin,
-			brand: this.brand,
 			...this.credentials,
 			...tokenStore,
 		};
@@ -130,10 +88,9 @@ export default class CupraAuthenticator implements Authenticatable {
 		this.settingsUpdateCallbacks.push(callback);
 	}
 
-	public getConfiguration(): Configuration & { brand: string } {
+	public getConfiguration(): Configuration {
 		return {
 			sPin: this.sPin,
-			brand: this.brand,
 			credentials: this.credentials,
 			tokenStore: this.tokenStore,
 		};
@@ -169,7 +126,7 @@ export default class CupraAuthenticator implements Authenticatable {
 		}
 
 		return axios.create({
-			baseURL: BASE_URL,
+			baseURL: this.getBaseUrl(),
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
@@ -181,6 +138,8 @@ export default class CupraAuthenticator implements Authenticatable {
 			httpsAgent: new https.Agent({ family: 4 }),
 		});
 	}
+
+	protected abstract getBrand(): string;
 
 	protected async authenticate(): Promise<TokenStore> {
 		if (this.tokenStore?.accessToken && !this.isTokenExpired()) {
@@ -257,7 +216,7 @@ export default class CupraAuthenticator implements Authenticatable {
 			let redirectUrl: string | undefined = response.headers.location;
 
 			if (!redirectUrl?.startsWith("http")) {
-				redirectUrl = `${AUTH_BASE}${redirectUrl}`;
+				redirectUrl = `${this.getAuthBaseUrl()}${redirectUrl}`;
 			}
 
 			response = await this.authenticationClient.get(redirectUrl, {
@@ -306,7 +265,7 @@ export default class CupraAuthenticator implements Authenticatable {
 
 		try {
 			const params = new URLSearchParams({
-				brand: this.brand,
+				brand: this.getBrand(),
 				grant_type: "refresh_token",
 				refresh_token: this.tokenStore.refreshToken,
 			});
@@ -315,7 +274,7 @@ export default class CupraAuthenticator implements Authenticatable {
 				access_token: string;
 				id_token: string;
 				refresh_token: string;
-			}>(`${TOKEN_REFRESH_URL}/refreshTokens`, params.toString(), {
+			}>(this.getTokenRefreshEndpoint(), params.toString(), {
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded",
 					Accept: "application/json",
@@ -339,11 +298,19 @@ export default class CupraAuthenticator implements Authenticatable {
 		}
 	}
 
+	protected abstract getClientId(): string;
+	protected abstract getClientSecret(): string | null;
+	protected abstract getRedirectUri(): string;
+	protected abstract getBaseUrl(): string;
+	protected abstract getAuthBaseUrl(): string;
+	protected abstract getTokenEndpoint(): string;
+	protected abstract getTokenRefreshEndpoint(): string;
+
 	private async getAuthorizationUrl(codeChallenge: string): Promise<string> {
 		try {
 			const searchParams = new URLSearchParams({
-				client_id: CLIENT_ID,
-				redirect_uri: REDIRECT_URI,
+				client_id: this.getClientId(),
+				redirect_uri: this.getRedirectUri(),
 				response_type: "code",
 				scope: SCOPE,
 				nonce: crypto.randomBytes(16).toString("hex"),
@@ -352,7 +319,7 @@ export default class CupraAuthenticator implements Authenticatable {
 				code_challenge_method: "s256",
 			});
 
-			const authorizationUrl = `${AUTH_BASE}/oidc/v1/authorize?${searchParams.toString()}`;
+			const authorizationUrl = `${this.getAuthBaseUrl()}/oidc/v1/authorize?${searchParams.toString()}`;
 			return authorizationUrl;
 		} catch (error) {
 			throw new AuthorizationUrlError({ cause: error });
@@ -417,7 +384,7 @@ export default class CupraAuthenticator implements Authenticatable {
 			const emailAction = form.attr("action");
 			const emailUrl = emailAction?.startsWith("http")
 				? emailAction
-				: `${AUTH_BASE}${emailAction}`;
+				: `${this.getAuthBaseUrl()}${emailAction}`;
 
 			const emailResponse = await this.authenticationClient
 				.post(emailUrl, new URLSearchParams(emailFormData).toString(), {
@@ -459,7 +426,7 @@ export default class CupraAuthenticator implements Authenticatable {
 			};
 
 			const passwordAction = templateModel.postAction;
-			const passwordUrl = `${AUTH_BASE}/signin-service/v1/${CLIENT_ID}/${passwordAction}`;
+			const passwordUrl = `${this.getAuthBaseUrl()}/signin-service/v1/${this.getClientId()}/${passwordAction}`;
 
 			return { passwordUrl, formData };
 		} catch (error) {
@@ -490,12 +457,12 @@ export default class CupraAuthenticator implements Authenticatable {
 			// Follow all redirects until we reach the app redirect
 			while (
 				redirectUrl &&
-				!redirectUrl.startsWith(REDIRECT_URI) &&
+				!redirectUrl.startsWith(this.getRedirectUri()) &&
 				redirectCount < MAXIMUM_REDIRECTS
 			) {
 				redirectCount++;
 				if (!redirectUrl.startsWith("http")) {
-					redirectUrl = `${AUTH_BASE}${redirectUrl}`;
+					redirectUrl = `${this.getAuthBaseUrl()}${redirectUrl}`;
 				}
 
 				// Handle marketing consent page (specific to Cupra/Seat)
@@ -525,7 +492,7 @@ export default class CupraAuthenticator implements Authenticatable {
 						const consentAction = consentForm.attr("action");
 						const consentUrl = consentAction?.startsWith("http")
 							? consentAction
-							: `${AUTH_BASE}${consentAction}`;
+							: `${this.getAuthBaseUrl()}${consentAction}`;
 
 						const consentResponse = await this.authenticationClient.post(
 							consentUrl,
@@ -564,7 +531,7 @@ export default class CupraAuthenticator implements Authenticatable {
 						const termsAction = termsForm.attr("action");
 						const termsUrl = termsAction?.startsWith("http")
 							? termsAction
-							: `${AUTH_BASE}${termsAction}`;
+							: `${this.getAuthBaseUrl()}${termsAction}`;
 
 						const response = await this.authenticationClient.post(
 							termsUrl,
@@ -585,7 +552,7 @@ export default class CupraAuthenticator implements Authenticatable {
 				redirectUrl = response.headers.location;
 			}
 
-			if (!redirectUrl || !redirectUrl.startsWith(REDIRECT_URI)) {
+			if (!redirectUrl || !redirectUrl.startsWith(this.getRedirectUri())) {
 				throw new Error("Failed to get authorization code from redirects");
 			}
 
@@ -604,6 +571,7 @@ export default class CupraAuthenticator implements Authenticatable {
 			if (!code) {
 				throw new Error("Missing code in redirect URL");
 			}
+
 			return code;
 		} catch (cause) {
 			throw new PasswordSubmissionError({ cause });
@@ -613,37 +581,38 @@ export default class CupraAuthenticator implements Authenticatable {
 	private async exchangeForFinalTokens({
 		code,
 		verifier,
-	}: AuthorizationParameters): Promise<TokenStore> {
+	}: AuthParameters): Promise<TokenStore> {
 		try {
 			if (!verifier) {
 				throw new Error("PKCE verifier is required for token exchange");
 			}
-			const tokenBody = {
+
+			const tokenBody: Record<string, string> = {
 				state: code.substring(0, 10),
 				id_token: code,
-				redirect_uri: REDIRECT_URI,
-				client_id: CLIENT_ID,
-				client_secret:
-					"eb8814e641c81a2640ad62eeccec11c98effc9bccd4269ab7af338b50a94b3a2",
+				redirect_uri: this.getRedirectUri(),
+				client_id: this.getClientId(),
 				code: code,
 				code_verifier: verifier,
 				grant_type: "authorization_code",
 			};
 
+			const clientSecret = this.getClientSecret();
+
+			if (clientSecret) {
+				tokenBody.client_secret = clientSecret;
+			}
+
 			const tokenResponse = await axios.post<{
 				access_token: string;
 				id_token: string;
 				refresh_token: string;
-			}>(
-				`${AUTH_BASE}/oidc/v1/token`,
-				new URLSearchParams(tokenBody as Record<string, string>).toString(),
-				{
-					headers: {
-						"Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-						Accept: "application/json",
-					},
+			}>(this.getTokenEndpoint(), new URLSearchParams(tokenBody).toString(), {
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+					Accept: "application/json",
 				},
-			);
+			});
 
 			const expiresAt = this.decodeJwtExpiration(
 				tokenResponse.data.access_token,

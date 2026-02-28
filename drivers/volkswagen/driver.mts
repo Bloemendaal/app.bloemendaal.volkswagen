@@ -1,7 +1,7 @@
 import Homey from "homey";
 import type { PairSession } from "homey/lib/Driver.js";
-import VolkswagenUser from "../../lib/api/users/volkswagen-user.mjs";
-import VolkswagenAuthenticator from "./authenticator.mjs";
+import VolkswagenAuthenticator from "#lib/api/authenticators/volkswagen-authenticator.mjs";
+import VolkswagenUser from "#lib/api/users/volkswagen-user.mjs";
 
 export default class VolkswagenDriver extends Homey.Driver {
 	public async onPair(session: PairSession): Promise<void> {

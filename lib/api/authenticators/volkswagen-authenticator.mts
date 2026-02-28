@@ -9,7 +9,7 @@ import type {
 	Credentials,
 	SettingsUpdateCallback,
 	TokenStore,
-} from "#lib/api/authenticatable.mjs";
+} from "#lib/api/authenticators/authenticatable.mjs";
 import {
 	AuthorizationParametersError,
 	AuthorizationUrlError,

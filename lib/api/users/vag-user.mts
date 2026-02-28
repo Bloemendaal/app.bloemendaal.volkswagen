@@ -1,6 +1,9 @@
-import TranslatableError from "../../errors/translatable-error.mjs";
-import type { Authenticatable, AuthSettings } from "../authenticatable.mjs";
-import type VagVehicle from "../vehicles/vag-vehicle.mjs";
+import type {
+	Authenticatable,
+	AuthSettings,
+} from "#lib/api/authenticators/authenticatable.mjs";
+import type VagVehicle from "#lib/api/vehicles/vag-vehicle.mjs";
+import TranslatableError from "#lib/errors/translatable-error.mjs";
 
 interface Translator {
 	__(key: string | object, tags?: object | undefined): string;

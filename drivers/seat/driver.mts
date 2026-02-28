@@ -1,7 +1,7 @@
 import Homey from "homey";
 import type { PairSession } from "homey/lib/Driver.js";
-import SeatCupraUser from "../../lib/api/users/seatcupra-user.mjs";
-import SeatAuthenticator from "./authenticator.mjs";
+import SeatAuthenticator from "#lib/api/authenticators/seat-authenticator.mjs";
+import SeatCupraUser from "#lib/api/users/seatcupra-user.mjs";
 
 export default class SeatDriver extends Homey.Driver {
 	public async onPair(session: PairSession): Promise<void> {

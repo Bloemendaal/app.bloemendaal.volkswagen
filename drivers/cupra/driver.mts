@@ -1,7 +1,7 @@
 import Homey from "homey";
 import type { PairSession } from "homey/lib/Driver.js";
+import CupraAuthenticator from "#lib/api/authenticators/cupra-authenticator.mjs";
 import SeatCupraUser from "#lib/api/users/seatcupra-user.mjs";
-import CupraAuthenticator from "./authenticator.mjs";
 
 export default class CupraDriver extends Homey.Driver {
 	public async onPair(session: PairSession): Promise<void> {

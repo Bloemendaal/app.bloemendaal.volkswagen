@@ -1,3 +1,4 @@
+import CupraAuthenticator from "#lib/api/authenticators/cupra-authenticator.mjs";
 import SeatCupraUser from "#lib/api/users/seatcupra-user.mjs";
 import VagDevice from "#lib/drivers/vag-device.mjs";
 import AccessStatusCapabilityGroup from "#lib/processors/capabilities/access-status/index.mjs";
@@ -22,7 +23,6 @@ import UpdateChargingSettingsHybridFlow from "#lib/processors/flows/update-charg
 import UpdatePollingIntervalFlow from "#lib/processors/flows/update-polling-interval.mjs";
 import Processor from "#lib/processors/processable.mjs";
 import EnergySetting from "#lib/processors/settings/energy.mjs";
-import CupraAuthenticator from "./authenticator.mjs";
 
 export default class CupraDevice extends VagDevice {
 	protected readonly processor: Processor = new Processor([
