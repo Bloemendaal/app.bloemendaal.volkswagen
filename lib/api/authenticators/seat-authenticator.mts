@@ -22,11 +22,11 @@ export default class SeatAuthenticator extends SeatCupraAuthenticator {
 		return "https://identity.vwgroup.io";
 	}
 
-	protected getTokenEndpoint(): string {
+	protected getTokenUrl(): string {
 		return `${this.getBaseUrl()}/authorization/api/v1/token`;
 	}
 
-	protected getTokenRefreshEndpoint(): string {
+	protected getTokenRefreshUrl(): string {
 		return "https://tokenrefreshservice.apps.emea.vwapps.io/refreshTokens";
 	}
 

@@ -70,6 +70,15 @@ export default abstract class SeatCupraAuthenticator
 		);
 	}
 
+	protected abstract getBrand(): string;
+	protected abstract getClientId(): string;
+	protected abstract getClientSecret(): string | null;
+	protected abstract getRedirectUri(): string;
+	protected abstract getBaseUrl(): string;
+	protected abstract getAuthBaseUrl(): string;
+	protected abstract getTokenUrl(): string;
+	protected abstract getTokenRefreshUrl(): string;
+
 	public setSPin(sPin: string | null = null): void {
 		this.sPin = sPin || null;
 	}
@@ -138,8 +147,6 @@ export default abstract class SeatCupraAuthenticator
 			httpsAgent: new https.Agent({ family: 4 }),
 		});
 	}
-
-	protected abstract getBrand(): string;
 
 	protected async authenticate(): Promise<TokenStore> {
 		if (this.tokenStore?.accessToken && !this.isTokenExpired()) {
@@ -274,7 +281,7 @@ export default abstract class SeatCupraAuthenticator
 				access_token: string;
 				id_token: string;
 				refresh_token: string;
-			}>(this.getTokenRefreshEndpoint(), params.toString(), {
+			}>(this.getTokenRefreshUrl(), params.toString(), {
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded",
 					Accept: "application/json",
@@ -297,14 +304,6 @@ export default abstract class SeatCupraAuthenticator
 			return null;
 		}
 	}
-
-	protected abstract getClientId(): string;
-	protected abstract getClientSecret(): string | null;
-	protected abstract getRedirectUri(): string;
-	protected abstract getBaseUrl(): string;
-	protected abstract getAuthBaseUrl(): string;
-	protected abstract getTokenEndpoint(): string;
-	protected abstract getTokenRefreshEndpoint(): string;
 
 	private async getAuthorizationUrl(codeChallenge: string): Promise<string> {
 		try {
@@ -607,7 +606,7 @@ export default abstract class SeatCupraAuthenticator
 				access_token: string;
 				id_token: string;
 				refresh_token: string;
-			}>(this.getTokenEndpoint(), new URLSearchParams(tokenBody).toString(), {
+			}>(this.getTokenUrl(), new URLSearchParams(tokenBody).toString(), {
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
 					Accept: "application/json",
