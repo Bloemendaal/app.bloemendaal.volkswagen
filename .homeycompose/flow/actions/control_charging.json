@@ -33,7 +33,7 @@
 		{
 			"type": "device",
 			"name": "device",
-			"filter": "driver_id=volkswagen&capabilities=ev_charging_state"
+			"filter": "driver_id=volkswagen|seat|cupra&capabilities=ev_charging_state"
 		},
 		{
 			"type": "dropdown",

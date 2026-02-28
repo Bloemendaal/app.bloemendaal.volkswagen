@@ -46,7 +46,7 @@
 		{
 			"type": "device",
 			"name": "device",
-			"filter": "driver_id=volkswagen"
+			"filter": "driver_id=volkswagen|seat|cupra"
 		},
 		{
 			"type": "number",
