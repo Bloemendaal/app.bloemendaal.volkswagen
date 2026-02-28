@@ -2,10 +2,6 @@ import SeatCupraVehicle from "../vehicles/seatcupra-vehicle.mjs";
 import type { VehicleData } from "../vehicles/vag-vehicle.mjs";
 import VagUser from "./vag-user.mjs";
 
-/**
- * SEAT/Cupra specific User class that uses the correct API endpoints
- * Based on SEAT/Cupra API documentation
- */
 export default class SeatCupraUser extends VagUser {
 	public async verifySPin(): Promise<boolean> {
 		const userId = this.authenticator.getUserId();

@@ -1,14 +1,6 @@
 import type { Authenticatable } from "../authenticators/authenticatable.mjs";
 import type { CapabilitiesStatusData } from "../capabilities/user-capabilities.mjs";
-import {
-	type SelectiveStatusCapabilitiesData,
-	selectiveStatusCapabilities,
-} from "../capabilities.mjs";
-
-// Re-export commonly used types and constants
-export { selectiveStatusCapabilities };
-export type { SelectiveStatusCapabilitiesData };
-
+import type { SelectiveStatusCapabilitiesData } from "../capabilities.mjs";
 import type {
 	ClimatisationSettings,
 	StartClimatisationSettings,

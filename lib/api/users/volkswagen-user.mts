@@ -2,10 +2,6 @@ import type { VehicleData } from "../vehicles/vag-vehicle.mjs";
 import Vehicle from "../vehicles/volkswagen-vehicle.mjs";
 import VagUser from "./vag-user.mjs";
 
-/**
- * Volkswagen specific User class that uses the standard VAG API endpoints
- * Based on Volkswagen API documentation
- */
 export default class VolkswagenUser extends VagUser {
 	public async verifySPin(): Promise<boolean> {
 		const configuration = this.authenticator.getConfiguration();

@@ -1,3 +1,7 @@
+import {
+	type SelectiveStatusCapabilitiesData,
+	selectiveStatusCapabilities,
+} from "../capabilities.mjs";
 import type {
 	ClimatisationSettings,
 	StartClimatisationSettings,
@@ -6,11 +10,7 @@ import type {
 	ParkingPositionData,
 	ParkingPositionResponse,
 } from "../parking-position.mjs";
-import VagVehicle, {
-	type ChargingSettings,
-	type SelectiveStatusCapabilitiesData,
-	selectiveStatusCapabilities,
-} from "./vag-vehicle.mjs";
+import VagVehicle, { type ChargingSettings } from "./vag-vehicle.mjs";
 
 export default class VolkswagenVehicle extends VagVehicle {
 	public async getVehicleCapabilities(): Promise<
