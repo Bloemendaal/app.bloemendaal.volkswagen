@@ -1,10 +1,10 @@
 import Homey from "homey";
-import TranslatableError from "../../errors/translatable-error.mjs";
-import type Processor from "../../processors/processable.mjs";
-import DebounceScheduler from "../debounce-scheduler.mjs";
-import type { FetchData } from "../fetch.mjs";
-import type BaseUser from "../users/base-user.mjs";
-import type BaseVehicle from "../vehicles/base-vehicle.mjs";
+import DebounceScheduler from "#lib/api/debounce-scheduler.mjs";
+import type { FetchData } from "#lib/api/fetch.mjs";
+import type BaseUser from "#lib/api/users/base-user.mjs";
+import type BaseVehicle from "#lib/api/vehicles/base-vehicle.mjs";
+import TranslatableError from "#lib/errors/translatable-error.mjs";
+import type Processor from "#lib/processors/processable.mjs";
 
 const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;

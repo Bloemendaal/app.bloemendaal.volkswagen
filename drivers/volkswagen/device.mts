@@ -1,6 +1,6 @@
-import VagDevice from "#lib/api/drivers/vag-device.mjs";
 import VolkswagenUser from "#lib/api/users/volkswagen-user.mjs";
 import type VolkswagenVehicle from "#lib/api/vehicles/volkswagen-vehicle.mjs";
+import VagDevice from "#lib/drivers/vag-device.mjs";
 import AccessStatusCapabilityGroup from "#lib/processors/capabilities/access-status/index.mjs";
 import BatteryStatusCapabilityGroup from "#lib/processors/capabilities/battery-status/index.mjs";
 import ChargingSettingsCapabilityGroup from "#lib/processors/capabilities/charging-settings/index.mjs";

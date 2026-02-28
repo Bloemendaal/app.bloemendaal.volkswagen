@@ -1,6 +1,6 @@
-import VagDevice from "#lib/api/drivers/vag-device.mjs";
 import SeatCupraUser from "#lib/api/users/seatcupra-user.mjs";
 import type SeatCupraVehicle from "#lib/api/vehicles/seatcupra-vehicle.mjs";
+import VagDevice from "#lib/drivers/vag-device.mjs";
 import AccessStatusCapabilityGroup from "#lib/processors/capabilities/access-status/index.mjs";
 import BatteryStatusCapabilityGroup from "#lib/processors/capabilities/battery-status/index.mjs";
 import ChargingSettingsCapabilityGroup from "#lib/processors/capabilities/charging-settings/index.mjs";

@@ -1,6 +1,6 @@
 import type { CapabilitiesStatusData } from "#lib/api/capabilities/user-capabilities.mjs";
-import type VagDevice from "#lib/api/drivers/vag-device.mjs";
 import type { FetchData } from "#lib/api/fetch.mjs";
+import type VagDevice from "#lib/drivers/vag-device.mjs";
 import InvalidValueError from "#lib/errors/invalid-value-error.mjs";
 import NotImplementedError from "#lib/errors/not-implemented-error.mjs";
 import type { Processable } from "#lib/processors/processable.mjs";
