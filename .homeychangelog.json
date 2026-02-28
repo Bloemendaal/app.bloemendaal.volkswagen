@@ -124,5 +124,8 @@
 	},
 	"1.1.24": {
 		"en": "Fix vulnerabilities in dependencies"
+	},
+	"1.1.25": {
+		"en": "Compress images"
 	}
 }
