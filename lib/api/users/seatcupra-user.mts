@@ -22,6 +22,7 @@ export default class SeatCupraUser extends VagUser {
 			spin: configuration.sPin,
 		});
 
+		// TODO: verify this status, why is it 201 or 204?
 		return response.status === 201 || response.status === 204;
 	}
 
