@@ -118,5 +118,8 @@
 	},
 	"1.1.22": {
 		"en": "Add action card to change polling interval setting"
+	},
+	"1.1.23": {
+		"en": "Update flows to make them compatible with multipe devices"
 	}
 }
