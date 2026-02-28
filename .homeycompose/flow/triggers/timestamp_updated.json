@@ -34,5 +34,12 @@
 			},
 			"example": 1769900400000
 		}
+	],
+	"args": [
+		{
+			"type": "device",
+			"name": "device",
+			"filter": "driver_id=volkswagen"
+		}
 	]
 }

@@ -45,6 +45,11 @@
 	},
 	"args": [
 		{
+			"type": "device",
+			"name": "device",
+			"filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
+		},
+		{
 			"type": "number",
 			"name": "temperature",
 			"required": false,

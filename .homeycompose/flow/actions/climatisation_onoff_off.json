@@ -15,5 +15,12 @@
 		"pl": "Wyłącz klimatyzację",
 		"ru": "Выключить климатизацию",
 		"ko": "냉난방 끄기"
-	}
+	},
+	"args": [
+		{
+			"type": "device",
+			"name": "device",
+			"filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
+		}
+	]
 }
