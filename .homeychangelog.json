@@ -121,5 +121,8 @@
 	},
 	"1.1.23": {
 		"en": "Update flows to make them compatible with multipe devices"
+	},
+	"1.1.24": {
+		"en": "Fix vulnerabilities in dependencies"
 	}
 }
