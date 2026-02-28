@@ -1,7 +1,7 @@
 {
 	"name": "app.bloemendaal.volkswagen",
 	"type": "module",
-	"version": "1.1.22",
+	"version": "1.1.23",
 	"scripts": {
 		"build": "tsc",
 		"start": "homey app run",
