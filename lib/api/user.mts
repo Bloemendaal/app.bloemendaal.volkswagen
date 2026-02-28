@@ -7,11 +7,7 @@ interface Translator {
 }
 
 export default class User {
-	constructor(private readonly authenticator: Authenticatable) {}
-
-	public getAuthenticator(): Authenticatable {
-		return this.authenticator;
-	}
+	constructor(public readonly authenticator: Authenticatable) {}
 
 	public async getSettings(): Promise<AuthSettings> {
 		return await this.authenticator.getSettings();

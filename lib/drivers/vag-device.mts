@@ -45,9 +45,7 @@ export default abstract class VagDevice extends Homey.Device {
 		changedKeys,
 	}: OnSettingsParams): Promise<void> {
 		if (changedKeys.includes("sPin")) {
-			this.vehicle
-				?.getAuthenticator()
-				.setSPin(newSettings.sPin?.toString() ?? null);
+			this.vehicle?.authenticator.setSPin(newSettings.sPin?.toString() ?? null);
 		}
 
 		if (changedKeys.includes("email") || changedKeys.includes("password")) {
@@ -98,7 +96,7 @@ export default abstract class VagDevice extends Homey.Device {
 				throw new Error("Vehicle not found");
 			}
 
-			vehicle.getAuthenticator().onSettingsUpdate(this.setSettings.bind(this));
+			vehicle.authenticator.onSettingsUpdate(this.setSettings.bind(this));
 
 			this.vehicle = vehicle;
 			return vehicle;

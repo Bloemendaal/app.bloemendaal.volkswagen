@@ -44,8 +44,6 @@ export interface ChargingSettings {
 }
 
 export default class Vehicle implements VehicleData {
-	private readonly authenticator: Authenticatable;
-
 	public readonly vin: string;
 	public readonly role: string;
 	public readonly userRoleStatus: string;
@@ -59,9 +57,10 @@ export default class Vehicle implements VehicleData {
 	public readonly devicePlatform: string;
 	public readonly tags: TagData[];
 
-	constructor(data: VehicleData, authenticator: Authenticatable) {
-		this.authenticator = authenticator;
-
+	constructor(
+		data: VehicleData,
+		public readonly authenticator: Authenticatable,
+	) {
 		this.vin = data.vin;
 		this.role = data.role;
 		this.userRoleStatus = data.userRoleStatus;
@@ -74,10 +73,6 @@ export default class Vehicle implements VehicleData {
 		this.coUsers = data.coUsers;
 		this.devicePlatform = data.devicePlatform;
 		this.tags = data.tags;
-	}
-
-	public getAuthenticator(): Authenticatable {
-		return this.authenticator;
 	}
 
 	public async getVehicleCapabilities(): Promise<
