@@ -1,11 +1,7 @@
 import type {
 	ChargingSettings,
 	ChargingSettingsAC,
-} from "#lib/api/vehicle.mjs";
-import {
-	MAX_CHARGING_CURRENT,
-	REDUCED_CHARGING_CURRENT,
-} from "#lib/processors/capabilities/charging-settings/max-charging-current.mjs";
+} from "#lib/api/vehicles/vag-vehicle.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdateChargingSettingsArgs {
@@ -35,9 +31,11 @@ export default class UpdateChargingSettingsFlow extends Flow {
 	private async getMaxChargeCurrentOptions(): Promise<
 		{ name: string; id: string }[]
 	> {
-		const expectsMaxCurrentInAmpere = this.device.getCapabilityValue(
+		const expectsMaxCurrentInAmpere = this.device.hasCapability(
 			"expects_max_charging_current_in_ampere",
-		);
+		)
+			? this.device.getCapabilityValue("expects_max_charging_current_in_ampere")
+			: false;
 
 		if (expectsMaxCurrentInAmpere) {
 			// Show numeric ampere values
@@ -63,10 +61,18 @@ export default class UpdateChargingSettingsFlow extends Flow {
 			.getVehicle()
 			.catch((e) => this.device.errorAndThrow(e));
 
-		const settings: ChargingSettings = {
-			targetSOC_pct: args.target_soc,
-			chargingSettingsAC: this.resolveChargingSettingsAC(args),
-		};
+		const settings: ChargingSettings = {};
+
+		// Only include targetSOC_pct if explicitly set
+		if (args.target_soc !== undefined && args.target_soc !== null) {
+			settings.targetSOC_pct = args.target_soc;
+		}
+
+		const chargingSettingsAC = this.resolveChargingSettingsAC(args);
+
+		if (chargingSettingsAC) {
+			settings.chargingSettingsAC = chargingSettingsAC;
+		}
 
 		if (Object.keys(settings).length === 0) {
 			return;
@@ -81,18 +87,30 @@ export default class UpdateChargingSettingsFlow extends Flow {
 
 	private resolveChargingSettingsAC(
 		settings: UpdateChargingSettingsArgs,
-	): ChargingSettingsAC | undefined {
+	): ChargingSettingsAC | null {
 		if (
 			settings.auto_unlock === "unchanged" &&
 			settings.max_charge_current === "unchanged"
 		) {
-			return;
+			return null;
 		}
 
+		const maxCurrent = this.resolveChargeCurrent(settings);
+		const autoUnlock = this.resolveAutoUnlock(settings);
+
+		// Only include settings that are defined
 		const chargingSettingsAC: ChargingSettingsAC = {
-			maxChargeCurrentAC: this.resolveChargeCurrent(settings),
-			autoUnlockPlugWhenChargedAC: this.resolveAutoUnlock(settings),
+			maxChargeCurrentAC: maxCurrent,
 		};
+
+		if (autoUnlock !== undefined) {
+			chargingSettingsAC.autoUnlockPlugWhenChargedAC = autoUnlock;
+		}
+
+		// If no settings were resolved, return undefined
+		if (Object.keys(chargingSettingsAC).length === 0) {
+			return null;
+		}
 
 		return chargingSettingsAC;
 	}
@@ -100,23 +118,10 @@ export default class UpdateChargingSettingsFlow extends Flow {
 	private resolveChargeCurrent({
 		max_charge_current,
 	}: UpdateChargingSettingsArgs): ChargingSettingsAC["maxChargeCurrentAC"] {
-		if (max_charge_current === "unchanged") {
-			const currentValue = this.device.getCapabilityValue(
-				"max_charging_current",
-			);
-
-			const expectsInAmpere = this.device.getCapabilityValue(
-				"expects_max_charging_current_in_ampere",
-			);
-
-			if (expectsInAmpere) {
-				return currentValue;
-			}
-
-			return Math.abs(MAX_CHARGING_CURRENT - currentValue) <
-				Math.abs(REDUCED_CHARGING_CURRENT - currentValue)
-				? "maximum"
-				: "reduced";
+		if (
+			max_charge_current === "unchanged" &&
+			this.device.hasCapability("max_charging_current")
+		) {
 		}
 
 		if (max_charge_current === "maximum" || max_charge_current === "reduced") {
@@ -128,9 +133,11 @@ export default class UpdateChargingSettingsFlow extends Flow {
 
 	private resolveAutoUnlock({
 		auto_unlock,
-	}: UpdateChargingSettingsArgs): boolean {
+	}: UpdateChargingSettingsArgs): boolean | undefined {
 		if (auto_unlock === "unchanged") {
-			return this.device.getCapabilityValue("auto_unlock_plug_when_charged");
+			return this.device.hasCapability("auto_unlock_plug_when_charged")
+				? this.device.getCapabilityValue("auto_unlock_plug_when_charged")
+				: false;
 		}
 
 		return auto_unlock === "true";

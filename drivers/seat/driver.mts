@@ -1,15 +1,15 @@
 import Homey from "homey";
 import type { PairSession } from "homey/lib/Driver.js";
-import VolkswagenAuthenticator from "#lib/api/authenticators/volkswagen-authenticator.mjs";
-import VolkswagenUser from "#lib/api/users/volkswagen-user.mjs";
+import SeatAuthenticator from "#lib/api/authenticators/seat-authenticator.mjs";
+import SeatCupraUser from "#lib/api/users/seatcupra-user.mjs";
 
-export default class VolkswagenDriver extends Homey.Driver {
+export default class SeatDriver extends Homey.Driver {
 	public async onPair(session: PairSession): Promise<void> {
 		let sPin = "";
 		let email = "";
 		let password = "";
 
-		let user: VolkswagenUser | null = null;
+		let user: SeatCupraUser | null = null;
 
 		session.setHandler(
 			"login",
@@ -20,10 +20,10 @@ export default class VolkswagenDriver extends Homey.Driver {
 				email = data.username;
 				password = data.password;
 
-				const authenticator = new VolkswagenAuthenticator({
+				const authenticator = new SeatAuthenticator({
 					credentials: { email, password },
 				});
-				user = new VolkswagenUser(authenticator);
+				user = new SeatCupraUser(authenticator);
 
 				return await user.canLogin(this.homey);
 			},
@@ -34,11 +34,11 @@ export default class VolkswagenDriver extends Homey.Driver {
 			async (pincode: string[]): Promise<boolean> => {
 				sPin = pincode.join("");
 
-				const authenticator = new VolkswagenAuthenticator({
+				const authenticator = new SeatAuthenticator({
 					sPin,
 					credentials: { email, password },
 				});
-				const userInstance = user ?? new VolkswagenUser(authenticator);
+				const userInstance = user ?? new SeatCupraUser(authenticator);
 
 				userInstance.authenticator.setSPin(sPin);
 
@@ -47,11 +47,11 @@ export default class VolkswagenDriver extends Homey.Driver {
 		);
 
 		session.setHandler("list_devices", async () => {
-			const authenticator = new VolkswagenAuthenticator({
+			const authenticator = new SeatAuthenticator({
 				sPin,
 				credentials: { email, password },
 			});
-			const userInstance = user ?? new VolkswagenUser(authenticator);
+			const userInstance = user ?? new SeatCupraUser(authenticator);
 
 			userInstance.authenticator.setSPin(sPin);
 

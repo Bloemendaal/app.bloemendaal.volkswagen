@@ -34,4 +34,6 @@ export interface Authenticatable {
 	setSPin(sPin: string | null): void;
 
 	onSettingsUpdate(callback: SettingsUpdateCallback): void;
+
+	getUserId(): string | null;
 }

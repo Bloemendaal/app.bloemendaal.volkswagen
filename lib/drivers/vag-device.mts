@@ -1,9 +1,8 @@
 import Homey from "homey";
-import type { Authenticatable } from "#lib/api/authenticatable.mjs";
 import DebounceScheduler from "#lib/api/debounce-scheduler.mjs";
 import type { FetchData } from "#lib/api/fetch.mjs";
-import User from "#lib/api/user.mjs";
-import type Vehicle from "#lib/api/vehicle.mjs";
+import type VagUser from "#lib/api/users/vag-user.mjs";
+import type VagVehicle from "#lib/api/vehicles/vag-vehicle.mjs";
 import TranslatableError from "#lib/errors/translatable-error.mjs";
 import type Processor from "#lib/processors/processable.mjs";
 
@@ -17,14 +16,14 @@ interface OnSettingsParams {
 }
 
 export default abstract class VagDevice extends Homey.Device {
-	private vehicle: Vehicle | null = null;
+	private vehicle: VagVehicle | null = null;
 
 	private readonly debounceScheduler: DebounceScheduler<void> =
 		new DebounceScheduler<void>(this.setCapabilities.bind(this));
 
 	protected abstract readonly processor: Processor;
 
-	protected abstract getAuthenticator(): Authenticatable;
+	protected abstract createUser(): VagUser;
 
 	public async onInit(): Promise<void> {
 		const vehicle = await this.getVehicle();
@@ -45,9 +44,7 @@ export default abstract class VagDevice extends Homey.Device {
 		changedKeys,
 	}: OnSettingsParams): Promise<void> {
 		if (changedKeys.includes("sPin")) {
-			this.vehicle
-				?.getAuthenticator()
-				.setSPin(newSettings.sPin?.toString() ?? null);
+			this.vehicle?.authenticator.setSPin(newSettings.sPin?.toString() ?? null);
 		}
 
 		if (changedKeys.includes("email") || changedKeys.includes("password")) {
@@ -82,13 +79,13 @@ export default abstract class VagDevice extends Homey.Device {
 		throw error;
 	}
 
-	public async getVehicle(): Promise<Vehicle> {
+	public async getVehicle(): Promise<VagVehicle> {
 		if (this.vehicle) {
 			return this.vehicle;
 		}
 
 		try {
-			const vehicles = await new User(this.getAuthenticator()).getVehicles();
+			const vehicles = await this.createUser().getVehicles();
 
 			const vehicle = vehicles.find(
 				(vehicle) => vehicle.vin === this.getData().id,
@@ -98,7 +95,7 @@ export default abstract class VagDevice extends Homey.Device {
 				throw new Error("Vehicle not found");
 			}
 
-			vehicle.getAuthenticator().onSettingsUpdate(this.setSettings.bind(this));
+			vehicle.authenticator.onSettingsUpdate(this.setSettings.bind(this));
 
 			this.vehicle = vehicle;
 			return vehicle;
@@ -121,7 +118,7 @@ export default abstract class VagDevice extends Homey.Device {
 	}
 
 	private async fetchVehicleData(
-		vehicle: Vehicle | null = null,
+		vehicle: VagVehicle | null = null,
 	): Promise<FetchData> {
 		if (!vehicle) {
 			vehicle = await this.getVehicle();

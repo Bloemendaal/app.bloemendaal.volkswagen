@@ -1,0 +1,91 @@
+{
+	"title": {
+		"en": "Set reduced charging (hybrid)",
+		"nl": "Stel gereduceerd laden in (hybride)",
+		"de": "Reduziertes Laden einstellen (Hybrid)",
+		"fr": "Définir charge réduite (hybride)",
+		"es": "Establecer carga reducida (híbrido)",
+		"it": "Imposta ricarica ridotta (ibrida)",
+		"da": "Indstil reduceret opladning (hybrid)",
+		"no": "Sett redusert lading (hybrid)",
+		"sv": "Ställ in reducerad laddning (hybrid)",
+		"pl": "Ustaw zmniejszone ładowanie (hybryda)",
+		"ru": "Установить сниженную зарядку (гибрид)",
+		"ko": "감소된 충전 설정 (하이브리드)"
+	},
+	"titleFormatted": {
+		"en": "Set reduced charging to [[reduced_charging]]",
+		"nl": "Stel gereduceerd laden in op [[reduced_charging]]",
+		"de": "Reduziertes Laden auf [[reduced_charging]] einstellen",
+		"fr": "Définir charge réduite sur [[reduced_charging]]",
+		"es": "Establecer carga reducida en [[reduced_charging]]",
+		"it": "Imposta ricarica ridotta su [[reduced_charging]]",
+		"da": "Indstil reduceret opladning til [[reduced_charging]]",
+		"no": "Sett redusert lading til [[reduced_charging]]",
+		"sv": "Ställ in reducerad laddning till [[reduced_charging]]",
+		"pl": "Ustaw zmniejszone ładowanie na [[reduced_charging]]",
+		"ru": "Установить сниженную зарядку на [[reduced_charging]]",
+		"ko": "감소된 충전을 [[reduced_charging]](으)로 설정"
+	},
+	"args": [
+		{
+			"type": "device",
+			"name": "device",
+			"filter": "driver_id=volkswagen|cupra|seat|skoda"
+		},
+		{
+			"type": "dropdown",
+			"name": "reduced_charging",
+			"title": {
+				"en": "Reduced charging",
+				"nl": "Gereduceerd laden",
+				"de": "Reduziertes Laden",
+				"fr": "Charge réduite",
+				"es": "Carga reducida",
+				"it": "Ricarica ridotta",
+				"da": "Reduceret opladning",
+				"no": "Redusert lading",
+				"sv": "Reducerad laddning",
+				"pl": "Zmniejszone ładowanie",
+				"ru": "Сниженная зарядка",
+				"ko": "감소된 충전"
+			},
+			"values": [
+				{
+					"id": "yes",
+					"title": {
+						"en": "Yes (6-8A)",
+						"nl": "Ja (6-8A)",
+						"de": "Ja (6-8A)",
+						"fr": "Oui (6-8A)",
+						"es": "Sí (6-8A)",
+						"it": "Sì (6-8A)",
+						"da": "Ja (6-8A)",
+						"no": "Ja (6-8A)",
+						"sv": "Ja (6-8A)",
+						"pl": "Tak (6-8A)",
+						"ru": "Да (6-8A)",
+						"ko": "예 (6-8A)"
+					}
+				},
+				{
+					"id": "no",
+					"title": {
+						"en": "No (normal charging)",
+						"nl": "Nee (normaal laden)",
+						"de": "Nein (normales Laden)",
+						"fr": "Non (charge normale)",
+						"es": "No (carga normal)",
+						"it": "No (ricarica normale)",
+						"da": "Nej (normal opladning)",
+						"no": "Nei (normal lading)",
+						"sv": "Nej (normal laddning)",
+						"pl": "Nie (normalne ładowanie)",
+						"ru": "Нет (обычная зарядка)",
+						"ko": "아니요 (일반 충전)"
+					}
+				}
+			]
+		}
+	]
+}

@@ -1,5 +1,5 @@
-import VolkswagenAuthenticator from "#lib/api/authenticators/volkswagen-authenticator.mjs";
-import VolkswagenUser from "#lib/api/users/volkswagen-user.mjs";
+import CupraAuthenticator from "#lib/api/authenticators/cupra-authenticator.mjs";
+import SeatCupraUser from "#lib/api/users/seatcupra-user.mjs";
 import VagDevice from "#lib/drivers/vag-device.mjs";
 import AccessStatusCapabilityGroup from "#lib/processors/capabilities/access-status/index.mjs";
 import BatteryStatusCapabilityGroup from "#lib/processors/capabilities/battery-status/index.mjs";
@@ -15,7 +15,6 @@ import PlugStatusCapabilityGroup from "#lib/processors/capabilities/plug-status/
 import RangeStatusCapabilityGroup from "#lib/processors/capabilities/range-status/index.mjs";
 import ReadinessStatusCapabilityGroup from "#lib/processors/capabilities/readiness-status/index.mjs";
 import TemperatureBatteryStatusCapabilityGroup from "#lib/processors/capabilities/temperature-battery-status/index.mjs";
-import UserCapabilitiesCapabilityGroup from "#lib/processors/capabilities/user-capabilities/index.mjs";
 import ControlChargingFlow from "#lib/processors/flows/control-charging.mjs";
 import ControlClimatisationFlow from "#lib/processors/flows/control-climatisation.mjs";
 import TimestampUpdatedFlow from "#lib/processors/flows/timestamp-updated.mjs";
@@ -25,7 +24,7 @@ import UpdatePollingIntervalFlow from "#lib/processors/flows/update-polling-inte
 import Processor from "#lib/processors/processable.mjs";
 import EnergySetting from "#lib/processors/settings/energy.mjs";
 
-export default class VolkswagenDevice extends VagDevice {
+export default class CupraDevice extends VagDevice {
 	protected readonly processor: Processor = new Processor([
 		new EnergySetting(this),
 		new AccessStatusCapabilityGroup(this),
@@ -42,7 +41,7 @@ export default class VolkswagenDevice extends VagDevice {
 		new RangeStatusCapabilityGroup(this),
 		new ReadinessStatusCapabilityGroup(this),
 		new TemperatureBatteryStatusCapabilityGroup(this),
-		new UserCapabilitiesCapabilityGroup(this),
+		//new UserCapabilitiesCapabilityGroup(this),
 		new ControlChargingFlow(this),
 		new ControlClimatisationFlow(this),
 		new TimestampUpdatedFlow(this),
@@ -51,9 +50,9 @@ export default class VolkswagenDevice extends VagDevice {
 		new UpdateChargingSettingsHybridFlow(this),
 	]);
 
-	protected createUser(): VolkswagenUser {
-		return new VolkswagenUser(
-			VolkswagenAuthenticator.fromSettings(this.getSettings()),
+	protected createUser(): SeatCupraUser {
+		return new SeatCupraUser(
+			CupraAuthenticator.fromSettings(this.getSettings()),
 		);
 	}
 }

@@ -9,7 +9,7 @@ import type {
 	Credentials,
 	SettingsUpdateCallback,
 	TokenStore,
-} from "#lib/api/authenticatable.mjs";
+} from "#lib/api/authenticators/authenticatable.mjs";
 import {
 	AuthorizationParametersError,
 	AuthorizationUrlError,
@@ -127,6 +127,31 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 			credentials: this.credentials,
 			tokenStore: this.tokenStore,
 		};
+	}
+
+	public getUserId(): string | null {
+		if (!this.tokenStore?.accessToken) {
+			return null;
+		}
+
+		try {
+			const parts = this.tokenStore.accessToken.split(".");
+			if (parts.length !== 3) {
+				return null;
+			}
+
+			const payload = JSON.parse(
+				Buffer.from(parts[1], "base64url").toString("utf-8"),
+			);
+
+			return payload.sub || null;
+		} catch (error) {
+			console.error(
+				"[Volkswagen Auth] Failed to extract userId from token:",
+				error,
+			);
+			return null;
+		}
 	}
 
 	public async getClient(): Promise<AxiosInstance> {
