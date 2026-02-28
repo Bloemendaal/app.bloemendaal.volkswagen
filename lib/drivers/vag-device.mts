@@ -28,8 +28,6 @@ export default abstract class VagDevice extends Homey.Device {
 
 	public async onInit(): Promise<void> {
 		const vehicle = await this.getVehicle();
-		vehicle.getAuthenticator().onSettingsUpdate(this.setSettings.bind(this));
-
 		const fetchData = await this.fetchVehicleData(vehicle);
 
 		await this.processor.register(fetchData);
@@ -100,11 +98,15 @@ export default abstract class VagDevice extends Homey.Device {
 				throw new Error("Vehicle not found");
 			}
 
+			vehicle.getAuthenticator().onSettingsUpdate(this.setSettings.bind(this));
+
 			this.vehicle = vehicle;
 			return vehicle;
 		} catch (error) {
 			if (error instanceof TranslatableError) {
-				throw new Error(this.homey.__(error.translationKey));
+				throw new Error(this.homey.__(error.translationKey), {
+					cause: error,
+				});
 			}
 
 			throw error;
@@ -123,7 +125,6 @@ export default abstract class VagDevice extends Homey.Device {
 	): Promise<FetchData> {
 		if (!vehicle) {
 			vehicle = await this.getVehicle();
-			vehicle.getAuthenticator().onSettingsUpdate(this.setSettings.bind(this));
 		}
 
 		const capabilities = await vehicle.getVehicleCapabilities();
