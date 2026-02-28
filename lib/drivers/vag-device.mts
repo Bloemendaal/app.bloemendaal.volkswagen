@@ -32,32 +32,6 @@ export default abstract class VagDevice extends Homey.Device {
 
 	protected abstract createUser(): VagUser;
 
-	/**
-	 * Get vehicle from API using the brand-specific User class
-	 */
-	protected async getVehicleFromApi(): Promise<VagVehicle> {
-		try {
-			const user = this.createUser();
-			const vehicles = await user.getVehicles();
-
-			const vehicle = vehicles.find(
-				(vehicle) => vehicle.vin === this.getData().id,
-			);
-
-			if (!vehicle) {
-				throw new Error("Vehicle not found");
-			}
-
-			return vehicle;
-		} catch (error) {
-			if (error instanceof TranslatableError) {
-				throw new Error(this.homey.__(error.translationKey));
-			}
-
-			throw error;
-		}
-	}
-
 	public async onInit(): Promise<void> {
 		const vehicle = await this.getVehicle();
 		vehicle.authenticator.onSettingsUpdate(this.setSettings.bind(this));
@@ -119,8 +93,26 @@ export default abstract class VagDevice extends Homey.Device {
 			return this.vehicle;
 		}
 
-		this.vehicle = await this.getVehicleFromApi();
-		return this.vehicle;
+		try {
+			const vehicles = await this.createUser().getVehicles();
+
+			const vehicle = vehicles.find(
+				(vehicle) => vehicle.vin === this.getData().id,
+			);
+
+			if (!vehicle) {
+				throw new Error("Vehicle not found");
+			}
+
+			this.vehicle = vehicle;
+			return vehicle;
+		} catch (error) {
+			if (error instanceof TranslatableError) {
+				throw new Error(this.homey.__(error.translationKey));
+			}
+
+			throw error;
+		}
 	}
 
 	public async requestRefresh(
