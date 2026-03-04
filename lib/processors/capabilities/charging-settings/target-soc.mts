@@ -18,7 +18,7 @@ export default class TargetSocCapability extends Capability<number> {
 		return targetSoC;
 	}
 
-	public override async setter(_fetchData: FetchData): Promise<void> {
+	public override async setter(): Promise<void> {
 		this.device.registerCapabilityListener(
 			this.getCapabilityName(),
 			async (value: number) => {

@@ -10,15 +10,11 @@ export default class ReadinessStatusCapabilityGroup extends CapabilityGroup {
 		return "readiness_status";
 	}
 
-	protected getCapabilityTimestamp(
-		_fetchData: FetchData,
-	): DateTimeString | null {
+	protected getCapabilityTimestamp(): DateTimeString | null {
 		return null;
 	}
 
-	protected async getProcessables(
-		_fetchData: FetchData,
-	): Promise<Processable[]> {
+	protected async getProcessables(): Promise<Processable[]> {
 		return [
 			new VehicleOnlineCapability(this.device),
 			new VehicleActiveCapability(this.device),

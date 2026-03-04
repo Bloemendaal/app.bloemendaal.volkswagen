@@ -27,7 +27,7 @@ export default class AlarmWindowCapability extends Capability<boolean> {
 		return !window.status.includes("closed");
 	}
 
-	public override async setter(_fetchData: FetchData): Promise<void> {
+	public override async setter(): Promise<void> {
 		this.device.setCapabilityOptions(this.getCapabilityName(), {
 			title: this.device.homey.__("capabilities.alarm_window.title", {
 				name: this.device.homey.__(

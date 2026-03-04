@@ -20,7 +20,7 @@ export default class MeasureBatteryTemperatureMinCapability extends Capability<n
 		return this.kelvinToCelsius(batteryTempMin);
 	}
 
-	public override async setter(_fetchData: FetchData): Promise<void> {
+	public override async setter(): Promise<void> {
 		this.device.setCapabilityOptions(this.getCapabilityName(), {
 			title: this.device.homey.__(
 				"capabilities.measure_battery_temperature.title",

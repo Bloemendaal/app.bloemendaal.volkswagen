@@ -22,9 +22,7 @@ export default class ParkingPositionCapabilityGroup extends CapabilityGroup {
 		return parkingPosition?.carCapturedTimestamp ?? null;
 	}
 
-	protected async getProcessables(
-		_fetchData: FetchData,
-	): Promise<Processable[]> {
+	protected async getProcessables(): Promise<Processable[]> {
 		return [
 			new CoordinateLatitudeCapability(this.device),
 			new CoordinateLongitudeCapability(this.device),

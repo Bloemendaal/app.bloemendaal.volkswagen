@@ -21,9 +21,7 @@ export default class MaintenanceStatusCapabilityGroup extends CapabilityGroup {
 		);
 	}
 
-	protected async getProcessables(
-		_fetchData: FetchData,
-	): Promise<Processable[]> {
+	protected async getProcessables(): Promise<Processable[]> {
 		return [
 			new MaintenanceDueDaysCapability(this.device),
 			new MaintenanceDueKmCapability(this.device),

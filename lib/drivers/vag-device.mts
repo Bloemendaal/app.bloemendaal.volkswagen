@@ -27,14 +27,11 @@ export default abstract class VagDevice extends Homey.Device {
 	protected abstract getAuthenticator(): Authenticatable;
 
 	public async onInit(): Promise<void> {
-		await this.boot().catch(this.errorAndThrow.bind(this));
-	}
+		const fetchData = await this.fetchVehicleData().catch(
+			this.errorAndNull.bind(this),
+		);
 
-	private async boot(): Promise<void> {
-		const vehicle = await this.getVehicle();
-		const fetchData = await this.fetchVehicleData(vehicle);
-
-		await this.processor.register(fetchData);
+		await this.processor.register(fetchData).catch(this.error.bind(this));
 		await this.setCapabilities(fetchData).catch(this.error.bind(this));
 
 		const intervalDelay =
@@ -84,6 +81,11 @@ export default abstract class VagDevice extends Homey.Device {
 		throw error;
 	}
 
+	public errorAndNull(error: unknown): null {
+		this.error(error);
+		return null;
+	}
+
 	public async getVehicle(): Promise<Vehicle> {
 		if (this.vehicle) {
 			return this.vehicle;
@@ -122,20 +124,13 @@ export default abstract class VagDevice extends Homey.Device {
 		return await this.debounceScheduler.schedule({ minimum, maximum });
 	}
 
-	private async fetchVehicleData(
-		vehicle: Vehicle | null = null,
-	): Promise<FetchData> {
-		if (!vehicle) {
-			vehicle = await this.getVehicle();
-		}
+	private async fetchVehicleData(): Promise<FetchData> {
+		const vehicle = await this.getVehicle();
 
 		const capabilities = await vehicle.getVehicleCapabilities();
 		const parkingPosition = await vehicle
 			.getParkingPosition()
-			.catch((error) => {
-				this.error(error);
-				return null;
-			});
+			.catch(this.errorAndNull.bind(this));
 
 		return { capabilities, parkingPosition };
 	}

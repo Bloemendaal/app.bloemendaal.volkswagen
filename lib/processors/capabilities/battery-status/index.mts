@@ -20,9 +20,7 @@ export default class BatteryStatusCapabilityGroup extends CapabilityGroup {
 		);
 	}
 
-	protected async getProcessables(
-		_fetchData: FetchData,
-	): Promise<Processable[]> {
+	protected async getProcessables(): Promise<Processable[]> {
 		return [
 			new MeasureBatteryCapability(this.device),
 			new MeasureBatteryUntilFullCapability(this.device),

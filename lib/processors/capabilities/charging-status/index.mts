@@ -21,9 +21,7 @@ export default class ChargingStatusCapabilityGroup extends CapabilityGroup {
 		);
 	}
 
-	protected async getProcessables(
-		_fetchData: FetchData,
-	): Promise<Processable[]> {
+	protected async getProcessables(): Promise<Processable[]> {
 		return [
 			new EvChargingStateCapability(this.device),
 			new IsChargingCapability(this.device),

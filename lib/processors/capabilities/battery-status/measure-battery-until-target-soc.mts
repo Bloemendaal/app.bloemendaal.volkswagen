@@ -21,7 +21,7 @@ export default class MeasureBatteryUntilTargetSocCapability extends Capability<n
 		return Math.max(0, targetSoC - currentSoC);
 	}
 
-	public override async setter(_fetchData: FetchData): Promise<void> {
+	public override async setter(): Promise<void> {
 		this.device.setCapabilityOptions(this.getCapabilityName(), {
 			uiComponent: "sensor",
 			title: this.device.homey.__("capabilities.measure_battery.title", {

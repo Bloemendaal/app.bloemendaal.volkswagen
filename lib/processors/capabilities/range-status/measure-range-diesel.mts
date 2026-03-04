@@ -18,7 +18,7 @@ export default class MeasureRangeDieselCapability extends Capability<number> {
 		return dieselRange;
 	}
 
-	public override async setter(_fetchData: FetchData): Promise<void> {
+	public override async setter(): Promise<void> {
 		this.device.setCapabilityOptions(this.getCapabilityName(), {
 			title: this.device.homey.__("capabilities.measure_range.title", {
 				name: this.device.homey.__(

@@ -20,9 +20,7 @@ export default class ChargingSettingsCapabilityGroup extends CapabilityGroup {
 		);
 	}
 
-	protected async getProcessables(
-		_fetchData: FetchData,
-	): Promise<Processable[]> {
+	protected async getProcessables(): Promise<Processable[]> {
 		return [
 			new TargetSocCapability(this.device),
 			new MaxChargingCurrentCapability(this.device),
