@@ -127,5 +127,8 @@
 	},
 	"1.1.25": {
 		"en": "Compress images"
+	},
+	"1.1.26": {
+		"en": "Report failures on booting the app"
 	}
 }
