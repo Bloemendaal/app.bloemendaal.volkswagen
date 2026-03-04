@@ -27,6 +27,10 @@ export default abstract class VagDevice extends Homey.Device {
 	protected abstract getAuthenticator(): Authenticatable;
 
 	public async onInit(): Promise<void> {
+		await this.boot().catch(this.errorAndThrow.bind(this));
+	}
+
+	private async boot(): Promise<void> {
 		const vehicle = await this.getVehicle();
 		const fetchData = await this.fetchVehicleData(vehicle);
 
