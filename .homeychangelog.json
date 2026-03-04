@@ -130,5 +130,8 @@
 	},
 	"1.1.26": {
 		"en": "Report failures on booting the app"
+	},
+	"1.1.27": {
+		"en": "Don't rely on the initial VW API call to start polling"
 	}
 }
