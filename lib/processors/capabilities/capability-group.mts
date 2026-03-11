@@ -6,7 +6,7 @@ import type { DateTimeString } from "#lib/types.mjs";
 export default abstract class CapabilityGroup implements Processable {
 	constructor(protected readonly device: VagDevice) {}
 
-	public async register(fetchData: FetchData): Promise<void> {
+	public async register(fetchData: FetchData | null): Promise<void> {
 		const capabilities = await this.getProcessables(fetchData);
 
 		await new Processor(capabilities).register(fetchData);
@@ -31,7 +31,7 @@ export default abstract class CapabilityGroup implements Processable {
 	): DateTimeString | null;
 
 	protected abstract getProcessables(
-		fetchData: FetchData,
+		fetchData: FetchData | null,
 	): Promise<Processable[]>;
 
 	protected async addTimestampCapability(

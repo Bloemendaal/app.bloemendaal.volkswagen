@@ -19,9 +19,7 @@ export default class TemperatureBatteryStatusCapabilityGroup extends CapabilityG
 		);
 	}
 
-	protected async getProcessables(
-		_fetchData: FetchData,
-	): Promise<Processable[]> {
+	protected async getProcessables(): Promise<Processable[]> {
 		return [
 			new MeasureBatteryTemperatureMinCapability(this.device),
 			new MeasureBatteryTemperatureMaxCapability(this.device),

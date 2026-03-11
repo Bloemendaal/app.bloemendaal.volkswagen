@@ -13,8 +13,8 @@ export interface RunOptions {
 export default abstract class Capability<TValue> implements Processable {
 	constructor(protected readonly device: VagDevice) {}
 
-	public async register(fetchData: FetchData): Promise<void> {
-		if (this.device.hasCapability(this.getCapabilityName())) {
+	public async register(fetchData: FetchData | null): Promise<void> {
+		if (fetchData && this.device.hasCapability(this.getCapabilityName())) {
 			await this.setter(fetchData);
 		}
 	}

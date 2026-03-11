@@ -1,4 +1,3 @@
-import type { FetchData } from "../../api/fetch.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdatePollingIntervalArgs {
@@ -6,7 +5,7 @@ interface UpdatePollingIntervalArgs {
 }
 
 export default class UpdatePollingIntervalFlow extends Flow {
-	public override async register(_fetchData: FetchData): Promise<void> {
+	public override async register(): Promise<void> {
 		const card = this.device.homey.flow.getActionCard(
 			"update_polling_interval",
 		);

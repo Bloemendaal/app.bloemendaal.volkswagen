@@ -18,9 +18,7 @@ export default class OdometerStatusCapabilityGroup extends CapabilityGroup {
 		);
 	}
 
-	protected async getProcessables(
-		_fetchData: FetchData,
-	): Promise<Processable[]> {
+	protected async getProcessables(): Promise<Processable[]> {
 		return [new MeterOdometerCapability(this.device)];
 	}
 }

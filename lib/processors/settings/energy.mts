@@ -2,10 +2,15 @@ import type { FetchData } from "#lib/api/fetch.mjs";
 import Setting from "./setting.mjs";
 
 export default class EnergySetting extends Setting {
-	public async register({ capabilities }: FetchData): Promise<void> {
+	public async register(fetchData: FetchData | null): Promise<void> {
+		if (!fetchData) {
+			return;
+		}
+
 		await this.device.setEnergy({
 			electricCar:
-				capabilities.fuelStatus?.rangeStatus?.value?.carType === "electric",
+				fetchData.capabilities.fuelStatus?.rangeStatus?.value?.carType ===
+				"electric",
 		});
 	}
 }

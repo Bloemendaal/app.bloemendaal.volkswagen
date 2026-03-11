@@ -1,3 +1,4 @@
+import type { FlowCard } from "homey";
 import type {
 	ChargingSettings,
 	ChargingSettingsAC,
@@ -28,10 +29,8 @@ export default class UpdateChargingSettingsFlow extends Flow {
 		);
 	}
 
-	private async getMaxChargeCurrentOptions(): Promise<
-		{ name: string; id: string }[]
-	> {
-		const expectsMaxCurrentInAmpere = this.device.hasCapability(
+	private getMaxChargeCurrentOptions(): FlowCard.ArgumentAutocompleteResults {
+		const expectsMaxCurrentInAmpere = this.device.getCapabilityValue(
 			"expects_max_charging_current_in_ampere",
 		)
 			? this.device.getCapabilityValue("expects_max_charging_current_in_ampere")

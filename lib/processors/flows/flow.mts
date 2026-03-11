@@ -5,7 +5,7 @@ import type { Processable, RunOptions } from "#lib/processors/processable.mjs";
 export default abstract class Flow implements Processable {
 	constructor(protected readonly device: VagDevice) {}
 
-	public abstract register(fetchData: FetchData): Promise<void>;
+	public abstract register(fetchData: FetchData | null): Promise<void>;
 
 	public async run(
 		_fetchData: FetchData,

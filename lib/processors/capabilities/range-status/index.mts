@@ -21,9 +21,7 @@ export default class RangeStatusCapabilityGroup extends CapabilityGroup {
 		);
 	}
 
-	protected async getProcessables(
-		_fetchData: FetchData,
-	): Promise<Processable[]> {
+	protected async getProcessables(): Promise<Processable[]> {
 		return [
 			new MeasureRangeCapability(this.device),
 			new MeasureRangeAdBlueCapability(this.device),

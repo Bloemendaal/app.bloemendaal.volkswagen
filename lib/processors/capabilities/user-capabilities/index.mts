@@ -12,15 +12,11 @@ export default class UserCapabilitiesCapabilityGroup extends CapabilityGroup {
 		return "user_capabilities";
 	}
 
-	protected getCapabilityTimestamp(
-		_fetchData: FetchData,
-	): DateTimeString | null {
+	protected getCapabilityTimestamp(): DateTimeString | null {
 		return null;
 	}
 
-	protected async getProcessables(
-		_fetchData: FetchData,
-	): Promise<Processable[]> {
+	protected async getProcessables(): Promise<Processable[]> {
 		return [
 			new ButtonFlashCapability(this.device),
 			new ButtonHonkFlashCapability(this.device),
