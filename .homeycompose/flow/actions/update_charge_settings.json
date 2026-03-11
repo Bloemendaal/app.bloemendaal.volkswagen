@@ -47,7 +47,7 @@
 		{
 			"type": "device",
 			"name": "device",
-			"filter": "driver_id=volkswagen&capabilities=target_soc"
+			"filter": "driver_id=volkswagen|seat|cupra&capabilities=target_soc"
 		},
 		{
 			"type": "autocomplete",

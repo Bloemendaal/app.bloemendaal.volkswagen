@@ -34,7 +34,7 @@
 		{
 			"type": "device",
 			"name": "device",
-			"filter": "driver_id=volkswagen&capabilities=climatisation_onoff"
+			"filter": "driver_id=volkswagen|seat|cupra&capabilities=climatisation_onoff"
 		},
 		{
 			"type": "number",

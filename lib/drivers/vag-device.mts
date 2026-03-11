@@ -1,9 +1,8 @@
 import Homey from "homey";
-import type { Authenticatable } from "#lib/api/authenticatable.mjs";
 import DebounceScheduler from "#lib/api/debounce-scheduler.mjs";
 import type { FetchData } from "#lib/api/fetch.mjs";
-import User from "#lib/api/user.mjs";
-import type Vehicle from "#lib/api/vehicle.mjs";
+import type VagUser from "#lib/api/users/vag-user.mjs";
+import type VagVehicle from "#lib/api/vehicles/vag-vehicle.mjs";
 import TranslatableError from "#lib/errors/translatable-error.mjs";
 import type Processor from "#lib/processors/processable.mjs";
 
@@ -17,14 +16,14 @@ interface OnSettingsParams {
 }
 
 export default abstract class VagDevice extends Homey.Device {
-	private vehicle: Vehicle | null = null;
+	private vehicle: VagVehicle | null = null;
 
 	private readonly debounceScheduler: DebounceScheduler<void> =
 		new DebounceScheduler<void>(this.setCapabilities.bind(this));
 
 	protected abstract readonly processor: Processor;
 
-	protected abstract getAuthenticator(): Authenticatable;
+	protected abstract createUser(): VagUser;
 
 	public async onInit(): Promise<void> {
 		const fetchData = await this.fetchVehicleData().catch(
@@ -86,13 +85,13 @@ export default abstract class VagDevice extends Homey.Device {
 		return null;
 	}
 
-	public async getVehicle(): Promise<Vehicle> {
+	public async getVehicle(): Promise<VagVehicle> {
 		if (this.vehicle) {
 			return this.vehicle;
 		}
 
 		try {
-			const vehicles = await new User(this.getAuthenticator()).getVehicles();
+			const vehicles = await this.createUser().getVehicles();
 
 			const vehicle = vehicles.find(
 				(vehicle) => vehicle.vin === this.getData().id,
