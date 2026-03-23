@@ -1,4 +1,3 @@
-import type { FetchData } from "#lib/api/fetch.mjs";
 import CapabilityGroup from "#lib/processors/capabilities/capability-group.mjs";
 import type { Processable } from "#lib/processors/processable.mjs";
 import type { DateTimeString } from "#lib/types.mjs";

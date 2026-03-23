@@ -16,8 +16,7 @@ export default class RangeStatusCapabilityGroup extends CapabilityGroup {
 		capabilities,
 	}: FetchData): DateTimeString | null {
 		return (
-			capabilities.measurements?.rangeStatus?.value?.carCapturedTimestamp ??
-			null
+			capabilities.fuelStatus?.rangeStatus?.value?.carCapturedTimestamp ?? null
 		);
 	}
 

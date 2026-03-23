@@ -5,6 +5,7 @@ import type VagUser from "#lib/api/users/vag-user.mjs";
 import type VagVehicle from "#lib/api/vehicles/vag-vehicle.mjs";
 import TranslatableError from "#lib/errors/translatable-error.mjs";
 import type Processor from "#lib/processors/processable.mjs";
+import VagApp from "../../app.mjs";
 
 const MS_TO_MINUTES = 60 * 1000;
 const DEFAULT_POLLING_INTERVAL_MINUTES = 10;
@@ -147,6 +148,12 @@ export default abstract class VagDevice extends Homey.Device {
 			this.log(`Fetched data: ${JSON.stringify(fetchData)}`);
 		}
 
-		await this.processor.run(fetchData).catch(this.errorAndThrow.bind(this));
+		await this.processor.run(fetchData).catch(this.error.bind(this));
+
+		if (this.homey.app instanceof VagApp) {
+			await this.homey.app
+				.runFlowsForDevice(this, fetchData)
+				.catch(this.error.bind(this));
+		}
 	}
 }

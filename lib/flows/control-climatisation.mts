@@ -1,15 +1,35 @@
 import type { ClimatisationSettings } from "#lib/api/climatisation.mjs";
+import type VagDevice from "#lib/drivers/vag-device.mjs";
 import Flow from "./flow.mjs";
+
+interface ControlClimatisationOnArgs {
+	device: VagDevice;
+	temperature?: number;
+}
+
+interface ControlClimatisationOnAdvancedArgs {
+	device: VagDevice;
+	temperature?: number;
+	climatisationWithoutExternalPower?: boolean;
+	climatizationAtUnlock?: boolean;
+	windowHeatingEnabled?: boolean;
+	zoneFrontLeftEnabled?: boolean;
+	zoneFrontRightEnabled?: boolean;
+	zoneRearLeftEnabled?: boolean;
+	zoneRearRightEnabled?: boolean;
+}
+
+interface ControlClimatisationOffArgs {
+	device: VagDevice;
+}
 
 export default class ControlClimatisationFlow extends Flow {
 	public override async register(): Promise<void> {
-		const onCard = this.device.homey.flow.getActionCard(
-			"climatisation_onoff_on",
-		);
-		const onAdvancedCard = this.device.homey.flow.getActionCard(
+		const onCard = this.app.homey.flow.getActionCard("climatisation_onoff_on");
+		const onAdvancedCard = this.app.homey.flow.getActionCard(
 			"climatisation_onoff_on_advanced",
 		);
-		const offCard = this.device.homey.flow.getActionCard(
+		const offCard = this.app.homey.flow.getActionCard(
 			"climatisation_onoff_off",
 		);
 
@@ -18,30 +38,23 @@ export default class ControlClimatisationFlow extends Flow {
 		offCard.registerRunListener(this.handleOff.bind(this));
 	}
 
-	private async handleOn(args: { temperature?: number }): Promise<void> {
-		const vehicle = await this.device.getVehicle();
+	private async handleOn(args: ControlClimatisationOnArgs): Promise<void> {
+		const vehicle = await args.device.getVehicle();
 
 		await vehicle
 			.startClimatisation({
 				targetTemperature: args.temperature,
 				targetTemperatureUnit: "celsius",
 			})
-			.catch((e) => this.device.errorAndThrow(e));
+			.catch((e) => args.device.errorAndThrow(e));
 
-		await this.device.requestRefresh(500, 1000);
+		await args.device.requestRefresh(500, 1000);
 	}
 
-	private async handleOnAdvanced(args: {
-		temperature?: number;
-		climatisationWithoutExternalPower?: boolean;
-		climatizationAtUnlock?: boolean;
-		windowHeatingEnabled?: boolean;
-		zoneFrontLeftEnabled?: boolean;
-		zoneFrontRightEnabled?: boolean;
-		zoneRearLeftEnabled?: boolean;
-		zoneRearRightEnabled?: boolean;
-	}): Promise<void> {
-		const vehicle = await this.device.getVehicle();
+	private async handleOnAdvanced(
+		args: ControlClimatisationOnAdvancedArgs,
+	): Promise<void> {
+		const vehicle = await args.device.getVehicle();
 
 		const settings: ClimatisationSettings = {
 			targetTemperature: args.temperature,
@@ -74,20 +87,20 @@ export default class ControlClimatisationFlow extends Flow {
 
 		await vehicle
 			.startClimatisation(settings)
-			.catch((e) => this.device.errorAndThrow(e));
+			.catch((e) => args.device.errorAndThrow(e));
 
-		await this.device.requestRefresh(500, 1000);
+		await args.device.requestRefresh(500, 1000);
 	}
 
-	private async handleOff(): Promise<void> {
-		const vehicle = await this.device
+	private async handleOff({
+		device,
+	}: ControlClimatisationOffArgs): Promise<void> {
+		const vehicle = await device
 			.getVehicle()
-			.catch((e) => this.device.errorAndThrow(e));
+			.catch((e) => device.errorAndThrow(e));
 
-		await vehicle
-			.stopClimatisation()
-			.catch((e) => this.device.errorAndThrow(e));
+		await vehicle.stopClimatisation().catch((e) => device.errorAndThrow(e));
 
-		await this.device.requestRefresh(500, 1000);
+		await device.requestRefresh(500, 1000);
 	}
 }
