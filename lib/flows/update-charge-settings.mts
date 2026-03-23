@@ -2,7 +2,7 @@ import type { FlowCard } from "homey";
 import type {
 	ChargingSettings,
 	ChargingSettingsAC,
-} from "#lib/api/vehicle.mjs";
+} from "#lib/api/vehicles/vag-vehicle.mjs";
 import type VagDevice from "#lib/drivers/vag-device.mjs";
 import {
 	MAX_CHARGING_CURRENT,
