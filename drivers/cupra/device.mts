@@ -15,12 +15,6 @@ import PlugStatusCapabilityGroup from "#lib/processors/capabilities/plug-status/
 import RangeStatusCapabilityGroup from "#lib/processors/capabilities/range-status/index.mjs";
 import ReadinessStatusCapabilityGroup from "#lib/processors/capabilities/readiness-status/index.mjs";
 import TemperatureBatteryStatusCapabilityGroup from "#lib/processors/capabilities/temperature-battery-status/index.mjs";
-import ControlChargingFlow from "#lib/processors/flows/control-charging.mjs";
-import ControlClimatisationFlow from "#lib/processors/flows/control-climatisation.mjs";
-import TimestampUpdatedFlow from "#lib/processors/flows/timestamp-updated.mjs";
-import UpdateChargingSettingsFlow from "#lib/processors/flows/update-charge-settings.mjs";
-import UpdateChargingSettingsHybridFlow from "#lib/processors/flows/update-charge-settings-hybrid.mjs";
-import UpdatePollingIntervalFlow from "#lib/processors/flows/update-polling-interval.mjs";
 import Processor from "#lib/processors/processable.mjs";
 import EnergySetting from "#lib/processors/settings/energy.mjs";
 
@@ -42,12 +36,6 @@ export default class CupraDevice extends VagDevice {
 		new ReadinessStatusCapabilityGroup(this),
 		new TemperatureBatteryStatusCapabilityGroup(this),
 		//new UserCapabilitiesCapabilityGroup(this),
-		new ControlChargingFlow(this),
-		new ControlClimatisationFlow(this),
-		new TimestampUpdatedFlow(this),
-		new UpdatePollingIntervalFlow(this),
-		new UpdateChargingSettingsFlow(this),
-		new UpdateChargingSettingsHybridFlow(this),
 	]);
 
 	protected createUser(): SeatCupraUser {

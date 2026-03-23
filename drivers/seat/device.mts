@@ -13,10 +13,6 @@ import PlugStatusCapabilityGroup from "#lib/processors/capabilities/plug-status/
 import ReadinessStatusCapabilityGroup from "#lib/processors/capabilities/readiness-status/index.mjs";
 import TemperatureBatteryStatusCapabilityGroup from "#lib/processors/capabilities/temperature-battery-status/index.mjs";
 import UserCapabilitiesCapabilityGroup from "#lib/processors/capabilities/user-capabilities/index.mjs";
-import ControlChargingFlow from "#lib/processors/flows/control-charging.mjs";
-import ControlClimatisationFlow from "#lib/processors/flows/control-climatisation.mjs";
-import UpdateChargingSettingsFlow from "#lib/processors/flows/update-charge-settings.mjs";
-import UpdateChargingSettingsHybridFlow from "#lib/processors/flows/update-charge-settings-hybrid.mjs";
 import Processor from "#lib/processors/processable.mjs";
 import EnergySetting from "#lib/processors/settings/energy.mjs";
 
@@ -35,10 +31,6 @@ export default class SeatDevice extends VagDevice {
 		new ReadinessStatusCapabilityGroup(this),
 		new TemperatureBatteryStatusCapabilityGroup(this),
 		new UserCapabilitiesCapabilityGroup(this),
-		new ControlChargingFlow(this),
-		new ControlClimatisationFlow(this),
-		new UpdateChargingSettingsFlow(this),
-		new UpdateChargingSettingsHybridFlow(this),
 	]);
 
 	protected createUser(): SeatCupraUser {

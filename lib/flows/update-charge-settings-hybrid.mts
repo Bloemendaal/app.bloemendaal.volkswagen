@@ -1,13 +1,15 @@
-import type { ChargingSettings } from "../../api/vehicles/vag-vehicle.mjs";
+import type { ChargingSettings } from "#lib/api/vehicles/vag-vehicle.mjs";
+import type VagDevice from "#lib/drivers/vag-device.mjs";
 import Flow from "./flow.mjs";
 
 interface UpdateChargingSettingsHybridArgs {
+	device: VagDevice;
 	reduced_charging: "yes" | "no";
 }
 
 export default class UpdateChargingSettingsHybridFlow extends Flow {
 	public override async register(): Promise<void> {
-		const card = this.device.homey.flow.getActionCard(
+		const card = this.app.homey.flow.getActionCard(
 			"update_charge_settings_hybrid",
 		);
 
@@ -17,9 +19,9 @@ export default class UpdateChargingSettingsHybridFlow extends Flow {
 	private async handleAction(
 		args: UpdateChargingSettingsHybridArgs,
 	): Promise<void> {
-		const vehicle = await this.device
+		const vehicle = await args.device
 			.getVehicle()
-			.catch((e) => this.device.errorAndThrow(e));
+			.catch((e) => args.device.errorAndThrow(e));
 
 		const settings: Partial<ChargingSettings> = {
 			chargingSettingsAC: {
@@ -30,8 +32,8 @@ export default class UpdateChargingSettingsHybridFlow extends Flow {
 
 		await vehicle
 			.updateChargingSettings(settings)
-			.catch((e) => this.device.errorAndThrow(e));
+			.catch((e) => args.device.errorAndThrow(e));
 
-		await this.device.requestRefresh(500, 1000);
+		await args.device.requestRefresh(500, 1000);
 	}
 }
