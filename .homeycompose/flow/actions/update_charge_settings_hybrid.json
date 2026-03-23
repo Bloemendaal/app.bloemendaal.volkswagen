@@ -31,7 +31,7 @@
 		{
 			"type": "device",
 			"name": "device",
-			"filter": "driver_id=volkswagen|cupra|seat|skoda"
+			"filter": "driver_id=volkswagen|cupra|skoda|seat|skoda"
 		},
 		{
 			"type": "dropdown",
