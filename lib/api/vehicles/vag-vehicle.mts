@@ -37,6 +37,15 @@ export interface ChargingSettings {
 	chargingSettingsAC?: ChargingSettingsAC;
 }
 
+export interface HonkAndFlashOptions {
+	mode: "flash" | "honk-and-flash";
+	duration: number;
+	userPosition: {
+		latitude: number;
+		longitude: number;
+	};
+}
+
 export default abstract class VagVehicle implements VehicleData {
 	public readonly vin: string;
 	public readonly role: string;
@@ -95,14 +104,7 @@ export default abstract class VagVehicle implements VehicleData {
 
 	public abstract wake(): Promise<void>;
 
-	public abstract honkAndFlash(options: {
-		mode: "flash" | "honk-and-flash";
-		duration: number;
-		userPosition: {
-			latitude: number;
-			longitude: number;
-		};
-	}): Promise<void>;
+	public abstract honkAndFlash(options: HonkAndFlashOptions): Promise<void>;
 
 	public abstract startCharging(): Promise<void>;
 

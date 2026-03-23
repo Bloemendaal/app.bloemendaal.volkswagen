@@ -4,7 +4,10 @@ import type {
 	StartClimatisationSettings,
 } from "../climatisation.mjs";
 import type { ParkingPositionData } from "../parking-position.mjs";
-import VagVehicle, { type ChargingSettings } from "./vag-vehicle.mjs";
+import VagVehicle, {
+	type ChargingSettings,
+	type HonkAndFlashOptions,
+} from "./vag-vehicle.mjs";
 
 export default class SeatCupraVehicle extends VagVehicle {
 	public async getVehicleCapabilities(): Promise<
@@ -399,14 +402,7 @@ export default class SeatCupraVehicle extends VagVehicle {
 		await client.post(`/v1/vehicles/${this.vin}/vehicle-wakeup/request`);
 	}
 
-	public async honkAndFlash(options: {
-		mode: "flash" | "honk-and-flash";
-		duration: number;
-		userPosition: {
-			latitude: number;
-			longitude: number;
-		};
-	}): Promise<void> {
+	public async honkAndFlash(options: HonkAndFlashOptions): Promise<void> {
 		const client = await this.authenticator.getClient();
 
 		await client.post(`/v1/vehicles/${this.vin}/honk-and-flash`, {

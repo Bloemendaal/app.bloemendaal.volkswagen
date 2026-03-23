@@ -10,7 +10,10 @@ import type {
 	ParkingPositionData,
 	ParkingPositionResponse,
 } from "../parking-position.mjs";
-import VagVehicle, { type ChargingSettings } from "./vag-vehicle.mjs";
+import VagVehicle, {
+	type ChargingSettings,
+	type HonkAndFlashOptions,
+} from "./vag-vehicle.mjs";
 
 export default class VolkswagenVehicle extends VagVehicle {
 	public async getVehicleCapabilities(): Promise<
@@ -114,14 +117,7 @@ export default class VolkswagenVehicle extends VagVehicle {
 		await client.post(`/vehicle/v1/vehicles/${this.vin}/vehiclewakeuptrigger`);
 	}
 
-	public async honkAndFlash(options: {
-		mode: "flash" | "honk-and-flash";
-		duration: number;
-		userPosition: {
-			latitude: number;
-			longitude: number;
-		};
-	}): Promise<void> {
+	public async honkAndFlash(options: HonkAndFlashOptions): Promise<void> {
 		const client = await this.authenticator.getClient();
 
 		await client.post(`/vehicle/v1/vehicles/${this.vin}/honkandflash`, {
