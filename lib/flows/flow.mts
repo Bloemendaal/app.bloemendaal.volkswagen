@@ -1,6 +1,6 @@
-import type VagApp from "app.mjs";
 import type { FetchData } from "#lib/api/fetch.mjs";
 import type VagDevice from "#lib/drivers/vag-device.mjs";
+import type VagApp from "../../app.mjs";
 
 export default abstract class Flow {
 	constructor(protected readonly app: VagApp) {}

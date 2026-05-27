@@ -3,9 +3,9 @@
 	"compilerOptions": {
 		"allowJs": true,
 		"outDir": ".homeybuild/",
-		"baseUrl": ".",
+		"types": ["node"],
 		"paths": {
-			"#lib/*": ["lib/*"]
+			"#lib/*": ["./lib/*"]
 		}
 	}
 }
