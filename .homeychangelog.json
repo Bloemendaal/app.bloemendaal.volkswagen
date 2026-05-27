@@ -139,5 +139,8 @@
 	},
 	"1.1.29": {
 		"en": "Allow flows to run on multiple devices"
+	},
+	"1.1.30": {
+		"en": "Update authentication to new format"
 	}
 }
