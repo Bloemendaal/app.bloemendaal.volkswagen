@@ -11,24 +11,19 @@ import type {
 	TokenStore,
 } from "#lib/api/authenticatable.mjs";
 import {
-	AuthorizationParametersError,
 	AuthorizationUrlError,
 	LoginFailedError,
 	TokenExchangeError,
 } from "#lib/errors/authentication-errors.mjs";
 
-const REGION = "emea";
 const BASE_URL = "https://emea.bff.cariad.digital";
 const CLIENT_ID = "a24fba63-34b3-4d43-b181-942111e6bda8@apps_vw-dilab_com";
+const SCOPE = "openid profile badge dealers cars vin";
 const REDIRECT_URI = "weconnect://authenticated";
 const MAXIMUM_REDIRECTS = 10;
 const TOKEN_EXPIRY_BUFFER_MS = 60 * 1000; // 1 minute
-
-interface TokenResponse {
-	idToken: string;
-	accessToken: string;
-	refreshToken: string;
-}
+const USER_AGENT = "Volkswagen/3.61.0-android/14";
+const ANDROID_PACKAGE = "com.volkswagen.weconnect";
 
 interface TokenRefresh {
 	id_token: string;
@@ -38,11 +33,10 @@ interface TokenRefresh {
 	token_type: string;
 }
 
-interface AuthorizationParameters {
-	code: string;
-	returnedState: string;
-	idToken: string;
-	accessToken: string;
+interface OpenIdConfig {
+	authorizationEndpoint: string;
+	tokenEndpoint: string;
+	issuer: string;
 }
 
 export default class VolkswagenAuthenticator implements Authenticatable {
@@ -139,8 +133,8 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${tokenStore.accessToken}`,
 				"weconnect-trace-id": crypto.randomUUID(),
-				"User-Agent": "Volkswagen/3.51.1-android/14",
-				"x-android-package-name": "com.volkswagen.weconnect",
+				"User-Agent": USER_AGENT,
+				"x-android-package-name": ANDROID_PACKAGE,
 			},
 		});
 	}
@@ -174,24 +168,29 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 	}
 
 	private async authenticateWithCredentials(): Promise<TokenStore> {
-		// Step 0: Check the refresh token
+		// Step 0: Try to refresh existing token
 		const refreshedToken = await this.tryRefreshToken();
+		if (refreshedToken) return refreshedToken;
 
-		if (refreshedToken) {
-			return refreshedToken;
-		}
+		// Step 1: Fetch OpenID configuration to get live endpoints
+		const openIdConfig = await this.getOpenIdConfig();
 
-		// Step 1: Get authorization URL from WeConnect
-		const identityAuthUrl = await this.getAuthorizationUrl();
+		// Step 2: Hit the authorization endpoint to get the login page URL
+		const loginPageUrl = await this.getAuthorizationUrl(
+			openIdConfig.authorizationEndpoint,
+		);
 
-		// Step 2: Submit email and password forms
-		const redirectUrl = await this.handleNewAuthFlow(identityAuthUrl);
+		// Step 3: Submit credentials and follow redirects to get the auth code
+		const authCode = await this.handleNewAuthFlow(
+			loginPageUrl,
+			openIdConfig.issuer,
+		);
 
-		// Step 3: Extract parameters from redirect URL and exchange for tokens
-		const tokenStore = this.extractAuthorizationParameters(redirectUrl);
-
-		// Step 4: Exchange authorization parameters for final tokens
-		return await this.exchangeForFinalTokens(tokenStore);
+		// Step 4: Exchange the authorization code for tokens
+		return await this.exchangeForFinalTokens(
+			authCode,
+			openIdConfig.tokenEndpoint,
+		);
 	}
 
 	private async tryRefreshToken(): Promise<TokenStore | null> {
@@ -200,8 +199,6 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 		}
 
 		try {
-			const tokenUrl = `${BASE_URL}/login/v1/idk/token`;
-
 			const body = new URLSearchParams({
 				client_id: CLIENT_ID,
 				grant_type: "refresh_token",
@@ -209,20 +206,22 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 			});
 
 			const tokenResponse = await axios.post<TokenRefresh>(
-				tokenUrl,
+				`${BASE_URL}/auth/v1/idk/oidc/token`,
 				body.toString(),
 				{
 					headers: {
 						"Accept-Encoding": "gzip, deflate, br",
 						Connection: "keep-alive",
 						"Content-Type": "application/x-www-form-urlencoded",
-						"User-Agent": "Volkswagen/3.51.1-android/14",
-						"x-android-package-name": "com.volkswagen.weconnect",
+						"User-Agent": USER_AGENT,
+						"x-android-package-name": ANDROID_PACKAGE,
 					},
 				},
 			);
 
 			const newTokens = tokenResponse.data;
+			if (!newTokens.access_token) return null;
+
 			const expiresAt = Math.floor(Date.now() / 1000) + newTokens.expires_in;
 
 			return {
@@ -236,74 +235,113 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 		}
 	}
 
-	private async getAuthorizationUrl(): Promise<string> {
+	private async getOpenIdConfig(): Promise<OpenIdConfig> {
 		try {
-			const searchParams = new URLSearchParams({
-				nonce: crypto.randomBytes(16).toString("hex"),
-				redirect_uri: REDIRECT_URI,
-			});
-
-			const authorizationUrl = `${BASE_URL}/user-login/v1/authorize?${searchParams.toString()}`;
-
-			const authorizationResponse = await this.authenticationClient.get(
-				authorizationUrl,
-				{
-					maxRedirects: 0,
-					validateStatus: (status) => status < 400,
-				},
+			const response = await this.authenticationClient.get(
+				`${BASE_URL}/auth/v1/idk/oidc/openid-configuration`,
 			);
 
-			const identityAuthUrl: string | undefined =
-				authorizationResponse.headers.location;
-
-			if (authorizationResponse.status !== 303 || !identityAuthUrl) {
-				throw new Error("Failed to get authorization URL from WeConnect");
-			}
-
-			return identityAuthUrl;
+			return {
+				authorizationEndpoint: response.data.authorization_endpoint,
+				tokenEndpoint: response.data.token_endpoint,
+				issuer: response.data.issuer,
+			};
 		} catch (error) {
 			throw new AuthorizationUrlError({ cause: error });
 		}
 	}
 
-	private async handleNewAuthFlow(url: string): Promise<string> {
+	private async getAuthorizationUrl(
+		authorizationEndpoint: string,
+	): Promise<string> {
 		try {
-			const response = await this.authenticationClient.get(url, {
-				maxRedirects: MAXIMUM_REDIRECTS,
-				headers: {
-					Accept:
-						"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-				},
-				validateStatus: (status) => status === 200,
+			const searchParams = new URLSearchParams({
+				client_id: CLIENT_ID,
+				scope: SCOPE,
+				response_type: "code",
+				nonce: crypto.randomBytes(16).toString("hex"),
+				redirect_uri: REDIRECT_URI,
 			});
 
-			// Extract state token using regex
-			const stateMatch = response.data.match(
-				/<input[^>]*name="state"[^>]*value="([^"]*)"/,
+			const response = await this.authenticationClient.get(
+				`${authorizationEndpoint}?${searchParams.toString()}`,
+				{
+					maxRedirects: 0,
+					headers: {
+						Accept:
+							"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+						"User-Agent": USER_AGENT,
+						"x-android-package-name": ANDROID_PACKAGE,
+					},
+					validateStatus: (status) => status < 400,
+				},
 			);
 
+			const loginPageUrl: string | undefined = response.headers.location;
+
+			if (
+				(response.status !== 302 && response.status !== 303) ||
+				!loginPageUrl
+			) {
+				throw new Error(
+					"Failed to get login page URL from authorization endpoint",
+				);
+			}
+
+			return loginPageUrl.startsWith("http")
+				? loginPageUrl
+				: new URL(loginPageUrl, authorizationEndpoint).toString();
+		} catch (error) {
+			throw new AuthorizationUrlError({ cause: error });
+		}
+	}
+
+	private async handleNewAuthFlow(
+		loginPageUrl: string,
+		issuer: string,
+	): Promise<string> {
+		try {
+			const loginPageResponse = await this.authenticationClient.get(
+				loginPageUrl,
+				{
+					maxRedirects: 0,
+					headers: {
+						Accept:
+							"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+						"User-Agent": USER_AGENT,
+						"x-android-package-name": ANDROID_PACKAGE,
+					},
+					validateStatus: (status) => status === 200,
+				},
+			);
+
+			const stateMatch = loginPageResponse.data.match(
+				/<input[^>]*name="state"[^>]*value="([^"]*)"/,
+			);
 			const state = stateMatch?.[1];
 
 			if (!state) {
-				throw new Error("Could not find state token in authorization page");
+				throw new Error("Could not find state token in login page");
 			}
 
-			const loginForm = {
-				state,
-				username: this.credentials.email,
-				password: this.credentials.password,
-			};
-
-			const loginUrl = `https://identity.vwgroup.io/u/login?state=${state}`;
+			const loginUrl = `${issuer}/u/login?state=${state}`;
 
 			const loginResponse = await this.authenticationClient.post(
 				loginUrl,
-				new URLSearchParams(loginForm).toString(),
+				new URLSearchParams({
+					state,
+					username: this.credentials.email,
+					password: this.credentials.password,
+				}).toString(),
 				{
 					headers: {
 						"Content-Type": "application/x-www-form-urlencoded",
 						Accept:
 							"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+						"User-Agent": USER_AGENT,
+						"x-android-package-name": ANDROID_PACKAGE,
+						Origin: issuer,
+						Referer: loginUrl,
 					},
 					maxRedirects: 0,
 					validateStatus: (status) => status < 400,
@@ -322,23 +360,31 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 
 			let redirectUrl = loginResponse.headers.location;
 
-			for (let i = 0; i < 10 && !redirectUrl.startsWith(REDIRECT_URI); i++) {
+			for (
+				let i = 0;
+				i < MAXIMUM_REDIRECTS && !redirectUrl.startsWith(REDIRECT_URI);
+				i++
+			) {
 				if (!redirectUrl.startsWith("http")) {
 					redirectUrl = redirectUrl.startsWith("/")
-						? `https://identity.vwgroup.io${redirectUrl}`
-						: `https://identity.vwgroup.io/${redirectUrl}`;
+						? `${issuer}${redirectUrl}`
+						: `${issuer}/${redirectUrl}`;
 				}
 
 				const followResponse = await this.authenticationClient.get(
 					redirectUrl,
 					{
 						maxRedirects: 0,
+						headers: {
+							"User-Agent": USER_AGENT,
+							"x-android-package-name": ANDROID_PACKAGE,
+						},
 						validateStatus: (status) => status < 600,
 					},
 				);
 
 				if (followResponse.status === 500) {
-					throw new Error("Temporary server error during new auth flow");
+					throw new Error("Temporary server error during auth flow");
 				}
 
 				if (!followResponse.headers.location) {
@@ -348,81 +394,56 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 				redirectUrl = followResponse.headers.location;
 			}
 
-			return redirectUrl;
+			// Extract code from query params (response_type=code flow returns ?code=...&state=...)
+			const callbackUrl = new URL(
+				redirectUrl.replace("weconnect://", "https://weconnect-dummy/"),
+			);
+			const code = callbackUrl.searchParams.get("code");
+
+			if (!code) {
+				throw new Error("No authorization code in callback URL");
+			}
+
+			return code;
 		} catch (cause) {
 			throw new LoginFailedError({ cause });
 		}
 	}
 
-	private extractAuthorizationParameters(
-		redirectUrl: string,
-	): AuthorizationParameters {
+	private async exchangeForFinalTokens(
+		authCode: string,
+		tokenEndpoint: string,
+	): Promise<TokenStore> {
 		try {
-			const hashIndex = redirectUrl.indexOf("#");
-
-			if (hashIndex === -1) {
-				throw new Error("No parameters in redirect URL");
-			}
-
-			const fragment = redirectUrl.substring(hashIndex + 1);
-			const params = new URLSearchParams(fragment);
-
-			const code = params.get("code");
-			const returnedState = params.get("state");
-			const idToken = params.get("id_token");
-			const accessToken = params.get("access_token");
-
-			if (!code || !returnedState || !idToken || !accessToken) {
-				throw new Error(
-					"Missing code, state, id_token, or access_token in redirect URL",
-				);
-			}
-
-			return { code, returnedState, idToken, accessToken };
-		} catch (cause) {
-			throw new AuthorizationParametersError({ cause });
-		}
-	}
-
-	private async exchangeForFinalTokens({
-		code,
-		returnedState,
-		idToken,
-		accessToken,
-	}: AuthorizationParameters): Promise<TokenStore> {
-		try {
-			const tokenBody = {
-				state: returnedState,
-				id_token: idToken,
+			const body = new URLSearchParams({
+				client_id: CLIENT_ID,
+				grant_type: "authorization_code",
+				code: authCode,
 				redirect_uri: REDIRECT_URI,
-				region: REGION,
-				access_token: accessToken,
-				authorizationCode: code,
-			};
+			});
 
-			const tokenResponse = await axios.post<TokenResponse>(
-				`${BASE_URL}/user-login/login/v1`,
-				tokenBody,
+			const tokenResponse = await axios.post<TokenRefresh>(
+				tokenEndpoint,
+				body.toString(),
 				{
 					headers: {
-						"Content-Type": "application/json",
+						"Content-Type": "application/x-www-form-urlencoded",
 						Accept: "application/json",
-						"User-Agent": "Volkswagen/3.51.1-android/14",
-						"x-android-package-name": "com.volkswagen.weconnect",
+						"User-Agent": USER_AGENT,
+						"x-android-package-name": ANDROID_PACKAGE,
 					},
 					validateStatus: (status) => status < 600,
 				},
 			);
 
-			const expiresAt = JSON.parse(
-				atob(tokenResponse.data.accessToken.split(".")[1]),
-			).exp;
+			const expiresAt =
+				Math.floor(Date.now() / 1000) + tokenResponse.data.expires_in;
 
 			const tokenStore = {
 				expiresAt,
-				idToken: tokenResponse.data.idToken,
-				accessToken: tokenResponse.data.accessToken,
-				refreshToken: tokenResponse.data.refreshToken,
+				idToken: tokenResponse.data.id_token,
+				accessToken: tokenResponse.data.access_token,
+				refreshToken: tokenResponse.data.refresh_token,
 			};
 
 			if (!tokenStore.idToken || !tokenStore.accessToken) {
