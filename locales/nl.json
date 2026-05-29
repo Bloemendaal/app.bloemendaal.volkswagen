@@ -4,7 +4,7 @@
 			"authorization_url_failed": "Kon de autorisatie-URL van WeConnect niet ophalen. Controleer je internetverbinding en probeer het opnieuw.",
 			"login_failed": "Inloggen mislukt. Controleer je e-mailadres en wachtwoord. Als je onlangs je wachtwoord hebt gewijzigd, zorg er dan voor dat je het juiste gebruikt. Mogelijk moet je ook de algemene voorwaarden in de Volkswagen-app accepteren.",
 			"authorization_parameters_failed": "Authenticatie voltooid maar beveiligingsparameters konden niet worden opgehaald. Probeer het opnieuw.",
-			"token_exchange_failed": "Toegangstokens konden niet worden opgehaald. Probeer het opnieuw of raadpleeg het communityforum."
+			"token_exchange_failed": "Volkswagen heeft externe toegang tot zijn API geblokkeerd door een apparaatattestatie te vereisen die alleen de officiële app kan genereren. Dit treft alle onofficiële integraties, niet alleen deze. Zie het Homey-communityforum voor meer informatie."
 		}
 	},
 	"capabilities": {

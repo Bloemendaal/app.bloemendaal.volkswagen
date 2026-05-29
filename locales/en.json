@@ -4,7 +4,7 @@
 			"authorization_url_failed": "Couldn't retrieve the authorization URL from WeConnect. Please check your internet connection and try again.",
 			"login_failed": "Login failed. Please check your email and password. If you have recently changed your password, make sure you're using the correct one. You may also need to accept terms and conditions in the Volkswagen app.",
 			"authorization_parameters_failed": "Authentication completed but couldn't retrieve security parameters. Please try again.",
-			"token_exchange_failed": "Couldn't obtain access tokens. Please try again or consult the community forum."
+			"token_exchange_failed": "Volkswagen has blocked third-party access to its API by requiring device attestation that only the official app can produce. This affects all unofficial integrations, not just this one. See the Homey community forum for more information."
 		}
 	},
 	"capabilities": {

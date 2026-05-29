@@ -4,7 +4,7 @@
 			"authorization_url_failed": "Kunde inte hämta auktoriserings-URL från WeConnect. Kontrollera internetanslutningen och försök igen.",
 			"login_failed": "Inloggning misslyckades. Kontrollera din e-postadress och ditt lösenord. Om du nyligen har ändrat ditt lösenord, se till att du använder det korrekta. Du kan också behöva acceptera villkoren i Volkswagen-appen.",
 			"authorization_parameters_failed": "Autentisering slutförd men kunde inte hämta säkerhetsparametrarna. Försök igen.",
-			"token_exchange_failed": "Åtkomsttoken kunde inte hämtas. Försök igen eller kontrollera communityforumet."
+			"token_exchange_failed": "Volkswagen har blockerat tredjepartsåtkomst till sitt API genom att kräva en enhetsattestering som endast den officiella appen kan generera. Detta påverkar alla inofficiella integrationer, inte bara den här. Se Homey-communityforumet för mer information."
 		}
 	},
 	"capabilities": {
