@@ -18,7 +18,9 @@ import {
 
 const BASE_URL = "https://emea.bff.cariad.digital";
 const CLIENT_ID = "a24fba63-34b3-4d43-b181-942111e6bda8@apps_vw-dilab_com";
-const SCOPE = "openid profile badge dealers cars vin";
+// offline_access is part of the canonical app scope — confirmed in the scp claim
+// of tokens issued by the live Auth0 server.
+const SCOPE = "openid profile badge dealers cars vin offline_access";
 const REDIRECT_URI = "weconnect://authenticated";
 const MAXIMUM_REDIRECTS = 10;
 const TOKEN_EXPIRY_BUFFER_MS = 60 * 1000; // 1 minute
@@ -28,15 +30,20 @@ const ANDROID_PACKAGE = "com.volkswagen.weconnect";
 interface TokenRefresh {
 	id_token: string;
 	access_token: string;
-	refresh_token: string;
+	refresh_token?: string;
 	expires_in: number;
 	token_type: string;
 }
 
 interface OpenIdConfig {
 	authorizationEndpoint: string;
-	tokenEndpoint: string;
 	issuer: string;
+}
+
+interface CallbackTokens {
+	code: string;
+	idToken: string;
+	accessToken: string;
 }
 
 export default class VolkswagenAuthenticator implements Authenticatable {
@@ -168,29 +175,43 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 	}
 
 	private async authenticateWithCredentials(): Promise<TokenStore> {
-		// Step 0: Try to refresh existing token
-		const refreshedToken = await this.tryRefreshToken();
-		if (refreshedToken) return refreshedToken;
+		// Step 0: If we have a refresh_token from before the API change, try it.
+		// The /auth/v1/idk/oidc/token refresh path doesn't require hardware
+		// attestation, so previously-issued refresh_tokens still work — until
+		// they expire or are revoked.
+		const refreshed = await this.tryRefreshToken();
 
-		// Step 1: Fetch OpenID configuration to get live endpoints
+		if (refreshed) {
+			return refreshed;
+		}
+
+		// Fallback: OIDC hybrid flow. The CARIAD BFF token-exchange endpoint
+		// requires hardware-attested assertion headers that only the official
+		// app can produce, so we use response_type=code id_token token and
+		// have Auth0 return the id_token + access_token directly in the
+		// callback URL — no server-side token exchange needed. Hybrid flow
+		// does not return a refresh_token, so a full re-login is required
+		// once the access_token expires (~2h).
+
+		// Clear stale cookies so Auth0 doesn't replay an old transaction
+		await this.authenticationClient.defaults.jar?.removeAllCookies();
+
+		// Step 1: Fetch OpenID configuration
 		const openIdConfig = await this.getOpenIdConfig();
 
-		// Step 2: Hit the authorization endpoint to get the login page URL
+		// Step 2: Direct to identity provider's authorize endpoint
 		const loginPageUrl = await this.getAuthorizationUrl(
 			openIdConfig.authorizationEndpoint,
 		);
 
-		// Step 3: Submit credentials and follow redirects to get the auth code
-		const authCode = await this.handleNewAuthFlow(
+		// Step 3: Submit credentials, follow redirects, extract hybrid-flow tokens
+		const callbackTokens = await this.handleNewAuthFlow(
 			loginPageUrl,
 			openIdConfig.issuer,
 		);
 
-		// Step 4: Exchange the authorization code for tokens
-		return await this.exchangeForFinalTokens(
-			authCode,
-			openIdConfig.tokenEndpoint,
-		);
+		// Step 4: Build the session token store directly from the callback values
+		return this.buildSessionTokens(callbackTokens);
 	}
 
 	private async tryRefreshToken(): Promise<TokenStore | null> {
@@ -213,6 +234,7 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 						"Accept-Encoding": "gzip, deflate, br",
 						Connection: "keep-alive",
 						"Content-Type": "application/x-www-form-urlencoded",
+						Accept: "application/json",
 						"User-Agent": USER_AGENT,
 						"x-android-package-name": ANDROID_PACKAGE,
 					},
@@ -228,7 +250,7 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 				expiresAt,
 				idToken: newTokens.id_token,
 				accessToken: newTokens.access_token,
-				refreshToken: newTokens.refresh_token,
+				refreshToken: newTokens.refresh_token ?? this.tokenStore.refreshToken,
 			};
 		} catch {
 			return null;
@@ -243,7 +265,6 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 
 			return {
 				authorizationEndpoint: response.data.authorization_endpoint,
-				tokenEndpoint: response.data.token_endpoint,
 				issuer: response.data.issuer,
 			};
 		} catch (error) {
@@ -255,12 +276,15 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 		authorizationEndpoint: string,
 	): Promise<string> {
 		try {
+			// Hybrid flow: Auth0 returns code + id_token + access_token in the
+			// callback so no separate token exchange with the CARIAD BFF is needed.
+			// nonce is required by Auth0 hybrid flow (embedded in the returned id_token).
 			const searchParams = new URLSearchParams({
+				redirect_uri: REDIRECT_URI,
+				response_type: "code id_token token",
 				client_id: CLIENT_ID,
 				scope: SCOPE,
-				response_type: "code",
 				nonce: crypto.randomBytes(16).toString("hex"),
-				redirect_uri: REDIRECT_URI,
 			});
 
 			const response = await this.authenticationClient.get(
@@ -268,12 +292,15 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 				{
 					maxRedirects: 0,
 					headers: {
+						Connection: "keep-alive",
 						Accept:
-							"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+							"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+						"Accept-Encoding": "gzip, deflate",
+						"Content-Type": "application/x-www-form-urlencoded",
 						"User-Agent": USER_AGENT,
 						"x-android-package-name": ANDROID_PACKAGE,
 					},
-					validateStatus: (status) => status < 400,
+					validateStatus: () => true,
 				},
 			);
 
@@ -284,7 +311,7 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 				!loginPageUrl
 			) {
 				throw new Error(
-					"Failed to get login page URL from authorization endpoint",
+					`Failed to get login page URL from authorization endpoint (status ${response.status})`,
 				);
 			}
 
@@ -299,18 +326,24 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 	private async handleNewAuthFlow(
 		loginPageUrl: string,
 		issuer: string,
-	): Promise<string> {
+	): Promise<CallbackTokens> {
+		// Match the working Python HEADERS_AUTH exactly
+		const authHeaders = {
+			Connection: "keep-alive",
+			Accept:
+				"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+			"Accept-Encoding": "gzip, deflate",
+			"Content-Type": "application/x-www-form-urlencoded",
+			"User-Agent": USER_AGENT,
+			"x-android-package-name": ANDROID_PACKAGE,
+		};
+
 		try {
 			const loginPageResponse = await this.authenticationClient.get(
 				loginPageUrl,
 				{
 					maxRedirects: 0,
-					headers: {
-						Accept:
-							"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-						"User-Agent": USER_AGENT,
-						"x-android-package-name": ANDROID_PACKAGE,
-					},
+					headers: authHeaders,
 					validateStatus: (status) => status === 200,
 				},
 			);
@@ -324,24 +357,20 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 				throw new Error("Could not find state token in login page");
 			}
 
-			const loginUrl = `${issuer}/u/login?state=${state}`;
-
 			const loginResponse = await this.authenticationClient.post(
-				loginUrl,
+				loginPageUrl,
 				new URLSearchParams({
 					state,
 					username: this.credentials.email,
 					password: this.credentials.password,
+					// Required by Auth0 Universal Login to distinguish a credential
+					// submission from other form actions (e.g. "Forgot password").
+					action: "default",
 				}).toString(),
 				{
 					headers: {
+						...authHeaders,
 						"Content-Type": "application/x-www-form-urlencoded",
-						Accept:
-							"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-						"User-Agent": USER_AGENT,
-						"x-android-package-name": ANDROID_PACKAGE,
-						Origin: issuer,
-						Referer: loginUrl,
 					},
 					maxRedirects: 0,
 					validateStatus: (status) => status < 400,
@@ -375,10 +404,7 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 					redirectUrl,
 					{
 						maxRedirects: 0,
-						headers: {
-							"User-Agent": USER_AGENT,
-							"x-android-package-name": ANDROID_PACKAGE,
-						},
+						headers: authHeaders,
 						validateStatus: (status) => status < 600,
 					},
 				);
@@ -394,63 +420,51 @@ export default class VolkswagenAuthenticator implements Authenticatable {
 				redirectUrl = followResponse.headers.location;
 			}
 
-			// Extract code from query params (response_type=code flow returns ?code=...&state=...)
+			// Hybrid flow returns parameters in the URL fragment, code flow in query.
+			// Check both for code, id_token, and access_token.
 			const callbackUrl = new URL(
 				redirectUrl.replace("weconnect://", "https://weconnect-dummy/"),
 			);
-			const code = callbackUrl.searchParams.get("code");
+			const fragmentParams = new URLSearchParams(
+				callbackUrl.hash.replace(/^#/, ""),
+			);
+			const pick = (key: string) =>
+				callbackUrl.searchParams.get(key) ?? fragmentParams.get(key);
 
-			if (!code) {
-				throw new Error("No authorization code in callback URL");
+			const code = pick("code");
+			const idToken = pick("id_token");
+			const accessToken = pick("access_token");
+
+			if (!code || !idToken || !accessToken) {
+				throw new Error(
+					"Missing code, id_token, or access_token in callback URL",
+				);
 			}
 
-			return code;
+			return { code, idToken, accessToken };
 		} catch (cause) {
 			throw new LoginFailedError({ cause });
 		}
 	}
 
-	private async exchangeForFinalTokens(
-		authCode: string,
-		tokenEndpoint: string,
-	): Promise<TokenStore> {
+	private buildSessionTokens(tokens: CallbackTokens): TokenStore {
 		try {
-			const body = new URLSearchParams({
-				client_id: CLIENT_ID,
-				grant_type: "authorization_code",
-				code: authCode,
-				redirect_uri: REDIRECT_URI,
-			});
+			// Hybrid flow does not return expires_in — pull it from the access_token JWT.
+			const payload = JSON.parse(
+				Buffer.from(tokens.accessToken.split(".")[1], "base64url").toString(
+					"utf8",
+				),
+			) as { exp?: number };
 
-			const tokenResponse = await axios.post<TokenRefresh>(
-				tokenEndpoint,
-				body.toString(),
-				{
-					headers: {
-						"Content-Type": "application/x-www-form-urlencoded",
-						Accept: "application/json",
-						"User-Agent": USER_AGENT,
-						"x-android-package-name": ANDROID_PACKAGE,
-					},
-					validateStatus: (status) => status < 600,
-				},
-			);
-
-			const expiresAt =
-				Math.floor(Date.now() / 1000) + tokenResponse.data.expires_in;
-
-			const tokenStore = {
-				expiresAt,
-				idToken: tokenResponse.data.id_token,
-				accessToken: tokenResponse.data.access_token,
-				refreshToken: tokenResponse.data.refresh_token,
-			};
-
-			if (!tokenStore.idToken || !tokenStore.accessToken) {
-				throw new Error("Incomplete token data received from token exchange");
+			if (!payload.exp) {
+				throw new Error("access_token JWT missing exp claim");
 			}
 
-			return tokenStore;
+			return {
+				expiresAt: payload.exp,
+				idToken: tokens.idToken,
+				accessToken: tokens.accessToken,
+			};
 		} catch (cause) {
 			throw new TokenExchangeError({ cause });
 		}
