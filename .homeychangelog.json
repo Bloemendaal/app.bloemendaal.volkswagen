@@ -145,5 +145,8 @@
 	},
 	"1.1.31": {
 		"en": "Add end-of-life notice"
+	},
+	"1.1.32": {
+		"en": "Add temporary solution by avoiding refresh tokens"
 	}
 }
