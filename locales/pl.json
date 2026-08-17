@@ -3,8 +3,9 @@
 		"authentication": {
 			"authorization_url_failed": "Nie udało się pobrać adresu URL autoryzacji z WeConnect. Sprawdź połączenie internetowe i spróbuj ponownie.",
 			"login_failed": "Logowanie nie powiodło się. Sprawdź swój adres e-mail i hasło. Jeśli niedawno zmieniłeś hasło, upewnij się, że używasz prawidłowego. Może być również konieczne zaakceptowanie warunków w aplikacji Volkswagen.",
+			"consent_required": "Volkswagen wymaga zapoznania się ze stroną zgody lub warunków, zanim dostęp innych aplikacji zostanie dozwolony. Zaloguj się na myvolkswagen.net lub w aplikacji Volkswagen, ukończ ekran zgody, a następnie spróbuj ponownie.",
 			"authorization_parameters_failed": "Uwierzytelnianie zakończone, ale nie udało się pobrać parametrów zabezpieczeń. Spróbuj ponownie.",
-			"token_exchange_failed": "Volkswagen zablokował dostęp stron trzecich do swojego API, wymagając atestacji urządzenia, którą może wygenerować tylko oficjalna aplikacja. Dotyczy to wszystkich nieoficjalnych integracji, nie tylko tej. Więcej informacji znajdziesz na forum społeczności Homey."
+			"token_exchange_failed": "Nie udało się uzyskać tokenów dostępu. Spróbuj ponownie lub sprawdź forum społeczności."
 		}
 	},
 	"capabilities": {

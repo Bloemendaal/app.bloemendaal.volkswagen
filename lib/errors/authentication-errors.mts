@@ -24,6 +24,18 @@ export class LoginFailedError extends TranslatableError {
 	}
 }
 
+export class ConsentRequiredError extends TranslatableError {
+	constructor(options?: ErrorOptions) {
+		const name = "ConsentRequiredError";
+		super(name, options);
+		this.name = name;
+	}
+
+	public get translationKey(): string {
+		return "errors.authentication.consent_required";
+	}
+}
+
 export class AuthorizationParametersError extends TranslatableError {
 	constructor(options?: ErrorOptions) {
 		const name = "AuthorizationParametersError";
